@@ -1,0 +1,1024 @@
+﻿
+#MenuBar{
+    background-color:#fff;
+    width:100%;
+
+}
+#divLogin{
+    width:100%;
+    min-height:770px;
+}
+/*html {
+  scroll-behavior: smooth;
+}*/
+body{
+	padding:0;
+	margin:0;
+	background:#fff;
+	position:relative;
+	font-family:'Lato', sans-serif;
+}
+body a{
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+a:hover{
+	text-decoration:none;
+}
+input[type="button"],input[type="submit"],.contact-form input[type="submit"]{
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+    cursor:pointer;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+	margin:0;	
+}	
+p{
+	margin:0;
+}
+ul{
+	margin:0;
+	padding:0;
+}
+label{
+	margin:0;
+}
+/*img{
+	width:100%;
+}*/
+
+
+/* header */
+
+/*-- //header --*/
+
+
+/* CSS Document */
+#logo{
+    height:70px;width:90px;
+      border-radius:30%;
+      background-color:white;
+}
+#TagLine {
+    font-size: 13px;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+    color: blue;
+}
+header {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+}
+
+.toggle,
+[id^=drop] {
+	display: none;
+}
+
+/* Giving a background-color to the nav container. */
+nav { 
+	margin:0;
+	padding: 0;
+}
+.bgblack{
+    background-color:black !important;
+}
+
+/*#Title a {
+	float: left;
+    font-size: .8em;
+    text-transform: capitalize;
+    display: initial;
+    margin: 0;
+    letter-spacing: 1px;
+    color: #4e884a;
+    font-weight:bold !important;
+
+}*/
+#Title {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Verdana, sans-serif;
+    color: #4e884a;
+    letter-spacing: 1px;
+}
+#Title a span {
+    color: #30c39e;
+}
+
+
+/* Since we'll have the "ul li" "float:left"
+ * we need to add a clear after the container. */
+
+nav:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+
+/* Removing padding, margin and "list-style" from the "ul",
+ * and adding "position:reltive" */
+nav ul {
+	padding:0;
+	margin:0;
+	list-style: none;
+	position: relative;
+	}
+	
+/* Positioning the navigation items inline */
+nav ul li {
+	margin: 0px;
+	display:inline-block;
+	}
+
+/* Styling the links */
+nav a {
+    color: #3abc9c;
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+
+nav ul li ul li:hover { background: #f8f9fa; }
+
+/* Background color change on Hover */
+nav a:hover { 
+	color: orange;	
+}
+.menu li.active  a{ 
+	color: #30c39e;	
+}
+
+/* Hide Dropdowns by Default
+ * and giving it a position of absolute */
+nav ul ul {
+	display: none;
+	position: absolute; 
+	/* has to be the same number as the "line-height" of "nav a" */
+	top: 30px; 
+    background: #fff;
+    padding: 10px;
+}
+	
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+	
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+	width:170px;
+	float:none;
+	display:list-item;
+	position: relative;
+}
+nav ul ul li a {
+    color: #333;
+    padding: 5px 10px;
+    display: block;
+}
+
+/* Second, Third and more Tiers	
+ * We move the 2nd and 3rd etc tier dropdowns to the left
+ * by the amount of the width of the first tier.
+*/
+nav ul ul ul li {
+	position: relative;
+	top:-60px;
+	/* has to be the same number as the "width" of "nav ul ul li" */ 
+	left:170px; 
+}
+
+	
+/* Change ' +' in order to change the Dropdown symbol */
+li > a:only-child:after { content: ''; }
+
+/*Home*/
+.AlistingCell{text-decoration:none;color:blue;font-size:12px;font-family:Verdana,sans-serif;font-weight: 700;}
+.AlistingCell:hover{color:orange;cursor:pointer;}
+.homeLink:hover{cursor:pointer;}
+/*Home*/
+
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width : 768px) {
+
+
+	nav {
+		margin: 0;
+	}
+
+	/* Hide the navigation menu by default */
+	/* Also hide the  */
+	.toggle + a,
+	.menu {
+		display: none;
+        background-color:grey;
+	}
+
+	/* Stylinf the toggle lable */
+	.toggle {
+		display: block;
+		padding:10px 20px;	
+		font-size:17px;
+		text-decoration:none;
+		border:none;
+		float: right;
+		background-color: #30c39e;
+		color: #fff;
+	}
+	.menu .toggle {
+		float: none;
+		text-align: center;
+		margin: auto;
+		width: 25%;
+		padding: 5px;
+		font-weight: normal;
+		font-size: 16px;
+		letter-spacing: 1px;
+        
+	}
+
+	.toggle:hover {
+		color:#333;
+		background-color: #fff;
+	}
+
+	/* Display Dropdown when clicked on Parent Lable */
+	[id^=drop]:checked + ul {
+		display: block;
+		background: #fff;
+		padding: 15px 0;
+		text-align: center;
+	}
+
+	/* Change menu item's width to 100% */
+	nav ul li {
+		display: block;
+		width: 100%;
+		padding: 5px 0;
+		}
+
+	nav ul ul .toggle,
+	nav ul ul a {
+		padding: 0 40px;
+	}
+
+	nav ul ul ul a {
+		padding: 0 80px;
+	}
+
+	nav a:hover,
+ 	nav ul ul ul a {
+		background-color: transparent;
+	}
+  
+	nav ul li ul li .toggle,
+	nav ul ul a,
+  nav ul ul ul a{
+		padding:14px 20px;	
+		color:#FFF;
+		font-size:17px; 
+	}
+  
+  
+	nav ul li ul li .toggle,
+	nav ul ul a {
+		background-color: #212121; 
+	}
+
+	/* Hide Dropdowns by Default */
+	nav ul ul {
+		float: none;
+		position:static;
+		color: #ffffff;
+		/* has to be the same number as the "line-height" of "nav a" */
+	}
+		
+	/* Hide menus on hover */
+	nav ul ul li:hover > ul,
+	nav ul li:hover > ul {
+		display: none;
+	}
+		
+	/* Fisrt Tier Dropdown */
+	nav ul ul li {
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+
+	nav ul ul ul li {
+		position: static;
+		/* has to be the same number as the "width" of "nav ul ul li" */ 
+
+	}
+
+}
+
+@media all and (max-width : 330px) {
+
+	nav ul li {
+		display:block;
+		width: 94%;
+	}
+
+}
+
+@media(max-width: 480px) {
+	.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+		width: 40%;
+		margin: 0 auto;
+	}
+	.navbar-light .navbar-nav .dropdown-menu a.nav-link,.navbar-light .navbar-nav .nav-link{
+		width: 40%;
+		margin: 0 auto;
+	}
+	.w3pvt_banner_info h5 {
+		font-size: 20px;
+	}
+	.menu .toggle {
+		width: 32%;
+		font-size: 15px;
+	}
+}
+.menu .toggle {
+		width: 36%;
+	}
+#logo a {
+		font-size: .7em;
+	}
+.toggle {
+    padding: 7px 15px;
+    font-size: 16px;
+	}
+#divHomeFirstLeft{
+    margin-top: 3.5em;
+}
+#divHomeFirstLeft h1{
+    font-size: 45px;
+    color:#fff;
+    font-weight: 600;
+	position: relative;
+    font-family:inherit;
+}
+
+.social_MediaIcons{
+    width:50px;
+    height:50px;
+}
+#Divfooter{
+    padding-top:50px;
+    color:#fff;
+    background-color:#318a30ba;
+    min-height:400px;
+}
+#Divfooter a{
+    color:#fff;
+    font-size:14px;
+    font-weight:400;
+    font-family:sans-serif,lato;
+    letter-spacing:0.5px;
+
+
+}
+#Divfooter a:hover{
+    color:orange;
+    text-shadow:rgba(50,50,93,0.1);
+}
+.FooterIconPadding{
+    padding-right:10px;
+}
+#divFirstSection{
+     /*background: linear-gradient(to right, #99ff66 0%, #ccffcc 100%);
+      background: linear-gradient(to bottom, #99ff66 0%, #00cc00 100%);
+     background: linear-gradient(to right, #009933 0%, #33cc33 59%);
+       background: linear-gradient(to bottom right, #66ff66 0%, #99ffcc 100%);*/
+    background-color:#277935;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	-ms-background-size:cover;
+    min-height: 350px;
+}
+#divHomeSecondSection{
+    min-height:400px;
+    font-family:inherit;
+    font-family:sans-serif,lato;
+
+}
+#divHomeSecondSection p{
+    font-size:16px;
+
+    
+}
+#divHomeSecondSection h1 {
+        font-size: 40px;
+        line-height: 35px;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #333;
+        font-family:Arial,sans-serif;
+    }
+.ghost-btn {
+    -moz-border-radius: 100px !important;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 1.16px 1.17px 2.31px rgba(255,182,0,0.7);
+    box-shadow: 1.16px 1.17px 2.31px rgba(255,182,0,0.7);
+    background: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f47721;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1.1em;
+    padding: 12px 26px;
+    max-height: 40px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    transition: all 300ms ease-in-out;
+    text-align: center;
+    font-family:lato,sans-serif;
+    color: #fff;
+    outline: none;
+}
+
+.ghost-btn.last {
+    margin-right: 0;
+}
+.ghost-btn.first {
+    margin-left: 0;
+}
+.ghost-btn.filled {
+    background-color: #fd9026;
+    border-color: #fd9026;
+    color: #fff;
+}
+.ghost-btn:hover{
+      -webkit-box-shadow: 0 7px 14px rgba(50,50,93,0.1), 0 3px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 7px 14px rgba(50,50,93,0.1), 0 3px 6px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+    background-color: #f47721;
+    color: #fff;
+}
+.ghost-btn.noshadow {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.ghost-btn.inverse {
+    border: 1px solid #fff;
+    color: #fff;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
+
+    .form-box {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 20px 0 #30c39e;
+    box-shadow: 0 0 20px 0 #333;
+    /*box-shadow: 0 0 30px 0 #30c39e;
+    -webkit-box-shadow: 0 0 40px 0 #e9e9e9;
+    box-shadow: 0 0 40px 0 #e9e9e9;*/
+    background-color: #ffffff;
+    /*color: #7b7b7b;*/
+    max-width: 574px;
+    width: 100%;
+    min-height: 455px;
+    margin-top: 52px;
+    margin-bottom: 52px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 45px 2.5% 45px;
+}
+    .form-box .form-heading {
+    color: #7a7a7a;
+    font-size: 33px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 45px;
+    font-family:inherit;
+}
+
+   .form-control {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 10px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /*border-top: none;
+    border-right: none;
+    border-left: none;
+    padding-left: 5px;*/
+    transition: all ease-in-out 300ms;
+    background: none;
+    color: #454545;
+    border:1px solid #333 !important;
+    font-family: 'latoregular';
+    font-size: 16px;
+    outline:none;
+}
+ /*#divSingUp #ddlState,#ddlDistrict,#ddlMandal{
+       height:35px !important;
+   }*/
+   button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+   
+   .form-group label {
+    font-family: 'latolight',sans-serif;
+    color: black;
+    font-size:15px;
+}
+   .form-box.landing-form-box {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    min-height: 0;
+    
+}
+ .cta-actions {
+    padding-top: 20px;
+}
+ .form-group{
+       margin-bottom:22px;
+       margin-left:20px;
+   }
+   /*label {
+    color: #58627c;
+    font-weight: normal;
+}*/
+label {
+    display: inline-block;
+    max-width: 100%;
+}
+   .form-group.error label {
+    color: #fa7c69;
+}
+   .form-group.error .form-control {
+    border-color: #fa7c69;
+}
+    .form-group .error-msg {
+    display: none;
+}
+    .form-group.error .error-msg {
+    display: block;
+    color: #fa7c69;
+    font-size: 11px;
+    padding-top: 3px;
+}
+    .form-box .custom-select {
+    min-height: 59px;
+}
+    .nice-select {
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px #e8e8e8;
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    height: 42px;
+    line-height: 40px;
+    outline: none;
+    padding-left: 18px;
+    padding-right: 30px;
+    position: relative;
+    text-align: left !important;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+}
+
+#divSingUp,#divContactUs, #divUserAccount,#divOTPVerification{
+    min-height: 600px;
+}
+#divUserAccount{
+    padding-bottom:50px;
+}
+.FormHeading {
+    color: #3abc9c;
+    font-size: 28px;
+    font-family: inherit;
+    line-height: .95;
+    margin: 0;
+    padding-top: 50px;
+    padding-bottom:20px;
+    text-align:center;
+    font-weight:bold;
+    /*font-weight:500;*/
+}
+select {
+    padding-bottom: 5px !important;
+    color: inherit !important;
+    border-radius: 5px !important;
+    border-color: #808080 !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    padding: 10px;
+    height:35px !important;
+}
+option{
+    padding:5px;
+}
+
+.dflt-btn {
+    border-radius: 100px;
+    background-color: #4bc5ac;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: .9px;
+    font-family: latoregular;
+    line-height: 42px;
+    text-transform: uppercase;
+    min-width: 177px;
+    text-align: center;
+    border: none;
+    transition: all .4s ease-in-out;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-box-shadow: #4bc5ac 0 21px 35px -17px;
+    -moz-box-shadow: #4bc5ac 0 21px 35px -17px;
+    box-shadow: 0 21px 35px -17px #4bc5ac;
+    outline: none;
+    margin-bottom:5px;
+}
+.seperator-text {
+    font-size: 14px;
+    letter-spacing: .3px;
+    text-align: center;
+    color: #888;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
+.green-text {
+    color: #43c6ac;
+    font-size: 12px;
+    display: inline-block;
+    cursor: pointer;
+    padding-right:5px;
+}
+.psw {    position: relative;}
+.psw .form-control {    padding-right: 60px;}
+.psw .tog-check {    position: absolute;    top: 30px;    right: 0;}
+#LoginRightWindow{    padding-top:200px;}
+#LoginRightWindow .form-box{    min-height:100px !important;    text-align:center;}
+#txtDescription {    border:1px solid #888 !important;    padding-left:5px;}
+.pt5{padding-top:5px;}.pt10{padding-top:10px;}.pt20{padding-top:20px;}.pt30{padding-top:30px;}.pt40{padding-top:40px;}.pt50{padding-top:50px;}.pt60{padding-top:60px;}.pt70{padding-top:70px;}
+.pb5{padding-bottom:5px;}.pb10{padding-bottom:10px;}.pb20{padding-bottom:20px;}.pb30{padding-bottom:30px;}.pb40{padding-bottom:40px;}.pb50{padding-bottom:50px;}.pb100{padding-bottom:100px;}
+.pl5{padding-left:5px;}.pl10{padding-left:10px;}.pl20{padding-left:20px;}.pl30{padding-left:30px;}.pl40{padding-left:40px;}.pl50{padding-left: 50px;}.pl60{padding-left:60px;}.pl70{padding-left:70px;}.pl80{padding-left:80px;}.pl90{padding-left:90px;}.pl100{padding-left:100px;}
+.pr5{padding-right:5px;}.pr10{padding-right:10px;}.pr20{padding-right:20px;}.pr30{padding-right:30px;}.pr40{padding-right:40px;}.pr50{padding-right: 50px;}.pr60{padding-right:60px;}.pr70{padding-right:70px;}.pr80{padding-right:80px;}.pr90{padding-right:90px;}.pr100{padding-right:100px;}
+.MandatoryStars{color:red;}
+#txtContactUsDescription{resize:none;min-height:100px;}
+#txtAdDescription{resize:none}
+#txtReviewDescription
+{resize:none;min-height:100px;}
+
+.listingImage{width:130px;height:130px;}
+.listingImage:hover{transform: scale(1.05);}
+#UserLoggedInText{
+    font-size:15px;
+    font-family:inherit;
+    color:black;
+}
+#divHomeCatogies{
+    min-height:900px;
+    padding-top:50px;
+}
+#HomeLable{
+    font-size: 38px;
+    color:#fff;
+    font-weight: 600;
+    font-family:inherit;
+    margin:0;
+}
+
+#DivHowToRegister label{
+    padding-bottom:20px;
+    padding-top:20px;
+    color:black;
+    font-family:inherit;
+    font-size:15px;
+}
+#DivHowToRegister{
+    padding-bottom:100px;
+}
+
+.dropdownMenu {position: relative;display: inline-block;}
+.dropdown-content {display: none;position: absolute;/*background-color: #f9f9f9;*/text-align:center;min-width: 120px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);z-index: 20; border-radius:5px;}
+.dropdown-content a {padding: 12px 16px;text-decoration: none;display: block;font-family:Verdana,sans-serif;font-size:13px; font-weight:bold;}
+.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdownMenu:hover .dropdown-content {display: block;background-color:white;}
+.dropdownMenu:hover .dropbtn {color:orange;}
+
+
+
+#SubMenuBar {margin: 0 auto; width:100%;background-color:#36ae4b;min-height: 45px;}
+#SubMenuBar a{font-size: 12px;padding-top: 15px; padding-bottom: 15px;text-decoration: none;line-height: inherit;background-color: transparent;color:white}
+#SubMenuBar ul li { cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
+#SubMenuBar ul li:hover {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55; border-radius:3px;}
+#SubMenuBar ul li.active {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55; border-radius:3px;}
+/*#SubMenuBar a {font-size: 12px;padding-top: 15px; padding-bottom: 15px;text-decoration: none;line-height: inherit;background-color: transparent;color:white}
+
+SubMenuBar ul.tabs1 li { cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 30px;}
+SubMenuBar UL li:hover {border-bottom:2px solid green;min-height:45px;background-color:#808080;}
+SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;background-color:#808080;}*/
+
+#topbar-wrapper { font-family:Arial,Helvetica,sans-serif;border-radius:3px;}
+.wrapper { clear: both;margin: 0 auto;}
+.ul.tabs1 li a {font-size: 11px;padding-top: 15px; padding-bottom: 15px;}
+#topbar-wrapper a { text-decoration: none;line-height: inherit;background-color: transparent;color:white}
+#topbar-wrapper ul.tabs1 li { cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 30px;}
+#topbar-wrapper UL.tabs1 li:hover {border-bottom:2px solid green;min-height:45px;background-color:#808080;}
+#topbar-wrapper UL.tabs1 li.active {border-bottom:2px solid green;min-height:45px;background-color:#808080;}
+
+.blink_me {
+  animation: blinker 2s step-start infinite;
+  color:orange;
+}
+@keyframes blinker {
+  50% {
+    opacity: 100;
+    color: yellow; 
+  }
+}
+
+/* user account tabs*/
+.tab {overflow: hidden;margin-left: auto;margin-right: auto;width: 100%;background-color: #6c5656; border-radius:5px;}
+.tab.subTab{overflow: hidden;margin-left:auto;margin-right:auto;width:100%;color:blue;font-family:Verdana,sans-serif;font-weight:normal !important;font-size:9.5px !important;}
+
+ /* Style the buttons inside the tab */
+    .tab button {
+        float: left;
+        color: #fff;
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+        padding: 12px 14px;
+        transition: 0.3s;
+        font-size: 14px;
+        font-family: inherit;
+        border-right: 1px solid #4a3a3a;
+    }
+
+/* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #4a3a3a;
+            color: orange;
+        }
+
+/* Create an active/current tablink class */
+        .tab button.active {
+            border-bottom: 2px solid blue;
+            background-color: #4a3a3a;
+            color: orange !important;
+        }
+.tab.subTab button{color:white;padding-top:8px;padding-bottom:8px;color:white;font-size:9.9px;}
+/* Style the tab content */
+.tabcontent {display: none;padding: 6px 12px;border: 1px solid #ccc;border-top: none;}
+
+/***/
+
+.DisplayImageclass{padding-left:5px;padding-top:5px;width: 155px; height: 110px;cursor:pointer;padding-bottom:2px;}
+.DisplayUserImageclass{width:50px; height:50px}
+#PhoneNumberVerifiedImg{width:100px; height:45px}  
+.error {color: red;}
+#btnGoToPage:hover{color:orange;}
+#btnGoToPage{background-color:green;border-radius:10px;font-size:14px;color:white;font-weight:bold;height:30px;width:120px;border:none;cursor:pointer;font-family:Verdana,sans-serif;}
+
+#txtcurrentPageNumber{ height:30px;width:35px;text-align:center;}
+#lblTotalPageNumber{font-size:15px;font-family:Verdana,sans-serif;font-weight:normal;}
+#spanSlash {font-size: 15px;font-family: Verdana,sans-serif;font-weight: normal;padding:0px 2px 0px 4px;}
+
+#AdList{width:100%;/*padding-top:30px;*/margin-left:auto;margin-right:auto;border:1px solid rgba(0,0,0,0.2);min-height:300px; padding-top:1px}
+#tblAdList{text-align:center;border-collapse:collapse;}
+#tblAdList th{border-color:blue;border-right:1px solid #4a3a3a}
+#tblAdList td{height:40px;text-decoration:none;font-size:12px;}
+.tblHeader {background-color:#6c5656;height:30px;border-collapse:collapse;color:white;font-size:10px;border-radius:5px;}
+#UserSettings{min-height:300px;}
+#AdListRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
+/*#AdListRow td {border:1px solid black}*/
+#AdListRow:hover{background-color:#f6f6f6;cursor:pointer}
+.tdbreak {  word-break: break-all}
+
+
+#rowAdTitle{font-size:14px;font-weight:bold;font-family:Verdana,sans-serif;padding-top:5px;padding-bottom:5px;}
+.font12{font-size:12px;font-family:Verdana,sans-serif;padding-top:4px;padding-bottom:4px;}
+.NoAdData {
+    border: 1px solid grey;
+    margin-bottom: 4px;
+    height: 100px;
+    text-align:center;
+    align-items:center;
+    font-size:14px;
+    font-family:Verdana,sans-serif;
+}
+.FilterLabels{font-size:12px;font-family:Verdana,sans-serif;}
+.MinHight{
+    min-height:800px;
+}
+#divAdListDisplay .row:hover {
+    background-color: #f1f0f0
+}
+
+#AdDisplayAdTitle {
+    word-wrap: break-word;
+    line-height: 28px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Verdana,sans-serif;
+    max-width: 615px;
+}
+.adDisplayAdLocation {
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 12px;
+    color: #808080;
+    font-family: Verdana,sans-serif;
+    word-break:break-word;
+
+}
+.DisplayImage {
+    vertical-align: middle;
+    border-style: none;
+    max-width : 500px;
+    max-height: 500px;
+}
+
+#AdDisplayAdprice {
+    border-radius: 5px;
+    background-color: rgb(203, 226, 181);
+    height: 75px;
+    align-content: center;
+    align-items: center;
+    font-family: Verdana,sans-serif;
+    font-size: 18px;
+    font-family: Verdana,sans-serif;
+    color: black;
+    padding-bottom: 2px;
+    padding-top: 25px;
+}
+.adDisplayUserDetails {
+    
+    background-color: rgb(234, 237, 242);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    color: black;
+    font-family: Verdana,sans-serif;
+    padding-bottom:2px;
+}
+
+.AdDisplayAdCategory {
+    font-weight: bold;
+    font-size: 12px;
+    color: #808080;
+    font-family: Verdana,sans-serif;
+    text-align:right;
+}
+
+.AdDisplayLabel {
+font-size:18px;
+font-weight:bold;
+color:#808080;
+padding-bottom:10px;
+padding-top:5px;
+}
+.AdDisplayValues{
+    font-size:14px;
+    font-family:inherit;
+}
+/*.padding5px{
+    padding
+}*/
+.nopadding {
+    padding: 0px !important;
+}
+.PhoneVerf {
+    Color:Green;padding-top:15px;
+    padding-bottom:15px;
+    font-size:14px;
+    font-weight:bold;
+}
+.PhoneNoView {
+text-decoration:none;
+color:blue !important;
+cursor:pointer;
+font-size:14px;
+}
+.font14{
+    font-size:14px;
+    font-family:inherit;
+}
+
+#tdPageNext, #tdPreviousPage {
+    color: blue;
+}
+
+#adlistHeader{
+    font-size: 12px !important;
+    font-weight:normal !important;
+    font-family:inherit;
+    border:none;
+    background-color:#4a3a3a;
+    color:white;
+    height:30px;
+    border-radius:5px;
+
+}
+
+
+
+
+
+/*Navigation menu css start*/
+
+
+
+.topnav {
+    overflow: hidden;
+    background-color: #36ae4b;
+}
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding-left: 18px;
+        padding-right: 18px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    #SubMenuBar {margin: 0 auto; width:100%;background-color:#36ae4b;min-height: 45px;}
+.topnav a {cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
+.topnav a:hover {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55 !important; border-radius:3px;}
+.topnav a.active {border-bottom: 2px solid orange;min-height: 45px;background-color: #6d9a55 !important;border-radius: 3px;}
+
+.topnav .icon {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {float: right;display: block;}
+}
+
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+
+        .topnav.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .topnav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+}
+
+
+/*Navigation menu css End*/ 
+
+
+
+

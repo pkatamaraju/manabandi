@@ -1,0 +1,32 @@
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.dll.config
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.dll.config
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.dll.config
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ProxyService.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.csprojAssemblyReference.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.csproj.CoreCompileInputs.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.csproj.CopyComplete
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ProxyService\obj\Release\RaiteRaju.ProxyService.pdb

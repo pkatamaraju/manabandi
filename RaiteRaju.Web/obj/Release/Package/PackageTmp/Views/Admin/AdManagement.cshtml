@@ -1,0 +1,305 @@
+﻿
+@{
+    ViewBag.Title = "AdManagement";
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    $.noConflict();
+    var AdList = null;
+
+    jQuery().ready(function () {
+        jQuery('#tabAdManagement').addClass('active');
+    });
+
+    jQuery(document).ready(function () {
+
+        AdList=@(Html.Raw(Json.Encode(ViewBag.AdList)));
+        var length=Object.keys(AdList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblAdList').html('<tr><td style="padding-top:120px;padding-left:220px"">No Ads Are Found</tr></td>');
+        }
+        else
+        {
+            var tblAdList=jQuery('#tblAdList');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblAdList.append('<tr id="AdListRow"><td id="AdTitle" onclick="fnOpenAd('+AdList[i].AdID+')">'+AdList[i].AdID+'</td><td>'+AdList[i].Category+'</td><td>'+AdList[i].txtSubCategoryName+'</td><td>'+AdList[i].txtPrice+'</td><td>'+AdList[i].txtQuantity+" "+AdList[i].SellingUnit+'</td><td><img src="/PhotoManagement/Compressed/'+AdList[i].AdID+'.jpg" class="DisplayUserImageclass"/></td><td><input type="checkbox" value='+AdList[i].AdID+' class="SelectedAds" ></td><td onclick="fnUpdateAd('+AdList[i].AdID+')" style="curser:pointer;color:blue;cursor:pointer">'+"Edit"+'</td><tr>')
+            }
+        }
+       var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber==1){
+            jQuery('a#PreviousPage').attr('disabled', true);
+            jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
+        }
+        if(TotalPageCount==CurrentPageNumber){
+
+            jQuery('a#PageNext').attr('disabled', true);
+            jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
+        }
+        if(TotalPageCount==0){
+            jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
+        }
+    });
+    jQuery().ready(function(){
+        jQuery("#selectAll").change(function(){
+            var ischecked= jQuery(this).is(':checked');
+            if(ischecked){
+                jQuery(".SelectedAds").attr("checked",true);
+            }
+            if(ischecked==false){
+                jQuery(".SelectedAds").attr("checked",false);
+            }
+        });
+    });
+
+    jQuery(document).ready(function() {
+        jQuery("a#PreviousPage").click(function(){
+
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1){
+                jQuery('a#PreviousPage').attr('disabled', true);
+                //jQuery('a#PreviousPage').css("color","grey");
+            }
+            else{
+                CurrentPageNumber=CurrentPageNumber-1;
+                window.location.href='@Url.Action("AdManagement", "Admin")?PageNumber='+CurrentPageNumber;
+            }
+
+            if(TotalPageCount==CurrentPageNumber){
+                jQuery('a#PageNext').attr('disabled', true);
+                // jQuery('a#PreviousPage').css("color","grey");
+            }
+
+
+        });
+        jQuery("a#PageNext").click(function(){
+
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1){
+                jQuery('a#PreviousPage').attr('disabled', true);
+                // jQuery('a#PreviousPage').css("color","grey");
+            }
+            if(TotalPageCount==CurrentPageNumber){
+                jQuery('a#PageNext').attr('disabled', true);
+                //jQuery('a#PreviousPage').css("color","grey");
+            }
+            else{
+                CurrentPageNumber=CurrentPageNumber+1;
+                window.location.href='@Url.Action("AdManagement", "Admin")?PageNumber='+ CurrentPageNumber;
+            }
+        });
+    });
+
+    function fnGoToPage(){
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber>TotalPageCount || CurrentPageNumber==0){
+            alert("Maximum available pages are "+TotalPageCount+".");
+        }
+        else{
+
+            window.location.href='@Url.Action("AdManagement", "Admin")?PageNumber='+ parseInt(CurrentPageNumber);
+        }
+    }
+
+    jQuery("#selectAll").change(function(){
+        var ischecked= jQuery(this).is(':checked');
+        if(ischecked){
+            jQuery(".SelectedAds").attr("checked",true);
+        }
+        if(ischecked==false){
+            jQuery(".SelectedAds").attr("checked",false);
+        }
+    });
+
+
+    function fnDeleteAds(){
+        var AdIds="";
+
+        jQuery(".SelectedAds:checked").each(function(){
+            if(AdIds==""){
+                AdIds=jQuery(this).val();
+            }
+            else{
+                AdIds=AdIds+","+jQuery(this).val();
+            }
+        })
+
+        jQuery.ajax({
+            type: 'POST',
+            url: '@Url.Action("AdManagement", "Admin")',
+            dataType: 'json',
+            data:{ AdIdList:AdIds},
+            success: function (data) {
+                if(data!=0){
+                    alert("Selected Ad/s Are Deleted Successfully");
+
+                    if(parseInt(@ViewBag.TotalPageNumber)<parseInt(@ViewBag.CurrentPageNumber)){
+                        var currentpageNumber=@ViewBag.TotalPageNumber;
+                    }
+                    else{
+                        var currentpageNumber=@ViewBag.CurrentPageNumber;
+                    }
+                    window.location.href='@Url.Action("AdManagement", "Admin")?PageNumber='+ currentpageNumber;
+                }
+                else
+                {
+                    alert("Something Went Wrong, Please Try After Sometime.");
+                }
+            },
+            error: function (data) {
+                alert("Some Error Occured");
+            }
+        });
+    }
+
+
+    jQuery(function () { jQuery("#ddlState").change(function () {
+
+        var stagId= jQuery("#ddlState").val();
+        DistrictList=@(Html.Raw(Json.Encode(ViewBag.DistrictLIst)));
+        var length=Object.keys(DistrictList).length;
+        jQuery('#ddlDistrict').empty();
+        jQuery("#ddlDistrict").html("");
+        jQuery("#ddlDistrict").append
+        (jQuery('<option></option>').val("").html("---Select District---"));
+        for(i=0;i<length;i++){
+            if(DistrictList[i].ID==stagId){
+                jQuery("#ddlDistrict").append(jQuery('<option></option>').val(DistrictList[i].value).html(DistrictList[i].Name))}
+
+        }
+        jQuery('#ddlMandal').empty();
+        jQuery("#ddlMandal").html("");
+        jQuery("#ddlMandal").append
+        (jQuery('<option></option>').val("").html("---Select Mandal---"));
+    })});
+
+
+    jQuery(function () {jQuery("#ddlDistrict").change(function () {
+
+        var DistID= jQuery("#ddlDistrict").val();
+        MandalList=@(Html.Raw(Json.Encode(ViewBag.MandalList)));
+        var length=Object.keys(MandalList).length;
+        jQuery('#ddlMandal').empty();
+        jQuery("#ddlMandal").html("");
+        jQuery("#ddlMandal").append
+        (jQuery('<option></option>').val("").html("---Select Mandal---"));
+        for(i=0;i<length;i++){
+            if(MandalList[i].ID==DistID){
+                jQuery("#ddlMandal").append(jQuery('<option></option>').val(MandalList[i].value).html(MandalList[i].Name))}
+
+        }})});
+
+
+    function fnOpenAd(ADID){
+
+        var AdId=ADID;
+        var win = window.open('/Admin/AdDisplay?AdId='+AdId, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            alert('Please Allow Popups For This Website');
+        }
+    }
+    function fnUpdateAd(ADID){
+        var AdId=ADID;
+        window.location.href='@Url.Action("AdDetails","Admin")?AdId='+AdId;
+    }
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+@*<div>
+        <a href="/admin/AdminMain">Admin Page</a>
+    </div>*@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <div id="Admin">
+                @*<div style="padding:10px 0px 10px 0px;background-color:#e0eaf1;border-radius:5px;font-family:Verdana,sans-serif">
+                <table id="tblFilter" style="padding-left:20px;">
+                    <tr>
+                        <td><span class="FilterLabels">Select State</span><br />@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
+                        <td>
+                            <span class="FilterLabels">Select Distrinct</span><br /><select id="ddlDistrict" class="DropdownList" required>
+                                <option value="">---Select District---</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                            <select id="ddlMandal" class="DropdownList" required>
+                                <option value="">---Select Mandal---</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="FilterLabels">Select Category</span><br />@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })
+                        </td>
+                        <td> </td>
+                        <td style="padding-left:50px;"><br /><input id="btnSearch" type="button" value="Search" onclick="fnAdSearch()" /></td>
+                    </tr>
+                </table>
+            </div>*@
+                <br />
+                <br />
+                <div id="AdList" class="table-responsive">
+
+                    <table id="tblAdList" style="border-collapse: collapse;">
+                        <tr id="adlistHeader">
+                            <th width="100px">AdID</th>
+                            <th width="200px">Category</th>
+                            <th width="200px">Sub Category Name</th>
+                            <th width="200px">Price</th>
+                            <th width="200px">Quantity</th>
+                            <th width="100px"></th>
+                            <th width="50px"><input type="checkbox" id="selectAll"></th>
+                            <th width="200px"><input id="btnVerify" type="button" value="Delete Ads" onclick="fnDeleteAds()" class="ghost-btn first last filled py-2" /></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                <div class="col-lg-1 col-md-2 d-none d-md-block">
+                </div>
+                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-2 d-none d-md-block">
+                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                </div>
+                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                    <a id="PageNext" data-value="2" style="cursor:pointer">
+                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

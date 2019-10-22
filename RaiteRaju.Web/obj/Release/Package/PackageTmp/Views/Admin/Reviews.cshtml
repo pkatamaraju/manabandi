@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Reviews";
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $.noConflict();
+    var ReviewsList = null;
+    jQuery(document).ready(function () {
+
+        ReviewsList=@(Html.Raw(Json.Encode(ViewBag.ReviewsList)));
+        var length=Object.keys(ReviewsList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblReviews').html('<tr><td style="padding-top:120px;padding-left:220px;font-size:16px"">No Data found</tr><td></td></td>');
+        }
+        else
+        {
+            var tblReviewsList=jQuery('#tblReviews');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblReviewsList.append('<tr id="AdListRow"><td style="width:50px;text-align:center;">'+j+'</td><td style="width:100px;text-align:center;">'+ ReviewsList[i].PhoneNumber+'</td><td class="tdbreak" style="width:400px;text-align:center;">'+ReviewsList[i].Review+'</td><td style="width:100px;text-align:center;">'+ReviewsList[i].DtInserted+'</td><tr>')
+            }
+        }
+    });
+    jQuery().ready(function () {
+        jQuery('#tabReviewsForAdmin').addClass('active');
+    });
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <h2>Reviews</h2>
+
+            <div style="border:1px solid black" class="table-responsive">
+                <table id="tblReviews" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">
+                    <tr id="adlistHeader">
+                        <th width="20px">S.No</th>
+                        <th width="100px">Phone Number</th>
+                        <th width="50%">Review</th>
+                        <th width="100px">Date</th>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

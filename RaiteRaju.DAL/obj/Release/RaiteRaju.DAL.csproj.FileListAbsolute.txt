@@ -1,0 +1,32 @@
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.csprojAssemblyReference.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.csproj.CopyComplete
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.pdb

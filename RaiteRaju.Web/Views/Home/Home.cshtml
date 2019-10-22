@@ -1,0 +1,212 @@
+﻿@using RaiteRaju.ApplicationUtility;
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<title> Raiteraju Home</title>
+<meta name="google-site-verification" content="Sell your crop at Raiteraju.in, You can sell or buy Land,Cotton,Rice,sunflower,buffalo,Cow and many agriculture related products" />
+<meta name="description" content="You can sell or buy anything related to Agriculture. Like Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+<meta name="keywords" content="you can sell Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+<meta name="robots" content="index,follow" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    $.noConflict();
+    jQuery(document).ready(function(){
+        jQuery("#divPaging").hide();
+    })
+
+
+    function fnAdSearchByCategory(Category){
+        var CurrentPageNumber=jQuery('#PreviousPage').val();
+        jQuery('#PreviousPage').data('value',1);
+        jQuery('#NextPage').data('value',2);
+        jQuery("#divAdSearch").load("AddPost/_AdSearchCategory", {Category:Category,PageNumber:1});
+    }
+
+    jQuery(document).ready(function () {
+    //    jQuery("a.homeLink").click(function(){
+    //        jQuery("#divHomeList").hide();
+    //        jQuery("#divPaging").show();
+    //        Category=jQuery(this).data("value");
+    //        jQuery('#txtHiddenCategoryId').val(Category);
+    //        jQuery("#divAdSearch").load("/AddPost/_AdSearchCategory", {Category:Category,PageNumber:1});
+    //    });
+        jQuery("a.AlistingCell").click(function(){
+            CategoryId = jQuery(this).data("value");
+            window.location.href = '@Url.Action("AdSearch", "AddPost")?CategoryId=' + CategoryId + '&PageNumber=' + 1;
+
+        });
+    });
+
+    jQuery(window).ready(function () {
+        jQuery("a.homeLink").click(function () {
+            CategoryId = jQuery(this).data("value");
+            window.location.href = '@Url.Action("AdSearch", "AddPost")?CategoryId=' + CategoryId + '&PageNumber=' + 1;
+
+        });
+    });
+
+
+    </script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<style>
+
+
+</style>
+
+
+<div id="divHomeCatogies">
+    <div class="container">
+
+        <div class="row" style="min-height:40px">
+            <div class="col-lg-1 col-md-2"></div>
+            <div class="col-lg-10 col-md-10"><label style="font-size:15px!important;padding-bottom:30px">Click on below Categories to view Ads posted by Farmers.</label></div>
+            <div class="col-lg-1"></div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-1">
+
+            </div>
+
+            <div class="col-lg-10">
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                    <a class="homeLink" data-value="1"><img class="listingImage" src="~/Content/images/Cotton.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="1">Cotton</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                    <a class="homeLink" data-value="3"><img class="listingImage" src="~/Content/images/redCHILLI.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="3">Chillies</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                    <a class="homeLink" data-value="2"><img class="listingImage" src="~/Content/images/Rice.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="2">Rice</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                    <a class="homeLink" data-value="9"><img class="listingImage" src="~/Content/images/sunflowers.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="9">Sun Flower</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                    <a class="homeLink" data-value="7"><img class="listingImage" src="~/Content/images/maize.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="7">Maize</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="8"><img class="listingImage" src="~/Content/images/sugarcane.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="8">Sugar Cane</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="26"><img class="listingImage" src="~/Content/images/DairyProducts.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="26">Dairy Products</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="10"><img class="listingImage" src="~/Content/images/GOATS.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="10">Goats</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="11"><img class="listingImage" src="~/Content/images/Sheep.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="11">Sheep</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="12"><img class="listingImage" src="~/Content/images/cows.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="12">Cow</a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="18"><img class="listingImage" src="~/Content/images/OX.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="18">Ox</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="13"><img class="listingImage" src="~/Content/images/Buffalo.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="13">Buffaloes</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="14"><img class="listingImage" src="~/Content/images/land.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="14">Land</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="4"><img class="listingImage" src="~/Content/images/GroundNut.jpeg" /></a><br>
+                    <a class="AlistingCell" data-value="4">Ground Nuts</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="5"><img class="listingImage" src="~/Content/images/Redgram.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="5">Red Gram</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="23"><img class="listingImage" src="~/Content/images/Fruits.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="23">Fruits</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="15"><img class="listingImage" src="~/Content/images/Vegetables.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="15">Vegetables</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="27"><img class="listingImage" src="~/Content/images/Millets.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="27">Millets</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="16"><img class="listingImage" src="~/Content/images/Equipment.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="16">Equipment</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="19"><img class="listingImage" src="~/Content/images/Fish.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="19">Fish</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="20"><img class="listingImage" src="~/Content/images/Prawns.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="20">Prawns</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="21"><img class="listingImage" src="~/Content/images/Pesticide.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="21">Pesticides</a>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="25"><img class="listingImage" src="~/Content/images/Fertilizers.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="25">Fertilizers</a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                    <a class="homeLink" data-value="22"><img class="listingImage" src="~/Content/images/Fodder.jpg" /></a><br>
+                    <a class="AlistingCell" data-value="22">Fodder</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-1"></div>
+        </div>
+        
+        <div class="row" style="min-height:100px;">
+
+        </div>
+    </div>
+</div>
+
+<div id="divAdSearch">
+
+</div>
+
+
+
+
+
+

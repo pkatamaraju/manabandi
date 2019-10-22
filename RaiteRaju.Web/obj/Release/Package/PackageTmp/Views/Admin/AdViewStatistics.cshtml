@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "AdViewStatistics";
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    $.noConflict();
+    var AdList = null;
+    jQuery(document).ready(function () {
+
+        AdList=@(Html.Raw(Json.Encode(ViewBag.UserList)));
+        var length=Object.keys(AdList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblAdList').html('<tr><td style="padding-top:120px;padding-left:220px"">No Records Found.</tr></td>');
+        }
+        else
+        {
+            var tblAdList=jQuery('#tblAdList');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblAdList.append('<tr id="AdListRow"><td>'+AdList[i].BuyerName+'</td><td>'+ AdList[i].BuyerPhoneNumber+'</td><td>'+AdList[i].SellerName+'</td><td>'+AdList[i].SellerPhoneNumber+'</td><td id="AdTitle" onclick="fnOpenAd('+AdList[i].ViewedAdId+')">'+AdList[i].ViewedAdId+'</td><tr>')
+            }
+        }
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber==1){
+            jQuery('a#PreviousPage').attr('disabled', true);
+            jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
+        }
+        if(TotalPageCount==CurrentPageNumber){
+
+            jQuery('a#PageNext').attr('disabled', true);
+            jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
+        }
+        if(TotalPageCount==0){
+            jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
+        }
+    });
+    jQuery(document).ready(function() {
+        jQuery("a#PreviousPage").click(function(){
+
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1){
+                jQuery('a#PreviousPage').attr('disabled', true);
+                //jQuery('a#PreviousPage').css("color","grey");
+            }
+            else{
+                CurrentPageNumber=CurrentPageNumber-1;
+                window.location.href='@Url.Action("AdViewStatistics", "Admin")?PageNumber='+CurrentPageNumber;
+            }
+
+            if(TotalPageCount==CurrentPageNumber){
+                jQuery('a#PageNext').attr('disabled', true);
+                // jQuery('a#PreviousPage').css("color","grey");
+            }
+
+
+        });
+        jQuery("a#PageNext").click(function(){
+
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1){
+                jQuery('a#PreviousPage').attr('disabled', true);
+                // jQuery('a#PreviousPage').css("color","grey");
+            }
+            if(TotalPageCount==CurrentPageNumber){
+                jQuery('a#PageNext').attr('disabled', true);
+                //jQuery('a#PreviousPage').css("color","grey");
+            }
+            else{
+                CurrentPageNumber=CurrentPageNumber+1;
+                window.location.href='@Url.Action("AdViewStatistics", "Admin")?PageNumber='+ CurrentPageNumber;
+            }
+        });
+    });
+
+    function fnGoToPage(){
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber>TotalPageCount || CurrentPageNumber==0){
+            alert("Maximum available pages are "+TotalPageCount+".");
+        }
+        else{
+
+            window.location.href='@Url.Action("AdViewStatistics", "Admin")?PageNumber='+ parseInt(CurrentPageNumber);
+        }
+    }
+    function fnOpenAd(ADID){
+
+        var AdId=ADID;
+        var win = window.open('/Admin/AdDisplay?AdId='+AdId, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            alert('Please Allow Popups For This Website');
+        }
+    }
+    jQuery().ready(function () {
+        jQuery('#tabAdViewStatistics').addClass('active');
+    });
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+            <div id="AdList" class="table-responsive">
+
+                <table id="tblAdList" style="border-collapse: collapse;">
+                    <tr id="adlistHeader">
+                        <th width="200px">Buyer Name</th>
+                        <th width="250px">Buyer Phone Number</th>
+                        <th width="250px">Seller Name</th>
+                        <th width="200px">Seller Phone Number</th>
+                        <th width="200px">Viewed AdId</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                <div class="col-lg-1 col-md-2 d-none d-md-block">
+                </div>
+                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-2 d-none d-md-block">
+                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                </div>
+                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                    <a id="PageNext" data-value="2" style="cursor:pointer">
+                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

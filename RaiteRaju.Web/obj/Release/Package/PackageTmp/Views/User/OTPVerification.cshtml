@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<title> Raiteraju</title>
+<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
+<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="robots" content="index,follow" />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    function fnCancel() {
+        window.location.href = '/User/UserLogout';
+    }
+    function validateOTP(){
+        var AOTP = jQuery("#txtOTP").val();
+        intRegex = /^\d{6}$/;
+        if((intRegex.test(AOTP))==false){
+            alert("Please Enter Valid OTP.");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
+    function fnVerifyOTP()
+    {
+        var form = jQuery("#VerificationForm").serialize();
+        var AOTP = jQuery("#txtOTP").val();
+        var MobileNumber=@ViewBag.MobileNumber;
+        form+="&BigIntMobileNumber="+MobileNumber;
+        if(validateOTP()){jQuery.ajax({
+            type: 'POST',
+            url: '@Url.Action("Verification", "User")',
+            dataType: 'json',
+            data: form,
+            success: function (data) {
+                
+                if (data!="") {
+                    jQuery('body').loadingIndicator();
+                    window.location.href = '@Url.Action("UserAccount", "User")';
+                }
+                else{
+                    
+                    alert("Please Enter Correct OTP");
+                }
+            },
+            error: function (data) {
+                alert("Some Error Occured");
+            }
+        });
+        }
+    }
+
+
+</script>
+
+
+@using (Html.BeginForm("Verification", "User", FormMethod.Post, new { id = "VerificationForm" }))
+{
+
+    <div id="divOTPVerification">
+        <div class="container">
+            <div class="form-box landing-form-box">
+                <div class="row">
+                    <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="form-group">
+                                <label>Please Enter OTP that you received on Registered Mobile</label>
+                                @Html.TextBox("txtOTP", null, new { @class = "_ROTP_" })
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-9 col-sm-12 text-center">
+                        <div class="cta-actions">
+                            <input type="button" value="Submit" class="dflt-btn inactive" onclick="fnVerifyOTP()" />
+                            <input type="button" value="Cancel" class="dflt-btn inactive" onclick="fnCancel()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>            }
+
+

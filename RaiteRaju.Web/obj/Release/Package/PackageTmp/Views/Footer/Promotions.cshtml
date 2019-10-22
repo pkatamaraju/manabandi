@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Promotions";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+<title> Raiteraju</title>
+<meta name="google-site-verification" content="Sell your crop at Raiteraju.in, You can sell or buy Land,Cotton,Rice,sunflower,buffalo,Cow and many agriculture related products" />
+<meta name="keywords" content="Sell your crop at Raiteraju.in, You can sell or buy Land,Cotton,Rice,sunflower,buffalo,Cow and many agriculture related products" />
+<meta name="description" content="Sell your crop at Raiteraju.in, You can sell or buy Land,Cotton,Rice,sunflower,buffalo,Cow and many agriculture related products" />
+<meta name="robots" content="index,follow" />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+    jQuery(document).ready(function () {
+        jQuery("#Message").html("");
+        jQuery('#tabPromotions').addClass('active');
+    });
+
+    function fnValidation() {
+        var message = "";
+        var phone = jQuery("#txtPhoneNumber").val(), intRegex = /^[5-9]{1}[0-9]{9}$/;
+
+        if (jQuery("#txtName").val() == "") {
+            message = message + "Please Enter Name.<br />";
+        }
+        else if (jQuery("#txtName").val() != "" && /^[^<>'\"/`%-]*$/.test(jQuery("#txtName").val()) == false) {
+            message = message + "Special Characters Are Not Allowed In Name.<br />";
+        }
+        else if (jQuery("#txtName").val().length > 50 || jQuery("#txtName").val().length < 4) {
+            message = message + "Name Should Be Between 4 To 50 Characters.<br />";
+        }
+        if (jQuery("#txtPhoneNumber").val() == "") {
+            message = message + "Please Enter Phone Number.<br />";
+        }
+        else if (phone != "" && intRegex.test(phone) == false) {
+            message = message + "Please Enter Valid Phone Number.<br />";
+        }
+
+
+        if (jQuery("#txtContactUsDescription").val() == "") {
+            message = message + "Please Enter Description.<br />";
+        }
+        else if (jQuery("#txtContactUsDescription").val() != "" && /^[^<>'\"/`%-]*$/.test(jQuery("#txtContactUsDescription").val()) == false) {
+            message = message + "Special Characters Are Not Allowed In Description.<br /> ";
+        }
+        else if (jQuery("#txtContactUsDescription").val().length > 200 || jQuery("#txtContactUsDescription").val().length < 4) {
+            message = message + "Description Should Be Between 4 To 200 Characters.<br />";
+        }
+        if (message == "") {
+            return true;
+        }
+        else {
+            jQuery("#Message").html(message).css("color", "Red");
+            return false;
+        }
+    }
+
+    function fnContactUs() {
+
+        var form = jQuery("#PromotionsForm").serialize();
+
+        if (fnValidation())
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("Promotions", "Footer")',
+                dataType: 'json',
+                data: form,
+                success: function (result) {
+                    if (result == 1) {
+                        jQuery("#Message").html("Thanks for your interest in us, We will get back to you ASAP.").css("color", "green");
+                        jQuery("#PromotionsForm")[0].reset();
+                    }
+                    else if (result == 0) {
+                        jQuery("#Message").html("Please Enter Data as per validation").css("color", "Red");
+                    }
+                    else {
+                        alert("Some Error Occured. Please Try After Sometime.");
+                        window.location.href = '@Url.Action("Home", "Home")';
+                    }
+                },
+                error: function (err) {
+                    jQuery("#Message").html("Some Error Occured. Please Try After Sometime.");
+                }
+            });
+    }
+</script>
+
+<div id="divContactUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Promotions", "Footer", FormMethod.Post, new { id = "PromotionsForm" }))
+                {
+                    <h3 class="FormHeading">Write here to promote your business with us</h3>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <p style="font-size:16px;font-family:inherit;">You can promote your business here with us, so that you can reach maximum farmers and agriculture related consumers through our website. We are very happy to help you in promoting your business on our website.</p>
+        </div>
+    </div>
+        <div class="form-box clearfix">
+            <h3 class="form-heading text-center">Write Now</h3>
+            <div id="Message" style="padding-left:20px">
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Name<span class="MandatoryStars">*</span>:</label>
+                        @Html.TextBox("txtName", null, new { @class = "form-control", @placeholder = " Name" })
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="txtPhoneNumber">Mobile<span class="MandatoryStars">*</span> :</label>
+                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label for="">Description<span class="MandatoryStars">*</span>:</label>
+                        @Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin" })
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="cta-actions">
+                        <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnContactUs()" />
+                    </div>
+                </div>
+            </div>
+        </div>}
+
+    </div>
+        </div>
+    </div>
+</div>

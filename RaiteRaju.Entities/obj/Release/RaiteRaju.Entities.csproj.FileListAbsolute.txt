@@ -1,0 +1,16 @@
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.csprojAssemblyReference.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb

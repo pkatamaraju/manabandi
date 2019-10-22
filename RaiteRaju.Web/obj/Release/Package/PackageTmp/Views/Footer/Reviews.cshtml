@@ -1,0 +1,122 @@
+﻿@model RaiteRaju.Web.Models.GDictionaryModel
+@{
+    ViewBag.Title = "Reviews";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<title> Raiteraju</title>
+<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
+<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="robots" content="index,follow" />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+
+    jQuery(document).ready(function () {
+
+        ReviewList=@(Html.Raw(Json.Encode(ViewBag.ReviewList)));
+        var length=Object.keys(ReviewList).length;
+        if(length==0)
+        {
+            jQuery('#tblReviewList').html('<tr><td style="padding-top:120px;padding-left:220px"">No Reviews Are Found.</tr></td>');
+        }
+        else
+        {
+            var tblReviewList=jQuery('#tblReviewList');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblReviewList.append('<tr style="padding:15px 0px 15px 0px;font-weight:bold;font-size:14px;font-family:Verdana,sans-serif"><td style="padding-top:10px">'+ReviewList[i].Name+'</td><td></td></tr><tr style="font-size:14px;font-family:Verdana,sans-serif"><td colspan="2" style="padding-bottom:30px;" class="tdbreak">'+ReviewList[i].value+'</td></tr>')
+            }
+        }
+    });
+
+    function SubmitReview(){
+        var message="";
+        var form = jQuery("#ReviewsForm").serialize();
+        if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtReviewDescription").val()) == false) {
+            message=message+"Special Characters(<>'\"/`%-) Are Not Allowed In Review Description.";
+            jQuery("#Message").html(message).css("color","Red");
+        }
+        else if (jQuery("#txtReviewDescription").val().length > 200 || jQuery("#txtReviewDescription").val().length < 4) {
+            message = message + "Review Description Should Be Between 4 To 200 Characters.\n";
+            jQuery("#Message").html(message).css("color","Red");
+        }
+        else {
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("Reviews", "Footer")',
+                dataType: 'json',
+                data: form,
+                success: function (result) {
+                    if (result == 1) {
+                        jQuery("#Message").html("Thanks For Submitting The Review, It Will Go Live Post Verification.").css("color","green");
+                        jQuery("#ReviewsForm")[0].reset();
+                    }
+                    else {
+                        jQuery("#Message").html("Please Login To Write Review").css("color","Red");
+                        window.location.href = '@Url.Action("Login", "User")';
+                    }
+
+                },
+                error: function (err) {
+                    jQuery("#Message").html( "Some Error Occured. Please Try After Sometime").css("color","Red");
+                }
+            });
+        }
+    }
+    jQuery(document).ready(function () {
+        jQuery("#Message").html("");
+    });
+
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="padding-top:100px;padding-left:10px;">
+                    <label style="font-size:16px;font-weight:bold;font-family:Verdana,sans-serif">User Reviews:</label>
+                    <table id="tblReviewList" style="border-collapse: collapse;">
+                        <tr><td></td><td></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("Reviews", "Footer", FormMethod.Post, new { id = "ReviewsForm" }))
+                {
+                    <h3 class="FormHeading">Write a review about our website</h3>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Write Review here</h3>
+                        <div id="Message" style="padding-left:20px">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Please Login To Write Review Here</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextArea("txtReviewDescription", null, new { @class = "form-control", @placeholder = "  Please write your openion here." })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Review" class="ghost-btn first last filled" onclick="SubmitReview()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div> }
+            </div>
+        </div>
+    </div>

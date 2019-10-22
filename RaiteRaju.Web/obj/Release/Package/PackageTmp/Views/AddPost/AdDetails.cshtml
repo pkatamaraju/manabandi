@@ -1,0 +1,367 @@
+﻿@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<title> Raiteraju</title>
+<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
+<meta name="description" content="You can sell or buy anything related to Agriculture. Like Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+<meta name="keywords" content="you can sell Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+<meta name="robots" content="index,follow" />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    function fnCancel() {
+        window.location.href = '@Url.Action("UserAccount", "User")';
+    }
+
+    jQuery(document).ready(function () {
+        jQuery("#myImage").change(function () {
+            var file = jQuery('input[type="file"]').val();
+            var exts = ['png', 'gif', 'jpeg', 'jpg'];
+
+            var iSize = (jQuery("#myImage")[0].files[0].size / 1024);
+            iSize = (Math.round((iSize / 1024) * 100) / 100)
+            
+            // first check if file field has any value
+            if (file) {
+                // split file name at dot
+                var get_ext = file.split('.');
+                // reverse name to check extension
+                get_ext = get_ext.reverse();
+                // check file type is valid as given in 'exts' array
+                if (jQuery.inArray(get_ext[0].toLowerCase(), exts) > -1) {
+                    if (iSize >= 10) {
+                        alert("Please Select Photo of Less Than 10MB File Size");
+                        return false
+                    }
+                    else {
+                        return true;
+                    }
+                }
+                else {
+                    alert('Accepted Photo Extension Are png, gif, jpeg,jpg !');
+                }
+            }
+        });
+
+        var selectedCategory = '@ViewBag.Category'
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetCategories", "Home")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (selectedCategory != "") {
+                        if (result[i].Name == '@ViewBag.Category') {
+                            jQuery("#ddlCategory").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                        }
+                        else {
+                            jQuery("#ddlCategory").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        }
+                    }
+                    else {
+                        jQuery("#ddlCategory").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                    }
+
+                });
+            },
+            error: function (response) {
+                alert('Error Occured');
+            }
+        });
+        var SelectedUnit = selectedCategory;
+        if (SelectedUnit == "Fruit" || SelectedUnit == "Pestiside" || SelectedUnit == "Equipment" || SelectedUnit == "Vegetable" || SelectedUnit == "Others" || SelectedUnit == "Fertilizer" || SelectedUnit == "Seed" || SelectedUnit == "Dairy Product") {
+            jQuery("#trSubCategoryName").show();
+            if (SelectedUnit == "Others") {
+                jQuery("#lblSubCategoryName").html("Product Name");
+            }
+            else {
+                jQuery("#lblSubCategoryName").html(SelectedUnit + " Name");
+            }
+        }
+        else {
+            jQuery("#trSubCategoryName").hide();
+        }
+
+    });
+    jQuery(document).ready(function () {
+        var SelectedUnit = jQuery("#ddlUnit option:selected").text();
+        if (SelectedUnit == "---Select Unit---") {
+
+            jQuery("#pricePerUnit").html("");
+        }
+        else {
+            jQuery("#pricePerUnit").html(" Per " + SelectedUnit.substring(0, SelectedUnit.length - 1));
+        }
+
+        jQuery("#ddlUnit").change(function () {
+            var SelectedUnit = jQuery("#ddlUnit option:selected").text();
+            if (SelectedUnit == "---Select Unit---") {
+
+                jQuery("#pricePerUnit").html("");
+            }
+            else {
+                jQuery("#pricePerUnit").html(" Per " + SelectedUnit.substring(0, SelectedUnit.length - 1));
+            }
+        });
+    });
+
+    function validation() {
+
+        var image = jQuery("#myImage").val();
+        var ddlCategory = jQuery("#ddlCategory option:selected").text();
+        var ddlUnit = jQuery("#ddlUnit option:selected").text();
+
+        var file = jQuery('input[type="file"]').val();
+        var exts = ['png', 'gif', 'jpeg', 'jpg'];
+
+        var intRegex = /^\d+$/;
+        var message = "";
+
+
+
+        if (ddlCategory == "" || ddlCategory == "---Select Category---") {
+            message = message + "Please Select Category.<br />";
+        }
+
+        if (ddlCategory == "Fruit" || ddlCategory == "Pesticide" || ddlCategory == "Equipment" || ddlCategory == "Vegetable" || ddlCategory == "Others" || ddlCategory == "Fertilizer" || ddlCategory == "Seed" || ddlCategory == "Dairy Product") {
+
+            if (jQuery("#txtSubCategoryName").val() == "") {
+                message = message + "Please Enter " + jQuery("#lblSubCategoryName").html() + ".<br />";
+            }
+            else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtSubCategoryName").val()) == false) {
+                message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In " + jQuery("#lblSubCategoryName").html() + ".<br />";
+            }
+            else if (jQuery("#txtSubCategoryName").val().length > 25 || jQuery("#txtSubCategoryName").val().length < 3) {
+                message = message + jQuery("#lblSubCategoryName").html() + " should Be Between 3 To 25 Characters.<br />";
+            }
+
+        }
+        if (jQuery("#txtAdDescription").val() == "") {
+            message = message + "Please Enter Ad Description.<br />";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtAdDescription").val()) == false) {
+            message = message + "Special Characters(^<>'\"/`%-) Are Not Allowed In Ad Description.<br />";
+        }
+        else if (jQuery("#txtAdDescription").val().length > 200 || jQuery("#txtAdDescription").val().length < 4) {
+            message = message + "Ad Description Should Be Between 4 To 200 Characters.<br />";
+        }
+
+
+        if (jQuery("#txtPrice").val() == "") {
+            message = message + "Please Enter Price.<br />";
+        }
+        else if (intRegex.test(jQuery("#txtPrice").val()) == false) {
+            message = message + "Please Enter Valid Price(Up 9 Digit Number).<br />";
+        }
+        else if (jQuery("#txtPrice").val() > 999999999 || jQuery("#txtPrice").val() == 0) {
+            message = message + "Please Enter Valid Price(From 1 To 9 Digit Number).<br />";
+        }
+
+        if (jQuery("#txtQuantity").val() == "") {
+            message = message + "Please Enter Quantity.<br />";
+        }
+        else if (intRegex.test(jQuery("#txtQuantity").val()) == false) {
+            message = message + "Please Enter Valid Quantity(Up 9 Digit Number).<br />";
+        }
+        else if (jQuery("#txtQuantity").val() > 999999999 || jQuery("#txtQuantity").val() == 0) {
+            message = message + "Please Enter Valid Quantity(From 1 To 9 Digit Number).<br />";
+        }
+        if (ddlUnit == "") {
+            //If the "Please Select" option is selected display error.
+            message = message + "Please Select Selling Unit.<br />";
+        }
+        if (jQuery("#myImage").length > 1) {
+            message = message + "Please select only one photo.<br />";
+        }
+        if (jQuery("#myImage").val() != "" && file) {
+            var iSize = (jQuery("#myImage")[0].files[0].size / 1024);
+            iSize = (Math.round((iSize / 1024) * 100) / 100);
+
+            // split file name at dot
+            var get_ext = file.split('.');
+            // reverse name to check extension
+            get_ext = get_ext.reverse();
+            // check file type is valid as given in 'exts' array
+
+            if (jQuery.inArray(get_ext[0].toLowerCase(), exts) > -1) {
+                if (iSize >= 10) {
+                    message = message + "Please Select Photo Of Less Than 10MB File size";
+                }
+            }
+            else {
+                message = message + 'Accepted Photo Extension Are png, gif, jpeg,jpg !';
+            }
+        }
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            jQuery("#ResponseMessage").html(message).css("color", "Red");
+            jQuery('#ResponseMessage').focus();
+            //alert(message);
+            return false
+        }
+    }
+
+
+    function fnAddPost() {
+
+        var UploadFile = jQuery("#myImage").get(0).files;
+        var DataFile = new FormData();
+        DataFile.append("ImageData", UploadFile[0]);
+        var form = jQuery("#AdDetails").serialize();
+        var AdId = '@ViewBag.AdID'
+        var Category = jQuery("#ddlCategory option:selected").text();
+        var CategoryId = jQuery("#ddlCategory option:selected").val();
+        var Unit = jQuery("#ddlUnit option:selected").text();
+        form += "&AdId=" + AdId + "&ddlCategoryText=" + Category + "&ddlUnitText=" + Unit + "&ddlCategoryID=" + CategoryId;
+        if (validation()) {
+            jQuery('body').loadingIndicator();
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("AdDetails","AddPost")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data.ID != -99 && data.Error == "") {
+                        DataFile.append("AdId", data.ID);
+                        debugger;
+                        jQuery.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("FileUpload", "AddPost")',
+                            contentType: false, // Not to set any content header
+                            processData: false, // Not to process data
+                            data: DataFile,
+                            success: function (result) {
+                                alert("Your Ad Is Updated Successfully And It Will Go Live Once It Is Verified.");
+                                window.location.href = '@Url.Action("UserAccount", "User")';
+                            },
+                            error: function (err) {
+                                "Some Error Occured"
+                            }
+                        });
+                    }
+                    else {
+                        jQuery('#btnSubmit').removeAttr("disabled");
+                        alert(data);
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+        }
+    }
+    jQuery(document).ready(function () {
+        jQuery("#ddlCategory").change(function () {
+            var SelectedUnit = jQuery("#ddlCategory option:selected").text();
+            if (SelectedUnit == "Fruit" || SelectedUnit == "Pesticide" || SelectedUnit == "Equipment" || SelectedUnit == "Vegetable" || SelectedUnit == "Others" || SelectedUnit == "Fertilizer" || SelectedUnit == "Seed" || SelectedUnit == "Dairy Product") {
+
+                jQuery("#trSubCategoryName").show();
+                if (SelectedUnit == "Others" || SelectedUnit == "Dairy Product") {
+                    jQuery("#lblSubCategoryName").html("Product Name");
+                }
+                else {
+                    jQuery("#lblSubCategoryName").html(SelectedUnit + " Name");
+                }
+            }
+            else {
+                jQuery("#trSubCategoryName").hide();
+            }
+        });
+    });
+</script>
+
+@using (Html.BeginForm("AdDetails", "AddPost", FormMethod.Post, new { id = "AdDetails" }))
+    {<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8 pr-4">
+            <h3 class="FormHeading">You can edit your Ad here.</h3>
+            
+            <div class="form-box clearfix">
+                <h3 class="form-heading text-center">Edit Now</h3>
+                <label id="ResponseMessage" style="font-family:inherit;font-size:14px;"></label>
+                <div class="form-group">
+                    <div class="row py-2">
+                        <div class="col-md-3 col-sm-3 text-center py-2">
+                            <lable>Category<span class="MandatoryStars">*</span> :</lable>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <select id="ddlCategory" class="form-control" required>
+                                <option value="">---Select Category---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row py-2" id="trSubCategoryName">
+                        <div class="col-md-3 col-sm-3 text-center py-2">
+                            <div class="divsubcategory">
+                                <lable id="lblSubCategoryName"> </lable><span class="MandatoryStars">*</span> :
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 col-sm-8">
+                            <div class="divsubcategory">
+                                @Html.TextBox("txtSubCategoryName", (string)ViewBag.SubCategoryName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-3 col-sm-3 text-center">
+                            <lable>Ad Description<span class="MandatoryStars">*</span> :</lable>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                           @Html.TextArea("txtAdDescription", (string)ViewBag.Description, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-3 col-sm-3 text-center py-2">
+                            <lable>Quantity<span class="MandatoryStars">*</span> :</lable>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            @Html.TextBox("txtQuantity", (Int32)ViewBag.Quantity, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            @Html.DropDownList("ddlUnit", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.ddlUnits)).Cast<RaiteRaju.ApplicationUtility.ddlUnits>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), (string)@ViewBag.Unit, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-3 col-sm-3 text-center py-2">
+                            <lable id="lblPrice">Price(₹)<span class="MandatoryStars">*</span> :</lable>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            @Html.TextBox("txtPrice", (Int32)ViewBag.Price, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <label id="pricePerUnit" style="font-family:inherit;font-size:14px;color:black"></label>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-3 col-sm-3 text-center py-2">
+                            <lable>Upload Photo</lable>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="file" style="border:1px solid grey;border-radius:5px;" name="myImage" id="myImage" accept="image/x-png,image/gif,image/jpeg,image/jpg" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <div class="cta-actions">
+                                <input id="btnSubmit" class="dflt-btn inactive" type="button" value="Submit" onclick="fnAddPost()" />
+                                <input id="btnCancel" class="dflt-btn inactive" type="button" value="Cancel" onclick="fnCancel()" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>}

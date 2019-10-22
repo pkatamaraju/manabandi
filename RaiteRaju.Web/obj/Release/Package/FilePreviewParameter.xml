@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="www.raiteraju.in" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\USER\\Desktop\\New\ folder\\RaiteRaju\.Web\\RaiteRaju\.Web\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\USER\\Desktop\\New\ folder\\RaiteRaju\.Web\\RaiteRaju\.Web\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="RaiteRajuConnection-Web.config Connection String" description="RaiteRajuConnection Connection String used in web.config by the application to access the database." value="Data Source=ACER;Initial Catalog=RaiteRaju;Integrated Security=SSPI;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\USER\\Desktop\\New\ folder\\RaiteRaju\.Web\\RaiteRaju\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RaiteRajuConnection']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-RaiteRaju.Web-20180206003221;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-RaiteRaju.Web-20180206003221.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\USER\\Desktop\\New\ folder\\RaiteRaju\.Web\\RaiteRaju\.Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

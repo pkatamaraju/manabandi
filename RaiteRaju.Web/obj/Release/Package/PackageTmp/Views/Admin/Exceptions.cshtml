@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Exceptions";
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+    jQuery().ready(function () {
+        jQuery('#tabExceptions').addClass('active');
+    });
+
+    var ExceptionList = null;
+    jQuery(document).ready(function () {
+
+        ExceptionList=@(Html.Raw(Json.Encode(ViewBag.ExceptionList)));
+        var length=Object.keys(ExceptionList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblExceptions').html('<tr><td style="padding-top:120px;padding-left:220px;font-size:16px"">No Data found</tr><td></td></td>');
+        }
+        else
+        {
+            var tblExceptions=jQuery('#tblExceptions');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblExceptions.append('<tr id="AdListRow" ><td style="width:50px;text-align:center;">'+j+'</td><td style="width:100px;text-align:center;">'+ ExceptionList[i].txtControllerName+'</td><td style="width:100px;text-align:center;">'+ExceptionList[i].txtActionName+'</td><td style="width:400px;text-align:center;">'+ExceptionList[i].txtExceptionMessage+'</td><td style="width:200px;text-align:center;">'+ExceptionList[i].dtLoggedDate+'</td><tr>')
+            }
+        }
+    });
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <div style="border:1px solid black" class="table-responsive">
+                <table id="tblExceptions" style="border-collapse: collapse;width:100%;text-align:center">
+                    <tr id="adlistHeader">
+                        <th width="50px">S.No</th>
+                        <th width="100px">Controller Name</th>
+                        <th width="100px">Action Name</th>
+                        <th width="300px">Exception</th>
+                        <th width="100px">LoggedDate</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

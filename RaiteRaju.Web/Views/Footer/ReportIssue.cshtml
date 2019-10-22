@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<title> Raiteraju</title>
+<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
+<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="robots" content="index,follow" />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+    jQuery(document).ready(function () {
+        jQuery("#Message").html("");
+        jQuery('#tabReportIssue').addClass('active');
+    });
+    
+    function fnValidation() {
+        var message = "";
+        var phone = jQuery("#txtPhoneNumber").val(), intRegex = /^[5-9]{1}[0-9]{9}$/;
+
+        if (jQuery("#txtPhoneNumber").val() == "") {
+            message = message + "Please Enter Phone Number.<br />";
+        }
+        else if (phone != "" && intRegex.test(phone) == false) {
+            message = message + "Please Enter Valid Phone Number.<br />";
+        }
+
+        if (jQuery("#txtSubject").val() == "") {
+            message = message + "Please Enter Subject.<br />";
+        }
+        else if (jQuery("#txtSubject").val() != "" && /^[^<>'\"/`%-]*$/.test(jQuery("#txtSubject").val()) == false) {
+            message = message + "Special characters are not allowed in Subject.<br />";
+        }
+        else if (jQuery("#txtSubject").val().length > 50 || jQuery("#txtSubject").val().length < 4) {
+            message = message + "Subject should be between 4 to 50 Characters.<br />";
+        }
+
+        if (jQuery("#txtContactUsDescription").val() == "") {
+            message = message + "Please Enter Description.<br />";
+        }
+        else if (jQuery("#txtContactUsDescription").val() != "" && /^[^<>'\"/`%-]*$/.test(jQuery("#txtContactUsDescription").val()) == false) {
+            message = message + "special characters are not allowed in Description.<br /> ";
+        }
+        else if (jQuery("#txtContactUsDescription").val().length > 200 || jQuery("#txtContactUsDescription").val().length < 4) {
+            message = message + "Description should be between 4 to 200 Characters.<br />";
+        }
+        if (message == "") {
+            return true;
+        }
+        else {
+            jQuery("#Message").html(message).css("color","Red");
+            return false;
+        }
+    }
+
+    function fnContactUs() {
+
+        var form = jQuery("#ContactUsForm").serialize();
+
+        if (fnValidation())
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("ContactUs", "Footer")',
+                dataType: 'json',
+                data: form,
+                success: function (result) {
+                    if (result == 1) {
+                        jQuery("#Message").html("Submitted Successfully, Our team will get in touch with you.").css("color", "green");;
+                        jQuery("#ContactUsForm")[0].reset();
+                    }
+                    else {
+                        alert("Some Error Occured. Please try after sometime.");
+                        window.location.href = '@Url.Action("Home", "Home")';
+                    }
+                },
+                error: function (err) {
+                    jQuery("#Message").html("Some Error Occured. Please try after sometime.");
+                }
+            });
+    }
+</script>
+
+
+@using (Html.BeginForm("ContactUs", "Footer", FormMethod.Post, new { id = "ContactUsForm" }))
+{
+
+    <div style="padding-left:100px">
+        
+        <table>
+            <tr>
+                <td colspan="2" style="padding-bottom:25px"><h4>Please Report us if you find any issue with this website.</h4></td>
+               
+            </tr>
+            <tr><td colspan="2"><div id="Message" style="padding-left:150px">
+</div></td></tr>
+            <tr>
+                <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
+                <td>@Html.TextBox("txtPhoneNumber", null, new { @class = "form-control", @placeholder = "  Please Enter Your Phone Number." })</td>
+            </tr>
+            <tr>
+                <td id="tdLeft"><label>Subject<span class="MandatoryStars">*</span>:</label></td>
+                <td>@Html.TextBox("txtSubject", null, new { @class = "form-control", @placeholder = " Enter Subject [max Lenth:50 char]" })</td>
+            </tr>
+            <tr>
+                <td id="tdLeft"><label>Description<span class="MandatoryStars">*</span>:</label></td>
+                <td>@Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin [max Lenth:200 char]" })</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" class="clsbutton" style="width:200px;float:left" value="Submit" onclick="fnContactUs()" /></td>
+
+            </tr>
+        </table>
+    </div>
+}

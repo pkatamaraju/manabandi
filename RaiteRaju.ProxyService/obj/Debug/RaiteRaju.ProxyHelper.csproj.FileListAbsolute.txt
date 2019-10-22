@@ -1,0 +1,8 @@
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Debug\RaiteRaju.ProxyService.dll.config
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Debug\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Debug\RaiteRaju.ProxyService.pdb
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Debug\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\bin\Debug\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Debug\RaiteRaju.ProxyHelper.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Debug\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.ProxyService\obj\Debug\RaiteRaju.ProxyService.pdb

@@ -1,0 +1,38 @@
+﻿Installing assembly 'C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   i = 
+   logfile = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe
+   logtoconsole = 
+Installing service RRWindowsService...
+Service RRWindowsService has been successfully installed.
+Creating EventLog source RRWindowsService in log Application...
+Committing assembly 'C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   i = 
+   logfile = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe
+   logtoconsole = 
+Uninstalling assembly 'C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe
+Removing EventLog source RRWindowsService.
+Service RRWindowsService is being removed from the system...
+Service RRWindowsService was successfully removed from the system.
+Installing assembly 'C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   i = 
+   logfile = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe
+   logtoconsole = 
+Installing service RRWindowsService...
+Service RRWindowsService has been successfully installed.
+Creating EventLog source RRWindowsService in log Application...
+Committing assembly 'C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe'.
+Affected parameters are:
+   i = 
+   logfile = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.InstallLog
+   assemblypath = C:\Users\USER\Desktop\RaiteRaju.Web\WindowsService\bin\Debug\WindowsService.exe
+   logtoconsole = 

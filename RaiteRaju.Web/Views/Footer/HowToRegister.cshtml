@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "HowToRegister";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+    jQuery().ready(function () {
+        jQuery('#tabHowToRegister').addClass('active');
+    });
+    jQuery(document).ready(function () {
+        var width = jQuery("#DivHowToRegister").width() - 30;
+        var height = width - 150;
+        if (jQuery(window).width() < 900) {
+            jQuery("#DivHowToRegister img").css({ "width": width, "height": height });
+        }
+        else {
+            jQuery("#DivHowToRegister img").css({ "width": "800px", "height": "450px" });
+        }
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div id="DivHowToRegister">
+                <h1 class="FormHeading" style="padding-bottom:50px; font-family:inherit">Please follow below steps for registration</h1><br />
+
+                <label> Step1: Click on Login/Register link as shown in the below image.</label>
+                <img src="~/Content/HelpImges/register1.png" style="height:450px;width:800px;border:1px solid black" />
+                <label>Step2: Click on Register link as shown in the below image.</label>
+                <img src="~/Content/HelpImges/register2.png" style="height:450px;width:800px;border:1px solid black" />
+                <label>Step3: Please Fill the details and click on Register as shown below.</label>
+                <img src="~/Content/HelpImges/register3.png" style="height:450px;width:800px;border:1px solid black" /><br />
+                <img src="~/Content/HelpImges/register4.png" style="height:450px;width:800px;border:1px solid black" />
+                <label>Step4: You will get OTP on registered mobile number and please enter OTP on this page and click on submit.</label>
+                <img src="~/Content/HelpImges/register5.png" style="height:450px;width:800px;border:1px solid black" />
+                <label>Step5: You will be redirected to below page and now you can post your Ad.</label>
+                <img src="~/Content/HelpImges/register6.png" style="height:450px;width:800px;border:1px solid black" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

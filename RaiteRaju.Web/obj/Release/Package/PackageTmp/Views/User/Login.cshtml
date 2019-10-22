@@ -1,0 +1,283 @@
+﻿@model RaiteRaju.Web.Models.UserDetailsModel
+
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+<title> Raiteraju</title>
+<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
+<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="robots" content="index,follow" />
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+
+
+    $.noConflict();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Home", "Home")';
+    }
+    function fnPasswordShow() {
+        var HideShowVal = jQuery("#PWHideShow").text();
+        if (HideShowVal == "Show") {
+            jQuery("#PWHideShow").text("Hide");
+        }
+        if (HideShowVal == "Hide") {
+            jQuery("#PWHideShow").text("Show");
+        }
+        var x = jQuery('#txtPassword').prop('type')
+        if (x == "password") {
+            jQuery('#txtPassword').attr("type", "text");
+        } else {
+            jQuery('#txtPassword').attr("type", "password");
+        }
+    }
+    function validation() {
+        var message = "";
+        var phone = jQuery("#txtPhoneNumber").val(), intRegex = /^[5-9]{1}[0-9]{9}$/;
+        var password = jQuery("#txtPassword").val();
+
+        if (phone == "") {
+            message = message + "Please Enter Phone Number!\n";
+        }
+        if (phone!="" && intRegex.test(phone) == false) {
+            message = message + "Please Enter A Valid Phone Number!\n";
+        }
+
+        if (/^[^<>'\"/`%-]*$/.test(password) == false) {
+            message = message + "special Characters Are Not Allowed In Password!\r\n ";
+        }
+        
+        if (password == "") {
+            message = message + "Please Enter Password!\n";
+        }
+        
+        if (/^[^<>'\"/`%-]*$/.test(password) == true && intRegex.test(phone) == true && password != "" && phone != "") {
+            return true;
+        }
+        if (message != "") {
+            alert(message);
+            return false;
+        }
+
+    }
+    jQuery(document).on("keypress", "#txtPassword", function (e) {
+        if (e.which == 13) {
+            fnLoginFunction();
+        }
+    });
+
+
+    function fnLoginFunction() {
+
+        var form = jQuery("#LoginForm").serialize();
+        if (validation()) {
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("Login","User")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data != null && data != "") {
+                        jQuery('body').loadingIndicator();
+                        window.location.href = '@Url.Action("UserAccount", "User")';
+                    }
+                    if (data == "") {
+                        alert("Invalid Login, Please Enter Correct Credentials");
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+        }
+    }
+
+    function fnShowForgotPassword() {
+        jQuery("#divForgotPassword").toggle();
+    }
+
+    function fnSubmitForgetPassword(e) {
+        var message = "";
+        var phone = jQuery("#PhoneNumber").val(), intRegex = /^[5-9]{1}[0-9]{9}$/;
+
+        if (intRegex.test(phone) == false) {
+            message = message + "Please Enter Valid Phone Number!\n";
+        }
+        if (message != "") {
+            alert(message);
+        }
+        if (message == "") {
+
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdateOTP", "User")',
+                dataType: 'json',
+                data: {PhoneNumber:phone},
+                success: function (data) {
+                    if (data == 1) {
+                        jQuery('body').loadingIndicator();
+                        window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + phone;
+                    }
+                    if (data == 0) {
+                        alert("Given Mobiler Number Is Not Registered With Us.");
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+        }
+    }
+</script>
+
+@*<div id="divLogin">
+    <div><span><label></label></span></div>
+    @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm"}))
+    { 
+    <div class="Login">
+        <div>
+            <div style="padding-bottom:20px;"><label>Please login into your account to post free Ads</label></div>
+            
+            <table>
+                <tr>
+                    <td></td>
+                    <td><label id="ErrorMessage" style="color:red"></label></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><label id="ErrorMessage" style="color:red"></label></td>
+                </tr>
+                <tr class="tablerow">
+                    <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
+                    <td id="tdright">@Html.TextBox("txtPhoneNumber", null, new { @class = "form-control", @placeholder = " Please Enter Phone Number" })</td>
+                    <td></td>
+                </tr>
+                <tr class="tablerow">
+                    <td id="tdLeft"><label>Password<span class="MandatoryStars">*</span>:</label></td>
+                    <td id="tdright">@Html.Password("txtPassword", null, new { @class = "password", @placeholder = " Please Enter Password" })</td>
+                    <td></td>
+                 </tr>
+
+            </table>
+        </div>
+        <div >
+            <table class="tablebutton">
+                <tr>
+
+                    <td id="tdLeft"><input id="btnLogin" class="clsbutton" type="button" value="Log In" onclick="fnLoginFunction()" /></td>
+                    <td id="tdright"><input id="btnCancel" class="clsbutton" type="button" value="Cancel" onclick="fnCancel()" /></td>
+                </tr>
+                <tr style="text-align:  center;">
+                    <td colspan="2" style="padding-top:10px;padding-left:45px; text-align:center"><input id="btnForgotPassword"  type="button" value="Not able To Login? Click Here." onclick="fnShowForgotPassword()" /></td>
+                    
+                </tr>
+                <tr ><td id="tdLeft" style="padding-top:20px;"><label>Create Account Here</label></td><td id="tdright" style="font-family:Verdana,sans-serif;font-size:20px;padding-top:20px;"><a style="text-decoration:none;color:blue" href="/User/Registration">Register</a></td></tr>
+            </table>
+        </div>
+    </div>
+    }
+</div>*@
+    @*<div id="divForgotPassword" style=" display:none">
+@using (Html.BeginForm("LoginWithOTP", "User", FormMethod.Post, new { id = "LoginWithOTPForm" }))
+    {
+    <table id="TblForgotPassword">
+        <tr class="tablerow">
+            <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
+            <td id="tdright">@Html.TextBox("PhoneNumber", null, new { @class = "form-control", @placeholder = " Please Enter Phone Number" })</td>
+        </tr>
+        <tr>
+
+            <td id="tdLeft"><input id="btnLoginForgot" class="clsbutton" type="button" value="Submit" onclick="fnSubmitForgetPassword()" /></td>
+            <td id="tdright"><input id="btnCancelForgot" class="clsbutton" type="button" value="Cancel" onclick="fnHideForgetPassword()" /></td>
+        </tr>
+    </table>
+}
+</div>*@
+
+<div id="divLogin">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h3 class="FormHeading">Login or Register Here</h3>
+                <div class="form-box landing-form-box">
+                    @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
+                    {<h3 class="form-heading text-center">Login Now</h3>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
+                                    <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group psw">
+                                    <label>Password<span class="MandatoryStars">*</span>:</label>
+                                    <input type="password" id="txtPassword" class="form-control" name="txtPassword" required="" data-required-message="Please enter Password" data-invalid-message="Password should contain min 8 Characters with at least 1 uppercase, 1 lowercase and 1 number">
+                                    <div class="pure-checkbox tog-check">
+                                        <span class="green-text" onclick="fnPasswordShow()" id="PWHideShow">Show</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="text-center padding-30">
+                <a class="green-text">Forgot Password?</a>
+            </div>*@
+                        <div class="cta-actions text-center">
+                            <button type="button" class="dflt-btn  inactive" title="LOGIN" onclick="fnLoginFunction()">LOGIN</button>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("LoginWithOTP", "User", FormMethod.Post, new { id = "LoginWithOTPForm" }))
+                    {
+
+                        <p class="seperator-text">or</p>
+                        <div class="cta-actions text-center">
+                            <input id="btnForgotPassword" type="button" class="dflt-btn no-bg" value="Login With OTP" onclick="fnShowForgotPassword()" />
+                        </div>
+                        <div id="divForgotPassword" class="py-5" style="display:none">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="PhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
+                                        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="9999999999">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cta-actions text-center">
+                                <button type="button" class="dflt-btn no-bg " onclick="fnSubmitForgetPassword()">Submit</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div id="LoginRightWindow">
+                    <div class="form-box ">
+                        <h4 class=" pb-3">
+                            Don't have Account? Create Now
+                        </h4>
+                        <a href="/User/Registration" class="ghost-btn first last filled">Create Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

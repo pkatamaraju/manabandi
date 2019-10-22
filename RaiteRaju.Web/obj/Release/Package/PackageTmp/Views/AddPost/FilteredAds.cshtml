@@ -1,0 +1,164 @@
+﻿
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    $.noConflict();
+    var AdList = null;
+
+    function fnOpenAd(ADID){
+        var AdId=ADID;
+        window.location.href='@Url.Action("AdDisplay", "AddPost")?AdId='+AdId;
+    }
+
+    function fnAdSearch(){
+
+      
+        var stateVal=jQuery("#ddlState option:selected").text();
+        var districtVal=jQuery("#ddlDistrict option:selected").text();
+        var mandalVal=jQuery("#ddlMandal option:selected").text();
+        
+        var CategoryVal = jQuery("#ddlCategory option:selected").text();
+        var categoryidVal=jQuery("#ddlCategory").val();
+        var SearchKeyWordVal=jQuery("#txtSearchWord").val();
+       
+        if(stateVal=="---Select State---"|| stateVal==null){
+            stateVal="";
+        }
+        if(districtVal=="---Select District---"|| districtVal==null){
+            districtVal="";
+        }
+        if(mandalVal=="---Select Mandal---"|| mandalVal==null){
+            mandalVal="";
+        }
+        if(categoryidVal==null||categoryidVal==0||categoryidVal==""){
+            categoryidVal=0;
+        }
+        if(SearchKeyWordVal==""||SearchKeyWordVal==null){
+            SearchKeyWordVal="";
+        }
+
+        window.location.href = '@Url.Action("GetfilteredAds", "AddPost")?State='+stateVal+'&District='+districtVal+'&Mandal='+mandalVal+'&CategoryId='+categoryidVal+'&Keyword='+SearchKeyWordVal;
+    }
+    jQuery(document).ready(function () {
+
+        AdList=@(Html.Raw(Json.Encode(ViewBag.Adlist)));
+        var length=Object.keys(AdList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblDisplay').html('No Ads Found for requested Category');
+        }
+        else
+        {
+            var tblDisplay=jQuery('#tblDisplay');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblDisplay.append('<tr id="AdListRow"><td style="width:160px;"><img src="/PhotoManagement/'+AdList[i].AdID+'.jpg" class="DisplayImageclass"/></td><td><table id="tblDisplayMiddle" style="width:450px"><tr><td onclick="fnOpenAd('+AdList[i].AdID+')" id="AdTitle">'+AdList[i].txtAddTitle+'</td></tr><tr><td id="AdCategory"><label>'+AdList[i].Category+'</label></td></tr><tr><td id="AdLocation">'+AdList[i].Location+'</td></tr><tr><td style="height:20px;"></td></tr></table></td><td id="tblDisplayThirdColumn"><table><tr><td id="price"><span>₹ '+AdList[i].txtPrice+'</span></td></tr><tr><td><img src="/Content/images/Verified.jpg" id="PhoneNumberVerifiedImg"/></td></tr></table></td></tr>')
+                }
+        }
+    })
+
+
+
+    jQuery(function () {
+        jQuery("#ddlState").change(function () {
+
+            var stagId= jQuery("#ddlState").val();
+
+            //alert(jQuery("#ddlState option:selected").text());
+
+            DistrictList=@(Html.Raw(Json.Encode(ViewBag.DistrictLIst)));
+            var length=Object.keys(DistrictList).length;
+            jQuery('#ddlDistrict').empty();
+            jQuery("#ddlDistrict").html("");
+            jQuery("#ddlDistrict").append
+            (jQuery('<option></option>').val("").html("---Select District---"));
+            for(i=0;i<length;i++){
+                if(DistrictList[i].ID==stagId){
+                    jQuery("#ddlDistrict").append(jQuery('<option></option>').val(DistrictList[i].value).html(DistrictList[i].Name))}
+
+            }})});
+    jQuery(function () {
+        jQuery("#ddlDistrict").change(function () {
+
+            var DistID= jQuery("#ddlDistrict").val();
+
+            //alert(jQuery("#ddlState option:selected").text());
+
+            MandalList=@(Html.Raw(Json.Encode(ViewBag.MandalList)));
+            var length=Object.keys(MandalList).length;
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append
+            (jQuery('<option></option>').val("").html("---Select Mandal---"));
+            for(i=0;i<length;i++){
+                if(MandalList[i].ID==DistID){
+                    jQuery("#ddlMandal").append(jQuery('<option></option>').val(MandalList[i].value).html(MandalList[i].Name))}
+
+            }})});
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<style>
+
+
+</style>
+
+<div style="padding:10px 0px 10px 0px;background-color:#e0eaf1;border-radius:5px;font-family:Verdana,sans-serif">
+    <table id="tblFilter" style="padding-left:20px;">
+        <tr>
+            <td><span class="FilterLabels">Select State</span><br />@Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "DropdownList", required = "required" })</td>
+            <td>
+                <span class="FilterLabels">Select Distrinct</span><br /><select id="ddlDistrict" class="DropdownList" required>
+                    <option value="">---Select District---</option>
+                </select>
+            </td>
+            <td>
+                <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                <select id="ddlMandal" class="DropdownList" required>
+                    <option value="">---Select Mandal---</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="FilterLabels">Select Category</span><br />@Html.DropDownList("ddlCategory", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.CategoryEnums)).Cast<RaiteRaju.ApplicationUtility.CategoryEnums>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select Category---", new { @class = "DropdownList", required = "required" })
+            </td>
+            <td><span class="FilterLabels">Enter any keyword for search</span><br />@Html.TextBox("txtSearchWord", null, new { @class = "form-control" }) </td>
+            <td><br /><input id="btnSearch" type="button" value="Search" onclick="fnAdSearch()" /></td>
+        </tr>
+    </table>
+</div>
+<div id="divaADisplay">
+    <table id="tblDisplay" style="width:100%; border-collapse:collapse">
+        @*@for (int i = 1; i <= 6; i++) {
+                string imageName = string.Format("{0}.jpg", i);
+            <tr style="height:150px;border:2px solid #808080">
+                <td><img src="~/PhotoManagement/1.jpg" class="DisplayImageclass" /></td>
+                <td id="tblDisplayMiddle">
+                    <table style="width:450px">
+                        <tr><td><label style="font-family:Arial;font-size:15px;font-weight:bold">THIS IS MY AD TITLE THAT WILL BE SHOWN ON UI</label></td></tr>
+                        <tr><td><label>this is category</label></td></tr>
+                        <tr><td>this is location</td></tr>
+                        <tr><td style="height:20px;"></td></tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><span>Rs.5000/-</span></td></tr>
+                        <tr><td>verified</td></tr>
+                    </table>
+                </td>
+            </tr>
+            }*@
+    </table>
+</div>
+<div id="divPaging">
+    @Html.TextBox("txtPageNumber", null, new { @class = "form-control" })/@ViewBag.TotalPageNumber
+</div>

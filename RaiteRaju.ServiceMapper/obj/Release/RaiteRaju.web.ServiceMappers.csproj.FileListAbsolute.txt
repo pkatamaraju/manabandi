@@ -1,0 +1,76 @@
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.web.ServiceMappers.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.web.ServiceMappers.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ProxyService.dll.config
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.dll.config
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.web.ServiceMappers.csprojAssemblyReference.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.web.ServiceMappers.csproj.CoreCompileInputs.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.web.ServiceMappers.csproj.CopyComplete
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.pdb

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $.noConflict();
+
+    var ContactUSList = null;
+    jQuery(document).ready(function () {
+
+        ContactUSList=@(Html.Raw(Json.Encode(ViewBag.ContactusList)));
+        var length=Object.keys(ContactUSList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblContactUS').html('<tr><td style="padding-top:120px;padding-left:220px;font-size:16px"">No Data found</tr><td></td></td>');
+        }
+        else
+        {
+            var tblContactUS=jQuery('#tblContactUS');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblContactUS.append('<tr id="AdListRow" ><td style="width:100px;text-align:center;">'+j+'</td><td style="width:200px;text-align:center;">'+ ContactUSList[i].PhoneNumber+'</td><td style="width:200px;text-align:center;">'+ContactUSList[i].Subject+'</td><td style="width:400px;text-align:center;">'+ContactUSList[i].Description+'</td><td style="width:400px;text-align:center;">'+ContactUSList[i].dtInserted+'</td><tr>')
+            }
+        }
+    });
+
+
+    jQuery().ready(function () {
+        jQuery('#tabContactUsForAdmin').addClass('active');
+    });
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <h2>ContactUs</h2>
+
+            <div style="border:1px solid black;text-align:center" class="table-responsive">
+                <table id="tblContactUS" style="border-collapse: collapse;">
+                    <tr id="adlistHeader">
+                        <th width="100px">S.No</th>
+                        <th width="400px">Phone Number</th>
+                        <th width="300px">Subject</th>
+                        <th width="300px">Description</th>
+                        <th width="300px">Date</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

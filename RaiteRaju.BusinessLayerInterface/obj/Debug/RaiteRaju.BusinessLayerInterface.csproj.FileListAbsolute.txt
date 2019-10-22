@@ -1,0 +1,30 @@
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\Back up of files\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\USER\Desktop\New folder\RaiteRaju.Web\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.csprojAssemblyReference.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.csproj.CoreCompileInputs.cache
+C:\Users\Nandini\Desktop\Raiteraju code\RaiteRaju.BusinessLayerInterface\obj\Debug\RaiteRaju.BusinessLayerInterface.csproj.CopyComplete

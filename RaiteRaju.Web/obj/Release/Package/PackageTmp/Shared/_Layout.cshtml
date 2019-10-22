@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="You can sell or buy anything related to Agriculture. Like Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+    <meta name="keywords" content="you can sell Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+    <meta name="author" content="Katamaraju">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>Raiteraju - Sell Or Buy Anything Related to Agriculture.</title>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $.noConflict();
+        function fnLogout() {
+            window.location.href = '/User/UserLogout';
+        }
+        function fnopenUserSettings() {
+            window.location.href = '/User/UserAccount';
+            fnshowUserSettings();
+        }
+        jQuery(document).ready(function () {
+            jQuery("#tabHome").click(function () {
+                window.location.href = '/';
+            });
+            jQuery("#tabAboutUs").click(function () {
+                window.location.href = '/Footer/AboutUs';
+            });
+            jQuery("#tabHowItWorks").click(function () {
+                window.location.href = "/Footer/HowItWorks";
+            });
+            jQuery("#tabHowToRegister").click(function () {
+                window.location.href = "/Footer/HowToRegister";
+            });
+            jQuery("#tabHowToPostAd").click(function () {
+                window.location.href = "/Footer/HowToPostAd";
+            });
+            jQuery("#tabPromotions").click(function () {
+                window.location.href = "/Footer/Promotions";
+            });
+            jQuery("#tabContactUs").click(function () {
+                window.location.href = "/Footer/ContactUs";
+            });
+            jQuery("#tabCareers").click(function () {
+                window.location.href = "/Footer/Careers";
+            });
+        });
+
+
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="MenuBar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 hidden-sm">
+                </div>
+                <div class="col-lg-1 col-md-2 col-sm-3  col-xs-3 py-2">
+                    <a href="/"><img id="logo" src="~/Content/images/logo.jpg" /></a>
+                </div>
+
+                <div class="col-lg-5 col-md-4 col-sm-9 col-xs-9">
+                    <div style="padding-left:10px; height:50px;">
+                        <span ><a id="Title" href="/">Raite Raju</a></span><br />
+                        <span id="TagLine">Now selling is at farmer's finger tips</span>
+                    </div>
+                </div>
+
+                @*<div class="col-lg-1 col-md-1 d-none d-md-block">
+                </div>*@
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 text-right">
+                    @if (Request.Cookies["_RRUN"] == null)
+                    {<a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1"><span class="fa fa-user"></span> My Account</a>}
+
+                    @if (Request.Cookies["_RRUN"] != null)
+                    {
+                        <div class="dropdownMenu pt-2">
+                            <span class="fa fa-user"></span>
+                            <a id="UserLoggedInText" href="#">@Request.Cookies["_RRUN"]["_RRUN"] <span class="fa fa-angle-down"></span></a>
+
+                            <div class="dropdown-content">
+                                <a href="/User/UserAccount">My Ads</a>
+                                <a href="/Footer/ContactUs">Contact Us</a>
+                                <a href="#" onclick="fnLogout()">Logout</a>
+                            </div>
+                        </div>
+                        <span class="arrow-down" style="vertical-align:auto;"></span>}
+
+
+
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 ">
+                    <a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
+                </div>
+                @*<a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
+
+                                            <ul class="nav nav-pills">
+                                                @*<li class="mr-lg-4 mr-3 py-2"><a href="/">Home</a></li>
+                                                <li class="mr-lg-4 mr-3 py-2"><a href="/Footer/AboutUs" tabindex="-1">About Us</a></li>
+                                                <li class="mr-lg-4 mr-3 py-2"><a href="/Footer/HowItWorks" tabindex="-1">How it Works</a></li>
+                                                <li class="mr-lg-4 mr-3 py-2"><div class="dropdownMenu"><a class="dropbtn" href="#">Help<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+
+                        <div class="dropdown-content">
+                            <a href="/User/UserAccount">My Ads</a>
+                            <a href="/Footer/ContactUs">Contact Us</a>
+                            <a href="#" onclick="fnLogout()">Logout</a>
+                        </div>
+                    </div></li>
+                    @if (Request.Cookies["_RRUN"] == null)
+                                {                            <li class="mr-lg-4 mr-3"><a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a></li>}
+
+                                                @if (Request.Cookies["_RRUN"] != null)
+                                                {
+                                                    <div class="dropdownMenu">
+                                                        <a class="dropbtn" href="/User/UserAccount">
+                                                            @Request.Cookies["_RRUN"]["_RRUN"]
+                                                        </a>
+
+                                                        <div class="dropdown-content">
+                                                            <a href="/User/UserAccount">My Ads</a>
+                                                            <a href="/Footer/ContactUs">Contact Us</a>
+                                                            <a href="#" onclick="fnLogout()">Logout</a>
+                                                        </div>
+                                                    </div>
+                                                    <span class="arrow-down" style="vertical-align:auto;"></span>}
+                        <li class="mr-lg-4 mr-3"><a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a></li>
+                                            </ul>
+                                        </nav>*@
+            </div>
+        </div>
+    </div>
+    <div id="SubMenuBar">
+        <div class="container">
+            <div class="row nopadding">
+                <div class="col-lg-1 d-none d-md-block">
+
+                </div>
+                <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
+                    @*<nav>
+            <ul class="nav nav-pills">
+                <li id="tabHome"><a href="/" tabindex="-1">Home</a></li>
+                <li id="tabAboutUs"><a href="/Footer/AboutUs" tabindex="-1">About Us</a></li>
+                <li id="tabHowItWorks"><a href="/Footer/HowItWorks" tabindex="-1">How it Works</a></li>
+                <li id="tabHowToRegister"><a href="/Footer/HowToRegister" tabindex="-1">How To Register</a></li>
+                <li id="tabHowToPostAd"><a href="/Footer/HowToPostAd" tabindex="-1">How to Post Ad</a></li>
+                <li id="tabPromotions"><a href="/Footer/Promotions" tabindex="-1" class="blink_me">Advertise With Us</a></li>
+                <li id="tabContactUs"><a href="/Footer/ContactUs" tabindex="-1">Contact Us</a></li>
+                <li id="tabCareers"><a href="/Footer/Careers" tabindex="-1">Careers</a></li>
+            </ul>
+        </nav>*@
+
+                    <div class="topnav" id="myTopnav">
+                        <a href="/" tabindex="-1" id="tabHome">Home</a>
+                        <a href="/Footer/AboutUs" id="tabAboutUs" tabindex="-1">About Us</a>
+                        <a  href="/Footer/HowItWorks" id="tabHowItWorks" tabindex="-1">How it Works</a>
+                        <a href="/Footer/HowToRegister" id="tabHowToRegister" tabindex="-1">How To Register</a>
+                        <a href="/Footer/HowToPostAd" id="tabHowToPostAd" tabindex="-1">How to Post Ad</a>
+                        <a href="/Footer/Promotions" id="tabPromotions" tabindex="-1" class="blink_me">Advertise With Us</a>
+                        <a href="/Footer/ContactUs" id="tabContactUs" tabindex="-1">Contact Us</a>
+                        <a href="/Footer/Careers" id="tabCareers" tabindex="-1">Careers</a>
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+
+                </div>
+                @*<div id="topbar-wrapper" class="wrapper">
+
+                        <div id="topbar-row" class="row">
+
+                            <ul class="tabs1">
+
+                                <li id="tabHome">
+                                    <a href="/" tabindex="-1">Home</a>
+                                </li>
+
+                                <li id="tabAboutUs">
+                                    <a href="/Footer/AboutUs" tabindex="-1">About Us</a>
+                                </li>
+                                <li id="tabHowItWorks">
+                                    <a href="/Footer/HowItWorks" tabindex="-1">How it Works</a>
+                                </li>
+                                <li id="tabHowToRegister">
+                                    <a href="/Footer/HowToRegister" tabindex="-1">How To Register</a>
+                                </li>
+
+                                <li id="tabHowToPostAd">
+                                    <a href="/Footer/HowToPostAd" tabindex="-1">How to Post Ad</a>
+                                </li>
+
+                                <li id="tabPromotions">
+                                    <a href="/Footer/Promotions" tabindex="-1" class="blink_me">Advertise With Us</a>
+                                </li>
+
+                                <li id="tabContactUs">
+                                    <a href="/Footer/ContactUs" tabindex="-1">Contact Us</a>
+                                </li>
+                                <li id="tabCareers">
+                                    <a href="/Footer/Careers" tabindex="-1">Careers</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>*@
+
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <div id="Divfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    <div style="padding-bottom:20px;">
+                        <ul class="list-unstyled">
+                            <li><a href="/Footer/AboutUs">About Us</a></li>
+                            <li><a href="/User/Registration">Register</a></li>
+                            <li><a href="/Footer/TermsAndConditions">Privacy Policy</a></li>
+                            <li><a href="/Footer/HowToPostAd">How to Post Ad</a></li>
+                            <li><a href="/"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    <div style="padding-bottom:20px;">
+                        <ul class="list-unstyled">
+
+                            <li><a href="/Footer/HowToRegister">How to Register</a></li>
+                            <li><a href="/Footer/ReportIssue">Report an Issue</a></li>
+
+                            <li><a href="/Footer/HowItWorks">How it works</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    <div style="padding-bottom:20px;">
+                        <ul class="list-unstyled">
+                            <li><a href="/Footer/Reviews">Write a Review</a></li>
+                            <li><a href="/Footer/Promotions">Be a Partner</a></li>
+                            <li><a href="/Footer/Careers">Careers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                    <div style="padding-bottom:20px;">
+                        <ul class="list-unstyled">
+                            <li><a href="/Footer/ContactUs">Contact Us</a></li>
+                            <li><a href="/Footer/TermsAndConditions">Terms and Conditions</a></li>
+                            <li>@*<a href="/">Be a Partner</a>*@</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div style="min-height:100px;">
+                        <ul class="nav nav-pills">
+                            <li class="FooterIconPadding"><a href="https://www.facebook.com/RaiteRaju-268146037354551/?modal=admin_todo_tour"><img src="~/Content/images/FooterIcon1.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://www.instagram.com/raiteraju/"><img src="~/Content/images/FooterIcon2.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://twitter.com/RaiteRaju"><img src="~/Content/images/FooterIcon3.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://plus.google.com/u/0/104022384172539536216"><img src="~/Content/images/FooterIcon4.jpg" alt="" class="social_MediaIcons" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
