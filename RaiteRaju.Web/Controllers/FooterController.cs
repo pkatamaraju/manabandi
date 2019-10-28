@@ -116,11 +116,11 @@ namespace RaiteRaju.Web.Controllers
             return View();
 
         }
-        public ActionResult HowToPostAd()
+        public ActionResult HowToBook()
         {
             return View();
         }
-        public ActionResult HowItWorks()
+        public ActionResult Partner()
         {
             return View();
         }

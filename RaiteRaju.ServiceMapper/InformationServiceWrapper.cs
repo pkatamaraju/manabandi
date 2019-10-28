@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RaiteRaju.ProxyService;
 using System.ServiceModel;
 using RaiteRaju.ServiceLayer;
 using RaiteRaju.ServiceLayerInterface;
@@ -47,13 +46,13 @@ namespace RaiteRaju.ServiceMapper
             gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
             return gdModel;
         }
-        public List<GDictionaryModel> GetCategories()
+        public List<GDictionaryModel> GetVehicleTypes()
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
             List<GDictionaryModel> gdModel = new List<GDictionaryModel>();
             ServiceLayer.InformationService obj = new InformationService();
             InformationObjectMapper objmapper = new InformationObjectMapper();
-            gdEntityList = obj.GetCategories();
+            gdEntityList = obj.GetVehicleTypes();
             gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
             return gdModel;
         }

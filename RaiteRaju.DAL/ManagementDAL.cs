@@ -21,7 +21,7 @@ namespace RaiteRaju.DAL
            int AddId = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPINSERTADDDETAILS))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPINSERTADDDETAILS))
                {
                    //DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdTitle, DbType.String, Obj.Title);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
@@ -56,7 +56,7 @@ namespace RaiteRaju.DAL
            int AddId = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPUPLOADIMAGE))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPLOADIMAGE))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPHOTO, DbType.Binary, Obj.Image);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.Int32, Obj.AdID);
@@ -81,7 +81,7 @@ namespace RaiteRaju.DAL
            int UserID = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPINSERTUSERDETAILS))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPINSERTUSERDETAILS))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, Obj.txtName);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, Obj.BigIntPhoneNumber);
@@ -122,7 +122,7 @@ namespace RaiteRaju.DAL
            int UserID = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPUPDAGEUSERDETAILS))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDAGEUSERDETAILS))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.intUserId);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, Obj.txtName);
@@ -196,7 +196,7 @@ namespace RaiteRaju.DAL
            int UserID = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPUPDAGEUSERDETAILS))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDAGEUSERDETAILS))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.intUserId);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, Obj.BigIntPhoneNumber);
@@ -222,7 +222,7 @@ namespace RaiteRaju.DAL
            int OTP = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPUPDATEOTP))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDATEOTP))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, Obj.BigIntPhoneNumber);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.String, Obj.OTP);
@@ -251,7 +251,7 @@ namespace RaiteRaju.DAL
        {
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPUPDATEADDETAILS))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDATEADDETAILS))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.String, Obj.AdID);
                   // DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdTitle, DbType.String, Obj.Title);
@@ -278,7 +278,7 @@ namespace RaiteRaju.DAL
            UserDetailsEntity Entity = new UserDetailsEntity();
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPVERIFYMOBILENUMBER))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPVERIFYMOBILENUMBER))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, Obj.BigIntPhoneNumber);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.String, Obj.OTP);
@@ -305,7 +305,7 @@ namespace RaiteRaju.DAL
        {
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPDELETEUSERAD))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPDELETEUSERAD))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.Int32, AdId);
                    DBAccessHelper.ExecuteScalar(objDbCommand);
@@ -322,7 +322,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPVerifyAds))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPVerifyAds))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdIdS, DbType.String, SelectedAds);
                  Success= DBAccessHelper.ExecuteNonQuery(objDbCommand);
@@ -341,7 +341,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SRUserAccountDeletionByAdmin))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SRUserAccountDeletionByAdmin))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.String, SelectedUserIds);
                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
@@ -361,7 +361,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPDELETEUSERACCOUNT))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPDELETEUSERACCOUNT))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, BigIntPhoneNumber);
                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
@@ -379,7 +379,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPInsertReview))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPInsertReview))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64,PhoneNumber);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMReview, DbType.String,reviewDescription);
@@ -398,7 +398,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPInsertContactUs))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPInsertContactUs))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, ENTITY.PhoneNumber);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMSubject, DbType.String,ENTITY.Subject );
@@ -418,7 +418,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPDeleteAdsByAdmin))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPDeleteAdsByAdmin))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdIdS, DbType.String, SelectedAds);
                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
@@ -437,7 +437,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPInsertAdViewsStatistics))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPInsertAdViewsStatistics))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Entity.UserID);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, Entity.MobileNumber);
@@ -457,7 +457,7 @@ namespace RaiteRaju.DAL
        public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
        {
 
-           using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPEXCEPTIONLOGGING))
+           using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBExceptionLogging))
            {
                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamControllerName, DbType.String, ControllerName);
                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamActionName, DbType.String, ActionName);
@@ -472,7 +472,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPVerifyUsersByAdmin))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPVerifyUsersByAdmin))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, SelectedPhoneNumbers);
                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
@@ -491,7 +491,7 @@ namespace RaiteRaju.DAL
            int AddId = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPAdPostByAdmin))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPAdPostByAdmin))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
@@ -521,7 +521,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, StoredProcedures.SPINSERTPROMOTIONS))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPINSERTPROMOTIONS))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, Name);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);

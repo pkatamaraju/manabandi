@@ -53,11 +53,6 @@ namespace RaiteRaju.Web.Controllers
             InformationServiceWrapper objservice = new InformationServiceWrapper();
             return Json(objservice.FetMandalsOfDistrct(DistrictId),JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetCategories()
-        {
-            InformationServiceWrapper objservice = new InformationServiceWrapper();
-            return Json(objservice.GetCategories(), JsonRequestBehavior.AllowGet);
 
-        }
     }
 }

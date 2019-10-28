@@ -17,18 +17,18 @@ namespace RaiteRaju.ApplicationUtility
        private SqlCommand command = new SqlCommand();
        private DataSet dataset = new DataSet();
 
-       private Database _RaiteRajuDataBase;
+       private Database _DataBase;
 
        public ConnectionManager()
        {
-           _RaiteRajuDataBase = DatabaseFactory.CreateDatabase(ApplicationConstants.RaiteRajuDBInstance);
+           _DataBase = DatabaseFactory.CreateDatabase(ApplicationConstants.RaiteRajuDBInstance);
        }
        public ConnectionManager(DatabaseToConnect databaseInstance)
        {
            try {
-               if (databaseInstance == DatabaseToConnect.RaiteRajuDefaultInstance)
+               if (databaseInstance == DatabaseToConnect.DefaultInstance)
                {
-                   _RaiteRajuDataBase = DatabaseFactory.CreateDatabase(ApplicationConstants.RaiteRajuDBInstance);
+                   _DataBase = DatabaseFactory.CreateDatabase(ApplicationConstants.RaiteRajuDBInstance);
                }
            }
            catch(Exception ee)
@@ -40,12 +40,12 @@ namespace RaiteRaju.ApplicationUtility
        {
            get
            {
-               return _RaiteRajuDataBase;
+               return _DataBase;
            }
        }
        public enum DatabaseToConnect
        {
-           RaiteRajuDefaultInstance
+           DefaultInstance
        }
        }
 }

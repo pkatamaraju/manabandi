@@ -16,50 +16,50 @@ namespace RaiteRaju.ApplicationUtility
 
         public static void AddInputParametersWithValues(DbCommand command, string paramName, DbType dataTaype, object value)
         {
-            AddInputParameterToCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, command, paramName, dataTaype, value);
+            AddInputParameterToCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, command, paramName, dataTaype, value);
         }
         public static DbCommand GetDBCommand(string ProcedureName)
         {
-            return GetDatabaseCommand(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, ProcedureName);
+            return GetDatabaseCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, ProcedureName);
         }
         public static IDataReader ExecuteReader(DbCommand dbCommand)
         {
-            return GetExecuteReader(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, dbCommand, null, null);
+            return GetExecuteReader(ConnectionManager.DatabaseToConnect.DefaultInstance, dbCommand, null, null);
         }
         public static IDataReader ExecuteReader(DbCommand dbCommand,string stringName,out object outputparam)
         {
-            return GetExecuteReader(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, dbCommand, stringName,out outputparam,null,null);
+            return GetExecuteReader(ConnectionManager.DatabaseToConnect.DefaultInstance, dbCommand, stringName,out outputparam,null,null);
         }
         public static IDataReader ExecuteReader(string StoredProcedureName, params object[] parameterValues)
         {
-            return GetExecuteReader(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, null, StoredProcedureName, parameterValues);
+            return GetExecuteReader(ConnectionManager.DatabaseToConnect.DefaultInstance, null, StoredProcedureName, parameterValues);
         }
         public static object ExecuteScalar(DbCommand command)
         {
-            return GetExecuteScalar(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, command, null, null);
+            return GetExecuteScalar(ConnectionManager.DatabaseToConnect.DefaultInstance, command, null, null);
         }
         public static object ExecuteScalar(string StoredProcedureName, params object[] parameterValues)
         {
-            return GetExecuteScalar(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, null, StoredProcedureName, parameterValues);
+            return GetExecuteScalar(ConnectionManager.DatabaseToConnect.DefaultInstance, null, StoredProcedureName, parameterValues);
         }
 
 
         public static int ExecuteNonQuery(DbCommand dbCommand)
         {
-            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance,null, dbCommand, null, null);
+            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.DefaultInstance,null, dbCommand, null, null);
         }
         public static int ExecuteNonQuery(DbCommand dbCommand, DbTransaction transaction)
         {
-            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, transaction, dbCommand, null, null);
+            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.DefaultInstance, transaction, dbCommand, null, null);
         }
         public static int ExecuteNonQuery(string StoredProcedureName, params object[] parameterValues)
         {
-            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, null, null, StoredProcedureName, parameterValues);
+            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.DefaultInstance, null, null, StoredProcedureName, parameterValues);
 
         }
         public static int ExecuteNonQuery(DbTransaction transaction, string StoredProcedureName, params object[] parameterValues)
         {
-            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance, transaction, null, StoredProcedureName, parameterValues);
+            return RunExecuteNonQuery(ConnectionManager.DatabaseToConnect.DefaultInstance, transaction, null, StoredProcedureName, parameterValues);
 
         }
         #region Support for multiple DATABASES
@@ -111,7 +111,7 @@ namespace RaiteRaju.ApplicationUtility
         {
                DbCommand dbCommand = null;
                 string spName = null;
-                if (databaseToConnect == ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance)
+                if (databaseToConnect == ConnectionManager.DatabaseToConnect.DefaultInstance)
                 {
                     spName = ConfigReader.RaiteRajuDBSchema + procName;
                     ConnectionManager connectionManager = new ConnectionManager(databaseToConnect);
@@ -124,7 +124,7 @@ namespace RaiteRaju.ApplicationUtility
         {
             int number = 0;
             IDataReader IDataReaderData = null;
-            if (databaseToConnect == ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance)
+            if (databaseToConnect == ConnectionManager.DatabaseToConnect.DefaultInstance)
             {
                     string spName = ConfigReader.RaiteRajuDBSchema + storedProcudureName;
                     ConnectionManager connectionManager = new ConnectionManager(databaseToConnect);
@@ -149,7 +149,7 @@ namespace RaiteRaju.ApplicationUtility
         private static IDataReader GetExecuteReader(ConnectionManager.DatabaseToConnect databaseToConnect, DbCommand command, string storedProcudureName, params object[] parameterValues)
         {
             IDataReader IDataReaderData = null;
-            if (databaseToConnect == ConnectionManager.DatabaseToConnect.RaiteRajuDefaultInstance)
+            if (databaseToConnect == ConnectionManager.DatabaseToConnect.DefaultInstance)
             {
                 {
                     string spName = ConfigReader.RaiteRajuDBSchema + storedProcudureName;

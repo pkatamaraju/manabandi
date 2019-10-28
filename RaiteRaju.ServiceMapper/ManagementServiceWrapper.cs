@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RaiteRaju.ProxyService;
 using System.ServiceModel;
 using RaiteRaju.ServiceLayer;
 using RaiteRaju.ServiceLayerInterface;

@@ -71,5 +71,10 @@ namespace RaiteRaju.DAL.DALUtility
         public const string ParamExceptionMessage = "txtExceptionMessage";
         public const string PARAMdtLoggedDate = "dtLoggedDate";
 
+
+        //manabandi parameters
+        public const string PARAMINTVEHICLETYPEID = "intVehicleTypeId";
+        public const string PARAMTXTVEHICLETYPE = "txtVehicleType";
+
     }
 }

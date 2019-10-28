@@ -19,7 +19,7 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         List<GDictionary> FetMandalsOfDistrct(int DistrictId);
         [OperationContract]
-        List<GDictionary> GetCategories();
+        List<GDictionary> GetVehicleTypes();
         [OperationContract]
         UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber);
 

@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/Style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width" />
-    <title>Raiteraju - Sell Or Buy Anything Related to Agriculture.</title>
+    <title>Raiteraju - Book any vehicle to travel or deliver goods</title>
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
@@ -35,14 +35,14 @@
             jQuery("#tabAboutUs").click(function () {
                 window.location.href = '/Footer/AboutUs';
             });
-            jQuery("#tabHowItWorks").click(function () {
-                window.location.href = "/Footer/HowItWorks";
+            jQuery("#tabPartner").click(function () {
+                window.location.href = "/Footer/Partner";
             });
             jQuery("#tabHowToRegister").click(function () {
                 window.location.href = "/Footer/HowToRegister";
             });
-            jQuery("#tabHowToPostAd").click(function () {
-                window.location.href = "/Footer/HowToPostAd";
+            jQuery("#tabHowToBook").click(function () {
+                window.location.href = "/Footer/HowToBook";
             });
             jQuery("#tabPromotions").click(function () {
                 window.location.href = "/Footer/Promotions";
@@ -79,8 +79,8 @@
 
                 <div class="col-lg-5 col-md-4 col-sm-9 col-xs-9">
                     <div style="padding-left:10px; height:50px;">
-                        <span ><a id="Title" href="/">Raite Raju</a></span><br />
-                        <span id="TagLine">Now selling is at farmer's finger tips</span>
+                        <span ><a id="Title" href="/">Mana Bandi</a></span><br />
+                        <span id="TagLine">Just call us to book any vehicle</span>
                     </div>
                 </div>
 
@@ -103,47 +103,11 @@
                             </div>
                         </div>
                         <span class="arrow-down" style="vertical-align:auto;"></span>}
-
-
-
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 ">
-                    <a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
+                    <a href="/Book/BookNow?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Book a vehicle</a>
                 </div>
-                @*<a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
-
-                                            <ul class="nav nav-pills">
-                                                @*<li class="mr-lg-4 mr-3 py-2"><a href="/">Home</a></li>
-                                                <li class="mr-lg-4 mr-3 py-2"><a href="/Footer/AboutUs" tabindex="-1">About Us</a></li>
-                                                <li class="mr-lg-4 mr-3 py-2"><a href="/Footer/HowItWorks" tabindex="-1">How it Works</a></li>
-                                                <li class="mr-lg-4 mr-3 py-2"><div class="dropdownMenu"><a class="dropbtn" href="#">Help<span class="fa fa-angle-down" aria-hidden="true"></span></a>
-
-                        <div class="dropdown-content">
-                            <a href="/User/UserAccount">My Ads</a>
-                            <a href="/Footer/ContactUs">Contact Us</a>
-                            <a href="#" onclick="fnLogout()">Logout</a>
-                        </div>
-                    </div></li>
-                    @if (Request.Cookies["_RRUN"] == null)
-                                {                            <li class="mr-lg-4 mr-3"><a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a></li>}
-
-                                                @if (Request.Cookies["_RRUN"] != null)
-                                                {
-                                                    <div class="dropdownMenu">
-                                                        <a class="dropbtn" href="/User/UserAccount">
-                                                            @Request.Cookies["_RRUN"]["_RRUN"]
-                                                        </a>
-
-                                                        <div class="dropdown-content">
-                                                            <a href="/User/UserAccount">My Ads</a>
-                                                            <a href="/Footer/ContactUs">Contact Us</a>
-                                                            <a href="#" onclick="fnLogout()">Logout</a>
-                                                        </div>
-                                                    </div>
-                                                    <span class="arrow-down" style="vertical-align:auto;"></span>}
-                        <li class="mr-lg-4 mr-3"><a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a></li>
-                                            </ul>
-                                        </nav>*@
+                
             </div>
         </div>
     </div>
@@ -154,25 +118,12 @@
 
                 </div>
                 <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
-                    @*<nav>
-            <ul class="nav nav-pills">
-                <li id="tabHome"><a href="/" tabindex="-1">Home</a></li>
-                <li id="tabAboutUs"><a href="/Footer/AboutUs" tabindex="-1">About Us</a></li>
-                <li id="tabHowItWorks"><a href="/Footer/HowItWorks" tabindex="-1">How it Works</a></li>
-                <li id="tabHowToRegister"><a href="/Footer/HowToRegister" tabindex="-1">How To Register</a></li>
-                <li id="tabHowToPostAd"><a href="/Footer/HowToPostAd" tabindex="-1">How to Post Ad</a></li>
-                <li id="tabPromotions"><a href="/Footer/Promotions" tabindex="-1" class="blink_me">Advertise With Us</a></li>
-                <li id="tabContactUs"><a href="/Footer/ContactUs" tabindex="-1">Contact Us</a></li>
-                <li id="tabCareers"><a href="/Footer/Careers" tabindex="-1">Careers</a></li>
-            </ul>
-        </nav>*@
-
                     <div class="topnav" id="myTopnav">
                         <a href="/" tabindex="-1" id="tabHome">Home</a>
                         <a href="/Footer/AboutUs" id="tabAboutUs" tabindex="-1">About Us</a>
-                        <a  href="/Footer/HowItWorks" id="tabHowItWorks" tabindex="-1">How it Works</a>
+                        <a  href="/Footer/Partner" id="tabPartner" tabindex="-1">Become Our Partner</a>
                         <a href="/Footer/HowToRegister" id="tabHowToRegister" tabindex="-1">How To Register</a>
-                        <a href="/Footer/HowToPostAd" id="tabHowToPostAd" tabindex="-1">How to Post Ad</a>
+                        <a href="/Footer/HowToBook" id="tabHowToBook" tabindex="-1">How To Book Vehicle</a>
                         <a href="/Footer/Promotions" id="tabPromotions" tabindex="-1" class="blink_me">Advertise With Us</a>
                         <a href="/Footer/ContactUs" id="tabContactUs" tabindex="-1">Contact Us</a>
                         <a href="/Footer/Careers" id="tabCareers" tabindex="-1">Careers</a>
@@ -182,46 +133,7 @@
                     </div>
 
                 </div>
-                @*<div id="topbar-wrapper" class="wrapper">
-
-                        <div id="topbar-row" class="row">
-
-                            <ul class="tabs1">
-
-                                <li id="tabHome">
-                                    <a href="/" tabindex="-1">Home</a>
-                                </li>
-
-                                <li id="tabAboutUs">
-                                    <a href="/Footer/AboutUs" tabindex="-1">About Us</a>
-                                </li>
-                                <li id="tabHowItWorks">
-                                    <a href="/Footer/HowItWorks" tabindex="-1">How it Works</a>
-                                </li>
-                                <li id="tabHowToRegister">
-                                    <a href="/Footer/HowToRegister" tabindex="-1">How To Register</a>
-                                </li>
-
-                                <li id="tabHowToPostAd">
-                                    <a href="/Footer/HowToPostAd" tabindex="-1">How to Post Ad</a>
-                                </li>
-
-                                <li id="tabPromotions">
-                                    <a href="/Footer/Promotions" tabindex="-1" class="blink_me">Advertise With Us</a>
-                                </li>
-
-                                <li id="tabContactUs">
-                                    <a href="/Footer/ContactUs" tabindex="-1">Contact Us</a>
-                                </li>
-                                <li id="tabCareers">
-                                    <a href="/Footer/Careers" tabindex="-1">Careers</a>
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>*@
+                
 
             </div>
         </div>
@@ -254,7 +166,7 @@
                             <li><a href="/Footer/HowToRegister">How to Register</a></li>
                             <li><a href="/Footer/ReportIssue">Report an Issue</a></li>
 
-                            <li><a href="/Footer/HowItWorks">How it works</a></li>
+                            <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </div>

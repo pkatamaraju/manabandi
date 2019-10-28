@@ -519,6 +519,7 @@ li > a:only-child:after { content: ''; }
 }
 
    .form-control {
+       height:35px;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 10px;
@@ -531,9 +532,9 @@ li > a:only-child:after { content: ''; }
     transition: all ease-in-out 300ms;
     background: none;
     color: #454545;
-    border:1px solid #333 !important;
+    /*border:1px solid #333 !important;*/
     font-family: 'latoregular';
-    font-size: 16px;
+    font-size: 13px;
     outline:none;
 }
  /*#divSingUp #ddlState,#ddlDistrict,#ddlMandal{
@@ -548,7 +549,7 @@ li > a:only-child:after { content: ''; }
    .form-group label {
     font-family: 'latolight',sans-serif;
     color: black;
-    font-size:15px;
+    font-size:13px;
 }
    .form-box.landing-form-box {
     padding-top: 40px;
@@ -641,9 +642,9 @@ select {
     padding-bottom: 5px !important;
     color: inherit !important;
     border-radius: 5px !important;
-    border-color: #808080 !important;
+    /*border-color: #808080 !important;*/
     font-family: inherit !important;
-    font-size: 14px !important;
+    font-size: 13px !important;
     padding: 10px;
     height:35px !important;
 }
@@ -715,12 +716,14 @@ option{
     min-height:900px;
     padding-top:50px;
 }
-#HomeLable{
+.label{font-size:12px;}
+
+#HomeLable {
     font-size: 38px;
-    color:#fff;
+    color: #fff;
     font-weight: 600;
-    font-family:inherit;
-    margin:0;
+    font-family: inherit;
+    margin: 0;
 }
 
 #DivHowToRegister label{
@@ -743,7 +746,7 @@ option{
 
 
 
-#SubMenuBar {margin: 0 auto; width:100%;background-color:#36ae4b;min-height: 45px;}
+#SubMenuBar {margin: 0 auto; width:100%;background-color:#686979;min-height: 45px;}
 #SubMenuBar a{font-size: 12px;padding-top: 15px; padding-bottom: 15px;text-decoration: none;line-height: inherit;background-color: transparent;color:white}
 #SubMenuBar ul li { cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
 #SubMenuBar ul li:hover {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55; border-radius:3px;}
@@ -968,7 +971,7 @@ font-size:14px;
 
 .topnav {
     overflow: hidden;
-    background-color: #36ae4b;
+    background-color: #686979;
 }
 
     .topnav a {
@@ -981,10 +984,10 @@ font-size:14px;
         text-decoration: none;
         font-size: 17px;
     }
-    #SubMenuBar {margin: 0 auto; width:100%;background-color:#36ae4b;min-height: 45px;}
+
 .topnav a {cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
-.topnav a:hover {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55 !important; border-radius:3px;}
-.topnav a.active {border-bottom: 2px solid orange;min-height: 45px;background-color: #6d9a55 !important;border-radius: 3px;}
+.topnav a:hover {border-bottom:2px solid orange;min-height:45px;background-color:#80827f !important; border-radius:3px;}
+.topnav a.active {border-bottom: 2px solid orange;min-height: 45px;background-color: #80827f !important;border-radius: 3px;}
 
 .topnav .icon {
     display: none;

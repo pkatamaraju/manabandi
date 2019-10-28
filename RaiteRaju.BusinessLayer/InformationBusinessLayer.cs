@@ -23,9 +23,9 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().FetMandalsOfDistrct(DistrictId);
         }
-        public List<GDictionary> GetCategories()
+        public List<GDictionary> GetVehicleTypes()
         {
-            return new DAL.InformationDAL().GetCategories();
+            return new DAL.InformationDAL().GetVehicleTypes();
         }
 
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)

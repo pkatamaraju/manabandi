@@ -24,10 +24,10 @@ namespace RaiteRaju.ServiceLayer
            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
            return obj.FetMandalsOfDistrct(DistrictId);
        }
-       public List<GDictionary> GetCategories()
+       public List<GDictionary> GetVehicleTypes()
        {
            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-           return obj.GetCategories();
+           return obj.GetVehicleTypes();
        }
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
         {

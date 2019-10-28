@@ -8,7 +8,18 @@ namespace RaiteRaju.DAL.DALUtility
 {
    public class StoredProcedures
     {
-      public const string SPINSERTADDDETAILS = "SPRRInsertAddDetails";
+
+
+
+        public const string GET_VehicleTypes = "GET_VehicleTypes";
+
+
+
+
+
+
+
+        public const string SPINSERTADDDETAILS = "SPRRInsertAddDetails";
       public const string SPINSERTUSERDETAILS= "SPRRInsertUserDetails";
       public const string SPUPDATEOTP = "SPRRUpdateOTP";
       public const string SPGETUSERDETAILSWITHPASSWORD = "SPRRGetUSERDetailsWithPassword";
@@ -31,7 +42,7 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPFETCHSTATESLIST = "SPRRFetchStates";
       public const string SPFETCHDISTRICTSOFSTATE = "SPRRFetchDestrictOfState";
       public const string SPFETCHMANDALSOFDISTRICT = "SPRRFetchMandalsOfDistrict";
-      public const string SPGETCATEGORIES = "SPRRGetCategories";
+
 
       public const string SPGetADbyCategory = "SPRRGetADbyCategory";
       public const string SPGETADDISPLAYDETAILS = "SPRRGetAdDisplayDetails";
@@ -44,7 +55,7 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPInsertAdViewsStatistics="SPRRInsertAdViewsStatistics";
       public const string SPFetchAdsForHomePage = "SPRRFetchAdsForHomePage";
       public const string SPINSERTPROMOTIONS = "SPRRInsertPromotions";
-      public const string SPEXCEPTIONLOGGING="SPRRExceptionLogging";
+      public const string INSERT_MBExceptionLogging = "INSERT_MBExceptionLogging";
 
 
 #region admin

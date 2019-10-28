@@ -32,178 +32,114 @@
     //        jQuery("#divAdSearch").load("/AddPost/_AdSearchCategory", {Category:Category,PageNumber:1});
     //    });
         jQuery("a.AlistingCell").click(function(){
-            CategoryId = jQuery(this).data("value");
-            window.location.href = '@Url.Action("AdSearch", "AddPost")?CategoryId=' + CategoryId + '&PageNumber=' + 1;
+            VehicleTypeId = jQuery(this).data("value");
+            window.location.href = '@Url.Action("BookNow", "Book")?VehicleTypeId=' + VehicleTypeId;
 
         });
     });
 
     jQuery(window).ready(function () {
         jQuery("a.homeLink").click(function () {
-            CategoryId = jQuery(this).data("value");
-            window.location.href = '@Url.Action("AdSearch", "AddPost")?CategoryId=' + CategoryId + '&PageNumber=' + 1;
+            VehicleTypeId = jQuery(this).data("value");
+            window.location.href = '@Url.Action("BookNow", "Book")?VehicleTypeId=' + VehicleTypeId;
 
         });
     });
 
 
-    </script>
+</script>
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
 
 <style>
-
-
 </style>
 
-
-<div id="divHomeCatogies">
-    <div class="container">
-
-        <div class="row" style="min-height:40px">
-            <div class="col-lg-1 col-md-2"></div>
-            <div class="col-lg-10 col-md-10"><label style="font-size:15px!important;padding-bottom:30px">Click on below Categories to view Ads posted by Farmers.</label></div>
-            <div class="col-lg-1"></div>
-        </div>
-        <div class="row">
-
-            <div class="col-lg-1">
+<div style="margin:0 auto; width:100%;background-image: linear-gradient(45deg, #181731, transparent);">
+    <div class="container" >
+        <div class="row" style="min-height:300px;">
+            <div class="col-lg-1 col-md-1">
 
             </div>
+                <div class="col-lg-8 col-md-8">
+                    <h3 class="FormHeading text-left pb-5" style="color:white!important">Hire Vehicle To Travel Outstation or Deliver Goods</h3>
+                    <label style="color:white;font-size:14px;padding-right:55px">Do you need a vehicle? Book here with us</label><a href="/Book/BookNow?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Book a vehicle</a><br />
+                    <label style="color:white;font-size:14px;padding-right:10px">Are you a vehicle owner? Attach your vehicle here</label><a href="/Partner/AttachVehicle" class="ghost-btn first last filled py-2" tabindex="-1">Attach your vehicle</a>
 
-            <div class="col-lg-10">
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
-                    <a class="homeLink" data-value="1"><img class="listingImage" src="~/Content/images/Cotton.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="1">Cotton</a>
                 </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
-                    <a class="homeLink" data-value="3"><img class="listingImage" src="~/Content/images/redCHILLI.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="3">Chillies</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
-                    <a class="homeLink" data-value="2"><img class="listingImage" src="~/Content/images/Rice.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="2">Rice</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
-                    <a class="homeLink" data-value="9"><img class="listingImage" src="~/Content/images/sunflowers.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="9">Sun Flower</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
-                    <a class="homeLink" data-value="7"><img class="listingImage" src="~/Content/images/maize.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="7">Maize</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="8"><img class="listingImage" src="~/Content/images/sugarcane.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="8">Sugar Cane</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="26"><img class="listingImage" src="~/Content/images/DairyProducts.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="26">Dairy Products</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="10"><img class="listingImage" src="~/Content/images/GOATS.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="10">Goats</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="11"><img class="listingImage" src="~/Content/images/Sheep.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="11">Sheep</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="12"><img class="listingImage" src="~/Content/images/cows.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="12">Cow</a>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="18"><img class="listingImage" src="~/Content/images/OX.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="18">Ox</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="13"><img class="listingImage" src="~/Content/images/Buffalo.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="13">Buffaloes</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="14"><img class="listingImage" src="~/Content/images/land.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="14">Land</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="4"><img class="listingImage" src="~/Content/images/GroundNut.jpeg" /></a><br>
-                    <a class="AlistingCell" data-value="4">Ground Nuts</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="5"><img class="listingImage" src="~/Content/images/Redgram.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="5">Red Gram</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="23"><img class="listingImage" src="~/Content/images/Fruits.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="23">Fruits</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="15"><img class="listingImage" src="~/Content/images/Vegetables.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="15">Vegetables</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="27"><img class="listingImage" src="~/Content/images/Millets.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="27">Millets</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="16"><img class="listingImage" src="~/Content/images/Equipment.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="16">Equipment</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="19"><img class="listingImage" src="~/Content/images/Fish.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="19">Fish</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="20"><img class="listingImage" src="~/Content/images/Prawns.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="20">Prawns</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="21"><img class="listingImage" src="~/Content/images/Pesticide.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="21">Pesticides</a>
-                </div>
-
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="25"><img class="listingImage" src="~/Content/images/Fertilizers.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="25">Fertilizers</a>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
-                    <a class="homeLink" data-value="22"><img class="listingImage" src="~/Content/images/Fodder.jpg" /></a><br>
-                    <a class="AlistingCell" data-value="22">Fodder</a>
-                </div>
+                <div class="col-lg-3 col-md-3"> </div>
             </div>
-            
-            <div class="col-lg-1"></div>
         </div>
-        
-        <div class="row" style="min-height:100px;">
+</div>
+    <div id="divHomeCatogies">
+        <div class="container">
+            <div class="row" style="min-height:40px">
+                <div class="col-lg-4 col-md-4"></div>
+                <div class="col-lg-4 col-md-4">Choose from range of vehicles</div>
+                <div class="col-lg-4"></div>
+            </div>
+            <div class="row">
 
+                <div class="col-lg-1">
+
+                </div>
+
+                <div class="col-lg-10">
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                        <a class="homeLink" data-value="1"><img class="listingImage" src="~/Content/images/MiniTruck.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="1">Mini Truck</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                        <a class="homeLink" data-value="3"><img class="listingImage" src="~/Content/images/AppiAuto.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="3">Auto</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                        <a class="homeLink" data-value="2"><img class="listingImage" src="~/Content/images/MiniAuto.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="2">Mini Auto</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                        <a class="homeLink" data-value="9"><img class="listingImage" src="~/Content/images/Car4Seater.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="9">Car (4 Seater)</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center pb-3">
+                        <a class="homeLink" data-value="7"><img class="listingImage" src="~/Content/images/Car7Seater.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="7">Car (7 Seater)</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                        <a class="homeLink" data-value="8"><img class="listingImage" src="~/Content/images/Car14Seater.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="8">Car (14 Seater)</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                        <a class="homeLink" data-value="26"><img class="listingImage" src="~/Content/images/MiniBus.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="26">Mini Bus</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                        <a class="homeLink" data-value="10"><img class="listingImage" src="~/Content/images/Bus.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="10">Bus</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center  pb-3">
+                        <a class="homeLink" data-value="11"><img class="listingImage" src="~/Content/images/Lorry.jpg" /></a><br>
+                        <a class="AlistingCell" data-value="11">Lorry</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-1"></div>
+            </div>
+
+            <div class="row" style="min-height:100px;">
+
+            </div>
         </div>
     </div>
-</div>
 
-<div id="divAdSearch">
-
-</div>
 
 
 

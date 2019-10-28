@@ -1,0 +1,6 @@
+C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Entities\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Entities\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Entities\obj\Debug\ManaBandi.Entities.csprojAssemblyReference.cache
+C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Entities\obj\Debug\ManaBandi.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.dll
+C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.pdb

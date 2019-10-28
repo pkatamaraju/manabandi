@@ -12,7 +12,7 @@ namespace RaiteRaju.BusinessLayerInterface
         List<GDictionary> FetchStates();
         List<GDictionary> FetDistrictsOfState(int StateId);
         List<GDictionary> FetMandalsOfDistrct(int DistrictId);
-        List<GDictionary> GetCategories();
+        List<GDictionary> GetVehicleTypes();
         UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber);
         UserDetailsEntity GetUserDetailsWithPassword(Int64 PhoneNumber, string Password);
         List<AdDetailsEntity> GetUserAds(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
