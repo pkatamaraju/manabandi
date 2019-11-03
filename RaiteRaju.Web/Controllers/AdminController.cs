@@ -417,7 +417,7 @@ namespace RaiteRaju.Web.Controllers
                 {
                     ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
                     InformationServiceWrapper infoObj = new InformationServiceWrapper();
-                    GDOBJ = infoObj.MobileNumberVerification(objModel.txtPhoneNumber);
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(objModel.txtPhoneNumber);
                     if (GDOBJ.ID == 1)
                     {
                         UserId = ObjService.InsertAddUserDetails(objModel);

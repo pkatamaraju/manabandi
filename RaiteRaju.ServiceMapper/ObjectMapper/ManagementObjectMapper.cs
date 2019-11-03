@@ -8,7 +8,7 @@ using RaiteRaju.Web.Models;
 
 namespace RaiteRaju.ServiceMapper.ObjectMapper
 {
-   public class ManagementObjectMapper
+    public class ManagementObjectMapper
     {
         internal AdDetailsEntity MapAddPostModelToAddPostEntity(AdDetailsModel Model)
         {
@@ -27,55 +27,93 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             Entity.Image = Model.Image;
             return Entity;
         }
-     internal UserDetailsEntity MapUserRegistrationModelToUserRegistrationEntity(UserDetailsModel Model){
+        internal UserDetailsEntity MapUserRegistrationModelToUserRegistrationEntity(UserDetailsModel Model) {
 
-         UserDetailsEntity Entity=new UserDetailsEntity();
-         Entity.intUserId = Model.intUserId;
-         Entity.KeyForUserSettings = Model.KeyForUserSettings;
-         Entity.txtName=Model.txtUserName;
-         Entity.BigIntPhoneNumber=Model.txtPhoneNumber;
-         Entity.txtMailId=Model.txtMailId;
-         Entity.txtState=Model.ddlState;
-         Entity.txtDistrict=Model.ddlDistrict;
-         Entity.txtMandal=Model.ddlMandal;
-         Entity.txtvillage=Model.txtVillage;
-         Entity.txtPassword = Model.txtPassword;
-         Random r = new Random();
-         string OTP = r.Next(100000, 999999).ToString();
-         Entity.OTP = OTP;
-       
+            UserDetailsEntity Entity = new UserDetailsEntity();
+            Entity.intUserId = Model.intUserId;
+            Entity.KeyForUserSettings = Model.KeyForUserSettings;
+            Entity.txtName = Model.txtUserName;
+            Entity.BigIntPhoneNumber = Model.txtPhoneNumber;
+            Entity.txtMailId = Model.txtMailId;
+            Entity.txtState = Model.ddlState;
+            Entity.txtDistrict = Model.ddlDistrict;
+            Entity.txtMandal = Model.ddlMandal;
+            Entity.txtvillage = Model.txtVillage;
+            Entity.txtPassword = Model.txtPassword;
+            Random r = new Random();
+            string OTP = r.Next(100000, 999999).ToString();
+            Entity.OTP = OTP;
 
-         return Entity;
-     }
-     internal ContactUsEntity MapContactUsModelToContactUsEntity(ContactUsModel Model)
-     {
-         ContactUsEntity Entity = new ContactUsEntity();
 
-         if (Model != null)
-         {
-             Entity.PhoneNumber = Model.PhoneNumber;
-             Entity.Subject = Model.Subject;
-             Entity.Description = Model.Description;
-         }
-         return Entity;
-     }
-     internal UserDetailsModel MapUserDetailsModelToEntity(UserDetailsEntity Entity)
-     {
-         UserDetailsModel UserObj = new UserDetailsModel();
-         if (Entity != null)
-         {
-             UserObj.txtUserName = Entity.txtName;
-             UserObj.intUserId = Entity.intUserId;
-             UserObj.txtPassword = Entity.txtPassword;
-             UserObj.txtPhoneNumber = Entity.BigIntPhoneNumber;
-             UserObj.ddlState = Entity.txtState;
-             UserObj.ddlDistrict = Entity.txtDistrict;
-             UserObj.ddlMandal = Entity.txtMandal;
-             UserObj.txtVillage = Entity.txtvillage;
-             UserObj.txtMailId = Entity.txtMailId;
-         }
-         return UserObj;
+            return Entity;
+        }
+        internal ContactUsEntity MapContactUsModelToContactUsEntity(ContactUsModel Model)
+        {
+            ContactUsEntity Entity = new ContactUsEntity();
 
-     }
+            if (Model != null)
+            {
+                Entity.PhoneNumber = Model.PhoneNumber;
+                Entity.Subject = Model.Subject;
+                Entity.Description = Model.Description;
+            }
+            return Entity;
+        }
+        internal UserDetailsModel MapUserDetailsModelToEntity(UserDetailsEntity Entity)
+        {
+            UserDetailsModel UserObj = new UserDetailsModel();
+            if (Entity != null)
+            {
+                UserObj.txtUserName = Entity.txtName;
+                UserObj.intUserId = Entity.intUserId;
+                UserObj.txtPassword = Entity.txtPassword;
+                UserObj.txtPhoneNumber = Entity.BigIntPhoneNumber;
+                UserObj.ddlState = Entity.txtState;
+                UserObj.ddlDistrict = Entity.txtDistrict;
+                UserObj.ddlMandal = Entity.txtMandal;
+                UserObj.txtVillage = Entity.txtvillage;
+                UserObj.txtMailId = Entity.txtMailId;
+            }
+            return UserObj;
+
+        }
+
+        #region Manabandi
+        internal RideEntity MapRideModelToRideEntity(Ride ride)
+        {
+            RideEntity rideEntity = new RideEntity();
+            rideEntity.Name = ride.Name;
+            rideEntity.PhoneNumber = ride.PhoneNumber;
+            rideEntity.PickUpLocation = ride.PickUpLocation;
+            rideEntity.DropLocation = ride.DropLocation;
+            rideEntity.VehicleTypeID = ride.VehicleTypeID;
+            rideEntity.OTP = ride.OTP;
+            rideEntity.Password = ride.Password;
+            return rideEntity;
+        }
+        internal OwnerEntity MapOwnerModelToEntity(Owner model)
+        {
+            OwnerEntity Entity = new OwnerEntity();
+            Entity.txtOwnerName = model.txtOwnerName;
+            Entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
+            Entity.txtPassword = model.txtPassword;
+            Entity.intStateId = model.intStateId;
+            Entity.intDistrictId = model.intDistrictId;
+            Entity.intManadalID = model.intManadalID;
+            Entity.txtPlace = model.txtPlace;
+            return Entity;
+
+        }
+
+        internal VehicleEntity MapVehicleModelToEntity(Vehicle model) {
+            VehicleEntity entity = new VehicleEntity();
+            entity.intVehicleTypeID = model.intVehicleTypeID;
+            entity.txtVehicleName = model.txtVehicleName;
+            entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
+            entity.txtVehicleNumber = model.txtVehicleNumber;
+            return entity;
+        }
+        #endregion
+
     }
 }

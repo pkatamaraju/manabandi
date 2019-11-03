@@ -28,6 +28,13 @@ namespace RaiteRaju.BusinessLayerInterface
       int VerifyUsersByAdmin(string SelectedPhoneNumbers);
       int InsertAdPostByAdmin(AdDetailsEntity Obj);
       int InsertPromotions(string Name, Int64 PhoneNumber, string Description);
-           
+
+        #region ManaBandi
+        int BookRide(RideEntity ride);
+        int VehicleOwnerRegistration(OwnerEntity owner);
+
+        string AddVehicle(VehicleEntity entity);
+        #endregion
+
     }
 }

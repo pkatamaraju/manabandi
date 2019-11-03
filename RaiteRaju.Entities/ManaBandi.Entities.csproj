@@ -56,9 +56,12 @@
     <Compile Include="DropDrownWrapper.cs" />
     <Compile Include="ExceptionEntity.cs" />
     <Compile Include="GDictionary.cs" />
+    <Compile Include="OwnerEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewEntity.cs" />
+    <Compile Include="RideEntity.cs" />
     <Compile Include="UserDetailsEntity.cs" />
+    <Compile Include="VehicleEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

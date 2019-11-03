@@ -12,19 +12,19 @@ using RaiteRaju.Entities;
 
 namespace RaiteRaju.ServiceMapper
 {
-   public class ManagementServiceWrapper
+    public class ManagementServiceWrapper
     {
         public int InsertAddPostDetails(AdDetailsModel obj)
         {
-           
+
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             AdDetailsEntity Entity = new AdDetailsEntity();
             Entity = objMapper.MapAddPostModelToAddPostEntity(obj);
 
             ServiceLayer.ManagementService ManObj = new ManagementService();
-           return ManObj.InsertAddPostDetails(Entity);
+            return ManObj.InsertAddPostDetails(Entity);
 
-          }
+        }
 
         public int UploadImage(AdDetailsModel obj)
         {
@@ -52,7 +52,7 @@ namespace RaiteRaju.ServiceMapper
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             AdDetailsEntity Entity = new AdDetailsEntity();
-           Entity= objMapper.MapAddPostModelToAddPostEntity(Obj);
+            Entity = objMapper.MapAddPostModelToAddPostEntity(Obj);
             ServiceLayer.ManagementService ManObj = new ManagementService();
             ManObj.UpdateAdDetails(Entity);
         }
@@ -65,11 +65,11 @@ namespace RaiteRaju.ServiceMapper
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             UserDetailsEntity Entity = new UserDetailsEntity();
-            UserDetailsModel Model=new UserDetailsModel();
+            UserDetailsModel Model = new UserDetailsModel();
             Entity.BigIntPhoneNumber = MobileNumber;
             Entity.OTP = otp.ToString();
             ServiceLayer.ManagementService ManObj = new ManagementService();
-            Entity= ManObj.VerifyMobileNumber(Entity);
+            Entity = ManObj.VerifyMobileNumber(Entity);
             Model = objMapper.MapUserDetailsModelToEntity(Entity);
             return Model;
         }
@@ -103,12 +103,6 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.DeleteUserAccount(BigIntPhoneNumber);
         }
-        public int InsertReview(Int64 BigIntPhoneNumber,string ReviewDes)
-        {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.InsertReview(BigIntPhoneNumber,ReviewDes);
-        }
         public int insertContactUs(ContactUsModel Model)
         {
             ContactUsEntity ENTITY = new ContactUsEntity();
@@ -123,42 +117,79 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.DeleteSelectedUserAccounts(SelectedUserIds);
         }
-       public int DeleteAdsByAdmin(string SelectedAds) {
-           ManagementObjectMapper objMapper = new ManagementObjectMapper();
-           ServiceLayer.ManagementService ManObj = new ManagementService();
-           return ManObj.DeleteAdsByAdmin(SelectedAds);
-       }
-       public int SPInsertAdViewsStatistics(AdDetailsModel Model)
-       {
-           AdDetailsModel ModelObj = new AdDetailsModel();
-           ManagementObjectMapper objMapper = new ManagementObjectMapper();
-           ServiceLayer.ManagementService ManObj = new ManagementService();
-           return ManObj.SPInsertAdViewsStatistics(objMapper.MapAddPostModelToAddPostEntity(Model));
-       }
-       public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
-       {
-           ServiceLayer.ManagementService ManObj = new ManagementService();
-           ManObj.ExceptionLoggin(ControllerName,ActionName,ErrorMessage);
-       }
-       public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
-       {
-           ManagementObjectMapper objMapper = new ManagementObjectMapper();
-           ServiceLayer.ManagementService ManObj = new ManagementService();
-           return ManObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
-       }
-       public int InsertAdPostByAdmin(AdDetailsModel ModelObj)
-       {
-           ManagementObjectMapper objMapper = new ManagementObjectMapper();
-           AdDetailsEntity Entity = new AdDetailsEntity();
-           Entity = objMapper.MapAddPostModelToAddPostEntity(ModelObj);
+        public int DeleteAdsByAdmin(string SelectedAds) {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.DeleteAdsByAdmin(SelectedAds);
+        }
+        public int SPInsertAdViewsStatistics(AdDetailsModel Model)
+        {
+            AdDetailsModel ModelObj = new AdDetailsModel();
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.SPInsertAdViewsStatistics(objMapper.MapAddPostModelToAddPostEntity(Model));
+        }
+        public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
+        {
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            ManObj.ExceptionLoggin(ControllerName, ActionName, ErrorMessage);
+        }
+        public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
+        }
+        public int InsertAdPostByAdmin(AdDetailsModel ModelObj)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            AdDetailsEntity Entity = new AdDetailsEntity();
+            Entity = objMapper.MapAddPostModelToAddPostEntity(ModelObj);
 
-           ServiceLayer.ManagementService ManObj = new ManagementService();
-           return ManObj.InsertAdPostByAdmin(Entity);
-       }
-       public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
-       {
-           ServiceLayer.ManagementService ManObj = new ManagementService();
-          return ManObj.InsertPromotions(Name, PhoneNumber, Description);
-       }
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.InsertAdPostByAdmin(Entity);
+        }
+        public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
+        {
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.InsertPromotions(Name, PhoneNumber, Description);
+        }
+        public int InsertReview(Int64 BigIntPhoneNumber, string ReviewDes)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.InsertReview(BigIntPhoneNumber, ReviewDes);
+        }
+        #region ManaBandi
+        public int BookNow(Ride ride) {
+
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            RideEntity Entity = new RideEntity();
+            Entity = objMapper.MapRideModelToRideEntity(ride);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.BookRide(Entity);
+        }
+        public int VehicleOwnerRegistration(Owner owner)
+        {
+
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            OwnerEntity Entity = new OwnerEntity();
+            Entity = objMapper.MapOwnerModelToEntity(owner);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.VehicleOwnerRegistration(Entity);
+        }
+        public string AddVehicle(Vehicle model)
+        {
+
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            VehicleEntity Entity = new VehicleEntity();
+            Entity = objMapper.MapVehicleModelToEntity(model);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.AddVehicle(Entity);
+        }
+        #endregion
     }
 }

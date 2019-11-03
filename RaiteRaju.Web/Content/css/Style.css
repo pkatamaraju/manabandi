@@ -503,7 +503,7 @@ li > a:only-child:after { content: ''; }
     max-width: 574px;
     width: 100%;
     min-height: 455px;
-    margin-top: 52px;
+    margin-top: 15px;
     margin-bottom: 52px;
     margin-right: auto;
     margin-left: auto;
@@ -518,8 +518,8 @@ li > a:only-child:after { content: ''; }
     font-family:inherit;
 }
 
-   .form-control {
-       height:35px;
+.form-control {
+    height: 35px;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 10px;
@@ -532,10 +532,10 @@ li > a:only-child:after { content: ''; }
     transition: all ease-in-out 300ms;
     background: none;
     color: #454545;
-    /*border:1px solid #333 !important;*/
+    border: 1px solid #86857c !important;
     font-family: 'latoregular';
     font-size: 13px;
-    outline:none;
+    outline: none;
 }
  /*#divSingUp #ddlState,#ddlDistrict,#ddlMandal{
        height:35px !important;
@@ -632,8 +632,8 @@ label {
     font-family: inherit;
     line-height: .95;
     margin: 0;
-    padding-top: 50px;
-    padding-bottom:20px;
+    padding-top: 30px;
+    padding-bottom:30px;
     text-align:center;
     font-weight:bold;
     /*font-weight:500;*/
@@ -748,7 +748,7 @@ option{
 
 #SubMenuBar {margin: 0 auto; width:100%;background-color:#686979;min-height: 45px;}
 #SubMenuBar a{font-size: 12px;padding-top: 15px; padding-bottom: 15px;text-decoration: none;line-height: inherit;background-color: transparent;color:white}
-#SubMenuBar ul li { cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
+#SubMenuBar ul li { cursor: pointer;display: inline-block;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
 #SubMenuBar ul li:hover {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55; border-radius:3px;}
 #SubMenuBar ul li.active {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55; border-radius:3px;}
 /*#SubMenuBar a {font-size: 12px;padding-top: 15px; padding-bottom: 15px;text-decoration: none;line-height: inherit;background-color: transparent;color:white}
@@ -761,7 +761,7 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 .wrapper { clear: both;margin: 0 auto;}
 .ul.tabs1 li a {font-size: 11px;padding-top: 15px; padding-bottom: 15px;}
 #topbar-wrapper a { text-decoration: none;line-height: inherit;background-color: transparent;color:white}
-#topbar-wrapper ul.tabs1 li { cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 30px;}
+#topbar-wrapper ul.tabs1 li { cursor: pointer;display: inline-block;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 30px;}
 #topbar-wrapper UL.tabs1 li:hover {border-bottom:2px solid green;min-height:45px;background-color:#808080;}
 #topbar-wrapper UL.tabs1 li.active {border-bottom:2px solid green;min-height:45px;background-color:#808080;}
 
@@ -777,7 +777,7 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 }
 
 /* user account tabs*/
-.tab {overflow: hidden;margin-left: auto;margin-right: auto;width: 100%;background-color: #6c5656; border-radius:5px;}
+.tab {overflow: hidden;margin-left: auto;margin-right: auto;width: 100%;background-color: #686979; border-radius:5px;}
 .tab.subTab{overflow: hidden;margin-left:auto;margin-right:auto;width:100%;color:blue;font-family:Verdana,sans-serif;font-weight:normal !important;font-size:9.5px !important;}
 
  /* Style the buttons inside the tab */
@@ -797,14 +797,14 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 
 /* Change background color of buttons on hover */
         .tab button:hover {
-            background-color: #4a3a3a;
+            background-color: #363846;
             color: orange;
         }
 
 /* Create an active/current tablink class */
         .tab button.active {
             border-bottom: 2px solid blue;
-            background-color: #4a3a3a;
+            background-color: #363846;
             color: orange !important;
         }
 .tab.subTab button{color:white;padding-top:8px;padding-bottom:8px;color:white;font-size:9.9px;}
@@ -825,10 +825,10 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 #spanSlash {font-size: 15px;font-family: Verdana,sans-serif;font-weight: normal;padding:0px 2px 0px 4px;}
 
 #AdList{width:100%;/*padding-top:30px;*/margin-left:auto;margin-right:auto;border:1px solid rgba(0,0,0,0.2);min-height:300px; padding-top:1px}
-#tblAdList{text-align:center;border-collapse:collapse;}
-#tblAdList th{border-color:blue;border-right:1px solid #4a3a3a}
-#tblAdList td{height:40px;text-decoration:none;font-size:12px;}
-.tblHeader {background-color:#6c5656;height:30px;border-collapse:collapse;color:white;font-size:10px;border-radius:5px;}
+#tblRideList{text-align:center;border-collapse:collapse;}
+#tblRideList th{border-color:blue;border-right:1px solid #4a3a3a}
+#tblRideList td{height:40px;text-decoration:none;font-size:12px;}
+.tblHeader {background-color:#686979;height:30px;border-collapse:collapse;color:white;font-size:10px;border-radius:5px;}
 #UserSettings{min-height:300px;}
 #AdListRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
 /*#AdListRow td {border:1px solid black}*/
@@ -928,6 +928,9 @@ padding-top:5px;
 .nopadding {
     padding: 0px !important;
 }
+.NoMargin{
+    margin:0px !important;
+}
 .PhoneVerf {
     Color:Green;padding-top:15px;
     padding-bottom:15px;
@@ -985,7 +988,7 @@ font-size:14px;
         font-size: 17px;
     }
 
-.topnav a {cursor: pointer;display: inline-block;float: left;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
+.topnav a {cursor: pointer; display: inline-block; font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
 .topnav a:hover {border-bottom:2px solid orange;min-height:45px;background-color:#80827f !important; border-radius:3px;}
 .topnav a.active {border-bottom: 2px solid orange;min-height: 45px;background-color: #80827f !important;border-radius: 3px;}
 

@@ -263,7 +263,7 @@
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\User\OTPVerification.cshtml" />
     <Content Include="Views\User\UserAccount.cshtml" />
-    <Content Include="Views\Shared\_AdList.cshtml" />
+    <Content Include="Views\Shared\_RideList.cshtml" />
     <Content Include="Views\Shared\_UserSettings.cshtml" />
     <Content Include="Views\Shared\_Payments.cshtml" />
     <Content Include="Views\Book\AdDetails.cshtml" />
@@ -302,7 +302,8 @@
     <Content Include="Views\Admin\AdDetails.cshtml" />
     <Content Include="Views\Footer\Promotions.cshtml" />
     <Content Include="Views\Book\BookNow.cshtml" />
-    <Content Include="Views\Partner\AttachVehicle.cshtml" />
+    <Content Include="Views\Partner\OwnerRegistration.cshtml" />
+    <Content Include="Views\Partner\AddVehicle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

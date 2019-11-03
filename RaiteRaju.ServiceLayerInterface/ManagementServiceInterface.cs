@@ -63,6 +63,14 @@ namespace RaiteRaju.ServiceLayerInterface
         int InsertAdPostByAdmin(AdDetailsEntity Obj);
         [OperationContract]
         int InsertPromotions(string Name, Int64 PhoneNumber, string Description);
+
+        [OperationContract]
+        int BookRide(RideEntity ride);
+
+        [OperationContract]
+        int VehicleOwnerRegistration(OwnerEntity owner);
+        [OperationContract]
+        string AddVehicle(VehicleEntity entity);
     }
          
 }

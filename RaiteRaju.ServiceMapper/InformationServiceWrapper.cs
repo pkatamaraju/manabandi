@@ -79,15 +79,15 @@ namespace RaiteRaju.ServiceMapper
             DetModelObj = ObjMapper.MapDetailsEntityToDetailsModel(DetEntityObj);
             return DetModelObj;
         }
-        public List<AdDetailsModel> GetUserAds(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        public List<Ride> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
-            List<AdDetailsModel> listobj = new List<AdDetailsModel>();
-            List<AdDetailsEntity> listEntity = new List<AdDetailsEntity>();
+            List<Ride> listobj = new List<Ride>();
+            List<RideEntity> listEntity = new List<RideEntity>();
 
             ServiceLayer.InformationService obj = new InformationService();
             InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            listEntity = obj.GetUserAds(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
-            listobj = ObjMapper.MapAdDetailsEntityListToAdDetailsModel(listEntity);
+            listEntity = obj.GetUserRides(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
+            listobj = ObjMapper.MapRideEntityListToModel(listEntity);
             return listobj;
         }
         public UserDetailsModel GetLoginCheck(Int64 PhoneNumber, string Password)
@@ -124,32 +124,18 @@ namespace RaiteRaju.ServiceMapper
             model = ObjMapper.MapDropDownwrapperEntityToModel(Entity);
             return model;
         }
-        public GDictionaryModel MobileNumberVerification(Int64 MobileNumber)
+        public GDictionaryModel MobileNuberExistsOrNot(Int64 MobileNumber)
         {
             GDictionaryModel Model = new GDictionaryModel();
             GDictionary entity = new GDictionary();
             ServiceLayer.InformationService obj = new InformationService();
-            entity = obj.MobileNumberVerification(MobileNumber);
+            entity = obj.MobileNuberExistsOrNot(MobileNumber);
             InformationObjectMapper ObjMapper = new InformationObjectMapper();
             Model = ObjMapper.MapGDictionaryEntityToModel(entity);
             return Model;
 
         }
-        //public AdDetailsModel GetImage(AdDetailsModel Detobj)
-        //{
-
-        //    AdDetailsModel modelObjoutPut = new AdDetailsModel();
-        //    AdDetailsEntity EntityObj1 = new AdDetailsEntity();
-        //    AdDetailsEntity EntityObj2= new AdDetailsEntity();
-
-        //    ServiceLayer.InformationService obj = new InformationService();
-        //    InformationObjectMapper ObjMapper = new InformationObjectMapper();
-        //    EntityObj1 = ObjMapper.MapAdDetailsModelToEntity(Detobj);
-        //    EntityObj2 = obj.GetImage(EntityObj1);
-        //    modelObjoutPut = ObjMapper.MapAdDetailsEntityToModel(EntityObj2);
-        //    return modelObjoutPut;
-        //}
-
+       
         public List<AdDetailsModel> SPRRGetADbyCategory(int CategoryID, Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdDetailsModel> listObj = new List<AdDetailsModel>();
@@ -319,5 +305,16 @@ namespace RaiteRaju.ServiceMapper
             return ModelList;
 
         }
+
+
+        #region ManaBandi Methods
+
+        #endregion
+
+
+
+
+
+
     }
 }

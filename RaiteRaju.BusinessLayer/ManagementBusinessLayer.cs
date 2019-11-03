@@ -86,16 +86,37 @@ namespace RaiteRaju.BusinessLayer
         }
         public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
         {
-           return new DAL.ManagementDAL().VerifyUsersByAdmin(SelectedPhoneNumbers);
+            return new DAL.ManagementDAL().VerifyUsersByAdmin(SelectedPhoneNumbers);
 
         }
-       public  int InsertAdPostByAdmin(AdDetailsEntity Obj)
+        public int InsertAdPostByAdmin(AdDetailsEntity Obj)
         {
             return new DAL.ManagementDAL().InsertAdPostByAdmin(Obj);
         }
-        public int InsertPromotions(string Name, Int64 PhoneNumber,string Description)
-       {
-            return new DAL.ManagementDAL().InsertPromotions(Name,  PhoneNumber, Description);
-       }
+        public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
+        {
+            return new DAL.ManagementDAL().InsertPromotions(Name, PhoneNumber, Description);
+        }
+
+        #region ManaBandi
+        public int BookRide(RideEntity ride)
+        {
+
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.BookRide(ride);
+
+        }
+        public int VehicleOwnerRegistration(OwnerEntity owner)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.VehicleOwnerRegistration(owner);
+        }
+        public string AddVehicle(VehicleEntity entity)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.AddVehicle(entity);
+        }
+        #endregion
+
     }
 }

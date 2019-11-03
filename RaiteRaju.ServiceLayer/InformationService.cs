@@ -39,10 +39,10 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetUserDetailsWithPassword(PhoneNumber, Password);
         }
-        public List<AdDetailsEntity> GetUserAds(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        public List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetUserAds(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
+            return obj.GetUserRides(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
         }
         public UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password)
         {
@@ -59,10 +59,10 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetDropDownValues();
         }
-        public GDictionary MobileNumberVerification(Int64 MobileNumber)
+        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.MobileNumberVerification(MobileNumber);
+            return obj.MobileNuberExistsOrNot(MobileNumber);
 
         }
         //public AdDetailsEntity GetImage(AdDetailsEntity obj)

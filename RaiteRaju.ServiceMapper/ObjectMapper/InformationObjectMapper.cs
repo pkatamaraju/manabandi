@@ -404,5 +404,37 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
+        #region ManaBandi
+        internal List<Ride> MapRideEntityListToModel(List<RideEntity> ListEntity)
+        {
+
+            Ride rideObj = new Ride();
+            List<Ride> rideListObj = new List<Ride>();
+            if (ListEntity != null)
+            {
+                foreach (RideEntity item in ListEntity)
+                {
+                    rideObj = new Ride();
+                    rideObj.PhoneNumber = item.PhoneNumber;
+                    rideObj.DtCreated = item.DtCreated;
+                    rideObj.PickUpLocation = item.PickUpLocation;
+                    rideObj.DropLocation = item.DropLocation;
+                    rideObj.VehicleTypeID = item.VehicleTypeID;
+                    rideObj.dtScheduledDate = item.dtScheduledDate;
+                    rideObj.txtScheduledTime = item.txtScheduledTime;
+
+                    rideListObj.Add(rideObj);
+                }
+
+                return rideListObj;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+
     }
 }

@@ -162,4 +162,26 @@ namespace RaiteRaju.ApplicationUtility
         PASSWORD = 3,
     }
     
+    public enum VehicleType
+    {
+        
+        [Display(Name = "Mini Truck")]
+        DETAILS = 1,
+        [Display(Name = "Mini Auto")]
+        MiniAuto = 2,
+        [Display(Name = "Appi Auto")]
+        AppiAuto = 3,
+        [Display(Name = "Car (4 seater)")]
+        Car4Seater = 4,
+        [Display(Name = "Car (7 seater)")]
+        Car7Seater = 5,
+        [Display(Name = "Car (14 seater)")]
+        Car14Seater = 6,
+        [Display(Name = "Mini Bus")]
+        MiniBus = 7,
+        [Display(Name = "Bus")]
+        Bus = 8,
+        [Display(Name = "Lorry")]
+        Lorry = 9
+    }
 }

@@ -15,11 +15,11 @@ namespace RaiteRaju.BusinessLayerInterface
         List<GDictionary> GetVehicleTypes();
         UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber);
         UserDetailsEntity GetUserDetailsWithPassword(Int64 PhoneNumber, string Password);
-        List<AdDetailsEntity> GetUserAds(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
+        List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
         UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password);
         AdDetailsEntity FetchAdDetails(int AdId);
         DropDrownWrapper GetDropDownValues();
-        GDictionary MobileNumberVerification(Int64 MobileNumber);
+        GDictionary MobileNuberExistsOrNot(Int64 MobileNumber);
        // AdDetailsEntity GetImage(AdDetailsEntity obj);
         List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber);
         AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId,out int outputparam);

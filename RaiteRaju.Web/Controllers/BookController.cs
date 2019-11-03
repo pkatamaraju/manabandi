@@ -23,10 +23,37 @@ namespace RaiteRaju.Web.Controllers
 
         }
         
-        public ActionResult BookNow(int VehicleTypeId)
+        public ActionResult BookNow(int vehicleTypeId)
         {
-            ViewBag.VehicleTypeId = VehicleTypeId;
+            ViewBag.VehicleTypeId = vehicleTypeId;
             return View();
+        }
+        [HttpPost]
+        public ActionResult BookNow(FormCollection form)
+        {
+            Ride ridesObj = new Ride();
+            Utility en = new Utility();
+
+            ridesObj.DropLocation = form["txtDropLocation"];
+            ridesObj.PickUpLocation = form["txtPickUpLocation"];
+            ridesObj.Name = form["txtUserName"];
+            ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+            ridesObj.PhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+            ridesObj.Password = en.Encrypt(ridesObj.PhoneNumber.ToString());
+            Random r = new Random();
+            Int32 OTP = r.Next(100000, 999999);
+            ridesObj.OTP = OTP;
+           
+            HttpCookie OTPCookie = new HttpCookie("_ROTP_");
+            OTPCookie.Values["_ROTP_"] = en.Encrypt(OTP.ToString());
+            OTPCookie.Expires = DateTime.Now.AddMinutes(15);
+            Response.Cookies.Add(OTPCookie);
+
+            ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
+            int returnValue = manageObj.BookNow(ridesObj);
+
+            return Json(returnValue, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

@@ -15,68 +15,62 @@
     }
 
     function validation() {
-        var ddlState = jQuery("#ddlState");
-        var ddlDistrict = jQuery("#ddlDistrict");
-        var ddlMandal = jQuery("#ddlMandal");
-        var phone = jQuery("#txtPhoneNumber").val(),
-            //intRegex = /^\d{10}$/;
+
+        var UserName = jQuery("#txtUserName").val();
+        var PhoneNumber = jQuery("#txtPhoneNumber").val();
+        var PickUpLocation = jQuery("#txtPickUpLocation").val();
+        var DropLocation = jQuery("#txtDropLocation").val();
+        var ddlVehicles = jQuery("#ddlVehicles").val();
+
+        var phone = jQuery("#txtPhoneNumber").val();
             intRegex = /^[5-9]{1}[0-9]{9}$/;
         var message = "";
 
-        if (ddlState.val() == "" || ddlDistrict.val() == "" || ddlMandal.val() == "" || jQuery("#txtUserName").val() == "" || jQuery("#txtPhoneNumber").val() == "" || jQuery("#txtVillage").val() == "" || jQuery("#txtPassword").val() == "") {
+        if (UserName == "" || PhoneNumber == "" || ddlVehicles == "0" || PickUpLocation == "" || DropLocation == ""  ) {
 
-            if (jQuery("#txtUserName").val() == "") {
-                message = message + "Please Enter Name.\n";
+            if (UserName == "") {
+                message = message + "Please enter Name.\n";
             }
-            if (jQuery("#txtPhoneNumber").val() == "") {
-                message = message + "Please Enter Phone Number.\n";
+            if (PhoneNumber == "") {
+                message = message + "Please enter Phone number.\n";
             }
-            if (jQuery("#txtPassword").val() == "") {
-                message = message + "Please Enter Password.\n";
+            if (ddlVehicles == "0") {
+                message = message + "Select required vehicle type.\n";
             }
-            if (ddlState.val() == "" || ddlState.val() == "---Select State---") {
-                //If the "Please Select" option is selected display error.
-                message = message + "Please Select State.\n";
+            if (PickUpLocation == "") {
+                message = message + "Please enter Pick up location.\n";
             }
-            if (ddlDistrict.val() == "" || ddlDistrict.val() == "---Select District---") {
-                //If the "Please Select" option is selected display error.
-                message = message + "Please Select District.\n";
-            }
-            if (ddlMandal.val() == "" || ddlMandal.val() == "---Select Mandal---") {
-                //If the "Please Select" option is selected display error.
-                message = message + "Please Select Mandal.\n";
-            }
-            if (jQuery("#txtVillage").val() == "") {
-                message = message + "Please Enter Village.\n";
+            if (DropLocation == "") {
+                message = message + "Please enter Drop location.\n";
             }
 
         }
-        else if (ddlState.val() != "" && ddlDistrict.val() != "" && ddlMandal.val() != "" && jQuery("#txtUserName").val() != "" && jQuery("#txtPhoneNumber").val() != "" && jQuery("#txtVillage").val() != "" && jQuery("#txtPassword").val() != "") {
+        else if (UserName != "" && PhoneNumber != "" && ddlVehicles!= "0" && PickUpLocation != "" && DropLocation != "" )  {
 
-            if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtUserName").val()) == false) {
-                message = message + "Special characters(<>'\"/`%-) Are Not Allowed In Name.\n";
+            if (/^[^<>'\"/`%-]*$/.test(UserName) == false) {
+                message = message + "Special characters(<>'\"/`%-) are not allowed in Name.\n";
             }
-            else if (jQuery("#txtUserName").val().length > 50 || jQuery("#txtPassword").val().length < 8) {
-                message = message + "Name Should Be Between 4 To 50 Characters.\n";
+            else if (UserName.length > 50 || UserName.length < 3) {
+                message = message + "Name should be between 3 to 50 characters.\n";
             }
 
             if (intRegex.test(phone) == false) {
-                message = message + "Please Enter Valid Phone Number.\n";
+                message = message + "Please enter valid Phone number.\n";
             }
 
-            if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtVillage").val()) == false) {
+            if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
 
-                message = message + "Special Characters(<>'\"/`%-) Are Not Allowed In Village.\n";
+                message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
             }
-            else if (jQuery("#txtVillage").val().length > 50 || jQuery("#txtVillage").val().length < 4) {
-                message = message + "Village Should Be Between 4 To 50 Characters.\n";
+            else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
+                message = message + "Pick up location should be between 4 to 50 characters.\n";
             }
 
-            if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtPassword").val()) == false) {
-                message = message + "Special Characters(<>'\"/`%-) Are Not Allowed In Password.\n";
+            if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
+                message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
             }
-            else if (jQuery("#txtPassword").val().length > 20 || jQuery("#txtPassword").val().length < 8) {
-                message = message + "Password Should Be Between 8 To 20 Characters\n";
+            else if (DropLocation.length > 50 || DropLocation.length < 4) {
+                message = message + "Drop location should be between 4 to 50 characters\n";
             }
         }
 
@@ -91,34 +85,24 @@
 
     function fnRegistration() {
 
-        //jQuery(this).validate();
-        //if (!jQuery("#UserRegistration").valid()) return false;
-
-        var form = jQuery("#UserRegistration").serialize();
-        var state = jQuery("#ddlState option:selected").text();
-        var district = jQuery("#ddlDistrict option:selected").text();
-        var mandal = jQuery("#ddlMandal option:selected").text();
-        form += "&ddlStateText=" + state + "&ddlDistrict=" + district + "&ddlMandal=" + mandal;
+        var form = jQuery("#BookVehicle").serialize();
+        form += "&intVehicleTypeId=" + jQuery("#ddlVehicles").val(); 
         var AmobileNumber = jQuery("#txtPhoneNumber").val();
 
         if (validation()) {
 
             jQuery.ajax({
                 type: 'POST',
-                url: '@Url.Action("Registration", "User")',
+                url: '@Url.Action("BookNow", "Book")',
                 dataType: 'json',
                 data: form,
                 success: function (data) {
-
-                    if (data == 0) {
-                        alert("Entered Phone Number Is Already Registered.");
-                    }
                     if (data == -1) {
-                        alert("Please Enter Correct Data As Per Validation.");
+                        alert("Please enter correct data as per validation.");
                     }
                     if (data != 0 && data != -1) {
                         jQuery('body').loadingIndicator();
-                        jQuery("#UserRegistration")[0].reset();
+                        jQuery("#BookVehicle")[0].reset();
                         window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
                     }
 
@@ -166,7 +150,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                @using (Html.BeginForm("Registration", "User", FormMethod.Post, new { id = "UserRegistration" }))
+                @using (Html.BeginForm("BookNow", "Book", FormMethod.Post, new { id = "BookVehicle" }))
                 {
                     <h3 class="FormHeading">Enter your details to register with us</h3>
                     <label class="ResponseMessage"></label>
@@ -214,10 +198,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                                        <label for="txtVillage">Pick Up Location<span class="MandatoryStars">*</span> :</label>
+                                        <label for="txtPickUpLocation">Pick Up Location<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
-                                        <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
+                                        <input type="text" class="form-control" id="txtPickUpLocation" name="txtPickUpLocation" placeholder="Nandigama">
                                         <span class="error-msg" id="ErrorPickUpLocation">Please enter Pick Up Location</span>
                                     </div>
                                 </div>
@@ -226,10 +210,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                                        <label for="txtVillage">Drop Location<span class="MandatoryStars">*</span> :</label>
+                                        <label for="txtDropLocation">Drop Location<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
+                                        <input type="text" class="form-control" id="txtDropLocation" name="txtDropLocation" placeholder="Vijayawada">
                                         <span class="error-msg" id="ErrorDropLocation">Please enter Drop Location</span>
                                     </div>
                                 </div>
@@ -239,7 +223,7 @@
                                 <div class="cta-actions">
                                     <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
                                     <br>
-                                    <label style="font-size:10px;font-family:inherit">By creating account with RaiteRaju, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
+                                    <label style="font-size:10px;font-family:inherit">By creating account with Mana Bandi, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
                                 </div>
                             </div>
                         </div>

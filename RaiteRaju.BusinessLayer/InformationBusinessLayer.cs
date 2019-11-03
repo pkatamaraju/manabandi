@@ -36,9 +36,9 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetUserDetailsWithPassword(PhoneNumber, Password);
         }
-        public List<AdDetailsEntity> GetUserAds(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        public List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
-            return new DAL.InformationDAL().GetUserAds(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
+            return new DAL.InformationDAL().GetUserRides(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
         }
 
         public UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password)
@@ -53,9 +53,9 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetDropDownValues();
         }
-        public GDictionary MobileNumberVerification(Int64 MobileNumber)
+        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber)
         {
-            return new DAL.InformationDAL().MobileNumberVerification(MobileNumber);
+            return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber);
         }
         //public AdDetailsEntity GetImage(AdDetailsEntity obj)
         //{

@@ -150,7 +150,7 @@ namespace RaiteRaju.Web.Controllers
                 {
                     ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
                     InformationServiceWrapper infoObj = new InformationServiceWrapper();
-                    GDOBJ = infoObj.MobileNumberVerification(objModel.txtPhoneNumber);
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(objModel.txtPhoneNumber);
                     if (GDOBJ.ID == 1)
                     {
                         UserId = ObjService.InsertAddUserDetails(objModel);
@@ -382,7 +382,7 @@ namespace RaiteRaju.Web.Controllers
                  objModel.txtPhoneNumber = Convert.ToInt64(fnRegistration["txtPhoneNumber"]);
                  objModel.KeyForUserSettings = Convert.ToString(UserSettings.PHONENUMBER);
 
-                 GDModel = InfoService.MobileNumberVerification(objModel.txtPhoneNumber);
+                 GDModel = InfoService.MobileNuberExistsOrNot(objModel.txtPhoneNumber);
                  if (GDModel.ID == 0)
                  {
                      ViewBag.MobileError = "Entered Mobiler Number is already registered";
@@ -421,7 +421,7 @@ namespace RaiteRaju.Web.Controllers
             ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
             InformationServiceWrapper infoObj = new InformationServiceWrapper();
             GDictionaryModel GDOBJ = new GDictionaryModel();
-            GDOBJ = infoObj.MobileNumberVerification(PhoneNumber);
+            GDOBJ = infoObj.MobileNuberExistsOrNot(PhoneNumber);
 
             if (GDOBJ.ID == 0)
             {
@@ -473,20 +473,20 @@ namespace RaiteRaju.Web.Controllers
                     InformationServiceWrapper Obj = new InformationServiceWrapper();
                     DetObj = Obj.GetUserDetailsWithPassword(PhoneNumber, PassWord);
 
-                    DropDownWrapperModel ModelObj = new DropDownWrapperModel();
-                    ModelObj = Obj.GetDropDownValues();
-                    ViewBag.DistrictLIst = ModelObj.District;
-                    ViewBag.MandalList = ModelObj.Mandal;
+                    //DropDownWrapperModel ModelObj = new DropDownWrapperModel();
+                    //ModelObj = Obj.GetDropDownValues();
+                    //ViewBag.DistrictLIst = ModelObj.District;
+                    //ViewBag.MandalList = ModelObj.Mandal;
 
                     if (DetObj != null)
                     {
                         ViewBag.txtUserName = DetObj.txtUserName;
                         // ViewBag.txtMailId = DetObj.txtMailId;
                         ViewBag.txtPhoneNumber = DetObj.txtPhoneNumber;
-                        ViewBag.txtVillage = DetObj.txtVillage;
-                        ViewBag.ddlState = DetObj.ddlState;
-                        ViewBag.ddlMandal = DetObj.ddlMandal;
-                        ViewBag.ddlDistrict = DetObj.ddlDistrict;
+                       // ViewBag.txtVillage = DetObj.txtVillage;
+                        //ViewBag.ddlState = DetObj.ddlState;
+                        //ViewBag.ddlMandal = DetObj.ddlMandal;
+                        //ViewBag.ddlDistrict = DetObj.ddlDistrict;
                     }
                     return View("UserAccount");
                 }
@@ -499,20 +499,20 @@ namespace RaiteRaju.Web.Controllers
 
                     InformationServiceWrapper Obj = new InformationServiceWrapper();
                     DetObj = Obj.GetUserDetailsWithOTP(OTP, PhoneNumber);
-                    DropDownWrapperModel ModelObj = new DropDownWrapperModel();
-                    ModelObj = Obj.GetDropDownValues();
-                    ViewBag.DistrictLIst = ModelObj.District;
-                    ViewBag.MandalList = ModelObj.Mandal;
+                    //DropDownWrapperModel ModelObj = new DropDownWrapperModel();
+                    //ModelObj = Obj.GetDropDownValues();
+                    //ViewBag.DistrictLIst = ModelObj.District;
+                    //ViewBag.MandalList = ModelObj.Mandal;
 
                     if (DetObj != null)
                     {
                         ViewBag.txtUserName = DetObj.txtUserName;
                         //ViewBag.txtMailId = DetObj.txtMailId;
                         ViewBag.txtPhoneNumber = DetObj.txtPhoneNumber;
-                        ViewBag.txtVillage = DetObj.txtVillage;
-                        ViewBag.ddlState = DetObj.ddlState;
-                        ViewBag.ddlMandal = DetObj.ddlMandal;
-                        ViewBag.ddlDistrict = DetObj.ddlDistrict;
+                        //ViewBag.txtVillage = DetObj.txtVillage;
+                        //ViewBag.ddlState = DetObj.ddlState;
+                        //ViewBag.ddlMandal = DetObj.ddlMandal;
+                        //ViewBag.ddlDistrict = DetObj.ddlDistrict;
                     }
                     return View("UserAccount");
                 }
@@ -522,7 +522,7 @@ namespace RaiteRaju.Web.Controllers
                 }
         }
         //[NoCache]
-        public ActionResult _AddList(int PageNumber)
+        public ActionResult _RideList(int PageNumber)
         {
             int TotalPageNumber = 0;
             ViewBag.CurrentPageNumber = PageNumber;
@@ -537,12 +537,12 @@ namespace RaiteRaju.Web.Controllers
                 {
                     Int64 PhoneNumber = Convert.ToInt64(en.Decrypt (PhoneNumberCookie["_RRUPn"]));
                     string PassWord =en.Decrypt ( KeyCookie["_RRPS"].ToString());
-                    List<AdDetailsModel> ListObj = new List<AdDetailsModel>();
+                    List<Ride> ListObj = new List<Ride>();
                     InformationServiceWrapper Obj = new InformationServiceWrapper();
-                    ListObj = Obj.GetUserAds(PhoneNumber, PassWord, PageNumber, out  TotalPageNumber);
+                    ListObj = Obj.GetUserRides(PhoneNumber, PassWord, PageNumber, out  TotalPageNumber);
                     if (ListObj != null)
                     {
-                        ViewBag.AdList = ListObj;
+                        ViewBag.rideList = ListObj;
                     }
                 }
             else if (UserNameCookie != null && OTPCookie != null)
@@ -550,16 +550,16 @@ namespace RaiteRaju.Web.Controllers
                     Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
                     Utility UtilObj = new Utility();
                     string OTP = UtilObj.Decrypt(OTPCookie["_ROTP_"]);
-                    List<AdDetailsModel> ListObj = new List<AdDetailsModel>();
+                    List<Ride> ListObj = new List<Ride>();
                     InformationServiceWrapper Obj = new InformationServiceWrapper();
-                    ListObj = Obj.GetUserAds(PhoneNumber, OTP, PageNumber, out  TotalPageNumber);
+                    ListObj = Obj.GetUserRides(PhoneNumber, OTP, PageNumber, out  TotalPageNumber);
                     if (ListObj != null)
                     {
-                        ViewBag.AdList = ListObj;
+                        ViewBag.rideList = ListObj;
                     }
                 }
             ViewBag.TotalPageNumber = TotalPageNumber;
-            return PartialView("_AdList");
+            return PartialView("_RideList");
         }
         public ActionResult UserLogout()
         {

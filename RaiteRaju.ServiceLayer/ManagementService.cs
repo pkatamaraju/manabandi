@@ -80,7 +80,8 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.DeleteSelectedUserAccounts(SelectedUserIds);
         }
-        public int DeleteAdsByAdmin(string SelectedAds){
+        public int DeleteAdsByAdmin(string SelectedAds)
+        {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.DeleteAdsByAdmin(SelectedAds);
         }
@@ -92,7 +93,7 @@ namespace RaiteRaju.ServiceLayer
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            ManageObj.ExceptionLoggin(ControllerName,ActionName,ErrorMessage);
+            ManageObj.ExceptionLoggin(ControllerName, ActionName, ErrorMessage);
         }
         public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
         {
@@ -107,7 +108,27 @@ namespace RaiteRaju.ServiceLayer
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.InsertPromotions(Name,PhoneNumber,Description);
+            return ManageObj.InsertPromotions(Name, PhoneNumber, Description);
         }
+
+        #region ManaBandi
+
+        public int BookRide(RideEntity ride)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.BookRide(ride);
+        }
+
+      public int VehicleOwnerRegistration(OwnerEntity owner)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.VehicleOwnerRegistration(owner);
+        }
+        public string AddVehicle(VehicleEntity entity)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.AddVehicle(entity);
+        }
+        #endregion
     }
 }

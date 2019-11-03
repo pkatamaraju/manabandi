@@ -26,7 +26,7 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         UserDetailsEntity GetUserDetailsWithPassword(Int64 PhoneNumber, string Password);
         [OperationContract]
-        List<AdDetailsEntity> GetUserAds(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
+        List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
         [OperationContract]
         UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password);
 
@@ -36,7 +36,7 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         DropDrownWrapper GetDropDownValues();
         [OperationContract]
-        GDictionary MobileNumberVerification(Int64 MobileNumber);
+        GDictionary MobileNuberExistsOrNot(Int64 MobileNumber);
         //[OperationContract]
         //AdDetailsEntity GetImage(AdDetailsEntity obj);
         [OperationContract]

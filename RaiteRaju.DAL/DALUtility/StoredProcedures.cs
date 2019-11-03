@@ -9,9 +9,26 @@ namespace RaiteRaju.DAL.DALUtility
    public class StoredProcedures
     {
 
+        #region ManaBandi
 
 
+        public const string GET_DistrictsForStateID= "GET_DistrictsForStateID";
+        public const string INSERT_MBRideDetails="INSERT_MBRideDetails";
         public const string GET_VehicleTypes = "GET_VehicleTypes";
+        public const string INSERT_MBVehicleOwnerDetails = "INSERT_MBVehicleOwnerDetails";
+        public const string INSERT_MBExceptionLogging = "INSERT_MBExceptionLogging";
+        public const string INSERT_MBInsertContactUs = "INSERT_MBInsertContactUs";
+        public const string UPDATE_UserStatusToVerified = "UPDATE_UserStatusToVerified";
+        public const string GET_GetUserDetailsWithPassword = "GET_GetUserDetailsWithPassword";
+        public const string GET_GetUserDetailsWithOTP ="GET_GetUserDetailsWithOTP";
+        public const string GET_MBLoginCheck = "GET_MBLoginCheck";
+        public const string GET_UserRides= "GET_UserRides";
+        public const string UPDATE_MBUserDetails = "UPDATE_MBUserDetails";
+        public const string INSERT_MBOwnerDetails= "INSERT_MBOwnerDetails";
+        public const string GET_MandalsOfDistrict= "GET_MandalsOfDistrict";
+        public const string GET_MobileValidation = "GET_MobileValidation";
+        public const string INSERT_VehicleDetails = "INSERT_VehicleDetails";
+        #endregion
 
 
 
@@ -19,7 +36,8 @@ namespace RaiteRaju.DAL.DALUtility
 
 
 
-        public const string SPINSERTADDDETAILS = "SPRRInsertAddDetails";
+
+      public const string SPINSERTADDDETAILS = "SPRRInsertAddDetails";
       public const string SPINSERTUSERDETAILS= "SPRRInsertUserDetails";
       public const string SPUPDATEOTP = "SPRRUpdateOTP";
       public const string SPGETUSERDETAILSWITHPASSWORD = "SPRRGetUSERDetailsWithPassword";
@@ -34,7 +52,7 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPUPDAGEUSERDETAILS = "SPRRUpdateUserDetails";
       public const string SPUPLOADIMAGE= "SPRRUploadImages";
       public const string SPGETIMAGE = "SPRRGETmages";
-      public const string SPGetUSERAds = "SPRRGetUserAds";
+      public const string SPGetUserRides = "SPRRGetUserRides";
 
       public const string SPGETDistrictList = "SPRRGETDistrictList";
       public const string SPGETMandalList = "SPRRGETMandalList";
@@ -55,7 +73,6 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPInsertAdViewsStatistics="SPRRInsertAdViewsStatistics";
       public const string SPFetchAdsForHomePage = "SPRRFetchAdsForHomePage";
       public const string SPINSERTPROMOTIONS = "SPRRInsertPromotions";
-      public const string INSERT_MBExceptionLogging = "INSERT_MBExceptionLogging";
 
 
 #region admin
