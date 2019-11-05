@@ -967,11 +967,11 @@ namespace RaiteRaju.DAL
                         userobj.intUserId = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
                         userobj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
                         userobj.txtName = Convert.ToString(dr[DataAccessConstants.ParamtName]);
-                        //userobj.txtState = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
-                        //userobj.txtDistrict = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
-                        //userobj.txtMandal = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
-                        //userobj.txtvillage = Convert.ToString(dr[DataAccessConstants.Paramvillage]);
-                        //userobj.txtMailId = Convert.ToString(dr[DataAccessConstants.ParamMailId]);
+                        userobj.UserType= Convert.ToString(dr[DataAccessConstants.PARAMUSERTYPE]);
+                        userobj.txtState = Convert.ToString(dr[DataAccessConstants.PARAMINTSTATEID]);
+                        userobj.txtDistrict = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTID]);
+                        userobj.txtMandal = Convert.ToString(dr[DataAccessConstants.PARAMINTMANDALID]);
+                        userobj.txtvillage = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
                     }
                     dr.Close();
                     
@@ -988,21 +988,13 @@ namespace RaiteRaju.DAL
         }
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
         {
-            // DetailsEntity DetOjb = new DetailsEntity();
             UserDetailsEntity userobj = null;
-            //AdDetailsEntity adobj;tp
-            //List<AdDetailsEntity> adListObj = new List<AdDetailsEntity>();
-            //int outputparam=0;
-
             try
             {
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPGETUSERDETAILSWITHOTP))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.Int32, OTP);
-                    //DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, INTPAGENUMBER);
-                    //DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGESIZE, DbType.Int32, 10);
-
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
                     {
@@ -1010,38 +1002,15 @@ namespace RaiteRaju.DAL
                         userobj.intUserId = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
                         userobj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
                         userobj.txtName = Convert.ToString(dr[DataAccessConstants.ParamtName]);
-                        //userobj.txtState = Convert.ToString(dr[DataAccessConstants.ParamState]);
-                        //userobj.txtDistrict = Convert.ToString(dr[DataAccessConstants.ParamDistrict]);
-                        //userobj.txtMandal = Convert.ToString(dr[DataAccessConstants.ParamMandal]);
-                        //userobj.txtvillage = Convert.ToString(dr[DataAccessConstants.Paramvillage]);
-                        //userobj.txtMailId = Convert.ToString(dr[DataAccessConstants.ParamMailId]);
-                    }
-                    //    dr.NextResult();
-                    //    while (dr.Read())
-                    //    {
-                    //        adobj = new AdDetailsEntity();
+                        userobj.UserType = Convert.ToString(dr[DataAccessConstants.PARAMUSERTYPE]);
+                        userobj.txtState = Convert.ToString(dr[DataAccessConstants.PARAMINTSTATEID]);
+                        userobj.txtDistrict = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTID]);
+                        userobj.txtMandal = Convert.ToString(dr[DataAccessConstants.PARAMINTMANDALID]);
+                        userobj.txtvillage = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
 
-                    //        adobj.AdID = Convert.ToInt32(dr[DataAccessConstants.ParamAdId]);
-                    //        adobj.Title = Convert.ToString(dr[DataAccessConstants.ParamAdTitle]);
-                    //        adobj.Category = Convert.ToString(dr[DataAccessConstants.ParamAdCategory]);
-                    //        adobj.SubCategory = Convert.ToString(dr[DataAccessConstants.ParamSubCategory]);
-                    //        adobj.AdDescription = Convert.ToString(dr[DataAccessConstants.ParamAdDescription]);
-                    //        adobj.Price = Convert.ToInt32(dr[DataAccessConstants.ParamPrice]);
-                    //        adobj.Quantity = Convert.ToInt32(dr[DataAccessConstants.ParamQuantity]);
-                    //        adobj.SellingUnit = Convert.ToString(dr[DataAccessConstants.ParamSellingUnit]);
-                    //        //adobj.Image = (byte[])(dr[DataAccessConstants.PARAMPHOTO]);
-                    //        adListObj.Add(adobj);
-                    //    }
-                    //    dr.NextResult();
-                    //    while (dr.Read())
-                    //    {
-                    //        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
-                    //    }
+                    }
                     dr.Close();
                 }
-                //TotalPageNumber = outputparam;
-                //DetOjb.AdDetails = adListObj;
-                //DetOjb.UserDetails = userobj;
 
                 return userobj;
             }
@@ -1063,6 +1032,55 @@ namespace RaiteRaju.DAL
                 DBAccessHelper.ExecuteNonQuery(objDbCommand);
             }
         }
+
+        public List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            VehicleEntity entity;
+            List<VehicleEntity> ListObj = new List<VehicleEntity>();
+            int outputparam = 0;
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_VehicleDetails))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPASSWORD, DbType.String, Password);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, INTPAGENUMBER);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGESIZE, DbType.Int32, 10);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        entity = new VehicleEntity();
+
+                        entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        entity.dtCreated = Convert.ToString(dr[DataAccessConstants.PARAMDTCREATED]);
+                        entity.txtVehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.intOwnerID = Convert.ToString(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        entity.txtVehicleName= Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENAME]);
+                        entity.intVehicleID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLEID]);
+                        entity.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                        entity.intVehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        ListObj.Add(entity);
+
+                    }
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
+                    }
+                    dr.Close();
+                }
+                TotalPageNumber = outputparam;
+                return ListObj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetVehicleDetails", ex.Message);
+                TotalPageNumber = 0;
+                return null;
+            }
+        }
+
 
         #endregion
     }

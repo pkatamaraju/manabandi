@@ -101,6 +101,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             Entity.intDistrictId = model.intDistrictId;
             Entity.intManadalID = model.intManadalID;
             Entity.txtPlace = model.txtPlace;
+            Entity.OTP = model.OTP;
             return Entity;
 
         }
@@ -111,6 +112,9 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             entity.txtVehicleName = model.txtVehicleName;
             entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
             entity.txtVehicleNumber = model.txtVehicleNumber;
+            entity.txtVehicleType = model.txtVehicleType;
+            entity.intVehicleID = model.intVehicleID;
+            entity.dtCreated = model.dtCreated;
             return entity;
         }
         #endregion

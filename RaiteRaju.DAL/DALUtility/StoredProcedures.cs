@@ -24,10 +24,10 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_MBLoginCheck = "GET_MBLoginCheck";
         public const string GET_UserRides= "GET_UserRides";
         public const string UPDATE_MBUserDetails = "UPDATE_MBUserDetails";
-        public const string INSERT_MBOwnerDetails= "INSERT_MBOwnerDetails";
         public const string GET_MandalsOfDistrict= "GET_MandalsOfDistrict";
         public const string GET_MobileValidation = "GET_MobileValidation";
         public const string INSERT_VehicleDetails = "INSERT_VehicleDetails";
+        public const string GET_VehicleDetails = "GET_VehicleDetails";
         #endregion
 
 

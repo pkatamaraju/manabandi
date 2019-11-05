@@ -12,11 +12,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
     {
         internal UserDetailsModel MapDetailsEntityToDetailsModel(UserDetailsEntity Entity)
         {
-            //DetailsModel DetModelobj = new DetailsModel();
-            //UserDetailsModel UserObj = new UserDetailsModel();
-            //AdDetailsModel AdObj;
-            //List<AdDetailsModel> adListObj = new List<AdDetailsModel>();
-            //List<AdDetailsEntity> AdEntityList = new List<AdDetailsEntity>();
+           
 
             UserDetailsModel UserObj = new UserDetailsModel();
             if (Entity != null)
@@ -29,23 +25,8 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 UserObj.ddlMandal = Entity.txtMandal;
                 UserObj.txtVillage = Entity.txtvillage;
                 UserObj.txtMailId = Entity.txtMailId;
-
-                //foreach (AdDetailsEntity item in Entity.AdDetails)
-                //{
-                //    AdObj = new AdDetailsModel();
-                //    AdObj.AdID = item.AdID;
-                //    AdObj.txtAddTitle = item.Title;
-                //    AdObj.Category = item.Category;
-                //    AdObj.SubCategory = item.SubCategory;
-                //    AdObj.txtAdDescription = item.AdDescription;
-                //    AdObj.txtPrice = item.Price;
-                //    AdObj.txtQuantity = item.Quantity;
-                //    AdObj.SellingUnit = item.SellingUnit;
-                //    AdObj.Image = item.Image;
-                //    adListObj.Add(AdObj);
-                //}
-                //DetModelobj.AdDetails = adListObj;
-                //DetModelobj.UserDetailsModel = UserObj;
+                UserObj.UserType = Entity.UserType;
+                
                 return UserObj;
             }
             else
@@ -206,6 +187,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 UserObj.txtMailId = item.txtMailId;
                 UserObj.bitVerifiedPhoneNumber = item.bitVerifiedPhoneNumber;
                 UserObj.FlgAccountDeleted = item.FlgAccountDeleted;
+                UserObj.UserType = item.UserType;
                 ModelList.Add(UserObj);
                 }
             }
@@ -433,6 +415,46 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             {
                 return null;
             }
+        }
+        internal List<Vehicle> MapVehicleEntityListToModel(List<VehicleEntity> ListEntity)
+        {
+
+            Vehicle model = new Vehicle();
+            List<Vehicle> ListObj = new List<Vehicle>();
+            if (ListEntity != null)
+            {
+                foreach (VehicleEntity entity in ListEntity)
+                {
+                    model = new Vehicle();
+                    model.intVehicleTypeID = entity.intVehicleTypeID;
+                    model.txtVehicleName = entity.txtVehicleName;
+                    model.BigIntPhoneNumber = entity.BigIntPhoneNumber;
+                    model.txtVehicleNumber = entity.txtVehicleNumber;
+                    model.txtVehicleType = entity.txtVehicleType;
+                    model.intVehicleID = entity.intVehicleID;
+                    model.dtCreated = entity.dtCreated;
+                    ListObj.Add(model);
+                }
+
+                return ListObj;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        internal Vehicle MapVehicleModelToEntity(VehicleEntity entity)
+        {
+            Vehicle model = new Vehicle();
+            model.intVehicleTypeID = entity.intVehicleTypeID;
+            model.txtVehicleName = entity.txtVehicleName;
+            model.BigIntPhoneNumber = entity.BigIntPhoneNumber;
+            model.txtVehicleNumber = entity.txtVehicleNumber;
+            model.txtVehicleType = entity.txtVehicleType;
+            model.intVehicleID = entity.intVehicleID;
+            model.dtCreated = entity.dtCreated;
+            return model;
         }
         #endregion
 

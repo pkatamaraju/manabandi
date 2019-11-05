@@ -12,6 +12,9 @@ namespace RaiteRaju.ServiceLayerInterface
     [ServiceContract]
     public interface InformationServiceInterface
     {
+
+        #region Manabandi
+
         [OperationContract]
         List<GDictionary> FetchStates();
         [OperationContract]
@@ -29,6 +32,10 @@ namespace RaiteRaju.ServiceLayerInterface
         List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
         [OperationContract]
         UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password);
+        [OperationContract]
+        List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
+
+        #endregion
 
         [OperationContract]
         AdDetailsEntity FetchAdDetails(int AdId);

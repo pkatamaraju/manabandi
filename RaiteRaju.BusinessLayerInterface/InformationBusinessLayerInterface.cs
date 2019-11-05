@@ -9,6 +9,7 @@ namespace RaiteRaju.BusinessLayerInterface
 {
     public interface InformationBusinessLayerInterface
     {
+        #region Manabandi
         List<GDictionary> FetchStates();
         List<GDictionary> FetDistrictsOfState(int StateId);
         List<GDictionary> FetMandalsOfDistrct(int DistrictId);
@@ -17,6 +18,10 @@ namespace RaiteRaju.BusinessLayerInterface
         UserDetailsEntity GetUserDetailsWithPassword(Int64 PhoneNumber, string Password);
         List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
         UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password);
+        List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
+
+        #endregion
+
         AdDetailsEntity FetchAdDetails(int AdId);
         DropDrownWrapper GetDropDownValues();
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);

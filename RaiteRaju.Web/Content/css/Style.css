@@ -824,15 +824,15 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 #lblTotalPageNumber{font-size:15px;font-family:Verdana,sans-serif;font-weight:normal;}
 #spanSlash {font-size: 15px;font-family: Verdana,sans-serif;font-weight: normal;padding:0px 2px 0px 4px;}
 
-#AdList{width:100%;/*padding-top:30px;*/margin-left:auto;margin-right:auto;border:1px solid rgba(0,0,0,0.2);min-height:300px; padding-top:1px}
-#tblRideList{text-align:center;border-collapse:collapse;}
-#tblRideList th{border-color:blue;border-right:1px solid #4a3a3a}
-#tblRideList td{height:40px;text-decoration:none;font-size:12px;}
+.divTable{width:100%;/*padding-top:30px;*/margin-left:auto;margin-right:auto;border:1px solid rgba(0,0,0,0.2);min-height:300px; padding-top:1px}
+.listTable{text-align:center;border-collapse:collapse;}
+.listTable th{border-color:blue;border-right:1px solid #4a3a3a}
+.listTable td{height:40px;text-decoration:none;font-size:12px;}
 .tblHeader {background-color:#686979;height:30px;border-collapse:collapse;color:white;font-size:10px;border-radius:5px;}
 #UserSettings{min-height:300px;}
-#AdListRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
+.tableRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
 /*#AdListRow td {border:1px solid black}*/
-#AdListRow:hover{background-color:#f6f6f6;cursor:pointer}
+.tableRow:hover{background-color:#f6f6f6;cursor:pointer}
 .tdbreak {  word-break: break-all}
 
 

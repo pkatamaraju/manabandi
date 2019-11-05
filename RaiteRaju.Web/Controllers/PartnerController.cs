@@ -135,5 +135,46 @@ namespace RaiteRaju.Web.Controllers
             return Json("success", JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult _VehicleList(int PageNumber)
+        {
+            int TotalPageNumber = 0;
+            ViewBag.CurrentPageNumber = PageNumber;
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            Utility en = new Utility();
+
+            if (UserNameCookie != null && KeyCookie != null)
+            {
+                Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                string PassWord = en.Decrypt(KeyCookie["_RRPS"].ToString());
+                List<Vehicle> ListObj = new List<Vehicle>();
+                InformationServiceWrapper Obj = new InformationServiceWrapper();
+                ListObj = Obj.GetVehicleDetails(PhoneNumber, PassWord, PageNumber, out TotalPageNumber);
+                if (ListObj != null)
+                {
+                    ViewBag.vehicleList = ListObj;
+                }
+            }
+            else if (UserNameCookie != null && OTPCookie != null)
+            {
+                Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                Utility UtilObj = new Utility();
+                string OTP = UtilObj.Decrypt(OTPCookie["_ROTP_"]);
+                List<Vehicle> ListObj = new List<Vehicle>();
+                InformationServiceWrapper Obj = new InformationServiceWrapper();
+                ListObj = Obj.GetVehicleDetails(PhoneNumber, OTP, PageNumber, out TotalPageNumber);
+                if (ListObj != null)
+                {
+                    ViewBag.vehicleList = ListObj;
+                }
+            }
+            ViewBag.TotalPageNumber = TotalPageNumber;
+            return PartialView("_VehicleList");
+        }
+
+
     }
 }

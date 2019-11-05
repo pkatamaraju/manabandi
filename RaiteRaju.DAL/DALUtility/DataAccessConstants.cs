@@ -94,6 +94,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMTXTVEHICLETYPE = "txtVehicleType";
         public const string PARAMTXTVEHICLENAME = "txtVehicleName";
         public const string PARAMTXTRETURNVALUE = "txtReturnValue";
+        public const string PARAMINTVEHICLEID = "intVehicleID";
 
         //Paging
         public const string PARAMINTPAGENUMBER = "INTPAGENUMBER";

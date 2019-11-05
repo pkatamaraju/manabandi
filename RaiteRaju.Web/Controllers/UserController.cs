@@ -456,70 +456,74 @@ namespace RaiteRaju.Web.Controllers
         }
         public ActionResult UserAccount()
         {
-          HttpCookie KeyCookie=Request.Cookies["_RRPS"];
-          HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
-          HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
-          HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
-          HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
 
-          Utility en = new Utility();
-                if (PhoneNumberCookie != null && KeyCookie != null)
+            Utility en = new Utility();
+            if (PhoneNumberCookie != null && KeyCookie != null)
+            {
+                Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                string PassWord = en.Decrypt(KeyCookie["_RRPS"]);
+
+                UserDetailsModel DetObj = new UserDetailsModel();
+
+                InformationServiceWrapper Obj = new InformationServiceWrapper();
+                DetObj = Obj.GetUserDetailsWithPassword(PhoneNumber, PassWord);
+
+                if (DetObj != null)
                 {
-                    Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
-                    string PassWord = en.Decrypt(KeyCookie["_RRPS"]);
-
-                    UserDetailsModel DetObj = new UserDetailsModel();
-
-                    InformationServiceWrapper Obj = new InformationServiceWrapper();
-                    DetObj = Obj.GetUserDetailsWithPassword(PhoneNumber, PassWord);
-
-                    //DropDownWrapperModel ModelObj = new DropDownWrapperModel();
-                    //ModelObj = Obj.GetDropDownValues();
-                    //ViewBag.DistrictLIst = ModelObj.District;
-                    //ViewBag.MandalList = ModelObj.Mandal;
-
-                    if (DetObj != null)
-                    {
-                        ViewBag.txtUserName = DetObj.txtUserName;
-                        // ViewBag.txtMailId = DetObj.txtMailId;
-                        ViewBag.txtPhoneNumber = DetObj.txtPhoneNumber;
-                       // ViewBag.txtVillage = DetObj.txtVillage;
-                        //ViewBag.ddlState = DetObj.ddlState;
-                        //ViewBag.ddlMandal = DetObj.ddlMandal;
-                        //ViewBag.ddlDistrict = DetObj.ddlDistrict;
-                    }
-                    return View("UserAccount");
+                    ViewBag.txtUserName = DetObj.txtUserName;
+                    ViewBag.txtPhoneNumber = DetObj.txtPhoneNumber;
+                    ViewBag.txtVillage = DetObj.txtVillage;
+                    ViewBag.ddlState = DetObj.ddlState;
+                    ViewBag.ddlMandal = DetObj.ddlMandal;
+                    ViewBag.ddlDistrict = DetObj.ddlDistrict;
                 }
-                else if (PhoneNumberCookie != null && OTPCookie != null)
+                if (DetObj.UserType == "OWNER")
                 {
-                    Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
-                    Utility UtilOBJ=new Utility();
-                    int OTP = Convert.ToInt32(UtilOBJ.Decrypt(en.Decrypt(OTPCookie["_ROTP_"])));
-                    UserDetailsModel DetObj = new UserDetailsModel();
-
-                    InformationServiceWrapper Obj = new InformationServiceWrapper();
-                    DetObj = Obj.GetUserDetailsWithOTP(OTP, PhoneNumber);
-                    //DropDownWrapperModel ModelObj = new DropDownWrapperModel();
-                    //ModelObj = Obj.GetDropDownValues();
-                    //ViewBag.DistrictLIst = ModelObj.District;
-                    //ViewBag.MandalList = ModelObj.Mandal;
-
-                    if (DetObj != null)
-                    {
-                        ViewBag.txtUserName = DetObj.txtUserName;
-                        //ViewBag.txtMailId = DetObj.txtMailId;
-                        ViewBag.txtPhoneNumber = DetObj.txtPhoneNumber;
-                        //ViewBag.txtVillage = DetObj.txtVillage;
-                        //ViewBag.ddlState = DetObj.ddlState;
-                        //ViewBag.ddlMandal = DetObj.ddlMandal;
-                        //ViewBag.ddlDistrict = DetObj.ddlDistrict;
-                    }
-                    return View("UserAccount");
+                    return View("OwnerAccount");
                 }
                 else
                 {
-                    return RedirectToAction("Login", "User");
+                    return View("UserAccount");
                 }
+            }
+            else if (PhoneNumberCookie != null && OTPCookie != null)
+            {
+                Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                Utility UtilOBJ = new Utility();
+                int OTP = Convert.ToInt32(UtilOBJ.Decrypt(en.Decrypt(OTPCookie["_ROTP_"])));
+                UserDetailsModel DetObj = new UserDetailsModel();
+
+                InformationServiceWrapper Obj = new InformationServiceWrapper();
+                DetObj = Obj.GetUserDetailsWithOTP(OTP, PhoneNumber);
+
+                if (DetObj != null)
+                {
+                    ViewBag.txtUserName = DetObj.txtUserName;
+                    ViewBag.txtPhoneNumber = DetObj.txtPhoneNumber;
+                    ViewBag.txtVillage = DetObj.txtVillage;
+                    ViewBag.ddlState = DetObj.ddlState;
+                    ViewBag.ddlMandal = DetObj.ddlMandal;
+                    ViewBag.ddlDistrict = DetObj.ddlDistrict;
+                }
+
+                if (DetObj.UserType == "OWNER")
+                {
+                    return View("OwnerAccount");
+                }
+                else
+                {
+                    return View("UserAccount");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
         //[NoCache]
         public ActionResult _RideList(int PageNumber)

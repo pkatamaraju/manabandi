@@ -12,7 +12,9 @@ namespace RaiteRaju.ServiceLayer
 {
     public class InformationService : InformationServiceInterface
     {
-       public List<GDictionary> FetchStates() {
+
+        #region Manabandi
+        public List<GDictionary> FetchStates() {
            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
            return obj.FetchStates();
        }
@@ -49,6 +51,13 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetLoginCheck(PhoneNumber, Password);
         }
+
+        public List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
+        }
+        #endregion
         public AdDetailsEntity FetchAdDetails(int AdId)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();

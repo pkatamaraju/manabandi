@@ -309,6 +309,18 @@ namespace RaiteRaju.ServiceMapper
 
         #region ManaBandi Methods
 
+        public List<Vehicle> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            List<Vehicle> listobj = new List<Vehicle>();
+            List<VehicleEntity> listEntity = new List<VehicleEntity>();
+
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            listEntity = obj.GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
+            listobj = ObjMapper.MapVehicleEntityListToModel(listEntity);
+            return listobj;
+        }
+
         #endregion
 
 

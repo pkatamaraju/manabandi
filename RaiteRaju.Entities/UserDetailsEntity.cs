@@ -13,31 +13,46 @@ namespace RaiteRaju.Entities
     {
         [DataMember]
         public int intUserId { get; set; }
-         [DataMember]
+
+        [DataMember]
         public string KeyForUserSettings { get; set; }
+
         [DataMember]
         public string txtName { get; set; }
+
         [DataMember]
         public Int64 BigIntPhoneNumber { get; set; }
+
         [DataMember]
         public string txtState { get; set; }
+
         [DataMember]
         public string txtDistrict { get; set; }
+
         [DataMember]
         public string txtMandal { get; set; }
+
         [DataMember]
         public string txtvillage { get; set; }
+
         [DataMember]
         public string txtMailId { get; set; }
+
         [DataMember]
         public string txtPassword { get; set; }
+
         [DataMember]
         public string OTP { get; set; }
+
         [DataMember]
         public int bitVerifiedPhoneNumber { get; set; }
 
         [DataMember]
         public int FlgAccountDeleted { get; set; }
+
+        [DataMember]
+        public string UserType { get; set; }
+
 
     }
 }

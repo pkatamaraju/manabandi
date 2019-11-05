@@ -11,6 +11,7 @@ namespace RaiteRaju.BusinessLayer
 {
     public class InformationBusinessLayer : InformationBusinessLayerInterface
     {
+        #region Manabandi
         public List<GDictionary> FetchStates()
         {
             return new DAL.InformationDAL().FetchStates();
@@ -45,6 +46,13 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetLoginCheck(PhoneNumber, Password);
         }
+       public List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            return new DAL.InformationDAL().GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
+
+        }
+
+        #endregion
         public AdDetailsEntity FetchAdDetails(int AdId)
         {
             return new DAL.InformationDAL().FetchAdDetails(AdId);
