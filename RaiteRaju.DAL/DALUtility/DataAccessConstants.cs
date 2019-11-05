@@ -25,7 +25,6 @@ namespace RaiteRaju.DAL.DALUtility
         public const string ParamState = "txtState";
         public const string ParamDistrict = "txtDistrict";
         public const string ParamMandal = "txtMandal";
-        public const string PARAMMANDALID = "txtMandalId";
         public const string PARAMCHECK = "Check";
         public const string PARAMRETURNVALUE = "IntReturnvalue";
         public const string PARAMKEYFORUSERSETTINGS = "KeyForUserSettings";
@@ -71,10 +70,10 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMOTP = "intOTP";
         public const string PARAMPASSWORD = "txtPassword";
         public const string PARAMbitVerifiedPhoneNumber = "bitVerifiedPhoneNumber";
-
+        public const string PARAMUSERTYPE = "txtUserType";
 
         //Owners
-        
+
         public const string PARAMINTOWNERID = "intOwnerID";
         public const string PARAMTXTOWNERNAME = "txtOwnerName";
         public const string PARAMTXTSTATENAME = "txtStateName";
@@ -84,6 +83,8 @@ namespace RaiteRaju.DAL.DALUtility
         public const string ParamMailId = "txtMailId";
         public const string PARAMINTSTATEID = "intStateId";
         public const string PARAMDISTRICTID = "intDistrictId";
+        public const string PARAMMANDALID = "txtMandalId";
+        public const string PARAMINTMANDALID = "intMandalID";
         public const string PARAMINTNUMBEROFVEHICLESPERMODEL = "intNumberOfVehiclesPerModel";
         public const string PARAMTXTPLACE = "txtPlace";
 
@@ -93,6 +94,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMTXTVEHICLETYPE = "txtVehicleType";
         public const string PARAMTXTVEHICLENAME = "txtVehicleName";
         public const string PARAMTXTRETURNVALUE = "txtReturnValue";
+
         //Paging
         public const string PARAMINTPAGENUMBER = "INTPAGENUMBER";
         public const string PARAMINTPAGESIZE = "INTPAGESIZE";

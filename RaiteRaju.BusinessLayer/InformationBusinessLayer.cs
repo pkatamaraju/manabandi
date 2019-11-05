@@ -53,9 +53,9 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetDropDownValues();
         }
-        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber)
+        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
-            return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber);
+            return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber,userType);
         }
         //public AdDetailsEntity GetImage(AdDetailsEntity obj)
         //{

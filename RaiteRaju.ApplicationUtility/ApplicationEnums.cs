@@ -159,7 +159,7 @@ namespace RaiteRaju.ApplicationUtility
         [Display(Name = "PHONENUMBER")]
         PHONENUMBER = 2,
         [Display(Name = "PASSWORD")]
-        PASSWORD = 3,
+        PASSWORD = 3
     }
     
     public enum VehicleType
@@ -183,5 +183,9 @@ namespace RaiteRaju.ApplicationUtility
         Bus = 8,
         [Display(Name = "Lorry")]
         Lorry = 9
+    }
+    public enum UserType
+    {
+        user=1,owner=2
     }
 }

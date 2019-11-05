@@ -124,12 +124,12 @@ namespace RaiteRaju.ServiceMapper
             model = ObjMapper.MapDropDownwrapperEntityToModel(Entity);
             return model;
         }
-        public GDictionaryModel MobileNuberExistsOrNot(Int64 MobileNumber)
+        public GDictionaryModel MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             GDictionaryModel Model = new GDictionaryModel();
             GDictionary entity = new GDictionary();
             ServiceLayer.InformationService obj = new InformationService();
-            entity = obj.MobileNuberExistsOrNot(MobileNumber);
+            entity = obj.MobileNuberExistsOrNot(MobileNumber,userType);
             InformationObjectMapper ObjMapper = new InformationObjectMapper();
             Model = ObjMapper.MapGDictionaryEntityToModel(entity);
             return Model;

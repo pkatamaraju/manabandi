@@ -36,7 +36,7 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         DropDrownWrapper GetDropDownValues();
         [OperationContract]
-        GDictionary MobileNuberExistsOrNot(Int64 MobileNumber);
+        GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
         //[OperationContract]
         //AdDetailsEntity GetImage(AdDetailsEntity obj);
         [OperationContract]

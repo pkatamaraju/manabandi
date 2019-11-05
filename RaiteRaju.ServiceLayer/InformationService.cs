@@ -59,10 +59,10 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetDropDownValues();
         }
-        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber)
+        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.MobileNuberExistsOrNot(MobileNumber);
+            return obj.MobileNuberExistsOrNot(MobileNumber, userType);
 
         }
         //public AdDetailsEntity GetImage(AdDetailsEntity obj)

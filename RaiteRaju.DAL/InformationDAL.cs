@@ -849,7 +849,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
-        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber)
+        public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber,string userType)
         {
             GDictionary RetObj = new GDictionary();
             try
@@ -857,6 +857,7 @@ namespace RaiteRaju.DAL
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MobileValidation))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, MobileNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMUSERTYPE, DbType.String, userType);
 
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())

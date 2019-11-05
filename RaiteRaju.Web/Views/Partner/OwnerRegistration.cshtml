@@ -81,30 +81,7 @@
                 message = message + "Village should be between 4 to 50 characters.\n";
             }
 
-            if (vehicleTypeID == "0" || vehicleTypeID =="---Select Vehicle---") {
-                message = message + "Please select Vehicle Type.\n";
-            }
-
-            if (txtVehicleModel=="") {
-                message = message + "Please enter Vehicle Model.\n";
-            }
-            else if (/^[^<>'\"/`%-]*$/.test(txtVehicleModel) == false) {
-
-                message = message + "Special characters(<>'\"/`%-) are not allowed in Vehicle Model.\n";
-            }
-            else if (txtVehicleModel.length > 50 || txtVehicleModel.length < 4) {
-                message = message + "Vehicle Model should be between 4 to 50 characters.\n";
-            }
-
-            if (noOfVehicles == "") {
-                message = message + "Please enter number of vehicles available.\n";
-            } else if (intRegex.test(noOfVehicles) == false) {
-                message = message + "Please enter valid number of vehicles available(1 to 50).\n";
-            }
-            else if (noOfVehicles > 50 || noOfVehicles == 0) {
-                message = message + "Please enter valid number of vehicles available(1 to 50).\n";
-            }
-        
+            
         
 
         if (message == "") {
@@ -298,7 +275,7 @@
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <select id="ddlDistrict" class="form-control text-center">
-                                            <option value="">---Select District---</option>
+                                            <option value="0" selected>---Select District---</option>
                                         </select>
                                         <span class="error-msg" id="ErrorddlState">Please Select Your District</span>
                                     </div>
@@ -312,7 +289,7 @@
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <select id="ddlMandal" class="form-control text-center">
-                                            <option value="">---Select Mandal---</option>
+                                            <option value="0" selected>---Select Mandal---</option>
                                         </select>
                                         <span class="error-msg" id="ErrorddlState">Please Select Your Mandal</span>
                                     </div>

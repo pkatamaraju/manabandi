@@ -570,13 +570,13 @@ namespace RaiteRaju.DAL
             {
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBOwnerDetails))
                 {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, owner.txtOwnerName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTOWNERNAME, DbType.String, owner.txtOwnerName);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, owner.BigIntPhoneNumber);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPASSWORD, DbType.String, owner.txtPassword);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.Int32, owner.OTP);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.String, owner.intStateId);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.Int32, owner.intDistrictId);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMMANDALID, DbType.Int32, owner.intManadalID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.Int32, owner.intManadalID);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTPLACE, DbType.String, owner.txtPlace);
                     Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
                 }

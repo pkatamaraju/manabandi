@@ -150,7 +150,7 @@ namespace RaiteRaju.Web.Controllers
                 {
                     ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
                     InformationServiceWrapper infoObj = new InformationServiceWrapper();
-                    GDOBJ = infoObj.MobileNuberExistsOrNot(objModel.txtPhoneNumber);
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(objModel.txtPhoneNumber, UserType.user.ToString());
                     if (GDOBJ.ID == 1)
                     {
                         UserId = ObjService.InsertAddUserDetails(objModel);
@@ -382,7 +382,7 @@ namespace RaiteRaju.Web.Controllers
                  objModel.txtPhoneNumber = Convert.ToInt64(fnRegistration["txtPhoneNumber"]);
                  objModel.KeyForUserSettings = Convert.ToString(UserSettings.PHONENUMBER);
 
-                 GDModel = InfoService.MobileNuberExistsOrNot(objModel.txtPhoneNumber);
+                 GDModel = InfoService.MobileNuberExistsOrNot(objModel.txtPhoneNumber, UserType.user.ToString());
                  if (GDModel.ID == 0)
                  {
                      ViewBag.MobileError = "Entered Mobiler Number is already registered";
@@ -421,7 +421,7 @@ namespace RaiteRaju.Web.Controllers
             ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
             InformationServiceWrapper infoObj = new InformationServiceWrapper();
             GDictionaryModel GDOBJ = new GDictionaryModel();
-            GDOBJ = infoObj.MobileNuberExistsOrNot(PhoneNumber);
+            GDOBJ = infoObj.MobileNuberExistsOrNot(PhoneNumber, UserType.user.ToString());
 
             if (GDOBJ.ID == 0)
             {

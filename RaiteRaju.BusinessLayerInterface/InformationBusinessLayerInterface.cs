@@ -19,7 +19,7 @@ namespace RaiteRaju.BusinessLayerInterface
         UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password);
         AdDetailsEntity FetchAdDetails(int AdId);
         DropDrownWrapper GetDropDownValues();
-        GDictionary MobileNuberExistsOrNot(Int64 MobileNumber);
+        GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
        // AdDetailsEntity GetImage(AdDetailsEntity obj);
         List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber);
         AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId,out int outputparam);
