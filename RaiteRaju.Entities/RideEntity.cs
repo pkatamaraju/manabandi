@@ -18,6 +18,7 @@ namespace RaiteRaju.Entities
         public string DtCreated { get; set; }
         public string dtScheduledDate { get; set; }
         public string txtScheduledTime { get; set; }
+        public string ExistingUserOrNot { get; set; }
 
     }
 }

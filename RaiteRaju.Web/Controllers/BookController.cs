@@ -22,27 +22,61 @@ namespace RaiteRaju.Web.Controllers
             return Json(objservice.GetVehicleTypes(), JsonRequestBehavior.AllowGet);
 
         }
-        
+
         public ActionResult BookNow(int vehicleTypeId)
         {
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            Utility en = new Utility();
             ViewBag.VehicleTypeId = vehicleTypeId;
+
+            if (UserNameCookie != null && KeyCookie != null)
+            {
+                ViewBag.Enable = "DISABLE";
+            }
+            else if (UserNameCookie != null && OTPCookie != null)
+            {
+                ViewBag.Enable = "DISABLE";
+            }
+            else
+            {
+                ViewBag.Enable = "ENABLE";
+            }
             return View();
         }
+
         [HttpPost]
         public ActionResult BookNow(FormCollection form)
         {
             Ride ridesObj = new Ride();
             Utility en = new Utility();
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
 
+            Random r = new Random();
+            Int32 OTP = 0;
+
+            if (PhoneNumberCookie!=null && UserNameCookie != null)
+            {
+                ridesObj.PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                ridesObj.Name = Convert.ToString(UserNameCookie["_RRUN"]);
+            }
+            else
+            {
+                ridesObj.PhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+                ridesObj.Name = form["txtUserName"];
+
+                OTP = r.Next(100000, 999999);
+                ridesObj.OTP = OTP;
+            }
             ridesObj.DropLocation = form["txtDropLocation"];
             ridesObj.PickUpLocation = form["txtPickUpLocation"];
-            ridesObj.Name = form["txtUserName"];
             ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
-            ridesObj.PhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
             ridesObj.Password = en.Encrypt(ridesObj.PhoneNumber.ToString());
-            Random r = new Random();
-            Int32 OTP = r.Next(100000, 999999);
-            ridesObj.OTP = OTP;
+            
            
             HttpCookie OTPCookie = new HttpCookie("_ROTP_");
             OTPCookie.Values["_ROTP_"] = en.Encrypt(OTP.ToString());

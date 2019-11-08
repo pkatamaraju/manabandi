@@ -444,7 +444,7 @@ namespace RaiteRaju.DAL
                     Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
                 }
 
-                if (Success != 0 || Success != -1)
+                if (Success>0 & ride.OTP!=0)
                 {
                     SendOTP(ride.PhoneNumber, ride.OTP);
                 }

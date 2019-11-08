@@ -23,55 +23,49 @@
         var ddlVehicles = jQuery("#ddlVehicles").val();
 
         var phone = jQuery("#txtPhoneNumber").val();
-            intRegex = /^[5-9]{1}[0-9]{9}$/;
+        intRegex = /^[5-9]{1}[0-9]{9}$/;
         var message = "";
+        var CheckEnable = "@ViewBag.Enable";
 
-        if (UserName == "" || PhoneNumber == "" || ddlVehicles == "0" || PickUpLocation == "" || DropLocation == ""  ) {
+        if (CheckEnable== "ENABLE") {
 
             if (UserName == "") {
                 message = message + "Please enter Name.\n";
             }
-            if (PhoneNumber == "") {
-                message = message + "Please enter Phone number.\n";
-            }
-            if (ddlVehicles == "0") {
-                message = message + "Select required vehicle type.\n";
-            }
-            if (PickUpLocation == "") {
-                message = message + "Please enter Pick up location.\n";
-            }
-            if (DropLocation == "") {
-                message = message + "Please enter Drop location.\n";
-            }
-
-        }
-        else if (UserName != "" && PhoneNumber != "" && ddlVehicles!= "0" && PickUpLocation != "" && DropLocation != "" )  {
-
-            if (/^[^<>'\"/`%-]*$/.test(UserName) == false) {
+            else if (/^[^<>'\"/`%-]*$/.test(UserName) == false) {
                 message = message + "Special characters(<>'\"/`%-) are not allowed in Name.\n";
             }
             else if (UserName.length > 50 || UserName.length < 3) {
                 message = message + "Name should be between 3 to 50 characters.\n";
             }
-
-            if (intRegex.test(phone) == false) {
+            if (PhoneNumber == "") {
+                message = message + "Please enter Phone number.\n";
+            }
+            else if (intRegex.test(phone) == false) {
                 message = message + "Please enter valid Phone number.\n";
             }
+        }
+        if (ddlVehicles == "0") {
+            message = message + "Select required vehicle type.\n";
+        }
+        else if (PickUpLocation == "") {
+            message = message + "Please enter Pick up location.\n";
+        }
+        if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
 
-            if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
-
-                message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
-            }
-            else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
-                message = message + "Pick up location should be between 4 to 50 characters.\n";
-            }
-
-            if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
-                message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
-            }
-            else if (DropLocation.length > 50 || DropLocation.length < 4) {
-                message = message + "Drop location should be between 4 to 50 characters\n";
-            }
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
+        }
+        else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
+            message = message + "Pick up location should be between 4 to 50 characters.\n";
+        }
+        if (DropLocation == "") {
+            message = message + "Please enter Drop location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
+        }
+        else if (DropLocation.length > 50 || DropLocation.length < 4) {
+            message = message + "Drop location should be between 4 to 50 characters\n";
         }
 
         if (message == "") {
@@ -86,36 +80,60 @@
     function fnRegistration() {
 
         var form = jQuery("#BookVehicle").serialize();
-        form += "&intVehicleTypeId=" + jQuery("#ddlVehicles").val(); 
+        form += "&intVehicleTypeId=" + jQuery("#ddlVehicles").val();
         var AmobileNumber = jQuery("#txtPhoneNumber").val();
+        var CheckEnable = "@ViewBag.Enable";
 
         if (validation()) {
+            if (CheckEnable=="DISABLE") {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("BookNow", "Book")',
+                    dataType: 'json',
+                    data: form,
+                    success: function (data) {
+                        if (data == -1) {
+                            alert("Please enter correct data as per validation.");
+                        }
+                        if (data != 0 && data != -1) {
+                            jQuery('body').loadingIndicator();
+                            jQuery("#BookVehicle")[0].reset();
+                            window.location.href = '@Url.Action("UserAccount", "User")';
 
-            jQuery.ajax({
-                type: 'POST',
-                url: '@Url.Action("BookNow", "Book")',
-                dataType: 'json',
-                data: form,
-                success: function (data) {
-                    if (data == -1) {
-                        alert("Please enter correct data as per validation.");
+                        }
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                        jQuery("#diverror").show();
                     }
-                    if (data != 0 && data != -1) {
-                        jQuery('body').loadingIndicator();
-                        jQuery("#BookVehicle")[0].reset();
-                        window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
+                });
+            }
+            else {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("BookNow", "Book")',
+                    dataType: 'json',
+                    data: form,
+                    success: function (data) {
+                        if (data == -1) {
+                            alert("Please enter correct data as per validation.");
+                        }
+                        if (data != 0 && data != -1) {
+                            jQuery('body').loadingIndicator();
+                            jQuery("#BookVehicle")[0].reset();
+                            window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
+                        }
+
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                        jQuery("#diverror").show();
                     }
-
-                },
-                error: function (data) {
-
-                    alert("Some Error Occured");
-                    jQuery("#diverror").show();
-                }
-            });
+                });
+            }
         }
     }
-  
+
     jQuery(document).ready(function () {
         var VehicleTypeId =@ViewBag.VehicleTypeId
         jQuery.ajax({
@@ -139,7 +157,7 @@
             }
         });
     });
-          
+
 
 
 </script>
@@ -157,12 +175,13 @@
                     <div class="form-box clearfix">
                         <h3 class="form-heading text-center">Book Now</h3>
                         <div class="row">
-
+                            @if(ViewBag.Enable=="ENABLE"){
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
                                         <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
                                     </div>
+
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
                                         <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
@@ -180,7 +199,7 @@
                                         <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
