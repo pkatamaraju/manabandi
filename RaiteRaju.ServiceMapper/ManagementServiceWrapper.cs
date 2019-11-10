@@ -190,6 +190,21 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.AddVehicle(Entity);
         }
+
+        public void DeleteVehicle(int VehicleID, Int64 PhoneNumber)
+        {
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+             ManObj.DeleteVehicle(VehicleID,PhoneNumber);
+        }
+       public string UpdateVehicleDetails(Vehicle model)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            VehicleEntity Entity = new VehicleEntity();
+            Entity = objMapper.MapVehicleModelToEntity(model);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.UpdateVehicleDetails(Entity);
+        }
         #endregion
     }
 }

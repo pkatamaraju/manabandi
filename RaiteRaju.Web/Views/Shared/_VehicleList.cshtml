@@ -17,7 +17,7 @@
 
         if(length==0)
         {
-            jQuery('#tblVehicleList').html('<tr><td class="text-center" style="align-items:center;height:200px;">Now you are ready to Book any Vehicle<a href="/Book/BookNow" class="dflt-btn inactive">Book a vehicle</a> </tr><td></td></td>');
+            jQuery('#tblVehicleList').html('<tr><td class="text-center" style="align-items:center;height:200px;">Now you are ready to attach your vehicle  <a href="/Partner/AddVehicle" class="dflt-btn inactive">Attach your vehicle</a> </tr><td></td></td>');
         }
         else
         {
@@ -28,42 +28,42 @@
                 tblVehicleList.append('<tr class="tableRow"><td onclick="fnUpdateVehicle(' + vehicleList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + vehicleList[i].txtVehicleType + '</td><td>' + vehicleList[i].txtVehicleName + '</td><td width="200px">' + vehicleList[i].txtVehicleNumber + '</td><td width="200px">' + vehicleList[i].dtCreated + '</td><td onclick="fnUpdateVehicle(' + vehicleList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteVehicle(' + vehicleList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
             }
         }
-        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
-        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
-        if(CurrentPageNumber==1){
-            jQuery('a#PreviousPage').attr('disabled', true);
-            jQuery('a#PreviousPage').css("cursor","default");
-            jQuery('#tdPreviousPage').css("color","Grey");
+        var VCurrentPageNumber=parseInt(jQuery("#txtVPageNumber").val());
+        var VTotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(VCurrentPageNumber==1){
+            jQuery('a#VehiclePreviousPage').attr('disabled', true);
+            jQuery('a#VehicleVehiclePreviousPage').css("cursor","default");
+            jQuery('#tdVehiclePreviousPage').css("color","Grey");
 
         }
-        if(TotalPageCount==CurrentPageNumber){
+        if(VTotalPageCount==VCurrentPageNumber){
 
-            jQuery('a#PageNext').attr('disabled', true);
-            jQuery('a#PageNext').css("cursor","default");
-            jQuery('#tdPageNext').css("color","Grey");
+            jQuery('a#VehiclePageNext').attr('disabled', true);
+            jQuery('a#VehiclePageNext').css("cursor","default");
+            jQuery('#tdVehicleVehiclePageNext').css("color","Grey");
 
         }
-        if(TotalPageCount==0){
-            jQuery("#divPaging").hide();
+        if(VTotalPageCount==0){
+            jQuery("#divVPaging").hide();
             jQuery("#divSort").hide();
         }
 
     });
 
-    function fnUpdateVehicle(ADID){
-        var AdId=ADID;
+    function fnUpdateVehicle(VehicleID){
+        var VehicleID = VehicleID;
         jQuery('body').loadingIndicator();
-        window.location.href='@Url.Action("AdDetails","AddPost")?AdId='+AdId;
+        window.location.href = '@Url.Action("EditVehicleDetails", "Partner")?VehicleID=' + VehicleID;
     }
 
-    function fnDeleteVehicle(adid){
+    function fnDeleteVehicle(VehicleId){
 
-        var adId=adid;
-        var r = confirm("Are You Sure, Do You Want To Delete Your Ad Permanetly!");
+        var VehicleId = VehicleId;
+        var r = confirm("Are yu sure, Do you want to delete your vehicle permanetly!");
         if (r == true) {
             jQuery.ajax({
                 type: 'POST',
-                url: '@Url.Action("AdDelete","AddPost")?AdId='+adId,
+                url: '@Url.Action("DeleteVehicle", "Partner")?VehicleID=' + VehicleId,
                 dataType: 'json',
                 success: function (data) {
                     if (data != null) {
@@ -71,67 +71,63 @@
                     }
                 },
                 error: function (data) {
-                    alert("Some Error Occured");
+                    alert("Some error occured");
                 }
             });
         }
     }
 
-    function fnGoToPage(){
+    function fnVehicleGoToPage(){
 
-        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
-        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
-        if(CurrentPageNumber>TotalPageCount || CurrentPageNumber==0)
+        var VCurrentPageNumber=parseInt(jQuery("#txtVPageNumber").val());
+        var VTotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(VCurrentPageNumber>VTotalPageCount || VCurrentPageNumber==0)
         {
-            alert("Maximum Available Pages Are "+TotalPageCount+".");
-            jQuery("#txtcurrentPageNumber").val(@ViewBag.CurrentPageNumber);
+            alert("Maximum Available Pages Are "+VTotalPageCount+".");
+            jQuery("#txtVPageNumber").val(@ViewBag.CurrentPageNumber);
         }
         else
         {
-            jQuery("#divVehicleList").load("/Partern/_VehicleList", {PageNumber:CurrentPageNumber});
+            jQuery("#divVehicleList").load("/Partner/_VehicleList", {PageNumber:VCurrentPageNumber});
         }
     }
 
 
     jQuery(document).ready(function() {
-        jQuery("a#PreviousPage").click(function(){
+        jQuery("a#VehiclePreviousPage").click(function(){
 
-            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
-            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
-            if(CurrentPageNumber==1)
+            var VCurrentPageNumber=parseInt(jQuery("#txtVPageNumber").val());
+            var VTotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(VCurrentPageNumber==1)
             {
-                jQuery('a#PreviousPage').off("click");
-                //jQuery('a#PreviousPage').css("color","grey");
+                jQuery('a#VehiclePreviousPage').off("click");
             }
             else
             {
-                jQuery("#divVehicleList").load("/User/_AddList", {PageNumber:CurrentPageNumber-1});
+                jQuery("#divVehicleList").load("/Partner/_VehicleList", {PageNumber:VCurrentPageNumber-1});
             }
-            if(TotalPageCount==CurrentPageNumber)
+            if(VTotalPageCount==VCurrentPageNumber)
             {
-                jQuery('a#PageNext').off("click");
-                // jQuery('a#PreviousPage').css("color","grey");
+                jQuery('a#VehiclePageNext').off("click");
             }
 
 
         });
-        jQuery("a#PageNext").click(function(){
+        jQuery("a#VehiclePageNext").click(function(){
 
-            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
-            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
-            if(CurrentPageNumber==1)
+            var VCurrentPageNumber=parseInt(jQuery("#txtVPageNumber").val());
+            var VTotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(VCurrentPageNumber==1)
             {
-                jQuery('a#PreviousPage').off("click");
-                // jQuery('a#PreviousPage').css("color","grey");
+                jQuery('a#VehiclePreviousPage').off("click");
             }
-            if(TotalPageCount==CurrentPageNumber)
+            if(VTotalPageCount==VCurrentPageNumber)
             {
-                jQuery('a#PageNext').off("click");
-                //jQuery('a#PreviousPage').css("color","grey");
+                jQuery('a#VehiclePageNext').off("click");
             }
             else
             {
-                jQuery("#divVehicleList").load("/User/_AddList", {PageNumber:CurrentPageNumber+1});
+                jQuery("#divVehicleList").load("/Partner/_VehicleList", {PageNumber:VCurrentPageNumber+1});
             }
         });
     });
@@ -143,9 +139,9 @@
             <tr class="tblHeader">
                 <th width="50px">S.No</th>
                 <th width="200px">Vehicle Type</th>
-                <th width="200px">Vehicle Name</th>
-                <th width="200px">txtVehicleNumber</th>
-                <th width="200px">dtCreated</th>
+                <th width="200px">Vehicle Model</th>
+                <th width="200px">Vehicle Number</th>
+                <th width="200px">Attache Date</th>
                 <th width="100px">Edit</th>
                 <th width="100px">Delete</th>
 
@@ -154,25 +150,25 @@
     </div>
 </div>
 
-<div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+<div class="row" style=" margin-bottom:200px;margin-top:30px" id="divVPaging">
     <div class="col-lg-1 col-md-2 d-none d-md-block">
     </div>
-    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
-        <a id="PreviousPage" data-value="1" style="cursor:pointer">
+    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdVehiclePreviousPage">
+        <a id="VehiclePreviousPage" data-value="1" style="cursor:pointer">
             <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
         </a>
     </div>
     <div class="col-lg-2 col-md-2 d-none d-md-block">
-        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnVehicleGoToPage()" />
     </div>
     <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
-        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+        @Html.TextBox("txtVPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
     </div>
     <div class="col-lg-3 col-md-3 col-xs-3">
         <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
     </div>
-    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
-        <a id="PageNext" data-value="2" style="cursor:pointer">
+    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdVehicleVehiclePageNext">
+        <a id="VehiclePageNext" data-value="2" style="cursor:pointer">
             <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
         </a>
     </div>

@@ -148,7 +148,7 @@ namespace RaiteRaju.DAL
            int OTP = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDATEOTP))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_OTP))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, Obj.BigIntPhoneNumber);
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.String, Obj.OTP);
@@ -158,11 +158,10 @@ namespace RaiteRaju.DAL
                        OTP = Convert.ToInt32(dr[DataAccessConstants.PARAMOTP]);
                    }
                    dr.Close();
-                   string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + Obj.BigIntPhoneNumber + "/" + Obj.OTP + "/RaiteRajuOTP";
-                   HttpWebRequest request = WebRequest.Create(URL) as HttpWebRequest;
-                   //optional
-                   HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                   Stream stream = response.GetResponseStream();
+                   if(OTP!=0|| OTP != -1)
+                    {
+                        SendOTP(Obj.BigIntPhoneNumber, OTP);
+                    }
                }
 
            }
@@ -261,7 +260,7 @@ namespace RaiteRaju.DAL
            int Success = 0;
            try
            {
-               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPDELETEUSERACCOUNT))
+               using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.DELETE_User))
                {
                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, BigIntPhoneNumber);
                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
@@ -503,6 +502,10 @@ namespace RaiteRaju.DAL
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.intUserId);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, Obj.txtName);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMKEYFORUSERSETTINGS, DbType.String, Obj.KeyForUserSettings);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.String, Obj.txtState);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.String, Obj.txtDistrict);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.String, Obj.txtMandal);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTPLACE, DbType.String, Obj.txtvillage);
 
                     if (Obj.KeyForUserSettings == Convert.ToString(UserSettings.DETAILS))
                     {
@@ -596,43 +599,100 @@ namespace RaiteRaju.DAL
 
       public  string AddVehicle(VehicleEntity entity)
         {
-            string txtReturnValue = "";
-            using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_VehicleDetails))
-            {
-                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, entity.BigIntPhoneNumber);
-                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.String, entity.intVehicleTypeID);
-                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENAME, DbType.String, entity.txtVehicleName);
-                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENUMBER, DbType.String, entity.txtVehicleNumber);
 
-                IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+            try {
 
-                while (dr.Read())
+                string txtReturnValue = "";
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_VehicleDetails))
                 {
-                    txtReturnValue = Convert.ToString(dr[DataAccessConstants.PARAMTXTRETURNVALUE]);
-                }
-                dr.Close();
-            }
-            return txtReturnValue;
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, entity.BigIntPhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.String, entity.intVehicleTypeID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENAME, DbType.String, entity.txtVehicleName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENUMBER, DbType.String, entity.txtVehicleNumber);
 
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+
+                    while (dr.Read())
+                    {
+                        txtReturnValue = Convert.ToString(dr[DataAccessConstants.PARAMTXTRETURNVALUE]);
+                    }
+                    dr.Close();
+                }
+                return txtReturnValue;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "AddVehicle", ex.Message);
+                return null;
+            }
+            
 
         }
 
-    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
+
+
+        public string UpdateVehicleDetails(VehicleEntity entity)
+        {
+            try
+            {
+                string txtReturnValue = "";
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_MBVehicleDetails))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLEID, DbType.Int32, entity.intVehicleID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, entity.BigIntPhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.String, entity.intVehicleTypeID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENAME, DbType.String, entity.txtVehicleName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENUMBER, DbType.String, entity.txtVehicleNumber);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+
+                    while (dr.Read())
+                    {
+                        txtReturnValue = Convert.ToString(dr[DataAccessConstants.PARAMTXTRETURNVALUE]);
+                    }
+                    dr.Close();
+                }
+                return txtReturnValue;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "DeleteVehicle", ex.Message);
+                return null;
+            }
+        }
+        public void DeleteVehicle(int VehicleID, Int64 PhoneNumber)
+        {
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.DELETE_MBVehicle))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLEID, DbType.Int32, VehicleID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
+
+                    int success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "DeleteVehicle", ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
 
             using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBExceptionLogging))

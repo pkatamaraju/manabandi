@@ -50,7 +50,7 @@
         jQuery('#settings').removeClass('tablinks active').addClass('tablinks');
         jQuery('#Payments').removeClass('tablinks active').addClass('tablinks');
 
-        jQuery("#divUserAds").show();
+        jQuery("#divRideList").show();
         jQuery("#UserSettings").hide();
         jQuery("#DivPayments").hide();
     }
@@ -61,7 +61,7 @@
         jQuery('#settings').removeClass('tablinks').addClass('tablinks active');
         jQuery('#Payments').removeClass('tablinks active').addClass('tablinks');
         fnshowdivUserdetailsPhoneNumber();
-        jQuery("#divUserAds").hide();
+        jQuery("#divRideList").hide();
         jQuery("#divUpdateUserDetails").show();
         jQuery("#UserSettings").show();
         jQuery("#DivPayments").hide();
@@ -74,7 +74,7 @@
         jQuery('#Payments').removeClass('tablinks').addClass('tablinks active');
 
 
-        jQuery("#divUserAds").hide();
+        jQuery("#divRideList").hide();
         jQuery("#UserSettings").hide();
         jQuery("#DivPayments").show();
     }
@@ -437,7 +437,7 @@
                     <button class="tablinks" id="settings" onclick="fnshowUserSettings()">Update Your Profile</button>
                     @*<button class="tablinks" id="Payments" onclick="fnshowPayments()">Payments</button>*@
                 </div>
-                <div id="divUserAds" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
+                <div id="divRideList" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
                     @Html.Action("_rideList", "User", new { PageNumber = 1 })
                 </div>
 

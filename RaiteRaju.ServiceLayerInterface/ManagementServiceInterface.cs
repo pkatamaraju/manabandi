@@ -71,6 +71,10 @@ namespace RaiteRaju.ServiceLayerInterface
         int VehicleOwnerRegistration(OwnerEntity owner);
         [OperationContract]
         string AddVehicle(VehicleEntity entity);
+        [OperationContract]
+        void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
+        [OperationContract]
+        string UpdateVehicleDetails(VehicleEntity entity);
     }
          
 }

@@ -320,11 +320,39 @@ namespace RaiteRaju.ServiceMapper
             listobj = ObjMapper.MapVehicleEntityListToModel(listEntity);
             return listobj;
         }
+        public Vehicle GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber)
+        {
+            Vehicle model = new Vehicle();
+            VehicleEntity entity = new VehicleEntity();
 
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            entity = obj.GetVehicledDetailsByID(VehicleID, PhoneNumber);
+            if (entity != null)
+            {
+                model = ObjMapper.MapVehicleModelToEntity(entity);
+            }
+            return model;
+        }
         #endregion
 
 
+        #region manabandi admin
+        public List<VehicleFilterModel> GetVehicleDetailsForAdmin(VehicleFilterModel model, out int TotalPageNumber)
+        {
+            List<VehicleFilterModel> listobj = new List<VehicleFilterModel>();
+            List<VehicleFilterEntity> listEntity = new List<VehicleFilterEntity>();
 
+            VehicleFilterModel modelObj = new VehicleFilterModel();
+            VehicleFilterEntity entity = new VehicleFilterEntity();
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            entity = ObjMapper.MapVehicleFilterModelToEntity(model);
+            listEntity = obj.GetVehicleDetailsForAdmin(entity, out TotalPageNumber);
+            listobj = ObjMapper.MapVehicleFilterEntityToModelList(listEntity);
+            return listobj;
+        }
+        #endregion
 
 
 

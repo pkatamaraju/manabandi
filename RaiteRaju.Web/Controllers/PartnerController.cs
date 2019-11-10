@@ -11,7 +11,7 @@ using RaiteRaju.ApplicationUtility;
 
 namespace RaiteRaju.Web.Controllers
 {
-    public class PartnerController : Controller
+    public class PartnerController : ErrorController
     {
         // GET: Partner
         public ActionResult Index()
@@ -20,7 +20,17 @@ namespace RaiteRaju.Web.Controllers
         }
         public ActionResult OwnerRegistration()
         {
-            return View();
+            HttpCookie OTPCookie = new HttpCookie("_ROTP_");
+            HttpCookie KeyCookie = new HttpCookie("_RRPS");
+            if (OTPCookie != null || KeyCookie != null)
+            {
+                return RedirectToAction("UserAccount", "User");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
         [HttpPost]
         public ActionResult OwnerRegistration(FormCollection form)
@@ -34,8 +44,8 @@ namespace RaiteRaju.Web.Controllers
             Int32 ownerID = 0;
 
             model.txtOwnerName = form["txtUserName"];
-            model.BigIntPhoneNumber =Convert.ToInt64( form["txtPhoneNumber"]);
-            model.txtPassword =en.Encrypt( form["txtPassword"]);
+            model.BigIntPhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+            model.txtPassword = en.Encrypt(form["txtPassword"]);
             model.intStateId = Convert.ToInt32(form["ddlStateID"]);
             model.intDistrictId = Convert.ToInt32(form["ddlDistrictID"]);
             model.intManadalID = Convert.ToInt32(form["ddlMandalID"]);
@@ -83,7 +93,7 @@ namespace RaiteRaju.Web.Controllers
 
 
             GDictionaryModel GDOBJ = new GDictionaryModel();
-            if (errorMessage=="")
+            if (errorMessage == "")
             {
                 ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
                 InformationServiceWrapper infoObj = new InformationServiceWrapper();
@@ -112,28 +122,28 @@ namespace RaiteRaju.Web.Controllers
             }
             else
             {
-                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                return Json(errorMessage, JsonRequestBehavior.AllowGet);
             }
-           
+
         }
 
-        [HttpPost]
-        public ActionResult AddVehicle(FormCollection form) {
+        //[HttpPost]
+        //public ActionResult AddVehicle(FormCollection form) {
 
 
-            Vehicle model = new Vehicle();
-            Utility en = new Utility();
-            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
-           
-            model.BigIntPhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
-            model.intVehicleTypeID = Convert.ToInt32(form[""]);
-            model.txtVehicleName = form["txtVehicleName"];
-            model.txtVehicleNumber = form["txtVehicleNumber"];
+        //    Vehicle model = new Vehicle();
+        //    Utility en = new Utility();
+        //    HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
 
-            ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
-            mangeObj.AddVehicle(model);
-            return Json("success", JsonRequestBehavior.AllowGet);
-        }
+        //    model.BigIntPhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+        //    model.intVehicleTypeID = Convert.ToInt32(form[""]);
+        //    model.txtVehicleName = form["txtVehicleName"];
+        //    model.txtVehicleNumber = form["txtVehicleNumber"];
+
+        //    ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
+        //    mangeObj.AddVehicle(model);
+        //    return Json("success", JsonRequestBehavior.AllowGet);
+        //}
 
         public ActionResult _VehicleList(int PageNumber)
         {
@@ -175,6 +185,121 @@ namespace RaiteRaju.Web.Controllers
             return PartialView("_VehicleList");
         }
 
+        public ActionResult AddVehicle()
+        {
 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddVehicle(FormCollection form)
+        {
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            Utility en = new Utility();
+            string returnvalue = "";
+            if ((PhoneNumberCookie != null && KeyCookie != null) || (PhoneNumberCookie != null && OTPCookie != null))
+            {
+                Vehicle model = new Vehicle();
+                model.BigIntPhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                model.intVehicleTypeID = Convert.ToInt32(form["ddlVehicleTypeID"]);
+                model.txtVehicleName = form["txtVehicleModel"];
+                model.txtVehicleNumber = form["txtVehicleNumber"].ToUpper();
+
+                ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
+                returnvalue=mangeObj.AddVehicle(model);
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult DeleteVehicle(int VehicleID)
+        {
+            int succuss = 0;
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            Utility en = new Utility();
+            if (PhoneNumberCookie != null)
+            {
+
+                ManagementServiceWrapper obj = new ManagementServiceWrapper();
+                Int64 BigIntPhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                obj.DeleteVehicle(VehicleID, BigIntPhoneNumber);
+                return Json(1, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return Json(succuss, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult EditVehicleDetails(int VehicleID)
+        {
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            Utility en = new Utility();
+
+            if ((PhoneNumberCookie != null && KeyCookie != null) || (PhoneNumberCookie != null && OTPCookie != null))
+            {
+                InformationServiceWrapper obj = new InformationServiceWrapper();
+                Vehicle model = new Vehicle();
+                Int64 PhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                model = obj.GetVehicledDetailsByID(VehicleID, PhoneNumber);
+                ViewBag.VehicleTypeID = model.intVehicleTypeID;
+                ViewBag.VehicleName = model.txtVehicleName;
+                ViewBag.VehicleNumber = model.txtVehicleNumber;
+                ViewBag.VehicleId = model.intVehicleID;
+
+                    
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateVehicleDetails(FormCollection form)
+        {
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+            Utility en = new Utility();
+            string returnvalue = "";
+
+            if ((PhoneNumberCookie != null && KeyCookie != null) || (PhoneNumberCookie != null && OTPCookie != null))
+            {
+                Vehicle model = new Vehicle();
+
+                model.BigIntPhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+                model.intVehicleTypeID = Convert.ToInt32(form["ddlVehicleTypeID"]);
+                model.txtVehicleName = form["txtVehicleModel"];
+                model.txtVehicleNumber = form["txtVehicleNumber"];
+                model.intVehicleID = Convert.ToInt32(form["intVehicleID"]);
+
+                ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
+               returnvalue= mangeObj.UpdateVehicleDetails(model);
+
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+
+            }
+        }
     }
+
 }

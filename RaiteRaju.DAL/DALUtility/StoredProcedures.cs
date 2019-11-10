@@ -28,10 +28,27 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_MobileValidation = "GET_MobileValidation";
         public const string INSERT_VehicleDetails = "INSERT_VehicleDetails";
         public const string GET_VehicleDetails = "GET_VehicleDetails";
+
+
+        public const string DELETE_MBVehicle = "DELETE_MBVehicle";
+        public const string GET_MBVehicleDetailsByID = "GET_MBVehicleDetailsByID";
+        public const string UPDATE_MBVehicleDetails = "UPDATE_MBVehicleDetails";
+        public const string DELETE_User = "DELETE_User";
+        public const string UPDATE_OTP = "UPDATE_OTP";
+
+
         #endregion
 
 
+        #region ManaBandi Admin
 
+        public const string Get_AdminLoginCheck = "Get_AdminLoginCheck";
+        public const string GET_VehicleDetailsForAdmin = "GET_VehicleDetailsForAdmin";
+        public const string DELETE_UserByAdmin = "DELETE_UserByAdmin";
+        public const string DELETE_VehiclesByAdmin = "DELETE_VehiclesByAdmin";
+
+
+        #endregion
 
 
 

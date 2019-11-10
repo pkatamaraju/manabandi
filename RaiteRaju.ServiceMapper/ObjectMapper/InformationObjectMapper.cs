@@ -456,6 +456,76 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             model.dtCreated = entity.dtCreated;
             return model;
         }
+
+        #endregion
+
+        #region ManaBandi Admin
+
+        internal List<VehicleFilterModel> MapVehicleFilterEntityToModelList(List<VehicleFilterEntity> EntityList)
+        {
+            List<VehicleFilterModel> lisObj = new List<VehicleFilterModel>();
+            if (EntityList != null)
+            {
+                VehicleFilterModel model = null;
+
+
+                foreach (VehicleFilterEntity entity in EntityList)
+                {
+
+                    model = new VehicleFilterModel();
+                    model.VehicleID = entity.VehicleID;
+                    model.VehicleType = entity.VehicleType;
+                    model.VehicleModel = entity.VehicleModel;
+                    model.OwnerName = entity.OwnerName;
+                    model.VehicleNumber = entity.VehicleNumber;
+                    model.Place = entity.Place;
+                    model.intStateId = entity.intStateId;
+                    model.intDistrictId = entity.intDistrictId;
+                    model.intManadalID = entity.intManadalID;
+                    model.BigIntPhoneNumber = entity.BigIntPhoneNumber;
+                    model.TxtKeyWord = entity.TxtKeyWord;
+                    model.IntPageNumber = entity.IntPageNumber;
+                    model.IntPageSize = entity.IntPageSize;
+                    model.SortValue = entity.SortValue;
+                    model.intStateName = entity.intStateName;
+                    model.intDistrictName = entity.intDistrictName;
+                    model.intManadalName = entity.intManadalName;
+                    model.VehicleTypeID = entity.VehicleTypeID;
+
+                    lisObj.Add(model);
+                }
+            }
+
+            return lisObj;
+        }
+        internal VehicleFilterEntity MapVehicleFilterModelToEntity(VehicleFilterModel model)
+        {
+            VehicleFilterEntity entity = new VehicleFilterEntity();
+            if (model != null)
+            {
+                entity.VehicleID = model.VehicleID;
+                entity.VehicleType = model.VehicleType;
+                entity.VehicleModel = model.VehicleModel;
+                entity.OwnerName = model.OwnerName;
+                entity.VehicleNumber = model.VehicleNumber;
+                entity.Place = model.Place;
+                entity.intStateId = model.intStateId;
+                entity.intDistrictId = model.intDistrictId;
+                entity.intManadalID = model.intManadalID;
+                entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
+                entity.TxtKeyWord = model.TxtKeyWord;
+                entity.IntPageNumber = model.IntPageNumber;
+                entity.IntPageSize = model.IntPageSize;
+                entity.SortValue = model.SortValue;
+                entity.intStateName = model.intStateName;
+                entity.intDistrictName = model.intDistrictName;
+                entity.intManadalName = model.intManadalName;
+                entity.VehicleTypeID = model.VehicleTypeID;
+            }
+
+            return entity;
+        }
+
         #endregion
 
     }

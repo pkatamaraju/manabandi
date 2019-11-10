@@ -35,6 +35,15 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
 
+        [OperationContract]
+        VehicleEntity GetVehicledDetailsByID(int VehicleID,Int64 PhoneNumber);
+
+
+        #endregion
+
+        #region manabandi admin
+        List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
+       
         #endregion
 
         [OperationContract]

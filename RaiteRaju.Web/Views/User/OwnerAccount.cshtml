@@ -11,42 +11,42 @@
 
     $.noConflict();
 
-    function fnUpdateAd(ADID){
-        var AdId=ADID;
-        window.location.href='@Url.Action("AdDetails","AddPost")?AdId='+AdId;
+    function fnUpdateAd(VehicleID){
+        var VehicleID = VehicleID;
+        window.location.href = '@Url.Action("EditVehicleDetails", "Partner")?VehicleID=' + VehicleID;
     }
 
-    function fnDeleteAd(adid){
+    function fnDeleteAd(VehicleID){
 
-        var adId=adid;
+        var VehicleID = VehicleID;
         var r = confirm("Are you sure, Do you want to delete Your Add Permanetly!");
         if (r == true) {
             jQuery.ajax({
                 type: 'POST',
-                url: '@Url.Action("AdDelete","AddPost")?AdId='+adId,
+                url: '@Url.Action("DeleteVehicle", "Partner")?VehicleID=' + VehicleID,
                 dataType: 'json',
                 success: function (data) {
                     if (data !=0) {
                         window.location.reload();
                     }
                     else{
-                        alert("Something Went Wrong, Please Try After Sometime.");
+                        alert("Something went wrong, please try after sometime.");
                     }
                 },
                 error: function (data) {
-                    alert("Some Error Occured.");
+                    alert("Some error occured.");
                 }
             });
         }
     }
 
-    function fnshowAdList()
+    function fnShowVehicleList()
     {
         jQuery('#btnMyVehicles').removeClass('tablinks').addClass('tablinks active');
         jQuery('#settings').removeClass('tablinks active').addClass('tablinks');
         jQuery('#MyRides').removeClass('tablinks active').addClass('tablinks');
 
-        jQuery("#divUserAds").show();
+        jQuery("#divVehicleList").show();
         jQuery("#UserSettings").hide();
         jQuery("#DivMyRides").hide();
     }
@@ -57,7 +57,7 @@
         jQuery('#settings').removeClass('tablinks').addClass('tablinks active');
         jQuery('#MyRides').removeClass('tablinks active').addClass('tablinks');
         fnshowdivUpdateUserDetails();
-        jQuery("#divUserAds").hide();
+        jQuery("#divVehicleList").hide();
         jQuery("#divUpdateUserDetails").show();
         jQuery("#UserSettings").show();
         jQuery("#DivMyRides").hide();
@@ -70,7 +70,7 @@
         jQuery('#MyRides').removeClass('tablinks').addClass('tablinks active');
 
 
-        jQuery("#divUserAds").hide();
+        jQuery("#divVehicleList").hide();
         jQuery("#UserSettings").hide();
         jQuery("#DivMyRides").show();
     }
@@ -229,9 +229,9 @@
     function fnUpdateUserDetails()
     {
         var form = jQuery("#UserRegistration").serialize();
-        var state=jQuery("#ddlState option:selected").text();
-        var district=jQuery("#ddlDistrict option:selected").text();
-        var mandal=jQuery("#ddlMandal option:selected").text();
+        var state = jQuery("#ddlState").val();
+        var district = jQuery("#ddlDistrict").val();
+        var mandal = jQuery("#ddlMandal").val();
         form+="&ddlStateText="+state+"&ddlDistrict="+district+"&ddlMandal="+mandal;
         var AmobileNumber=jQuery("#txtPhoneNumber").val();
 
@@ -378,9 +378,69 @@
     }
 
     jQuery(document).ready(function(){
-        var SelectedState='@ViewBag.ddlState';
-        if(SelectedState!=""||SelectedState!=0){jQuery('select[name="ddlState"]').find('option[value='+SelectedState+']').attr("selected",true);}
-        fnshowAdList();
+        var SelectedState = '@ViewBag.ddlState';
+        var selectedDistrictID = '@ViewBag.ddlDistrict';
+        var SelectedMandalID= '@ViewBag.ddlMandal';
+
+
+        if (SelectedState != "" || SelectedState != 0) { jQuery('select[name="ddlState"]').find('option[value=' + SelectedState + ']').attr("selected", true); }
+
+        jQuery.ajax({
+                type: "POST",
+                url: '@Url.Action("FetchDistricts", "Home")',
+                data: '{StateId:"' + SelectedState + '"}',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    jQuery.each(result, function (i) {
+                        if (selectedDistrictID != "" || selectedDistrictID != 0) {
+                            if (result[i].ID == parseInt(selectedDistrictID)) {
+                                jQuery("#ddlDistrict").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                            }
+                            else {
+                                jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                            }
+                        }
+                        else {
+                            jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        }
+
+                    });
+                },
+                error: function (response) {
+                    alert('Error Occured');
+                }
+            });
+ 
+
+        jQuery.ajax({
+                type: "POST",
+                url: '@Url.Action("FetchMandals", "Home")',
+                data: '{DistrictId:"' + selectedDistrictID + '"}',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    jQuery.each(result, function (i) {
+                        if (SelectedMandalID != "" || SelectedMandalID != 0) {
+                            if (result[i].ID == parseInt(SelectedMandalID)) {
+                                jQuery("#ddlMandal").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                            }
+                            else {
+                                jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                            }
+                        }
+                        else {
+                            jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        }
+
+                    });
+                },
+                error: function (response) {
+                    alert('Error Occured');
+                }
+        });
+
+        fnShowVehicleList();
     });
 
     function fnDeleteAccount(){
@@ -414,13 +474,16 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <h3 class="FormHeading text-left" style="font-size:25px;"> You can edit and find your account information here.</h3>
+                <div>
+                    <label style="font-size:14px;padding-right:10px">Click here to Attach your vehicle</label><a href="/Partner/AddVehicle" class="ghost-btn first last filled py-2" tabindex="-1">Attach your vehicle</a>
 
+                </div>
                 <div class="tab">
-                    <button class="tablinks" id="btnMyVehicles" onclick="fnshowAdList()">Attached Vehicles</button>
+                    <button class="tablinks" id="btnMyVehicles" onclick="fnShowVehicleList()">Attached Vehicles</button>
                     <button class="tablinks" id="settings" onclick="fnshowUserSettings()">Update Your Profile</button>
                     <button class="tablinks" id="MyRides" onclick="fnShowRides()">My Rides</button>
                 </div>
-                <div id="divUserAds" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
+                <div id="divVehicleList" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
                     @Html.Action("_vehicleList", "Partner", new { PageNumber = 1 })
                 </div>
 
@@ -464,7 +527,6 @@
                                                 </div>
                                                 <div class="col-md-8 col-sm-8">
                                                     <select id="ddlDistrict" class="form-control" required>
-                                                        <option value="">@ViewBag.ddlDistrict</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -474,7 +536,6 @@
                                                 </div>
                                                 <div class="col-md-8 col-sm-8">
                                                     <select id="ddlMandal" class="form-control" required>
-                                                        <option value="">@ViewBag.ddlMandal</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -490,7 +551,7 @@
                                                 <div class="col-md-12 col-sm-12 text-center">
                                                     <div class="cta-actions">
                                                         <input id="btnUpdateUserDetails" type="button" value="Update" class="dflt-btn inactive" onclick="fnUpdateUserDetails()" />
-                                                        <input id="btnCancelUpadate" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnshowAdList()" />
+                                                        <input id="btnCancelUpadate" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnShowVehicleList()" />
 
                                                     </div>
                                                 </div>
@@ -535,7 +596,7 @@
                                                     <div class="col-md-12 col-sm-12 text-center">
                                                         <div class="cta-actions">
                                                             <input id="btnUpdatePhoneNumber" type="button" value="Update" class="dflt-btn inactive" onclick="fnUpdatePhoneNumber()" />
-                                                            <input id="btnCancelUpdatePhoneNumber" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnshowAdList()" />
+                                                            <input id="btnCancelUpdatePhoneNumber" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnShowVehicleList()" />
 
                                                         </div>
                                                     </div>
@@ -577,7 +638,7 @@
                                                     <div class="col-md-12 col-sm-12 text-center">
                                                         <div class="cta-actions">
                                                             <input id="btnUpatePassword" type="button" value="Update" class="dflt-btn inactive" onclick="fnUpdatePassword()" />
-                                                            <input id="btnCancelUpdatePassword" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnshowAdList()" />
+                                                            <input id="btnCancelUpdatePassword" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnShowVehicleList()" />
 
                                                         </div>
                                                     </div>
@@ -608,7 +669,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="cta-actions">
                                             <input id="btnDelete" type="button" value="Delete" class="dflt-btn inactive" onclick="fnDeleteAccount()" />
-                                            <input id="btnCancelDelAcnt" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnshowAdList()" />
+                                            <input id="btnCancelDelAcnt" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnShowVehicleList()" />
 
                                         </div>
                                     </div>

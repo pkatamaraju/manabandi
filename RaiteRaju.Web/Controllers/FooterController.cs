@@ -12,7 +12,6 @@ namespace RaiteRaju.Web.Controllers
 {
     public class FooterController : ErrorController
     {
-        // GET: Footer
         public ActionResult Index()
         {
             return View();
@@ -84,7 +83,7 @@ namespace RaiteRaju.Web.Controllers
             HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
             HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
 
-            if (UserIdCookie != null)
+            if (UserIdCookie.Value != null)
             {
                 Utility en = new Utility();
                     string ReviewDescription = RVCollection["txtReviewDescription"];

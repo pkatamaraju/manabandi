@@ -8,3 +8,13 @@ C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ApplicationUtility\obj\Debug\ManaBa
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ApplicationUtility\obj\Debug\ManaBandi.ApplicationUtility.csproj.CopyComplete
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ApplicationUtility\obj\Debug\RaiteRaju.ApplicationUtility.dll
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ApplicationUtility\obj\Debug\RaiteRaju.ApplicationUtility.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\bin\Debug\RaiteRaju.ApplicationUtility.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\bin\Debug\RaiteRaju.ApplicationUtility.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\obj\Debug\ManaBandi.ApplicationUtility.csprojAssemblyReference.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\obj\Debug\ManaBandi.ApplicationUtility.csproj.CoreCompileInputs.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\obj\Debug\ManaBandi.ApplicationUtility.csproj.CopyComplete
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\obj\Debug\RaiteRaju.ApplicationUtility.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ApplicationUtility\obj\Debug\RaiteRaju.ApplicationUtility.pdb

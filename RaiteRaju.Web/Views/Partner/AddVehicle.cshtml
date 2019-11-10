@@ -15,41 +15,39 @@
     }
 
     function validation() {
-       
+
         var vehicleTypeID = jQuery("#ddlVehicles").val();
         var txtVehicleModel = jQuery("#txtVehicleModel").val();
-        var txtVehicleNumber = jQuery("#txtVehicleNumber").val();
+        var txtVehicleNumber = jQuery("#txtVehicleNumber").val().toUpperCase();
 
         intRegex = /^[5-9]{1}[0-9]{9}$/;
-        vehicleNumberRegex =/^[A - Z]{ 2 } [-][0 - 9]{ 1, 2 } (?: [A - Z]) ? (?: [A - Z] *) ? [0 - 9]{ 4 } $/
+        //vehicleNumberRegex = /^[A - Z]{ 2 } [-][0 - 9]{ 1, 2 } (?: [A - Z]) ? (?: [A - Z] *) ? [0 - 9]{ 4 } $/
+        vehicleNumberRegex =/^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}$/;
         var intRegex = /^\d+$/;
         var message = "";
 
-          
 
-            if (vehicleTypeID == "0" || vehicleTypeID =="---Select Vehicle---") {
-                message = message + "Please select Vehicle Type.\n";
-            }
 
-            if (txtVehicleModel=="") {
-                message = message + "Please enter Vehicle Model.\n";
-            }
-            else if (vehicleNumberRegex.test(txtVehicleModel) == false) {
+        if (vehicleTypeID == "0" || vehicleTypeID == "---Select Vehicle---") {
+            message = message + "Please select Vehicle Type.\n";
+        }
 
-                message = message + "Enter valid vehicle number.\n";
-            }
-            else if (txtVehicleModel.length > 50 || txtVehicleModel.length < 4) {
-                message = message + "Vehicle Model should be between 4 to 50 characters.\n";
-            }
-        if (txtVehicleNumber == "") {
+        if (txtVehicleModel == "") {
             message = message + "Please enter Vehicle Model.\n";
         }
-        else if (/^[^<>'\"/`%-]*$/.test(txtVehicleNumber) == false) {
+        else if (txtVehicleModel.length > 50 || txtVehicleModel.length < 4) {
+            message = message + "Vehicle Model should be between 4 to 50 characters.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(txtVehicleModel) == false) {
 
             message = message + "Special characters(<>'\"/`%-) are not allowed in Vehicle Model.\n";
         }
-        else if (txtVehicleNumber.length > 50 || txtVehicleNumber.length < 4) {
-            message = message + "Vehicle Model should be between 4 to 50 characters.\n";
+
+        if (txtVehicleNumber == "") {
+            message = message + "Please enter Vehicle Number.\n";
+        }
+        else if (vehicleNumberRegex.test(txtVehicleNumber) == false) {
+            message = message + "Please enter valid vehicle number.\n";
         }
 
 
@@ -67,7 +65,6 @@
       
         var vehicleTypeID = jQuery("#ddlVehicles").val();
         form += "&ddlVehicleTypeID=" + vehicleTypeID;
-        var AmobileNumber=jQuery("#txtPhoneNumber").val();
 
         if (validation()) {
 
@@ -77,19 +74,18 @@
                 dataType: 'json',
                 data: form,
                 success: function (data) {
-
-                    if (data == 0) {
-                        alert("Entered Phone Number is already registered.");
-                    }
-                    if (data == -1) {
-                        alert("Please Enter correct data as per validation.");
-                    }
-                    if (data != 0 && data != -1) {
+                    if (data == "success") {
                         jQuery('body').loadingIndicator();
-                        jQuery("#AttachVehicle")[0].reset();
-                        window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
+                        jQuery("#AddVehicleForm")[0].reset();
+                        window.location.href = '@Url.Action("UserAccount", "User")';
                     }
+                    else if (data == "exists") {
+                        alert("Attached vehicle number already exists with us. Please check vehicle Number.");
+                    }
+                    else if ("faile") {
+                        alert("Error occured, Please try after some time.");
 
+                    }
                 },
                 error: function (data) {
 
@@ -214,7 +210,7 @@
                                         <label for="txtVehicleModel">Vehicle Model<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <input type="text" class="form-control" id="txtVehicleModel" name="txtVehicleModel" placeholder="Innova">
+                                        <input type="text" class="form-control" id="txtVehicleModel" name="txtVehicleModel" placeholder=" Ex: Innova">
                                         <span class="error-msg" id="ErrortxtVehicleModel">Please enter a valid vehicle model</span>
                                     </div>
                                 </div>
@@ -223,11 +219,11 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                                        <label for="txVehicleNumber">Vehicle Number<span class="MandatoryStars">*</span> :</label>
+                                        <label for="txtVehicleNumber">Vehicle Number<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <input type="text" class="form-control" id="txVehicleNumber" name="txVehicleNumber" placeholder="1">
-                                        <span class="error-msg" id="ErrortxVehicleNumber">Please enter a valid Vehicle Number</span>
+                                        <input type="text" class="form-control" id="txtVehicleNumber" name="txtVehicleNumber" placeholder=" Ex: AP 00 AB 1234">
+                                        <span class="error-msg" id="ErrortxtVehicleNumber">Please enter a valid Vehicle Number</span>
                                     </div>
                                 </div>
                             </div>
@@ -235,8 +231,6 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <div class="cta-actions">
                                     <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
-                                    <br>
-                                    <label style="font-size:10px;font-family:inherit">By creating account with RaiteRaju, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
                                 </div>
                             </div>
 

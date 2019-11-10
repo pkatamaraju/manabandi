@@ -32,7 +32,7 @@ namespace RaiteRaju.Web.Controllers
         {
 
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie != null)
+            if (nameCookie.Value != null)
             {
                 return RedirectToAction("AdminMain", "Admin");
             }
@@ -816,5 +816,45 @@ namespace RaiteRaju.Web.Controllers
             return Json(objservice.FetMandalsOfDistrct(DistrictId), JsonRequestBehavior.AllowGet);
 
         }
+
+
+        #region ManaBandi Admin Methods
+        public ActionResult GetVehicleDetailsForAdmin(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                int TotalPageNumber = 0;
+                ViewBag.CurrentPageNumber = PageNumber;
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+
+                VehicleFilterModel Model = new VehicleFilterModel();
+                Model.intStateId = intStateID;
+                Model.intDistrictId = intDistrictID;
+                Model.intManadalID = intManadalID;
+                Model.VehicleTypeID = VehicleTypeID;
+                Model.IntPageNumber = PageNumber;
+                Model.IntPageSize = 50;
+
+                List<VehicleFilterModel> VehList = new List<VehicleFilterModel>();
+                VehList = objservice.GetVehicleDetailsForAdmin(Model, out TotalPageNumber);
+                ViewBag.VehList = VehList;
+                ViewBag.TotalPageNumber = TotalPageNumber;
+
+                ViewBag.selectedStateID = intStateID;
+                ViewBag.selectedDistrictID = intDistrictID;
+                ViewBag.selectedMandalID = intManadalID;
+                ViewBag.selectedVehicleTypeID = VehicleTypeID;
+                ViewBag.pageNumber = PageNumber;
+
+                return View("VehicleDetails");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        #endregion
     }
 }

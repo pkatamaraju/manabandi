@@ -51,7 +51,19 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
 
         }
+        public VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber)
+        {
+            return new DAL.InformationDAL().GetVehicledDetailsByID(VehicleID, PhoneNumber);
 
+        }
+
+        #endregion
+
+        #region manabandi admin
+       public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            return new DAL.InformationDAL().GetVehicleDetailsForAdmin(Entity,out TotalPageNumber);
+        }
         #endregion
         public AdDetailsEntity FetchAdDetails(int AdId)
         {

@@ -20,7 +20,13 @@ namespace RaiteRaju.BusinessLayerInterface
         UserDetailsEntity GetLoginCheck(Int64 PhoneNumber, string Password);
         List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
 
+        VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber);
+
         #endregion
+        #region manabandi admin
+        List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
+        #endregion
+
 
         AdDetailsEntity FetchAdDetails(int AdId);
         DropDrownWrapper GetDropDownValues();

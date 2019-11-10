@@ -14,23 +14,26 @@ namespace RaiteRaju.ServiceLayer
     {
 
         #region Manabandi
-        public List<GDictionary> FetchStates() {
-           InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-           return obj.FetchStates();
-       }
-       public List<GDictionary> FetDistrictsOfState(int StateId) {
-           InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-           return obj.FetDistrictsOfState(StateId);
-       }
-       public List<GDictionary> FetMandalsOfDistrct(int DistrictId) {
-           InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-           return obj.FetMandalsOfDistrct(DistrictId);
-       }
-       public List<GDictionary> GetVehicleTypes()
-       {
-           InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-           return obj.GetVehicleTypes();
-       }
+        public List<GDictionary> FetchStates()
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.FetchStates();
+        }
+        public List<GDictionary> FetDistrictsOfState(int StateId)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.FetDistrictsOfState(StateId);
+        }
+        public List<GDictionary> FetMandalsOfDistrct(int DistrictId)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.FetMandalsOfDistrct(DistrictId);
+        }
+        public List<GDictionary> GetVehicleTypes()
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetVehicleTypes();
+        }
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
@@ -57,7 +60,24 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
         }
+
+        public VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetVehicledDetailsByID(VehicleID,PhoneNumber);
+        }
+
         #endregion
+
+        #region manabandi admin
+        public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetVehicleDetailsForAdmin(Entity,out TotalPageNumber);
+        }
+        #endregion
+
+
         public AdDetailsEntity FetchAdDetails(int AdId)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
@@ -89,7 +109,7 @@ namespace RaiteRaju.ServiceLayer
         public AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId, out int outputparam)
         {
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.SPRRGetAdDisplayDetails(AdId,out outputparam);
+            return BusObj.SPRRGetAdDisplayDetails(AdId, out outputparam);
 
         }
         public List<AdDetailsEntity> GetFilteredAds(AdFilterEntity Entity, out int TotalPageNumber)
@@ -159,7 +179,7 @@ namespace RaiteRaju.ServiceLayer
         public List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetchUnverifiedUsers(PAGENUMBER,out TotalPageNumber);
+            return BusObj.FetchUnverifiedUsers(PAGENUMBER, out TotalPageNumber);
 
         }
     }

@@ -1,0 +1,432 @@
+﻿
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+
+    jQuery(document).ready(function () {
+
+
+        var VehList = null;
+        VehList=@(Html.Raw(Json.Encode(ViewBag.VehList)));
+        var length = Object.keys(VehList).length;
+
+
+        if (length == 0) {
+            jQuery('#tblList').html('<tr><td class="text-center" style="align-items:center;height:200px;min-width:800px;">No Records found. </tr><td></td></td>');
+        }
+        else {
+            var tblVehList = jQuery('#tblList');
+            for (i = 0; i < length; i++) {
+                j = i + 1;
+                var SNo = '@ViewBag.pageNumber' + j;
+                tblVehList.append('<tr class="tableRow"><td onclick="fnUpdateAd(' + VehList[i].VehicleID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + VehList[i].VehicleType + '</td><td>' + VehList[i].VehicleModel + '</td><td>' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><tr>')
+            }
+        }
+
+
+
+
+        var selectedVehicleTypeID='@ViewBag.selectedVehicleTypeID';
+        var selectedStateID='@ViewBag.selectedStateID';
+        var selectedDistrictID='@ViewBag.selectedDistrictID';
+        var selectedMandalID='@ViewBag.selectedMandalID';
+        @*var SelectedSort='@ViewBag.SortVal';*@
+
+
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (selectedVehicleTypeID != 0 && selectedVehicleTypeID == result[i].ID) {
+                        jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                    }
+                    else {
+                        jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                    }
+                });
+            },
+            error: function (response) {
+                alert('Error Occured');
+            }
+        });
+
+
+        if (selectedStateID != 0) {
+            jQuery('select[name="ddlState"]').find('option[value=' + selectedStateID + ']').attr("selected", true);
+            jQuery('#ddlDistrict').empty();
+            jQuery("#ddlDistrict").html("");
+            jQuery("#ddlDistrict").append(jQuery('<option></option>').val("0").html("---Select District---"));
+
+            jQuery.ajax({
+                type: "POST",
+                url: '@Url.Action("FetchDistricts", "Home")',
+                data: '{StateId:"' + selectedStateID + '"}',
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    jQuery.each(result, function (i) {
+                        if (selectedDistrictID != "" || selectedDistrictID != 0) {
+                            if (result[i].ID == parseInt(selectedDistrictID)) {
+                                jQuery("#ddlDistrict").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                            }
+                            else {
+                                jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                            }
+                        }
+                        else {
+                            jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        }
+
+                    });
+                },
+                error: function (response) {
+                    alert('Error Occured');
+                }
+            });
+        }
+            if (selectedDistrictID != "" || selectedDistrictID != 0) {
+                jQuery('#ddlMandal').empty();
+                jQuery("#ddlMandal").html("");
+                jQuery("#ddlMandal").append(jQuery('<option></option>').val("").html("---Select Mandal---"));
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FetchMandals", "Home")',
+                    data: '{DistrictId:"' + selectedDistrictID + '"}',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        jQuery.each(result, function (i) {
+                            if (selectedMandalID != "" || selectedMandalID != 0) {
+                                if (result[i].ID == parseInt(selectedMandalID)) {
+                                    jQuery("#ddlMandal").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                                }
+                                else {
+                                    jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                                }
+                            }
+                            else {
+                                jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                            }
+
+                        });
+                    },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+                });
+            }
+
+       
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber==1){
+            jQuery('a#PreviousPage').attr('disabled', true);
+            jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
+        }
+        if(TotalPageCount==CurrentPageNumber){
+
+            jQuery('a#PageNext').attr('disabled', true);
+            jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
+        }
+        if(TotalPageCount==0){
+            jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
+        }
+    });
+
+    jQuery(function () {
+        jQuery("#ddlState").change(function () {
+
+            jQuery('#ddlDistrict').empty();
+            jQuery("#ddlDistrict").html("");
+            jQuery("#ddlDistrict").append
+                (jQuery('<option></option>').val("0").html("---Select District---"));
+
+
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
+
+
+            fnVehicleSearch(1);
+        });
+
+    });
+
+    jQuery(function () {
+        jQuery("#ddlDistrict").change(function () {
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
+
+
+            fnVehicleSearch(1);
+        });
+    });
+    jQuery(function () {jQuery("#ddlMandal").change(function ()   { fnVehicleSearch(1);   });  });
+    jQuery(function () {jQuery("#ddlSort").change(function ()   { fnVehicleSearch(1);   });  });
+
+    jQuery(document).ready(function () {
+        jQuery("#ddlVehicles").change(function () {
+            fnVehicleSearch(1);
+        });
+    });
+
+    function fnVehicleSearch(PageNumber) {
+        var stateID = jQuery("#ddlState").val();
+        if (stateID == 0 || stateID == "") {
+            stateID = 0;
+        }
+
+        var districtID = jQuery("#ddlDistrict").val();
+        if (districtID == 0 || districtID == "") {
+            districtID = 0;
+        }
+
+        var mandalID = jQuery("#ddlMandal").val();
+        if (mandalID == 0 || mandalID == "") {
+            mandalID = 0;
+        }
+        var pageNumber = parseInt(PageNumber);
+
+        var vehicleTypeID = jQuery("#ddlVehicles").val();
+        if (vehicleTypeID == 0 || vehicleTypeID == "") {
+            vehicleTypeID = 0;
+        }
+
+
+        if (stateID == 0 && districtID == 0 && mandalID == 0 && vehicleTypeID == 0) {
+        }
+        else {
+            window.location.href = '@Url.Action("GetVehicleDetailsForAdmin", "Admin")?intStateID=' + stateID + '&intDistrictID=' + districtID + '&intManadalID=' + mandalID + '&VehicleTypeID=' + vehicleTypeID + '&PageNumber=' + pageNumber;
+        }
+    }
+
+    function fnResetOptions(){
+        jQuery('option:selected', 'select[name="ddlState"]').removeAttr('selected');
+        jQuery('option:selected', 'select[name="ddlDistrict"]').removeAttr('selected');
+        jQuery('option:selected', 'select[name="ddlMandal"]').removeAttr('selected');
+        jQuery('option:selected', 'select[name="ddlVehicles"]').removeAttr('selected');}
+
+    function fnOpenAd(ADID){
+        var AdId=ADID;
+        var win = window.open('/AddPost/AdDisplay?AdId='+AdId, '_blank');
+        if (win) {
+            win.focus();
+        }
+        else {
+            alert('Please Allow Popups For This Website');
+        }
+    }
+
+    jQuery(document).ready(function() {
+        jQuery("a#PreviousPage").click(function(){
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1){
+                jQuery('a#PreviousPage').attr('disabled', true);
+            }
+            else{
+                fnVehicleSearch(CurrentPageNumber-1);
+                jQuery('a#PreviousPage').css("color","Blue");
+
+            }
+            if(TotalPageCount==CurrentPageNumber){
+                jQuery('a#PageNext').attr('disabled', true);
+            }
+        });
+
+        jQuery("a#PageNext").click(function(){
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1){
+                jQuery('a#PreviousPage').attr('disabled', true);
+            }
+            if(TotalPageCount==CurrentPageNumber ||TotalPageCount<CurrentPageNumber){
+                jQuery('a#PageNext').attr('disabled', true);
+            }
+            else{
+                fnVehicleSearch(CurrentPageNumber+1);
+                jQuery('a#PreviousPage').css("color","Blue");
+            }
+        });
+    });
+
+
+    function fnGoToPage(){
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber>TotalPageCount || CurrentPageNumber==0){
+            alert("Maximum Available Pages Are "+TotalPageCount+".");
+            jQuery("#txtcurrentPageNumber").val(@ViewBag.CurrentPageNumber);
+        }
+        else{
+            fnVehicleSearch(CurrentPageNumber);
+        }
+    }
+
+    function callfun(obj)
+    {
+        var noimg = "/Content/images/NoImage.jpg";
+        obj.src=noimg;
+    }
+
+    function fnFiltertoggle() {
+
+        var tempVar = jQuery("#IdAngle").hasClass("fa-angle-double-up");
+
+        jQuery("#AdFilter").toggle();
+        if (!tempVar) {
+            jQuery("#IdAngle").addClass('fa-angle-double-up').removeClass('fa-angle-double-down');
+        }
+        else {
+            jQuery("#IdAngle").addClass('fa-angle-double-down').removeClass('fa-angle-double-up');
+        }
+    }
+</script>
+<div id="AdSearchResults" class="MinHight">
+    <div class="container">
+        <div class="row" style="padding-top:20px;">
+            <div class="col-lg-1 col-sm-1">
+
+            </div>
+
+            <div class="col-lg-10 col-sm-10">
+                <div class="row text-right">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6"></div>
+
+                    @*<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <button onclick="fnFiltertoggle()" id="IdFilter"><i class="fa fa-bars"></i> Filters <i class="fa fa-angle-double-up" aria-hidden="true" id="IdAngle"></i>  </button>
+
+                    </div>*@
+
+                </div>
+
+                <div id="AdFilter" @*style="display:none;"*@>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Select Vehicle Type</span><br />
+                            <select id="ddlVehicles" class="form-control" required style="height:35px;">
+                                <option value="0">---Select Vehicle---</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Select State</span><br />
+                            @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
+
+                        </div>
+
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Select District</span><br />
+                            <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
+                                <option value="0">---Select District---</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                            <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
+                                <option value="0">---Select Mandal---</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    @*<div class="row" style="padding-top:10px;" id="divSort">
+                        <div class="col-lg-9"></div>
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
+                                <option value="1" selected>Most Recent</option>
+                                <option value="2">Price:Low-High</option>
+                                <option value="3">Price:Hight-Low</option>
+                            </select>
+                        </div>
+                    </div>*@
+
+                </div>
+
+                <div id="divListDisplay" style="margin-top:50px;">
+                    <table id="tblList" style="border-collapse: collapse;">
+                        <tr id="adlistHeader">
+                            <th width="100px">VID</th>
+                            <th width="200px">Vehicle Type</th>
+                            <th width="200px">Model</th>
+                            <th width="200px">Owner Name</th>
+                            <th width="200px">Vehicle Number</th>
+                            <th width="200px">State</th>
+                            <th width="200px">District</th>
+                            <th width="200px">Manadal</th>
+                            <th width="200px">Place</th>
+                            <th width="200px">PhoneNumber</th>
+                            <th width="100px"></th>
+                            <th width="50px"><input type="checkbox" id="selectAll"></th>
+                            <th width="200px"><input id="btnVerify" type="button" value="Delete Ads" onclick="fnDeleteAds()" class="ghost-btn first last filled py-2" /></th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                    <div class="col-lg-1 col-md-2 d-none d-md-block">
+                    </div>
+                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 d-none d-md-block">
+                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                    </div>
+                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                        <a id="PageNext" data-value="2" style="cursor:pointer">
+                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-1 col-sm-1">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="divHiddenForSearch" style="display:none">
+    @Html.TextBox("txtHiddenSearchState", (int)@ViewBag.selectedStateID, new { @class = "form-control" })
+    @Html.TextBox("txtHiddenSearchDistrict", (int)@ViewBag.selectedDistrictID, new { @class = "form-control" })
+    @Html.TextBox("txtHiddenSearchMandal", (int)@ViewBag.selectedMandalID, new { @class = "form-control" })
+    @*@Html.TextBox("txtHiddenSearchCategory", (string)@ViewBag.selectedVehicleTypeID, new { @class = "form-control" })*@
+    @*@Html.TextBox("txtHiddenSearchKeyword", (string)@ViewBag.Keyword, new { @class = "form-control" })*@
+    @Html.TextBox("txtHiddenCategoryId", (Int32)@ViewBag.selectedVehicleTypeID, new { @class = "form-control" })
+    @*@Html.TextBox("txtClickedOnSearch", null, new { @class = "form-control" })*@
+</div>

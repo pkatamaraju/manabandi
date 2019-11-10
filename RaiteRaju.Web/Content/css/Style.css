@@ -654,7 +654,7 @@ option{
 
 .dflt-btn {
     border-radius: 100px;
-    background-color: #4bc5ac;
+    background-color: green;
     color: #fff;
     font-size: 12px;
     letter-spacing: .9px;
@@ -828,7 +828,7 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 .listTable{text-align:center;border-collapse:collapse;}
 .listTable th{border-color:blue;border-right:1px solid #4a3a3a}
 .listTable td{height:40px;text-decoration:none;font-size:12px;}
-.tblHeader {background-color:#686979;height:30px;border-collapse:collapse;color:white;font-size:10px;border-radius:5px;}
+.tblHeader {background-color:#686979;height:30px;border-collapse:collapse;color:white;font-size:12px;border-radius:5px;}
 #UserSettings{min-height:300px;}
 .tableRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
 /*#AdListRow td {border:1px solid black}*/

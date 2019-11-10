@@ -87,7 +87,7 @@
         }
         else
         {
-            jQuery("#divUserAds").load("/User/_AddList", {PageNumber:CurrentPageNumber});
+            jQuery("#divRideList").load("/User/_rideList", {PageNumber:CurrentPageNumber});
         }
     }
 
@@ -100,16 +100,14 @@
             if(CurrentPageNumber==1)
             {
                 jQuery('a#PreviousPage').off("click");
-                //jQuery('a#PreviousPage').css("color","grey");
             }
             else
             {
-                jQuery("#divUserAds").load("/User/_AddList", {PageNumber:CurrentPageNumber-1});
+                jQuery("#divRideList").load("/User/_RideList", {PageNumber:CurrentPageNumber-1});
             }
             if(TotalPageCount==CurrentPageNumber)
             {
                 jQuery('a#PageNext').off("click");
-                // jQuery('a#PreviousPage').css("color","grey");
             }
 
 
@@ -121,22 +119,20 @@
             if(CurrentPageNumber==1)
             {
                 jQuery('a#PreviousPage').off("click");
-                // jQuery('a#PreviousPage').css("color","grey");
             }
             if(TotalPageCount==CurrentPageNumber)
             {
                 jQuery('a#PageNext').off("click");
-                //jQuery('a#PreviousPage').css("color","grey");
             }
             else
             {
-                jQuery("#divUserAds").load("/User/_AddList", {PageNumber:CurrentPageNumber+1});
+                jQuery("#divRideList").load("/User/_RideList", {PageNumber:CurrentPageNumber+1});
             }
         });
     });
 
 </script>
-<div class="divTable">
+<div class="divTable"  id="divRideList">
       <div class="table-responsive">
         <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
             <tr class="tblHeader">

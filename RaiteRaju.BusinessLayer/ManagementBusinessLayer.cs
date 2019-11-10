@@ -116,6 +116,20 @@ namespace RaiteRaju.BusinessLayer
             DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
             return objDAL.AddVehicle(entity);
         }
+
+
+        public string UpdateVehicleDetails(VehicleEntity entity)
+        {
+            return new DAL.ManagementDAL().UpdateVehicleDetails(entity);
+
+        }
+
+        public void DeleteVehicle(int VehicleID, Int64 PhoneNumber)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            objDAL.DeleteVehicle(VehicleID, PhoneNumber);
+
+        }
         #endregion
 
     }

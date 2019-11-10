@@ -7,3 +7,12 @@ C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ServiceLayerInterface\obj\Debug\Man
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.dll
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.pdb
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.ServiceLayerInterface\obj\Debug\ManaBandi.ServiceLayerInterface.csprojAssemblyReference.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\ManaBandi.ServiceLayerInterface.csprojAssemblyReference.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\ManaBandi.ServiceLayerInterface.csproj.CoreCompileInputs.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\ManaBandi.ServiceLayerInterface.csproj.CopyComplete
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.pdb

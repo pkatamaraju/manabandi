@@ -16,6 +16,13 @@
     function fnCancel() {
         window.location.href = '/User/UserLogout';
     }
+
+    jQuery(document).on("keypress", "#txtPassword", function (e) {
+        if (e.which == 13) {
+            fnVerifyOTP();
+        }
+    });
+
     function validateOTP(){
         var AOTP = jQuery("#txtOTP").val();
         intRegex = /^\d{6}$/;

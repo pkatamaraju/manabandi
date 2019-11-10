@@ -254,8 +254,8 @@ namespace RaiteRaju.Web.Controllers
             
             HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
             HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
 
-            
             if (UserIdCookie != null)
             {
                 objModel.txtUserName = fnRegistration["txtUserNameDetails"];
@@ -264,7 +264,8 @@ namespace RaiteRaju.Web.Controllers
                 objModel.ddlDistrict = fnRegistration["ddlDistrict"];
                 objModel.ddlMandal = fnRegistration["ddlMandal"];
                 objModel.txtVillage = fnRegistration["txtVillage"];
-                //objModel.txtMailId = fnRegistration["txtMailId"];
+                objModel.txtPhoneNumber=Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
+
                 objModel.KeyForUserSettings = Convert.ToString(UserSettings.DETAILS);
                 string s = "[^<>'\"/`%-]";
 
@@ -577,6 +578,7 @@ namespace RaiteRaju.Web.Controllers
                 cookieName = Request.Cookies[i].Name;
                 aCookie = new HttpCookie(cookieName);
                 aCookie.Expires = DateTime.Now.AddDays(-1);
+                aCookie.Value = null;
                 Response.Cookies.Add(aCookie);
             }
 

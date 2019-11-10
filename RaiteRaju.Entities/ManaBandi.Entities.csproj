@@ -62,6 +62,7 @@
     <Compile Include="RideEntity.cs" />
     <Compile Include="UserDetailsEntity.cs" />
     <Compile Include="VehicleEntity.cs" />
+    <Compile Include="VehicleFilterEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

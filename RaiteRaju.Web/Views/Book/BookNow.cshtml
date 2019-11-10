@@ -143,7 +143,7 @@
             dataType: "json",
             success: function (result) {
                 jQuery.each(result, function (i) {
-                    if (VehicleTypeId!=null && VehicleTypeId == result[i].ID) {
+                    if (VehicleTypeId!=0 && VehicleTypeId == result[i].ID) {
                         jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
                     }
                     else {

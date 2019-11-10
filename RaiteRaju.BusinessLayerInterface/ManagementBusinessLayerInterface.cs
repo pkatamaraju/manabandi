@@ -36,5 +36,11 @@ namespace RaiteRaju.BusinessLayerInterface
         string AddVehicle(VehicleEntity entity);
         #endregion
 
+
+         string UpdateVehicleDetails(VehicleEntity entity);
+
+         void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
+
+
     }
 }
