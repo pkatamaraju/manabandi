@@ -405,6 +405,9 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     rideObj.VehicleTypeID = item.VehicleTypeID;
                     rideObj.dtScheduledDate = item.dtScheduledDate;
                     rideObj.txtScheduledTime = item.txtScheduledTime;
+                    rideObj.VehicleType = item.VehicleType;
+                    rideObj.intRideID = item.intRideID;
+                    rideObj.txtRideStatus = item.txtRideStatus;
 
                     rideListObj.Add(rideObj);
                 }
@@ -491,6 +494,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     model.intDistrictName = entity.intDistrictName;
                     model.intManadalName = entity.intManadalName;
                     model.VehicleTypeID = entity.VehicleTypeID;
+                    model.flgOnRide = entity.flgOnRide;
 
                     lisObj.Add(model);
                 }
@@ -521,6 +525,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 entity.intDistrictName = model.intDistrictName;
                 entity.intManadalName = model.intManadalName;
                 entity.VehicleTypeID = model.VehicleTypeID;
+                entity.flgOnRide = model.flgOnRide;
             }
 
             return entity;

@@ -27,14 +27,14 @@
             window.location.href = '/User/UserLogout';
         }
         jQuery(document).ready(function () {
-            jQuery("#tabVerifyAds").click(function () {
-                window.location.href = "/admin/VerifyAds?PageNumber=1";
+            jQuery("#tabVehicles").click(function () {
+                window.location.href = "/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
             });
-            jQuery("#tabUserManagement").click(function () {
-                window.location.href = "/admin/UserDetailsManagement?State=&District=&DistrictId=0&Mandal=&MandalId=0&PageNumber=1";
+            jQuery("#tabOwners").click(function () {
+                window.location.href = "/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
             });
-            jQuery("#tabVerifyUsers").click(function () {
-                window.location.href = "/admin/VerifyUsers?PageNumber=1";
+            jQuery("#tablRides").click(function () {
+                window.location.href = "/admin/RideDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
             });
             jQuery("#tabAdManagement").click(function () {
                 window.location.href = "/admin/AdManagement?PageNumber=1";
@@ -112,12 +112,10 @@
                     
                     <div class="topnav" id="myTopnav">
                        
-                        <a href="/admin/GetVehicleDetailsForAdmin?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1"  id="tabVerifyAds"tabindex="-1">Vehicles</a>
-                        <a href="/admin/UserDetailsManagement?PageNumber=1" id="tabUserManagement"tabindex="-1">Owners</a>
-                        <a href="/admin/VerifyUsers?PageNumber=1" id="tabVerifyUsers" tabindex="-1">Users</a>
-                        <a href="/admin/AdManagement?PageNumber=1" id="tabAdManagement" tabindex="-1">Rides</a>
-                        <a href="/admin/AdViewStatistics?PageNumber=1" id="tabAdViewStatistics" tabindex="-1">Ad Views</a>
-                        <a href="/admin/UserRegistration" id="tabUserRegistration" tabindex="-1">User Reg</a>
+                        <a href="/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1"  id="tabVehicles"tabindex="-1">Vehicles</a>
+                        <a href="/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabOwners"tabindex="-1">Owners</a>
+                        <a href="#" id="tabVerifyUsers" tabindex="-1">Users</a>
+                        <a href="/admin/RideDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tablRides" tabindex="-1">Rides</a>
                         <a href="/Admin/ReviewsForAdmin" id="tabReviewsForAdmin" tabindex="-1">Reviews</a>
                         <a href="/Admin/ContactUs" id="tabContactUsForAdmin" tabindex="-1">Contact Us</a>
                         <a href="/Admin/Exceptions" id="tabExceptions" tabindex="-1">Exceptions</a>

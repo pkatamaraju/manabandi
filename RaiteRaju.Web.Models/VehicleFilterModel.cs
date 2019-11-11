@@ -26,5 +26,7 @@ namespace RaiteRaju.Web.Models
         public Int32 IntPageNumber { get; set; }
         public Int32 IntPageSize { get; set; }
         public Int32 SortValue { get; set; }
+        public Int32 flgOnRide { get; set; }
+
     }
 }

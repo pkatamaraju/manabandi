@@ -46,8 +46,11 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_VehicleDetailsForAdmin = "GET_VehicleDetailsForAdmin";
         public const string DELETE_UserByAdmin = "DELETE_UserByAdmin";
         public const string DELETE_VehiclesByAdmin = "DELETE_VehiclesByAdmin";
-
-
+        public const string GET_OwnerDetailsForAdmin = "GET_OwnerDetailsForAdmin";
+        public const string GET_RideDetailForAdmin = "GET_RideDetailForAdmin";
+        public const string GET_ReviewsForAdmin = "GET_ReviewsForAdmin";
+        public const string GET_ContactDestailsForAdmin = "GET_ContactDestailsForAdmin";
+        public const string GET_MBReviews = "GET_MBReviews";
         #endregion
 
 

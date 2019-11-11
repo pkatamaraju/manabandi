@@ -60,7 +60,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMDTCREATED = "dtCreated";
         public const string PARAMDTSCHEDULEDDATE = "dtScheduledDate";
         public const string PARAMDTSCHEDULEDTIME = "txtScheduledTime";
-
+        public const string PARAMINTRIDEID = "intRideID";
 
         //Users
         public const string ParamPhoneNumber = "BigIntPhoneNumber";
@@ -95,6 +95,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMTXTVEHICLENAME = "txtVehicleName";
         public const string PARAMTXTRETURNVALUE = "txtReturnValue";
         public const string PARAMINTVEHICLEID = "intVehicleID";
+        public const string PARAMFLGONRIDE="flgOnRide";
 
         //Paging
         public const string PARAMINTPAGENUMBER = "INTPAGENUMBER";

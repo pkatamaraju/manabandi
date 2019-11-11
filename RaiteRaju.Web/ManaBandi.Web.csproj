@@ -279,13 +279,13 @@
     <Content Include="Views\Footer\TermsAndConditions.cshtml" />
     <Content Include="Views\Footer\FeaturedAds.cshtml" />
     <Content Include="Views\Shared\_AdSearch.cshtml" />
-    <Content Include="Views\Admin\VerifyAds.cshtml" />
+    <Content Include="Views\Admin\RideDetails.cshtml" />
     <Content Include="Views\Shared\_TotalPageNumber.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminMain.cshtml" />
-    <Content Include="Views\Admin\UserDetailsManagement.cshtml" />
+    <Content Include="Views\Admin\OwnerDetails.cshtml" />
     <Content Include="Views\Admin\AdManagement.cshtml" />
     <Content Include="Views\Admin\AdViewStatistics.cshtml" />
     <Content Include="Views\Footer\ReportIssue.cshtml" />

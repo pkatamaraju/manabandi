@@ -64,6 +64,15 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetVehicleDetailsForAdmin(Entity,out TotalPageNumber);
         }
+
+       public List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            return new DAL.InformationDAL().GetOwnerDetailsForAdminPage(Entity, out TotalPageNumber);
+        }
+       public List<RideEntity> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            return new DAL.InformationDAL().GetRidesForAdmin(INTPAGENUMBER, out TotalPageNumber);
+        }
         #endregion
         public AdDetailsEntity FetchAdDetails(int AdId)
         {

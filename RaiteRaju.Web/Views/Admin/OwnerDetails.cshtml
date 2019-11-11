@@ -1,5 +1,5 @@
-﻿
-@{
+﻿@{
+    ViewBag.Title = "UserDetailsManagement";
     Layout = "~/Shared/_AdminLayout.cshtml";
 }
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -7,20 +7,20 @@
     $.noConflict();
 
     jQuery(document).ready(function () {
-        var VehList = null;
-        VehList=@(Html.Raw(Json.Encode(ViewBag.VehList)));
-        var length = Object.keys(VehList).length;
+        var ownerList = null;
+        ownerList=@(Html.Raw(Json.Encode(ViewBag.ownerList)));
+        var length = Object.keys(ownerList).length;
 
 
         if (length == 0) {
             jQuery('#tblList').html('<tr><td class="text-center" style="align-items:center;height:200px;min-width:800px;">No Records found. </tr><td></td></td>');
         }
         else {
-            var tblVehList = jQuery('#tblList');
+            var tblownerList = jQuery('#tblList');
             for (i = 0; i < length; i++) {
                 j = i + 1;
                 var SNo = '@ViewBag.pageNumber' + j;
-                tblVehList.append('<tr class="tableRow"><td onclick="fnUpdateAd(' + VehList[i].VehicleID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + VehList[i].VehicleType + '</td><td>' + VehList[i].VehicleModel + '</td><td>' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
+                tblownerList.append('<tr class="tableRow"><td onclick="fnUpdateAd(' + ownerList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + ownerList[i].OwnerName + '</td><td width="200px">' + ownerList[i].VehicleNumber + '</td><td width="200px">' + ownerList[i].intStateName + '</td><td width="200px">' + ownerList[i].intDistrictName + '</td><td width="200px">' + ownerList[i].intManadalName + '</td><td width="200px">' + ownerList[i].Place + '</td><td width="200px">' + ownerList[i].BigIntPhoneNumber + '</td><td onclick="fnUpdateOwner(' + ownerList[i].intOwnerID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteOwner(' + ownerList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
             }
         }
 
@@ -182,7 +182,7 @@
             jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
 
 
-            fnVehicleSearch(1);
+            fnOwnerSearch(1);
         });
 
     });
@@ -192,15 +192,15 @@
             jQuery("#ddlMandal").html("");
             jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
 
-            fnVehicleSearch(1);
+            fnOwnerSearch(1);
         });
     });
 
-    jQuery(function () {jQuery("#ddlMandal").change(function ()   { fnVehicleSearch(1);   });  });
-    jQuery(function () {jQuery("#ddlSort").change(function ()     { fnVehicleSearch(1);   });  });
-    jQuery(function () {jQuery("#ddlVehicles").change(function () {fnVehicleSearch(1);    });  });
+    jQuery(function () {jQuery("#ddlMandal").change(function ()   { fnOwnerSearch(1);   });  });
+    jQuery(function () {jQuery("#ddlSort").change(function ()     { fnOwnerSearch(1);   });  });
+    jQuery(function () {jQuery("#ddlVehicles").change(function () {fnOwnerSearch(1);    });  });
 
-    function fnVehicleSearch(PageNumber) {
+    function fnOwnerSearch(PageNumber) {
         var stateID = jQuery("#ddlState").val();
         if (stateID == 0 || stateID == "") {stateID = 0;}
 
@@ -226,7 +226,7 @@
                 jQuery('a#PreviousPage').attr('disabled', true);
             }
             else{
-                fnVehicleSearch(CurrentPageNumber-1);
+                fnOwnerSearch(CurrentPageNumber-1);
                 jQuery('a#PreviousPage').css("color","Blue");
 
             }
@@ -245,7 +245,7 @@
                 jQuery('a#PageNext').attr('disabled', true);
             }
             else{
-                fnVehicleSearch(CurrentPageNumber+1);
+                fnOwnerSearch(CurrentPageNumber+1);
                 jQuery('a#PreviousPage').css("color","Blue");
             }
         });
@@ -260,153 +260,129 @@
             jQuery("#txtcurrentPageNumber").val(@ViewBag.CurrentPageNumber);
         }
         else{
-            fnVehicleSearch(CurrentPageNumber);
+            fnOwnerSearch(CurrentPageNumber);
         }
     }
 
-   
 
-   function fnDeleteVehicles(){
+
+   function fnDeleteOwners(){
 
     }
-    function fnUpdateVehicle() {
+    function fnUpdateOwner() {
 
     }
 
 </script>
-<div id="AdSearchResults" class="MinHight">
-    <div class="container">
-        <div class="row" style="padding-top:20px;">
-            <div class="col-lg-1 col-sm-1">
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+@*<div>
+        <a href="/admin/AdminMain">Admin Page</a>
+    </div>*@
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+            <div id="AdFilter" class="divFilter">
+
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span class="FilterLabels">Select Vehicle Type</span><br />
+                        <select id="ddlVehicles" class="form-control" required style="height:35px;">
+                            <option value="0">---Select Vehicle---</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <span class="FilterLabels">Select State</span><br />
+                        @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
+
+                    </div>
+
+                    <div class="col-lg-3">
+                        <span class="FilterLabels">Select District</span><br />
+                        <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
+                            <option value="0">---Select District---</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                        <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
+                            <option value="0">---Select Mandal---</option>
+                        </select>
+                    </div>
+                </div>
+
+                @*<div class="row" style="padding-top:10px;" id="divSort">
+                        <div class="col-lg-9"></div>
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
+                                <option value="1" selected>Most Recent</option>
+                                <option value="2">Price:Low-High</option>
+                                <option value="3">Price:Hight-Low</option>
+                            </select>
+                        </div>
+                    </div>*@
 
             </div>
 
-            <div class="col-lg-10 col-sm-10">
-                <div class="row text-right">
-                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6"></div>
 
-                    @*<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                            <button onclick="fnFiltertoggle()" id="IdFilter"><i class="fa fa-bars"></i> Filters <i class="fa fa-angle-double-up" aria-hidden="true" id="IdAngle"></i>  </button>
+            <div id="AdList" class="table-responsive">
 
-                        </div>*@
+                <table id="tblList" style="border-collapse: collapse;text-align:center">
+                    <tr id="adlistHeader">
+                        <th width="50px">ID</th>
+                        <th width="100px">Name</th>
+                        <th width="60px">Ph Num</th>
+                        <th width="60px">State</th>
+                        <th width="100px">District</th>
+                        <th width="100px">Mandal</th>
+                        <th width="100px">Village</th>
+                        <th width="50px"><input type="checkbox" id="selectAll"></th>
+                        <th width="100px"><input id="btnVerify" type="button" value="Del Users" onclick="fnDeleteUserAccounts()" class="ghost-btn first last filled py-2" /></th>
+                    </tr>
+                    <tr><td style="align-items:center;width:50px"></td><td style="align-items:center;width:100px"></td><td style="align-items:center;width:200px"> </td><td style="align-items:center;width:300px"></td><td style="align-items:center;width:50px"></td><td style="align-items:center;width:100px"></td></tr>
 
-                </div>
-
-                <div id="AdFilter" class="divFilter">
-
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12">
-                            <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select Vehicle Type</span><br />
-                            <select id="ddlVehicles" class="form-control" required style="height:35px;">
-                                <option value="0">---Select Vehicle---</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select State</span><br />
-                            @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
-
-                        </div>
-
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select District</span><br />
-                            <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
-                                <option value="0">---Select District---</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select Mandal/Taluka</span><br />
-                            <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
-                                <option value="0">---Select Mandal---</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    @*<div class="row" style="padding-top:10px;" id="divSort">
-                            <div class="col-lg-9"></div>
-                            <div class="col-lg-3">
-                                <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
-                                    <option value="1" selected>Most Recent</option>
-                                    <option value="2">Price:Low-High</option>
-                                    <option value="3">Price:Hight-Low</option>
-                                </select>
-                            </div>
-                        </div>*@
-
-                </div>
-
-                <div class="divTable" id="divRideList">
-                    <div class="table-responsive">
-                        <table id="tblList" style="border-collapse: collapse;">
-                            <tr id="adlistHeader">
-                                <th width="100px">VID</th>
-                                <th width="200px">Type</th>
-                                <th width="200px">Model</th>
-                                <th width="200px">Name</th>
-                                <th width="200px">Veh Number</th>
-                                <th width="200px">State</th>
-                                <th width="200px">District</th>
-                                <th width="200px">Manadal</th>
-                                <th width="200px">Place</th>
-                                <th width="200px">Ph No.</th>
-                                <th width="200px">On Ride</th>
-                                <th width="200px">Edit</th>
-                                <th width="50px">Delete</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
-                    <div class="col-lg-1 col-md-2 d-none d-md-block">
-                    </div>
-                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
-                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
-                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-2 d-none d-md-block">
-                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
-                    </div>
-                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
-                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-xs-3">
-                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
-                        <a id="PageNext" data-value="2" style="cursor:pointer">
-                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
-                        </a>
-                    </div>
-                </div>
-
+                </table>
             </div>
 
-            <div class="col-lg-1 col-sm-1">
-
+            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                <div class="col-lg-1 col-md-2 d-none d-md-block">
+                </div>
+                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-2 d-none d-md-block">
+                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                </div>
+                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                    <a id="PageNext" data-value="2" style="cursor:pointer">
+                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                    </a>
+                </div>
             </div>
+
         </div>
     </div>
-
-</div>
-
-
-
-<div id="divHiddenForSearch" style="display:none">
-    @Html.TextBox("txtHiddenSearchState", (int)@ViewBag.selectedStateID, new { @class = "form-control" })
-    @Html.TextBox("txtHiddenSearchDistrict", (int)@ViewBag.selectedDistrictID, new { @class = "form-control" })
-    @Html.TextBox("txtHiddenSearchMandal", (int)@ViewBag.selectedMandalID, new { @class = "form-control" })
-    @*@Html.TextBox("txtHiddenSearchCategory", (string)@ViewBag.selectedVehicleTypeID, new { @class = "form-control" })*@
-    @*@Html.TextBox("txtHiddenSearchKeyword", (string)@ViewBag.Keyword, new { @class = "form-control" })*@
-    @Html.TextBox("txtHiddenCategoryId", (Int32)@ViewBag.selectedVehicleTypeID, new { @class = "form-control" })
-    @*@Html.TextBox("txtClickedOnSearch", null, new { @class = "form-control" })*@
 </div>

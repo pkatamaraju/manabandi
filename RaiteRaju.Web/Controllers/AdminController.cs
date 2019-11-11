@@ -32,7 +32,7 @@ namespace RaiteRaju.Web.Controllers
         {
 
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie.Value != null)
+            if (nameCookie != null)
             {
                 return RedirectToAction("AdminMain", "Admin");
             }
@@ -819,7 +819,7 @@ namespace RaiteRaju.Web.Controllers
 
 
         #region ManaBandi Admin Methods
-        public ActionResult GetVehicleDetailsForAdmin(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        public ActionResult VehicleDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
             if (nameCookie != null)
@@ -855,6 +855,77 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        public ActionResult OwnerDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                int TotalPageNumber = 0;
+                ViewBag.CurrentPageNumber = PageNumber;
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+
+                VehicleFilterModel Model = new VehicleFilterModel();
+                Model.intStateId = intStateID;
+                Model.intDistrictId = intDistrictID;
+                Model.intManadalID = intManadalID;
+                Model.VehicleTypeID = VehicleTypeID;
+                Model.IntPageNumber = PageNumber;
+                Model.IntPageSize = 50;
+
+                List<VehicleFilterModel> ownerList = new List<VehicleFilterModel>();
+                ownerList = objservice.GetOwnerDetailsForAdminPage(Model, out TotalPageNumber);
+                ViewBag.ownerList = ownerList;
+                ViewBag.TotalPageNumber = TotalPageNumber;
+
+                ViewBag.selectedStateID = intStateID;
+                ViewBag.selectedDistrictID = intDistrictID;
+                ViewBag.selectedMandalID = intManadalID;
+                ViewBag.selectedVehicleTypeID = VehicleTypeID;
+                ViewBag.pageNumber = PageNumber;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+        public ActionResult RideDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                VehicleFilterModel Model = new VehicleFilterModel();
+                Model.intStateId = intStateID;
+                Model.intDistrictId = intDistrictID;
+                Model.intManadalID = intManadalID;
+                Model.VehicleTypeID = VehicleTypeID;
+                Model.IntPageNumber = PageNumber;
+                Model.IntPageSize = 50;
+
+
+                int TotalPageNumber = 0;
+                ViewBag.CurrentPageNumber = PageNumber;
+                List<Ride> listObj = new List<Ride>();
+                InformationServiceWrapper Obj = new InformationServiceWrapper();
+                listObj = Obj.GetRidesForAdmin(PageNumber, out TotalPageNumber);
+                ViewBag.rideList = listObj;
+
+                ViewBag.TotalPageNumber = TotalPageNumber;
+                ViewBag.selectedStateID = intStateID;
+                ViewBag.selectedDistrictID = intDistrictID;
+                ViewBag.selectedMandalID = intManadalID;
+                ViewBag.selectedVehicleTypeID = VehicleTypeID;
+                ViewBag.pageNumber = PageNumber;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
         #endregion
     }
 }

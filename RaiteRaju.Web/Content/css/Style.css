@@ -824,8 +824,8 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 #lblTotalPageNumber{font-size:15px;font-family:Verdana,sans-serif;font-weight:normal;}
 #spanSlash {font-size: 15px;font-family: Verdana,sans-serif;font-weight: normal;padding:0px 2px 0px 4px;}
 
-.divTable{width:100%;/*padding-top:30px;*/margin-left:auto;margin-right:auto;border:1px solid rgba(0,0,0,0.2);min-height:300px; padding-top:1px}
-.listTable{text-align:center;border-collapse:collapse;}
+.divTable{width:100%;/*padding-top:30px;*/margin-left:auto;margin-right:auto;border:1px solid rgba(0,0,0,0.2)!important;min-height:300px; padding-top:1px}
+.listTable{text-align:center;border-right:1px solid #4a3a3a}
 .listTable th{border-color:blue;border-right:1px solid #4a3a3a}
 .listTable td{height:40px;text-decoration:none;font-size:12px;}
 .tblHeader {background-color:#686979;height:30px;border-collapse:collapse;color:white;font-size:12px;border-radius:5px;}
@@ -1111,3 +1111,6 @@ input:checked + .slider:before {
         border-radius: 50%;
     }
 /*SWITCH CSS ENDS*/
+
+
+.divFilter{padding-top:30px;padding-bottom:30px}

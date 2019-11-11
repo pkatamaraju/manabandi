@@ -352,6 +352,37 @@ namespace RaiteRaju.ServiceMapper
             listobj = ObjMapper.MapVehicleFilterEntityToModelList(listEntity);
             return listobj;
         }
+
+        public List<VehicleFilterModel> GetOwnerDetailsForAdminPage(VehicleFilterModel model, out int TotalPageNumber)
+        {
+            List<VehicleFilterModel> listobj = new List<VehicleFilterModel>();
+            List<VehicleFilterEntity> listEntity = new List<VehicleFilterEntity>();
+
+            VehicleFilterModel modelObj = new VehicleFilterModel();
+            VehicleFilterEntity entity = new VehicleFilterEntity();
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            entity = ObjMapper.MapVehicleFilterModelToEntity(model);
+            listEntity = obj.GetOwnerDetailsForAdminPage(entity, out TotalPageNumber);
+            listobj = ObjMapper.MapVehicleFilterEntityToModelList(listEntity);
+            return listobj;
+        }
+
+       public List<Ride> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            List<Ride> listobj = new List<Ride>();
+            List<RideEntity> listEntity = new List<RideEntity>();
+
+            VehicleFilterModel modelObj = new VehicleFilterModel();
+            VehicleFilterEntity entity = new VehicleFilterEntity();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+
+            listEntity = obj.GetRidesForAdmin(INTPAGENUMBER, out TotalPageNumber);
+            listobj = ObjMapper.MapRideEntityListToModel(listEntity);
+            return listobj;
+        }
+
         #endregion
 
 

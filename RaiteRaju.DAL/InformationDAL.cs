@@ -357,7 +357,7 @@ namespace RaiteRaju.DAL
             GDictionary GDObj = new GDictionary();
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFetchReviews))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBReviews))
                 {
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
@@ -624,7 +624,7 @@ namespace RaiteRaju.DAL
 
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFetchReviewsForAdmin))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_ReviewsForAdmin))
                 {
 
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
@@ -657,7 +657,7 @@ namespace RaiteRaju.DAL
 
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFetchContactDestails))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_ContactDestailsForAdmin))
                 {
 
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
@@ -924,13 +924,13 @@ namespace RaiteRaju.DAL
                         rideObj = new RideEntity();
 
                         rideObj.PhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
-                        //adobj.Title = Convert.ToString(dr[DataAccessConstants.ParamAdTitle]);
+                        rideObj.intRideID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTRIDEID]);
                         rideObj.DtCreated = Convert.ToString(dr[DataAccessConstants.PARAMDTCREATED]);
                         rideObj.txtScheduledTime = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDTIME]);
                         rideObj.dtScheduledDate = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDDATE]);
                         rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
                         rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
-                        rideObj.VehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        rideObj.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
                         ListObj.Add(rideObj);
 
                     }
@@ -1117,7 +1117,9 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+        #endregion
 
+        #region ManaBandi Admin
         public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             VehicleFilterEntity vehObj = null;
@@ -1171,9 +1173,105 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+        public List<RideEntity> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber)
+        {
+            RideEntity rideObj;
+            List<RideEntity> ListObj = new List<RideEntity>();
+            int outputparam = 0;
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_RideDetailForAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, INTPAGENUMBER);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGESIZE, DbType.Int32, 10);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        rideObj = new RideEntity();
+
+                        rideObj.intRideID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTRIDEID]);
+                        rideObj.PhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        rideObj.DtCreated = Convert.ToString(dr[DataAccessConstants.PARAMDTCREATED]);
+                        rideObj.txtScheduledTime = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDTIME]);
+                        rideObj.dtScheduledDate = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDDATE]);
+                        rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
+                        rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
+                        rideObj.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        ListObj.Add(rideObj);
+
+                    }
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
+                    }
+                    dr.Close();
+                }
+                TotalPageNumber = outputparam;
+                return ListObj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetRidesForAdmin", ex.Message);
+                TotalPageNumber = 0;
+                return null;
+            }
+        }
+
+        public List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            VehicleFilterEntity vehObj = null;
+            int outputparam = 0;
+            List<VehicleFilterEntity> listobj = new List<VehicleFilterEntity>();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_OwnerDetailsForAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.Int32, Entity.intStateId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.Int32, Entity.intDistrictId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.Int32, Entity.intManadalID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, Entity.IntPageNumber);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        vehObj = new VehicleFilterEntity();
+                        vehObj.intStateName = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
+                        vehObj.intDistrictName = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
+                        vehObj.intManadalName = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
+                        vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
+                        vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+
+                        listobj.Add(vehObj);
+
+                    }
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
+                    }
+                    dr.Close();
+                    TotalPageNumber = outputparam;
+                }
+                return listobj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetOwnerDetailsForAdminPage", ex.Message);
+                TotalPageNumber = 0;
+                return null;
+            }
+
+        }
+
+
+
+
+        #endregion
 
     }
-    #endregion
 }
 
 
