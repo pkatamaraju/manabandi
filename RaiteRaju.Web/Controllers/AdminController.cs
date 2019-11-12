@@ -352,11 +352,8 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-        public ActionResult UserRegistration()
-        {
+       
 
-            return View("UserRegistration");
-        }
         [HttpPost]
         public ActionResult Registration(FormCollection fnRegistration)
         {
@@ -890,6 +887,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult RideDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -925,6 +923,49 @@ namespace RaiteRaju.Web.Controllers
             {
                 return RedirectToAction("Login", "Admin");
             }
+        }
+
+        public ActionResult AddRide()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddRide(FormCollection form)
+        {
+            Ride ridesObj = new Ride();
+            Utility en = new Utility();
+
+
+            ridesObj.PhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+            ridesObj.Name = form["txtUserName"];
+            ridesObj.OTP = 0;
+            ridesObj.DropLocation = form["txtDropLocation"];
+            ridesObj.PickUpLocation = form["txtPickUpLocation"];
+            ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+            ridesObj.Password = en.Encrypt(ridesObj.PhoneNumber.ToString());
+
+
+            ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
+            int returnValue = manageObj.BookNow(ridesObj);
+
+            return Json(returnValue, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult PriceCalculator()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PriceCalculator(FormCollection form)
+        {
+            int Kilometers = Convert.ToInt32(form["txtKilometers"]);
+            int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+            InformationServiceWrapper objservice = new InformationServiceWrapper();
+            int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID);
+            return Json(price, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

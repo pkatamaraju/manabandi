@@ -51,13 +51,14 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_ReviewsForAdmin = "GET_ReviewsForAdmin";
         public const string GET_ContactDestailsForAdmin = "GET_ContactDestailsForAdmin";
         public const string GET_MBReviews = "GET_MBReviews";
+        public const string GET_Price = "GET_Price";
         #endregion
 
 
 
 
 
-      public const string SPINSERTADDDETAILS = "SPRRInsertAddDetails";
+        public const string SPINSERTADDDETAILS = "SPRRInsertAddDetails";
       public const string SPINSERTUSERDETAILS= "SPRRInsertUserDetails";
       public const string SPUPDATEOTP = "SPRRUpdateOTP";
       public const string SPGETUSERDETAILSWITHPASSWORD = "SPRRGetUSERDetailsWithPassword";

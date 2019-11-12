@@ -45,6 +45,8 @@ namespace RaiteRaju.ServiceLayerInterface
         List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
         List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber);
         List<RideEntity> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber);
+
+        int GetPriceForRide(int KM, int VehicleTypeId);
         #endregion
 
         [OperationContract]

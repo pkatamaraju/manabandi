@@ -120,34 +120,6 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
-        //public AdDetailsEntity GetImage(AdDetailsEntity obj)
-        //{
-        //    AdDetailsEntity Detobj = new AdDetailsEntity();
-
-        //    try
-        //    {
-        //        //using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPGETIMAGE))
-        //        //{
-        //        //    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.Int64, obj.AdID);
-        //        //    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.String, obj.UserID);
-
-        //        //    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-        //        //    while (dr.Read())
-        //        //    {
-        //        //        Detobj.Image = (byte[])(dr[DataAccessConstants.PARAMPHOTO]);
-        //        //        Detobj.UserID = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
-        //        //        Detobj.AdID = Convert.ToInt32(dr[DataAccessConstants.ParamAdId]); ;
-        //        //    }
-        //       // dr.Close();
-        //        //}
-        //        return Detobj;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ExceptionLoggin("InformationDal", "GetImage", ex.Message);
-        //        return null;
-        //    }
-        //}
         public List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber)
         {
             int outputparam = 0;
@@ -1267,6 +1239,33 @@ namespace RaiteRaju.DAL
         }
 
 
+        public int GetPriceForRide(int KM, int VehicleTypeId)
+        {
+           
+            int Price = 0;
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_Price))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTKMS, DbType.Int32, KM);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, VehicleTypeId);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        Price = Convert.ToInt32(dr[DataAccessConstants.PARAMINTFINALPRICE]);
+                    }
+                    dr.Close();
+                }
+
+                return Price;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetRidesForAdmin", ex.Message);
+                return 0;
+            }
+        }
 
 
         #endregion

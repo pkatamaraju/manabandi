@@ -383,6 +383,11 @@ namespace RaiteRaju.ServiceMapper
             return listobj;
         }
 
+        public int GetPriceForRide(int KM, int VehicleTypeId)
+        {
+            ServiceLayer.InformationService obj = new InformationService();
+            return obj.GetPriceForRide(KM,VehicleTypeId);
+        }
         #endregion
 
 

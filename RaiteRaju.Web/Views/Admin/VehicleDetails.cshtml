@@ -6,6 +6,8 @@
 <script type="text/javascript">
     $.noConflict();
 
+
+
     jQuery(document).ready(function () {
         var VehList = null;
         VehList=@(Html.Raw(Json.Encode(ViewBag.VehList)));
@@ -51,6 +53,10 @@
 
 
     jQuery(function () {
+
+        jQuery('#tabVehicles').addClass('active');
+
+
         var selectedVehicleTypeID='@ViewBag.selectedVehicleTypeID';
         var selectedStateID='@ViewBag.selectedStateID';
         var selectedDistrictID='@ViewBag.selectedDistrictID';
@@ -274,6 +280,10 @@
     }
 
 </script>
+
+
+
+
 <div id="AdSearchResults" class="MinHight">
     <div class="container">
         <div class="row" style="padding-top:20px;">

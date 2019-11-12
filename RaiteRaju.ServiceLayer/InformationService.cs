@@ -87,6 +87,13 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetRidesForAdmin(INTPAGENUMBER, out TotalPageNumber);
         }
 
+        public int GetPriceForRide(int KM, int VehicleTypeId)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetPriceForRide(KM, VehicleTypeId);
+        }
+
+
         #endregion
 
 

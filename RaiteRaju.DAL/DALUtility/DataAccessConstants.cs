@@ -114,6 +114,11 @@ namespace RaiteRaju.DAL.DALUtility
         public const string ParamActionName = "txtActionName";
         public const string ParamExceptionMessage = "txtExceptionMessage";
         public const string PARAMdtLoggedDate = "dtLoggedDate";
+
+
+        //Admin
+        public const string PARAMINTKMS = "intKMs";
+        public const string PARAMINTFINALPRICE = "intFinalPrice";
         #endregion
     }
 }
