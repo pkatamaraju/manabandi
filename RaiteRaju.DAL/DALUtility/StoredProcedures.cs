@@ -52,6 +52,8 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_ContactDestailsForAdmin = "GET_ContactDestailsForAdmin";
         public const string GET_MBReviews = "GET_MBReviews";
         public const string GET_Price = "GET_Price";
+        public const string GET_MBExceptionDetailsForAdmin = "GET_MBExceptionDetailsForAdmin";
+        public const string GET_MBSummaryDetails = "GET_MBSummaryDetails";
         #endregion
 
 
@@ -107,7 +109,7 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPFetchAdViewsStatistis = "SPRRFetchAdViewsStatistis";
       public const string SPFetchContactDestails = "SPRRFetchContactDestails";
       public const string SPFetchReviewsForAdmin = "SPRRFetchReviewsForAdmin";
-      public const string SPFetchExceptionDetailsForAdmin = "SPRRFetchExceptionDetailsForAdmin";
+
       public const string SPFetchUnverifiedUsersForAdmin = "SPRRFetchUnverifiedUsersForAdmin";
       public const string SPVerifyUsersByAdmin = "SPRRVerifyUsersByAdmin";
       public const string SPAdPostByAdmin = "SPRRAdPostByAdmin";

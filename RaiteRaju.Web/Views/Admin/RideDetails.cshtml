@@ -22,7 +22,7 @@
 
         if(length==0)
         {
-            jQuery('#tblRideList').html('<tr><td class="text-center" style="align-items:center;height:200px;">Now you are ready to Book any Vehicle<a href="/Book/BookNow?VehicleTypeId=0" class="dflt-btn inactive">Book a vehicle</a> </tr><td></td></td>');
+            jQuery('#tblRideList').html('<tr><td class="text-center" style="align-items:center;height:200px;">No Data found</tr><td></td></td>');
         }
         else
         {
@@ -54,17 +54,6 @@
 
     });
 
-    jQuery().ready(function(){
-        jQuery("#selectAll").change(function(){
-            var ischecked= jQuery(this).is(':checked');
-            if(ischecked){
-                jQuery(".SelectedAds").attr("checked",true);
-            }
-            if(ischecked==false){
-                jQuery(".SelectedAds").attr("checked",false);
-            }
-        });
-    });
 
   jQuery(document).ready(function() {
         jQuery("a#PreviousPage").click(function(){
@@ -302,94 +291,91 @@
 
         </div>
         <div class="col-md-10 col-sm-12">
-            <div class="text-center">
-                <label style="font-size:14px;padding-right:55px">Add ride here</label><a href="/Book/BookNow?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Book a vehicle</a><br />
+                <div id="Admin" class="divFilter">
+                    <div id="AdFilter" @*style="display:none;"*@>
 
-            </div>
-
-            <div id="Admin" class="divFilter">
-                <div id="AdFilter" @*style="display:none;"*@>
-
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12">
-                            <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Ads.</label>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select Vehicle Type</span><br />
-                            <select id="ddlVehicles" class="form-control" required style="height:35px;">
-                                <option value="0">---Select Vehicle---</option>
-                            </select>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select State</span><br />
-                            @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
+                                <h3 class="FormHeading text-left">Ride Details</h3> 
+                                <label style="font-size:12px;font-family:Verdana,sans-serif;"> Add Ride for user here</label><a href="/Admin/AddRide?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Add Ride</a><br>
+                                <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Rides.</label>
+                            </div>
 
                         </div>
 
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select District</span><br />
-                            <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
-                                <option value="0">---Select District---</option>
-                            </select>
-                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select Vehicle Type</span><br />
+                                <select id="ddlVehicles" class="form-control" required style="height:35px;">
+                                    <option value="0">---Select Vehicle---</option>
+                                </select>
+                            </div>
 
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Select Mandal/Taluka</span><br />
-                            <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
-                                <option value="0">---Select Mandal---</option>
-                            </select>
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select State</span><br />
+                                @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
+
+                            </div>
+
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select District</span><br />
+                                <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
+                                    <option value="0">---Select District---</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <span class="FilterLabels">Select Mandal/Taluka</span><br />
+                                <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
+                                    <option value="0">---Select Mandal---</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="divTable" id="divRideList">
-                <div class="table-responsive">
-                    <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
-                        <tr class="tblHeader">
-                            <th width="50px">S.No</th>
-                            <th width="200px">Pick Up</th>
-                            <th width="200px">Drop</th>
-                            <th width="100px">Requested Vehicle</th>
-                            <th width="200px">Date</th>
-                            <th width="200px">Status</th>
-                            <th width="200px"></th>
-                        </tr>
-                    </table>
+                <div class="divTable" id="divRideList">
+                    <div class="table-responsive">
+                        <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
+                            <tr class="tblHeader">
+                                <th width="50px">S.No</th>
+                                <th width="200px">Pick Up</th>
+                                <th width="200px">Drop</th>
+                                <th width="100px">Requested Vehicle</th>
+                                <th width="200px">Date</th>
+                                <th width="200px">Status</th>
+                                <th width="200px"></th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
-                <div class="col-lg-1 col-md-2 d-none d-md-block">
+                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                    <div class="col-lg-1 col-md-2 d-none d-md-block">
+                    </div>
+                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 d-none d-md-block">
+                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                    </div>
+                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                        <a id="PageNext" data-value="2" style="cursor:pointer">
+                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
-                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
-                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
-                    </a>
-                </div>
-                <div class="col-lg-2 col-md-2 d-none d-md-block">
-                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
-                </div>
-                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
-                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
-                </div>
-                <div class="col-lg-3 col-md-3 col-xs-3">
-                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-                </div>
-                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
-                    <a id="PageNext" data-value="2" style="cursor:pointer">
-                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
-                    </a>
-                </div>
+            </div>
+            <div class="col-md-1 col-sm-1">
+
             </div>
         </div>
-        <div class="col-md-1 col-sm-1">
-
-        </div>
-    </div>
 
 </div>

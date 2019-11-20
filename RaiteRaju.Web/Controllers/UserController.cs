@@ -22,6 +22,7 @@ namespace RaiteRaju.Web.Controllers
         {
             return View();
         }
+
         public ActionResult Login()
         {
             HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
@@ -85,6 +86,7 @@ namespace RaiteRaju.Web.Controllers
                 return Json("",JsonRequestBehavior.AllowGet);
             }
         }
+
         public ActionResult Registration()
         {
             //InformationServiceWrapper objservice = new InformationServiceWrapper();
@@ -175,6 +177,7 @@ namespace RaiteRaju.Web.Controllers
                     return Json(GDOBJ.ID, JsonRequestBehavior.AllowGet);
                 }
         }
+
         public ActionResult Verification(string MobileNumber)
         {
             HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
@@ -326,7 +329,8 @@ namespace RaiteRaju.Web.Controllers
             }
            
         }
-         [HttpPost]
+
+        [HttpPost]
         public ActionResult UpdatePassword(FormCollection fnRegistration)
         {
             int UserId;
@@ -365,8 +369,9 @@ namespace RaiteRaju.Web.Controllers
                   return Json(-99, JsonRequestBehavior.AllowGet);
               }
         }
-         [HttpPost]
-         public ActionResult UpdatePhoneNumber(FormCollection fnRegistration)
+
+        [HttpPost]
+        public ActionResult UpdatePhoneNumber(FormCollection fnRegistration)
          {
              int UserId;
              HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
@@ -455,6 +460,7 @@ namespace RaiteRaju.Web.Controllers
             return Json(AdId, JsonRequestBehavior.AllowGet);
 
         }
+
         public ActionResult UserAccount()
         {
             HttpCookie KeyCookie = Request.Cookies["_RRPS"];
@@ -526,6 +532,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "User");
             }
         }
+        
         //[NoCache]
         public ActionResult _RideList(int PageNumber)
         {
@@ -566,6 +573,7 @@ namespace RaiteRaju.Web.Controllers
             ViewBag.TotalPageNumber = TotalPageNumber;
             return PartialView("_RideList");
         }
+
         public ActionResult UserLogout()
         {
            // Session.Clear();
@@ -584,14 +592,17 @@ namespace RaiteRaju.Web.Controllers
 
             return RedirectToAction("Home","Home");
         }
+
         public ActionResult _UserSettings()
         {
             return PartialView("_UserSettings");
         }
+
         public ActionResult _Payments()
         {
             return PartialView("_Payments");
         }
+
         public ActionResult DeleteAccount(Int64 BigIntPhoneNumber)
         {
             int succuss =0;
@@ -616,6 +627,7 @@ namespace RaiteRaju.Web.Controllers
                 return Json(succuss, JsonRequestBehavior.AllowGet);
             }
         }
+      
         //public class NoCache : ActionFilterAttribute
         //{
         //    public override void OnResultExecuting(ResultExecutingContext filterContext)

@@ -16,10 +16,12 @@ namespace RaiteRaju.Web.Controllers
         {
             return View();
         }
+
         public ActionResult AboutUs()
         {
             return View();
         }
+
         public ActionResult Careers()
         {
             return View();
@@ -29,6 +31,7 @@ namespace RaiteRaju.Web.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult ContactUs(FormCollection ContUs)
         {
@@ -59,6 +62,7 @@ namespace RaiteRaju.Web.Controllers
             }
            return Json(success,JsonRequestBehavior.AllowGet) ;
         }
+
         public ActionResult ReportIssue()
         {
             return View();
@@ -68,6 +72,7 @@ namespace RaiteRaju.Web.Controllers
         {
             return View();
         }
+
         public ActionResult Reviews()
         {
             List<GDictionaryModel> list = new List<GDictionaryModel>();
@@ -76,6 +81,7 @@ namespace RaiteRaju.Web.Controllers
             ViewBag.ReviewList = list;
             return View();
         }
+
         [HttpPost]
         public ActionResult Reviews(FormCollection RVCollection)
         {
@@ -98,31 +104,38 @@ namespace RaiteRaju.Web.Controllers
             return Json(success,JsonRequestBehavior.AllowGet);
                 
         }
+
         public ActionResult TermsAndConditions()
         {
             return View();
         }
+
         public ActionResult TermsOfUse()
         {
             return View();
         }
+
         public ActionResult FeaturedAds()
         {
             return View();
         }
+
         public ActionResult HowToRegister()
         {
             return View();
 
         }
+
         public ActionResult HowToBook()
         {
             return View();
         }
+
         public ActionResult Partner()
         {
             return View();
         }
+
         public ActionResult Promotions()
         {
             return View();

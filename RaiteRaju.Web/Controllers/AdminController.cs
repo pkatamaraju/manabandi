@@ -15,6 +15,7 @@ namespace RaiteRaju.Web.Controllers
     public class AdminController : ErrorController
     {
         // GET: Admin
+
         [HandleError]
         public ActionResult AdminMain()
         {
@@ -28,6 +29,7 @@ namespace RaiteRaju.Web.Controllers
                 return View("AdminLogin");
             }
         }
+
         public ActionResult Login()
         {
 
@@ -42,6 +44,7 @@ namespace RaiteRaju.Web.Controllers
             }
 
         }
+
         [HttpPost]
         public ActionResult Login(FormCollection fnLogin)
         {
@@ -102,6 +105,7 @@ namespace RaiteRaju.Web.Controllers
                 return Json("", JsonRequestBehavior.AllowGet);
             }
         }
+
         public ActionResult VerifyAds(int PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -127,6 +131,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         [HttpPost]
         public ActionResult VerifyAds(string AdIdList)
         {
@@ -144,6 +149,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult AdManagement(int PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -169,6 +175,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         [HttpPost]
         public ActionResult AdManagement(string AdIdList)
         {
@@ -236,6 +243,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult AdViewStatistics(int PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -255,6 +263,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult AdDisplay(int AdId)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -317,6 +326,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult ReviewsForAdmin()
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -335,6 +345,7 @@ namespace RaiteRaju.Web.Controllers
             }
 
         }
+
         public ActionResult Exceptions()
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -444,6 +455,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult VerifyUsers(int PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -464,6 +476,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         [HttpPost]
         public ActionResult VerifyUsers(string SelectedPhoneNumbers)
         {
@@ -482,7 +495,7 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-         [HttpPost]
+        [HttpPost]
         public ActionResult AdPostByAdmin(FormCollection fnPost)
         {
             int AdId = 0;
@@ -552,6 +565,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase image, Int32 AdId)
         {
@@ -606,6 +620,7 @@ namespace RaiteRaju.Web.Controllers
                 return Json(AdId, JsonRequestBehavior.AllowGet);
             }
         }
+
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {
             byte[] imageBytes = null;
@@ -656,6 +671,7 @@ namespace RaiteRaju.Web.Controllers
                 thumbnailImg.Save(targetPath, image.RawFormat);
             }
         }
+
         private void ReduceImageSizeForActualImage(Stream sourcePath, string targetPath, int length)
         {
             using (var image = System.Drawing.Image.FromStream(sourcePath))
@@ -702,6 +718,7 @@ namespace RaiteRaju.Web.Controllers
                 thumbnailImg.Save(targetPath, image.RawFormat);
             }
         }
+
         public ActionResult AdDetails(int AdId)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -800,12 +817,14 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         [HttpPost]
         public ActionResult FetchDistricts(int StateId)
         {
             InformationServiceWrapper objservice = new InformationServiceWrapper();
             return Json(objservice.FetDistrictsOfState(StateId), JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult FetchMandals(int DistrictId)
         {
@@ -816,6 +835,7 @@ namespace RaiteRaju.Web.Controllers
 
 
         #region ManaBandi Admin Methods
+
         public ActionResult VehicleDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -888,16 +908,14 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        public ActionResult RideDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        public ActionResult RideDetails(Int32 intRideStatusID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
 
             if (nameCookie != null)
             {
                 VehicleFilterModel Model = new VehicleFilterModel();
-                Model.intStateId = intStateID;
-                Model.intDistrictId = intDistrictID;
-                Model.intManadalID = intManadalID;
+                Model.intRideStatusID = intRideStatusID;
                 Model.VehicleTypeID = VehicleTypeID;
                 Model.IntPageNumber = PageNumber;
                 Model.IntPageSize = 50;
@@ -907,13 +925,11 @@ namespace RaiteRaju.Web.Controllers
                 ViewBag.CurrentPageNumber = PageNumber;
                 List<Ride> listObj = new List<Ride>();
                 InformationServiceWrapper Obj = new InformationServiceWrapper();
-                listObj = Obj.GetRidesForAdmin(PageNumber, out TotalPageNumber);
+                listObj = Obj.GetRidesForAdmin(Model, out TotalPageNumber);
                 ViewBag.rideList = listObj;
 
                 ViewBag.TotalPageNumber = TotalPageNumber;
-                ViewBag.selectedStateID = intStateID;
-                ViewBag.selectedDistrictID = intDistrictID;
-                ViewBag.selectedMandalID = intManadalID;
+                ViewBag.intRideStatusID = intRideStatusID;
                 ViewBag.selectedVehicleTypeID = VehicleTypeID;
                 ViewBag.pageNumber = PageNumber;
 
@@ -925,17 +941,28 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        public ActionResult AddRide()
+        public ActionResult AddRide(int vehicleTypeId)
         {
-
-            return View();
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                ViewBag.VehicleTypeId = vehicleTypeId;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
 
         [HttpPost]
         public ActionResult AddRide(FormCollection form)
         {
-            Ride ridesObj = new Ride();
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                Ride ridesObj = new Ride();
             Utility en = new Utility();
 
 
@@ -952,20 +979,34 @@ namespace RaiteRaju.Web.Controllers
             int returnValue = manageObj.BookNow(ridesObj);
 
             return Json(returnValue, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         public ActionResult PriceCalculator()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult PriceCalculator(FormCollection form)
-        {
-            int Kilometers = Convert.ToInt32(form["txtKilometers"]);
+        { HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                int Kilometers = Convert.ToInt32(form["txtKilometers"]);
             int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
             InformationServiceWrapper objservice = new InformationServiceWrapper();
             int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID);
             return Json(price, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
         #endregion
     }

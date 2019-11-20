@@ -21,7 +21,7 @@ namespace RaiteRaju.Entities
         public string txtScheduledTime { get; set; }
         public string ExistingUserOrNot { get; set; }
         public int intRideID { get; set; }
-        public int txtRideStatus { get; set; }
+        public string txtRideStatus { get; set; }
 
     }
 }

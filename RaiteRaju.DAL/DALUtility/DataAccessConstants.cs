@@ -61,6 +61,8 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMDTSCHEDULEDDATE = "dtScheduledDate";
         public const string PARAMDTSCHEDULEDTIME = "txtScheduledTime";
         public const string PARAMINTRIDEID = "intRideID";
+        public const string PARAMTXTRIDESTATUS = "txtRideStatus";
+        public const string PARAMINTRIDESTATUSID = "intRideStatusID";
 
         //Users
         public const string ParamPhoneNumber = "BigIntPhoneNumber";

@@ -368,7 +368,7 @@ namespace RaiteRaju.ServiceMapper
             return listobj;
         }
 
-       public List<Ride> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber)
+       public List<Ride> GetRidesForAdmin(VehicleFilterModel model, out int TotalPageNumber)
         {
             List<Ride> listobj = new List<Ride>();
             List<RideEntity> listEntity = new List<RideEntity>();
@@ -377,8 +377,8 @@ namespace RaiteRaju.ServiceMapper
             VehicleFilterEntity entity = new VehicleFilterEntity();
             InformationObjectMapper ObjMapper = new InformationObjectMapper();
             ServiceLayer.InformationService obj = new InformationService();
-
-            listEntity = obj.GetRidesForAdmin(INTPAGENUMBER, out TotalPageNumber);
+            entity = ObjMapper.MapVehicleFilterModelToEntity(model);
+            listEntity = obj.GetRidesForAdmin(entity, out TotalPageNumber);
             listobj = ObjMapper.MapRideEntityListToModel(listEntity);
             return listobj;
         }

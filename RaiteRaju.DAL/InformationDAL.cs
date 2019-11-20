@@ -74,6 +74,7 @@ namespace RaiteRaju.DAL
 
             return Entity;
         }
+
         public DropDrownWrapper GetDropDownValues()
         {
             DropDrownWrapper wrapper = new DropDrownWrapper();
@@ -120,6 +121,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber)
         {
             int outputparam = 0;
@@ -172,6 +174,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<AdDetailsEntity> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             int outputparam = 0;
@@ -221,6 +224,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId, out int outputparam)
         {
             AdDetailsEntity adobj = null;
@@ -350,6 +354,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<Int32> getAdIdsWithUserid(Int32 userid)
         {
             List<Int32> AdList = new List<int>();
@@ -377,6 +382,7 @@ namespace RaiteRaju.DAL
         }
 
         #region Admin
+
         public UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password)
         {
             UserDetailsEntity UserEntity = new UserDetailsEntity();
@@ -402,6 +408,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<AdDetailsEntity> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdDetailsEntity> listEntity = new List<AdDetailsEntity>();
@@ -449,6 +456,7 @@ namespace RaiteRaju.DAL
             }
 
         }
+
         public List<UserDetailsEntity> FetchUserDetailsForAdminPage(AdFilterEntity Entity, out int TotalPageNumber)
         {
 
@@ -500,6 +508,7 @@ namespace RaiteRaju.DAL
             }
 
         }
+
         public List<AdDetailsEntity> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdDetailsEntity> listEntity = new List<AdDetailsEntity>();
@@ -546,6 +555,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             AdViewsStatisticsEntity adobj = new AdViewsStatisticsEntity();
@@ -589,6 +599,7 @@ namespace RaiteRaju.DAL
             }
 
         }
+
         public List<ReviewEntity> FetchReviewDetailsForAdmin()
         {
             List<ReviewEntity> listEntity = new List<ReviewEntity>();
@@ -654,6 +665,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<ExceptionEntity> FetchExceptionDetailsForAdmin()
         {
             List<ExceptionEntity> listEntity = new List<ExceptionEntity>();
@@ -661,7 +673,7 @@ namespace RaiteRaju.DAL
 
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFetchExceptionDetailsForAdmin))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBExceptionDetailsForAdmin))
                 {
 
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
@@ -686,6 +698,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             UserDetailsEntity UserObj = new UserDetailsEntity();
@@ -733,9 +746,11 @@ namespace RaiteRaju.DAL
             }
 
         }
+
         #endregion
 
         #region ManaBandi
+
         public List<GDictionary> FetDistrictsOfState(int StateId)
         {
             GDictionary Districts = null;
@@ -765,6 +780,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public List<GDictionary> FetMandalsOfDistrct(int DistrictId)
         {
             GDictionary Mandals = null;
@@ -823,6 +839,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             GDictionary RetObj = new GDictionary();
@@ -848,6 +865,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public UserDetailsEntity GetLoginCheck(Int64 phoneNumber, string password)
         {
             UserDetailsEntity EntityObj = new UserDetailsEntity();
@@ -876,6 +894,7 @@ namespace RaiteRaju.DAL
             }
             return EntityObj;
         }
+
         public List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
             RideEntity rideObj;
@@ -923,6 +942,7 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         public UserDetailsEntity GetUserDetailsWithPassword(Int64 PhoneNumber, string Password)
         {
             UserDetailsEntity userobj = null;
@@ -960,6 +980,7 @@ namespace RaiteRaju.DAL
 
             }
         }
+
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
         {
             UserDetailsEntity userobj = null;
@@ -995,6 +1016,7 @@ namespace RaiteRaju.DAL
             }
 
         }
+
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBExceptionLogging))
@@ -1089,9 +1111,12 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
+
         #endregion
 
+
         #region ManaBandi Admin
+
         public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             VehicleFilterEntity vehObj = null;
@@ -1145,7 +1170,8 @@ namespace RaiteRaju.DAL
                 return null;
             }
         }
-        public List<RideEntity> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber)
+
+        public List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             RideEntity rideObj;
             List<RideEntity> ListObj = new List<RideEntity>();
@@ -1154,8 +1180,9 @@ namespace RaiteRaju.DAL
             {
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_RideDetailForAdmin))
                 {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, INTPAGENUMBER);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGESIZE, DbType.Int32, 10);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32,Entity.VehicleTypeID );
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDESTATUSID, DbType.Int32, Entity.intRideStatusID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, Entity.IntPageNumber);
 
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
@@ -1170,6 +1197,7 @@ namespace RaiteRaju.DAL
                         rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
                         rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
                         rideObj.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        rideObj.txtRideStatus= Convert.ToString(dr[DataAccessConstants.PARAMTXTRIDESTATUS]);
                         ListObj.Add(rideObj);
 
                     }
@@ -1237,7 +1265,6 @@ namespace RaiteRaju.DAL
             }
 
         }
-
 
         public int GetPriceForRide(int KM, int VehicleTypeId)
         {

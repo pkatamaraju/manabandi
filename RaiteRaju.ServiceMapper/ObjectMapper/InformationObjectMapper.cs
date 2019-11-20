@@ -35,6 +35,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             }
 
         }
+
         internal List<AdDetailsModel> MapAdDetailsEntityListToAdDetailsModel(List<AdDetailsEntity> ListEntity)
         {
 
@@ -65,6 +66,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
         internal AdDetailsModel MapAdDetailsEntityToModel(AdDetailsEntity Entity)
       {
             if (Entity != null)
@@ -119,6 +121,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             Model.Mandal = mandal;
             return Model;
         }
+
         internal GDictionaryModel MapGDictionaryEntityToModel(GDictionary Entity)
         {
             GDictionaryModel obj = new GDictionaryModel();
@@ -133,6 +136,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             }
             return obj;
         }
+
         internal List<GDictionaryModel> MapGDictionaryEntityListToModelList(List<GDictionary> EntityList)
         {
             GDictionaryModel obj;
@@ -151,6 +155,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             }
             return ModelList;
         }
+
         internal UserDetailsModel MapUserDetailsModelToEntity(UserDetailsEntity Entity)
         {
             UserDetailsModel UserObj = new UserDetailsModel();
@@ -168,6 +173,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return UserObj;
 
         }
+
         internal List<UserDetailsModel> MapUserDetailsModelListToEntityList(List<UserDetailsEntity> EntityList)
         {
             UserDetailsModel UserObj;
@@ -248,6 +254,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             
 
         }
+
         internal AdDetailsModel MapAdDetailsEntityToAdDetailsModel(AdDetailsEntity AdEntity)
         {
 
@@ -296,6 +303,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             else
                 return null;
         }
+
         internal List<AdViewStatisticsModel> MapAdViewsStatisticsEntityListToAdViewStatisticsModelList(List<AdViewsStatisticsEntity> EntityList)
         {
             if (EntityList != null)
@@ -318,6 +326,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
         internal List<ReviewModel> MapReviewEntityToModel(List<ReviewEntity> EntityList)
         {
             ReviewModel Model=new ReviewModel();
@@ -340,6 +349,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
         internal List<ContactUsModel> MapContactUsEntityToModel(List<ContactUsEntity> EntityList)
         {
             ContactUsModel Model;
@@ -364,6 +374,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
         internal List<ExceptionModel> MapExceptionEntityToModel(List<ExceptionEntity> EntityList)
         {
             ExceptionModel Model;
@@ -419,6 +430,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
         internal List<Vehicle> MapVehicleEntityListToModel(List<VehicleEntity> ListEntity)
         {
 
@@ -495,6 +507,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     model.intManadalName = entity.intManadalName;
                     model.VehicleTypeID = entity.VehicleTypeID;
                     model.flgOnRide = entity.flgOnRide;
+                    model.intRideStatusID = entity.intRideStatusID;
 
                     lisObj.Add(model);
                 }
@@ -526,6 +539,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 entity.intManadalName = model.intManadalName;
                 entity.VehicleTypeID = model.VehicleTypeID;
                 entity.flgOnRide = model.flgOnRide;
+                entity.intRideStatusID = model.intRideStatusID;
             }
 
             return entity;

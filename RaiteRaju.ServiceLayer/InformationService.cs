@@ -81,10 +81,10 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetOwnerDetailsForAdminPage(Entity, out TotalPageNumber);
         }
-        public List<RideEntity> GetRidesForAdmin(int INTPAGENUMBER, out int TotalPageNumber)
+        public List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetRidesForAdmin(INTPAGENUMBER, out TotalPageNumber);
+            return obj.GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
         public int GetPriceForRide(int KM, int VehicleTypeId)

@@ -15,10 +15,12 @@ namespace RaiteRaju.Web.Controllers
     {
                 
         public static int PageNumber;
+
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult Home()
         {
 
@@ -32,6 +34,7 @@ namespace RaiteRaju.Web.Controllers
             InformationServiceWrapper objservice = new InformationServiceWrapper();
             return Json(objservice.FetDistrictsOfState(StateId),JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult FetchMandals(int DistrictId)
         {

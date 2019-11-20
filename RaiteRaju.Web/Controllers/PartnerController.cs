@@ -14,10 +14,12 @@ namespace RaiteRaju.Web.Controllers
     public class PartnerController : ErrorController
     {
         // GET: Partner
+
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult OwnerRegistration()
         {
             HttpCookie OTPCookie = new HttpCookie("_ROTP_");
@@ -32,6 +34,7 @@ namespace RaiteRaju.Web.Controllers
             }
             
         }
+
         [HttpPost]
         public ActionResult OwnerRegistration(FormCollection form)
         {
@@ -126,24 +129,6 @@ namespace RaiteRaju.Web.Controllers
             }
 
         }
-
-        //[HttpPost]
-        //public ActionResult AddVehicle(FormCollection form) {
-
-
-        //    Vehicle model = new Vehicle();
-        //    Utility en = new Utility();
-        //    HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
-
-        //    model.BigIntPhoneNumber = Convert.ToInt64(en.Decrypt(PhoneNumberCookie["_RRUPn"]));
-        //    model.intVehicleTypeID = Convert.ToInt32(form[""]);
-        //    model.txtVehicleName = form["txtVehicleName"];
-        //    model.txtVehicleNumber = form["txtVehicleNumber"];
-
-        //    ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
-        //    mangeObj.AddVehicle(model);
-        //    return Json("success", JsonRequestBehavior.AllowGet);
-        //}
 
         public ActionResult _VehicleList(int PageNumber)
         {
