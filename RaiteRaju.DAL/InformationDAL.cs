@@ -1190,6 +1190,7 @@ namespace RaiteRaju.DAL
                         rideObj = new RideEntity();
 
                         rideObj.intRideID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTRIDEID]);
+                        rideObj.Name= Convert.ToString(dr[DataAccessConstants.ParamtName]);
                         rideObj.PhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
                         rideObj.DtCreated = Convert.ToString(dr[DataAccessConstants.PARAMDTCREATED]);
                         rideObj.txtScheduledTime = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDTIME]);

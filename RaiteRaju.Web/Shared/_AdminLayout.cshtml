@@ -34,7 +34,7 @@
                 window.location.href = "/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
             });
             jQuery("#tablRides").click(function () {
-                window.location.href = "/admin/RideDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
+                window.location.href = "/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1";
             });
             jQuery("#tabPriceCalculator").click(function () {
                 window.location.href = "/admin/PriceCalculator";
@@ -111,7 +111,7 @@
                 <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
                     
                     <div class="topnav" id="myTopnav">
-                        <a href="/admin/RideDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tablRides" tabindex="-1">Ride Details</a>
+                        <a href="/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1" id="tablRides" tabindex="-1">Ride Details</a>
                         <a href="/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabVehicles" tabindex="-1">Vehicles</a>
                         <a href="/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabOwners" tabindex="-1">Owners</a>
                         <a href="#" id="tabPriceCalculator" tabindex="-1">Price Calculator</a>

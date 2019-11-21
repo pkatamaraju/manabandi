@@ -409,6 +409,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 foreach (RideEntity item in ListEntity)
                 {
                     rideObj = new Ride();
+                    rideObj.Name = item.Name;
                     rideObj.PhoneNumber = item.PhoneNumber;
                     rideObj.DtCreated = item.DtCreated;
                     rideObj.PickUpLocation = item.PickUpLocation;

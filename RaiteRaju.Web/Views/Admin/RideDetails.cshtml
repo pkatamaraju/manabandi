@@ -9,7 +9,7 @@
     $.noConflict();
 
 
-    
+
     jQuery().ready(function () {
         jQuery('#tablRides').addClass('active');
     });
@@ -30,7 +30,7 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo=pageNumber+j;
-                tblrideList.append('<tr id="rideListRow"><td onclick="fnUpdateAd(' + rideList[i].intRideID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="200px">' + rideList[i].DtCreated + '</td><td width="200px">' + rideList[i].txtRideStatus + '</td><td><input type="checkbox" value=' + rideList[i].intRideID + ' class="SelectedAds" ></td><tr>')
+                tblrideList.append('<tr id="rideListRow"><td onclick="fnUpdateAd(' + rideList[i].intRideID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td onclick="fnUpdateRideDetails(' + rideList[i].intRideID + ')" style="cursor:pointer;color:blue;">Edit</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -113,10 +113,7 @@
 
     jQuery(function () {
         var selectedVehicleTypeID='@ViewBag.selectedVehicleTypeID';
-        var selectedStateID='@ViewBag.selectedStateID';
-        var selectedDistrictID='@ViewBag.selectedDistrictID';
-        var selectedMandalID='@ViewBag.selectedMandalID';
-        @*var SelectedSort='@ViewBag.SortVal';*@
+        var SelectedRideStatusID='@ViewBag.intRideStatusID';
 
 
         jQuery.ajax({
@@ -141,71 +138,9 @@
         });
 
 
-        if (selectedStateID != 0) {
-            jQuery('select[name="ddlState"]').find('option[value=' + selectedStateID + ']').attr("selected", true);
-            jQuery('#ddlDistrict').empty();
-            jQuery("#ddlDistrict").html("");
-            jQuery("#ddlDistrict").append(jQuery('<option></option>').val("0").html("---Select District---"));
-
-            jQuery.ajax({
-                type: "POST",
-                url: '@Url.Action("FetchDistricts", "Home")',
-                data: '{StateId:"' + selectedStateID + '"}',
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    jQuery.each(result, function (i) {
-                        if (selectedDistrictID != "" || selectedDistrictID != 0) {
-                            if (result[i].ID == parseInt(selectedDistrictID)) {
-                                jQuery("#ddlDistrict").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
-                            }
-                            else {
-                                jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                            }
-                        }
-                        else {
-                            jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                        }
-
-                    });
-                },
-                error: function (response) {
-                    alert('Error Occured');
-                }
-            });
+        if (SelectedRideStatusID != 0) {
+            jQuery('select[name="ddlRideStatus"]').find('option[value=' + SelectedRideStatusID + ']').attr("selected", true);
         }
-            if (selectedDistrictID != "" || selectedDistrictID != 0) {
-                jQuery('#ddlMandal').empty();
-                jQuery("#ddlMandal").html("");
-                jQuery("#ddlMandal").append(jQuery('<option></option>').val("").html("---Select Mandal---"));
-
-                jQuery.ajax({
-                    type: "POST",
-                    url: '@Url.Action("FetchMandals", "Home")',
-                    data: '{DistrictId:"' + selectedDistrictID + '"}',
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        jQuery.each(result, function (i) {
-                            if (selectedMandalID != "" || selectedMandalID != 0) {
-                                if (result[i].ID == parseInt(selectedMandalID)) {
-                                    jQuery("#ddlMandal").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
-                                }
-                                else {
-                                    jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                                }
-                            }
-                            else {
-                                jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                            }
-
-                        });
-                    },
-                    error: function (response) {
-                        alert('Error Occured');
-                    }
-                });
-            }
 
 
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -229,59 +164,40 @@
         }
     });
 
+
+
+
     jQuery(function () {
-        jQuery("#ddlState").change(function () {
-
-            jQuery('#ddlDistrict').empty();
-            jQuery("#ddlDistrict").html("");
-            jQuery("#ddlDistrict").append
-                (jQuery('<option></option>').val("0").html("---Select District---"));
-
-
-            jQuery('#ddlMandal').empty();
-            jQuery("#ddlMandal").html("");
-            jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
+        jQuery("#ddlVehicles").change(function () {
+            jQuery('select[name="ddlRideStatus"]').find('option[value=' + 0 + ']').attr("selected", true);
 
 
             fnRideSearch(1);
         });
-
     });
-
-    jQuery(function () { jQuery("#ddlDistrict").change(function () {
-            jQuery('#ddlMandal').empty();
-            jQuery("#ddlMandal").html("");
-            jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
-
-            fnRideSearch(1);
-        });
-    });
-
-    jQuery(function () {jQuery("#ddlMandal").change(function ()   { fnRideSearch(1);   });  });
-    jQuery(function () {jQuery("#ddlSort").change(function ()     { fnRideSearch(1);   });  });
-    jQuery(function () {jQuery("#ddlVehicles").change(function () {fnRideSearch(1);    });  });
+    jQuery(function () { jQuery("#ddlRideStatus").change(function () { fnRideSearch(1); }); });
 
      function fnRideSearch(PageNumber) {
-        var stateID = jQuery("#ddlState").val();
-        if (stateID == 0 || stateID == "") {stateID = 0;}
 
-        var districtID = jQuery("#ddlDistrict").val();
-        if (districtID == 0 || districtID == "") {districtID = 0;}
+        var RideStatusID = jQuery("#ddlRideStatus").val();
 
-        var mandalID = jQuery("#ddlMandal").val();
-        if (mandalID == 0 || mandalID == "") {mandalID = 0;}
+         if (RideStatusID == 0 || RideStatusID == "") { RideStatusID = 0; }
 
         var pageNumber = parseInt(PageNumber);
 
-        var vehicleTypeID = jQuery("#ddlVehicles").val();
-        if (vehicleTypeID == 0 || vehicleTypeID == "") {vehicleTypeID = 0;}
+         var vehicleTypeID = jQuery("#ddlVehicles").val();
 
+        if (vehicleTypeID == 0 || vehicleTypeID == "") { vehicleTypeID = 0; }
 
-        if (stateID == 0 && districtID == 0 && mandalID == 0 && vehicleTypeID == 0) {}
-        else {
-            window.location.href = '@Url.Action("RideDetails", "Admin")?intStateID=' + stateID + '&intDistrictID=' + districtID + '&intManadalID=' + mandalID + '&VehicleTypeID=' + vehicleTypeID + '&PageNumber=' + pageNumber;
-        }
+         window.location.href = '@Url.Action("RideDetails", "Admin")?intRideStatusID=' + RideStatusID + '&VehicleTypeID=' + vehicleTypeID + '&PageNumber=' + pageNumber;
+
     }
+
+    function fnUpdateRideDetails() {
+
+    }
+
+
 </script>
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
@@ -291,91 +207,92 @@
 
         </div>
         <div class="col-md-10 col-sm-12">
-                <div id="Admin" class="divFilter">
-                    <div id="AdFilter" @*style="display:none;"*@>
+            <div id="Admin" class="divFilter">
+                <div id="AdFilter" @*style="display:none;"*@>
 
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-12">
-                                <h3 class="FormHeading text-left">Ride Details</h3> 
-                                <label style="font-size:12px;font-family:Verdana,sans-serif;"> Add Ride for user here</label><a href="/Admin/AddRide?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Add Ride</a><br>
-                                <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Rides.</label>
-                            </div>
-
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <h3 class="FormHeading text-left">Ride Details</h3>
+                            <label style="font-size:12px;font-family:Verdana,sans-serif;"> Add Ride for user here</label><a href="/Admin/AddRide?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Add Ride</a><br>
+                            <label style="font-size:12px;font-family:Verdana,sans-serif;">Select Below Dropdowns To Filter Rides.</label>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <span class="FilterLabels">Select Vehicle Type</span><br />
-                                <select id="ddlVehicles" class="form-control" required style="height:35px;">
-                                    <option value="0">---Select Vehicle---</option>
-                                </select>
-                            </div>
+                    </div>
 
-                            <div class="col-lg-3">
-                                <span class="FilterLabels">Select State</span><br />
-                                @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control", required = "required" })
-
-                            </div>
-
-                            <div class="col-lg-3">
-                                <span class="FilterLabels">Select District</span><br />
-                                <select id="ddlDistrict" name="ddlDistrict" class="form-control" required="required">
-                                    <option value="0">---Select District---</option>
-                                </select>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <span class="FilterLabels">Select Mandal/Taluka</span><br />
-                                <select id="ddlMandal" name="ddlMandal" class="form-control" required="required">
-                                    <option value="0">---Select Mandal---</option>
-                                </select>
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Select Vehicle Type</span><br />
+                            <select id="ddlVehicles" class="form-control" required style="height:35px;">
+                                <option value="0">---Select Vehicle---</option>
+                            </select>
                         </div>
-                    </div>
-                </div>
-                <div class="divTable" id="divRideList">
-                    <div class="table-responsive">
-                        <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
-                            <tr class="tblHeader">
-                                <th width="50px">S.No</th>
-                                <th width="200px">Pick Up</th>
-                                <th width="200px">Drop</th>
-                                <th width="100px">Requested Vehicle</th>
-                                <th width="200px">Date</th>
-                                <th width="200px">Status</th>
-                                <th width="200px"></th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
 
-                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
-                    <div class="col-lg-1 col-md-2 d-none d-md-block">
-                    </div>
-                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
-                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
-                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-2 d-none d-md-block">
-                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
-                    </div>
-                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
-                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-xs-3">
-                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
-                        <a id="PageNext" data-value="2" style="cursor:pointer">
-                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
-                        </a>
+                        <div class="col-lg-3">
+                            <span class="FilterLabels">Select Status</span><br />
+                            <select id="ddlRideStatus" name="ddlRideStatus" class="form-control" required="required">
+                                <option value="0">---Select Status---</option>
+                                <option value="1">Not Assigned</option>
+                                <option value="2">Assigned</option>
+                                <option value="3">Rejected By User</option>
+                                <option value="4">Completed</option>
+                                <option value="5">Deleted</option>
+                            </select>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
-            <div class="col-md-1 col-sm-1">
+            <div class="divTable" id="divRideList">
+                <div class="table-responsive">
+                    <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
+                        <tr class="tblHeader">
+                            <th width="50px">S.No</th>
+                            <th width="100px">Name</th>
+                            <th width="100px">Ph No.</th>
+                            <th width="100px">Pick Up</th>
+                            <th width="100px">Drop</th>
+                            <th width="100px">Requested Vehicle</th>
+                            <th width="100px">Entry Date</th>
+                            <th width="100px">Status</th>
+                            <th width="80px"></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
+            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                <div class="col-lg-1 col-md-2 d-none d-md-block">
+                </div>
+                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-2 d-none d-md-block">
+                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                </div>
+                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                    <a id="PageNext" data-value="2" style="cursor:pointer">
+                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                    </a>
+                </div>
             </div>
         </div>
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+    </div>
+
+</div>
+
+
+<div>
 
 </div>
