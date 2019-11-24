@@ -78,6 +78,15 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId);
         }
+        public RideEntity GetRideDetailsByID(int rideID)
+        {
+            return new DAL.InformationDAL().GetRideDetailsByID(rideID);
+        }
+
+       public OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID)
+        {
+            return new DAL.InformationDAL().GetOwnerDetailsByIDForAdmin(ownerID);
+        }
         #endregion
         public AdDetailsEntity FetchAdDetails(int AdId)
         {

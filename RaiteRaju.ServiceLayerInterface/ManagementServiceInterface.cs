@@ -26,15 +26,19 @@ namespace RaiteRaju.ServiceLayerInterface
 
         [OperationContract]
         UserDetailsEntity VerifyMobileNumber(UserDetailsEntity Obj);
+
         [OperationContract]
         void DeleteUserAd(int AdId);
+
         [OperationContract]
         int UpdateUserDetails(UserDetailsEntity Obj);
+
         [OperationContract]
         int UPDATEOTP(UserDetailsEntity Obj);
 
         [OperationContract]
         int VerifySelectedAds(string SelectedsAds);
+
         [OperationContract]
         int DeleteUserAccount(Int64 BigIntPhoneNumber);
 
@@ -61,6 +65,7 @@ namespace RaiteRaju.ServiceLayerInterface
 
         [OperationContract]
         int InsertAdPostByAdmin(AdDetailsEntity Obj);
+
         [OperationContract]
         int InsertPromotions(string Name, Int64 PhoneNumber, string Description);
 
@@ -68,13 +73,22 @@ namespace RaiteRaju.ServiceLayerInterface
         int BookRide(RideEntity ride);
 
         [OperationContract]
+        int UpateRideDetailsForAdmin(RideEntity ride);
+
+        [OperationContract]
         int VehicleOwnerRegistration(OwnerEntity owner);
+
         [OperationContract]
         string AddVehicle(VehicleEntity entity);
+
         [OperationContract]
         void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
+
         [OperationContract]
         string UpdateVehicleDetails(VehicleEntity entity);
+
+        [OperationContract]
+        int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner);
     }
          
 }

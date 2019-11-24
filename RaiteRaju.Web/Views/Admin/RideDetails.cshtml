@@ -30,7 +30,7 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo=pageNumber+j;
-                tblrideList.append('<tr id="rideListRow"><td onclick="fnUpdateAd(' + rideList[i].intRideID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td onclick="fnUpdateRideDetails(' + rideList[i].intRideID + ')" style="cursor:pointer;color:blue;">Edit</td><tr>')
+                tblrideList.append('<tr class="tableRow"><td onclick=fnUpdateAd(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">' + SNo + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -193,7 +193,8 @@
 
     }
 
-    function fnUpdateRideDetails() {
+    function fnUpdateRideDetails(rideID) {
+        window.location.href = '@Url.Action("EditRideDetails", "Admin")?rideID=' + rideID ;
 
     }
 
@@ -244,10 +245,10 @@
                 </div>
             </div>
             <div class="divTable" id="divRideList">
-                <div class="table-responsive">
-                    <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
-                        <tr class="tblHeader">
-                            <th width="50px">S.No</th>
+                <div style="border:1px solid black" class="table-responsive">
+                    <table id="tblRideList" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">
+                        <tr id="adlistHeader">
+                            <th width="20px">S.No</th>
                             <th width="100px">Name</th>
                             <th width="100px">Ph No.</th>
                             <th width="100px">Pick Up</th>
@@ -255,6 +256,7 @@
                             <th width="100px">Requested Vehicle</th>
                             <th width="100px">Entry Date</th>
                             <th width="100px">Status</th>
+                            <th width="100px">VehcileNumber</th>
                             <th width="80px"></th>
                         </tr>
                     </table>

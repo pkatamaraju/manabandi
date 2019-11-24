@@ -1,0 +1,329 @@
+﻿@model RaiteRaju.Web.Models.UserDetailsModel
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("RideDetails", "Admin")';
+    }
+
+    jQuery(document).ready(function () {
+        jQuery("#txtAssignedVehicle").keyup(function (e) {
+            if (jQuery("#txtAssignedVehicle") != "") {
+                jQuery('select[name="ddlRideStatus"]').find('option[value=' + 2 + ']').attr("selected", true);
+            }
+            else {
+                if (e.keyCode == 8) {
+                    jQuery('select[name="ddlRideStatus"]').find('option[value=' + 0 + ']').attr("selected", true);
+                }
+            }
+        });
+    });
+
+    function validation() {
+
+        var UserName = jQuery("#txtUserName").val();
+        var PhoneNumber = jQuery("#txtPhoneNumber").val();
+        var PickUpLocation = jQuery("#txtPickUpLocation").val();
+        var DropLocation = jQuery("#txtDropLocation").val();
+        var ddlVehicles = jQuery("#ddlVehicles").val();
+        var ShceduledTime = jQuery("#txtScheduledTime").val();
+        var ShceduledDate = jQuery("#txtScheduledDate").val();
+        var VehicleNumber = jQuery("#txtAssignedVehicle").val();
+        var rideStatusID = jQuery("#ddlRideStatus").val();
+
+        var vehicleNumberRegex = /^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}$/;
+        var phone = jQuery("#txtPhoneNumber").val();
+        var intRegex = /^[5-9]{1}[0-9]{9}$/;
+        //var datePattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+        var datePattern = /^(([0-9]{4})\-([0-9]{2})\-([0-9]{2}))$/;
+        var message = "";
+
+        if (UserName == "") {
+            message = message + "Please enter Name.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(UserName) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Name.\n";
+        }
+        else if (UserName.length > 50 || UserName.length < 3) {
+            message = message + "Name should be between 3 to 50 characters.\n";
+        }
+
+        if (PhoneNumber == "") {
+            message = message + "Please enter Phone number.\n";
+        }
+        else if (intRegex.test(phone) == false) {
+            message = message + "Please enter valid Phone number.\n";
+        }
+
+        if (ddlVehicles == "0") {
+            message = message + "Select required vehicle type.\n";
+        }
+        else if (PickUpLocation == "") {
+            message = message + "Please enter Pick up location.\n";
+        }
+        if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
+
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
+        }
+        else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
+            message = message + "Pick up location should be between 4 to 50 characters.\n";
+        }
+
+        if (DropLocation == "") {
+            message = message + "Please enter Drop location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
+        }
+        else if (DropLocation.length > 50 || DropLocation.length < 4) {
+            message = message + "Drop location should be between 4 to 50 characters\n";
+        }
+
+        if (ShceduledTime != "" & (ShceduledTime < 1 || ShceduledTime>24 ) ) {
+            message = message + "Shceduled Time should be between 1 to 24 Hours\n";
+        }
+
+
+        if (ShceduledDate != "" & datePattern.test(ShceduledDate) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Shceduled Date.\n";
+        }
+        else if (DropLocation.length > 50 || DropLocation.length < 4) {
+            message = message + "ShceduledDate should be between 4 to 50 characters\n";
+        }
+
+        if (rideStatusID==0) {
+            message = message + "Please select Ride Status\n";
+        }
+
+        if (VehicleNumber == "") {
+            message = message + "Please enter Vehicle Number.\n";
+        }
+        else if (vehicleNumberRegex.test(VehicleNumber) == false) {
+            message = message + "Please enter valid vehicle number.\n";
+        }
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnUpdateRideDetails() {
+
+        var form = jQuery("#EditRideForm").serialize();
+        form += "&rideID=" + '@ViewBag.rideID' + "&intVehicleTypeId=" + jQuery("#ddlVehicles").val() + "&intRideStatusID=" + jQuery("#ddlRideStatus").val();
+
+        if (validation()) {
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("EditRideDetails", "Admin")',
+                    dataType: 'json',
+                    data: form,
+                    success: function (data) {
+                            jQuery('body').loadingIndicator();
+                            jQuery("#EditRideForm")[0].reset();
+                            window.location.href = "/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1"
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                        jQuery("#diverror").show();
+                    }
+                });
+            }
+        }
+
+
+    jQuery(document).ready(function () {
+        var rideDetails =@(Html.Raw(Json.Encode(@ViewBag.rideDetails)));
+        var VehicleTypeId = rideDetails.VehicleTypeID;
+
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (VehicleTypeId!=0 && VehicleTypeId == result[i].ID) {
+                        jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                    }
+                    else {
+                        jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                    }
+                });
+            },
+            error: function (response) {
+                alert('Error Occured');
+            }
+            });
+
+
+        jQuery("#txtUserName").val(rideDetails.Name);
+        jQuery("#txtPhoneNumber").val(rideDetails.PhoneNumber);
+        jQuery("#txtPickUpLocation").val(rideDetails.PickUpLocation);
+        jQuery("#txtDropLocation").val(rideDetails.DropLocation);
+        jQuery('select[name="ddlRideStatus"]').find('option[value=' + rideDetails.txtRideStatus + ']').attr("selected", true);
+        jQuery("#txtAssignedVehicle").val(rideDetails.txtVehicleNumber);
+        jQuery("#txtScheduledTime").val(rideDetails.txtScheduledTime);
+        jQuery("#txtScheduledDate").val(rideDetails.txtScheduledDate);
+
+    });
+
+
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("EditRideDetails", "Admin", FormMethod.Post, new { id = "EditRideForm" }))
+                {
+                <h3 class="FormHeading">Update Ride Details here</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Update Ride Details</h3>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.TextBox("txtUserName", (string)ViewBag.userName, new { @class = "form-control", @placeholder = " Name", disabled="disabled" })
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10" value='@ViewBag.phoneNumber' , disabled="disabled">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlVehicles" class="form-control text-center">
+                                            <option value="0">---Select Vehicle---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select required vehicle</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtPickUpLocation">Pick Up Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                                        <input type="text" class="form-control" id="txtPickUpLocation" name="txtPickUpLocation" placeholder="Nandigama">
+                                        <span class="error-msg" id="ErrorPickUpLocation">Please enter Pick Up Location</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtDropLocation">Drop Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtDropLocation" name="txtDropLocation" placeholder="Vijayawada">
+                                        <span class="error-msg" id="ErrorDropLocation">Please enter Drop Location</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtAssignedVehicle">Assigned Vehicle Number<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtAssignedVehicle" name="txtAssignedVehicle" placeholder="AB09CD2012">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtRideStatus">Ride Status<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlRideStatus" name="ddlRideStatus" class="form-control" required="required">
+                                            <option value="0">---Select Status---</option>
+                                            <option value="1">Not Assigned</option>
+                                            <option value="2">Assigned</option>
+                                            <option value="3">Rejected By User</option>
+                                            <option value="4">Completed</option>
+                                            <option value="5">Deleted</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtScheduledDate">Scheduled Date<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="date" class="form-control" id="txtScheduledDate" name="txtScheduledDate" placeholder="28-11-2019" >
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtScheduledTime">Scheduled Time<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtScheduledTime" name="txtScheduledTime" placeholder="12">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnUpdateRideDetails()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

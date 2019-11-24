@@ -1112,6 +1112,45 @@ namespace RaiteRaju.DAL
             }
         }
 
+        public RideEntity GetRideDetailsByID(int rideID)
+        {
+            try
+            {
+                RideEntity rideObj=null;
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBRideDetailsByID))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDEID, DbType.Int32, rideID);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        rideObj = new RideEntity();
+
+                        rideObj.intRideID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTRIDEID]);
+                        rideObj.Name = Convert.ToString(dr[DataAccessConstants.ParamtName]);
+                        rideObj.PhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        rideObj.txtScheduledTime = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDTIME]);
+                        rideObj.dtScheduledDate = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDDATE]);
+                        rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
+                        rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
+                        rideObj.VehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        rideObj.txtRideStatus = Convert.ToString(dr[DataAccessConstants.PARAMINTRIDESTATUSID]);
+                        rideObj.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+
+                    }
+                    dr.Close();
+                }
+               
+                return rideObj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetRideDetailsByID", ex.Message);
+                return null;
+            }
+
+        }
+
         #endregion
 
 
@@ -1149,6 +1188,7 @@ namespace RaiteRaju.DAL
                         vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
                         vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
                         vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                        vehObj.flgOnRide = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGONRIDE]);
 
                         listobj.Add(vehObj);
 
@@ -1199,6 +1239,8 @@ namespace RaiteRaju.DAL
                         rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
                         rideObj.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
                         rideObj.txtRideStatus= Convert.ToString(dr[DataAccessConstants.PARAMTXTRIDESTATUS]);
+                        rideObj.VehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        rideObj.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
                         ListObj.Add(rideObj);
 
                     }
@@ -1244,7 +1286,8 @@ namespace RaiteRaju.DAL
                         vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
                         vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
                         vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
-
+                        vehObj.intOwnerID= Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        vehObj.FlgAccountDeleted= Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
                         listobj.Add(vehObj);
 
                     }
@@ -1294,8 +1337,42 @@ namespace RaiteRaju.DAL
                 return 0;
             }
         }
+       
+        public OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID)
+        {
+            OwnerEntity Entity = null;
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBOwnerDetailsByIDForAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTOWNERID, DbType.Int32, ownerID);
 
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        Entity = new OwnerEntity();
 
+                        Entity.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        Entity.txtOwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
+                        Entity.intStateId = Convert.ToInt32(dr[DataAccessConstants.PARAMINTSTATEID]);
+                        Entity.intDistrictId = Convert.ToInt32(dr[DataAccessConstants.PARAMDISTRICTID]);
+                        Entity.intManadalID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTMANDALID]);
+                        Entity.txtPlace = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                        Entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+
+                    }
+                    
+                    dr.Close();
+                    return Entity;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetOwnerDetailsForAdminPage", ex.Message);
+                return null;
+            }
+
+        }
         #endregion
 
     }

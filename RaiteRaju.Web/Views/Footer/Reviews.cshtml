@@ -3,11 +3,6 @@
     ViewBag.Title = "Reviews";
     Layout = "~/Shared/_Layout.cshtml";
 }
-<title> Raiteraju</title>
-<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="robots" content="index,follow" />
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -72,22 +67,24 @@
 </script>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <div style="padding-top:100px;padding-left:10px;">
-                    <label style="font-size:16px;font-weight:bold;font-family:Verdana,sans-serif">User Reviews:</label>
-                    <table id="tblReviewList" style="border-collapse: collapse;">
-                        <tr><td></td><td></td></tr>
-                        <tr><td colspan="2"></td></tr>
-                    </table>
-                </div>
-            </div>
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="col-lg-10 col-md-10">
+
+            <h3 class="FormHeading text-left">User Reviews:</h3>
+            <table id="tblReviewList" style="border-collapse: collapse;">
+                <tr><td></td><td></td></tr>
+                <tr><td colspan="2"></td></tr>
+            </table>
         </div>
+        <div class="col-lg-1 col-md-1"></div>
     </div>
+</div>
 
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-1 col-md-1"></div>
+            <div class="col-lg-10 col-md-10">
                 @using (Html.BeginForm("Reviews", "Footer", FormMethod.Post, new { id = "ReviewsForm" }))
                 {
                     <h3 class="FormHeading">Write a review about our website</h3>
@@ -116,7 +113,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div> }
+                    </div>}
             </div>
+            <div class="col-lg-1 col-md-1"></div>
         </div>
     </div>

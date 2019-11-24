@@ -22,6 +22,7 @@ namespace RaiteRaju.Entities
         public string ExistingUserOrNot { get; set; }
         public int intRideID { get; set; }
         public string txtRideStatus { get; set; }
+        public string txtVehicleNumber { get; set; }
 
     }
 }

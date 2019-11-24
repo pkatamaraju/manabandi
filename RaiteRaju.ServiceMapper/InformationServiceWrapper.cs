@@ -36,6 +36,7 @@ namespace RaiteRaju.ServiceMapper
             gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
             return gdModel;
         }
+
         public List<GDictionaryModel> FetMandalsOfDistrct(int DistrictId)
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -46,6 +47,7 @@ namespace RaiteRaju.ServiceMapper
             gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
             return gdModel;
         }
+
         public List<GDictionaryModel> GetVehicleTypes()
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -68,6 +70,7 @@ namespace RaiteRaju.ServiceMapper
             DetModelObj = ObjMapper.MapDetailsEntityToDetailsModel(DetEntityObj);
             return DetModelObj;
         }
+
         public UserDetailsModel GetUserDetailsWithPassword(Int64 PhoneNumber, string Password)
         {
             UserDetailsModel DetModelObj = new UserDetailsModel();
@@ -79,6 +82,7 @@ namespace RaiteRaju.ServiceMapper
             DetModelObj = ObjMapper.MapDetailsEntityToDetailsModel(DetEntityObj);
             return DetModelObj;
         }
+
         public List<Ride> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
             List<Ride> listobj = new List<Ride>();
@@ -90,6 +94,7 @@ namespace RaiteRaju.ServiceMapper
             listobj = ObjMapper.MapRideEntityListToModel(listEntity);
             return listobj;
         }
+
         public UserDetailsModel GetLoginCheck(Int64 PhoneNumber, string Password)
         {
             UserDetailsEntity EntityObj = new UserDetailsEntity();
@@ -101,6 +106,7 @@ namespace RaiteRaju.ServiceMapper
             return ModelObj;
 
         }
+
         public AdDetailsModel FetchAdDetails(int AdId)
         {
             AdDetailsModel modelObj = new AdDetailsModel();
@@ -112,6 +118,7 @@ namespace RaiteRaju.ServiceMapper
             modelObj = ObjMapper.MapAdDetailsEntityToModel(EntityObj);
             return modelObj;
         }
+
         public DropDownWrapperModel GetDropDownValues()
         {
             DropDownWrapperModel model = new DropDownWrapperModel();
@@ -124,6 +131,7 @@ namespace RaiteRaju.ServiceMapper
             model = ObjMapper.MapDropDownwrapperEntityToModel(Entity);
             return model;
         }
+
         public GDictionaryModel MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             GDictionaryModel Model = new GDictionaryModel();
@@ -147,6 +155,7 @@ namespace RaiteRaju.ServiceMapper
             listObj = ObjMapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
             return listObj;
         }
+
         public AdDetailsModel SPRRGetAdDisplayDetails(Int32 AdId,out int outputparam)
         {
             AdDetailsModel Model = new AdDetailsModel();
@@ -157,6 +166,7 @@ namespace RaiteRaju.ServiceMapper
             Model = ObjMapper.MapAdDetailsEntityToAdDetailsModel(Entity);
             return Model;
         }
+
         public List<AdDetailsModel> GetfilteredAds(AdFilterModel Obj, out int TotalPageNumber)
         {
             List<AdDetailsModel> listObj = new List<AdDetailsModel>();
@@ -171,6 +181,7 @@ namespace RaiteRaju.ServiceMapper
             listObj = ObjMapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
             return listObj;
         }
+
         public List<AdDetailsModel> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdDetailsModel> listObj = new List<AdDetailsModel>();
@@ -182,6 +193,7 @@ namespace RaiteRaju.ServiceMapper
             listObj = objmapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
             return listObj;
         }
+
         public List<GDictionaryModel> FetchReviews()
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -193,6 +205,7 @@ namespace RaiteRaju.ServiceMapper
             return gdModel;
 
         }
+
         public List<Int32> getAdIdsWithUserid(Int32 Userid)
         {
             List<Int32> adList = new List<Int32>();
@@ -201,6 +214,7 @@ namespace RaiteRaju.ServiceMapper
             adList = obj.getAdIdsWithUserid(Userid);
             return adList;
         }
+
         public UserDetailsModel AdminLoginCheck(Int64 PhoneNumber, string Password)
         {
             UserDetailsModel UserModel = new UserDetailsModel();
@@ -212,6 +226,7 @@ namespace RaiteRaju.ServiceMapper
             UserModel = objmapper.MapUserDetailsModelToEntity(UserEntity);
             return UserModel;
         }
+
         public List<UserDetailsModel> FetchUserDetailsForAdminPage(AdFilterModel Model, out int TotalPageNumber)
         {
             List<UserDetailsModel> listObj = new List<UserDetailsModel>();
@@ -226,6 +241,7 @@ namespace RaiteRaju.ServiceMapper
             listObj = ObjMapper.MapUserDetailsModelListToEntityList(EntityListObj);
             return listObj;
         }
+
         public List<AdDetailsModel> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdDetailsModel> listObj = new List<AdDetailsModel>();
@@ -237,6 +253,7 @@ namespace RaiteRaju.ServiceMapper
             listObj = objmapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
             return listObj;
         }
+
         public List<AdViewStatisticsModel> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdViewStatisticsModel> listObj = new List<AdViewStatisticsModel>();
@@ -248,6 +265,7 @@ namespace RaiteRaju.ServiceMapper
             listObj = objmapper.MapAdViewsStatisticsEntityListToAdViewStatisticsModelList(EntityListObj);
             return listObj;
         }
+
         public List<AdDetailsModel> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<AdDetailsModel> listObj = new List<AdDetailsModel>();
@@ -260,6 +278,7 @@ namespace RaiteRaju.ServiceMapper
             return listObj;
 
         }
+
         public List<ReviewModel> FetchReviewsForAdmin()
         {
             List<ReviewModel> ModelList = new List<ReviewModel>();
@@ -271,6 +290,7 @@ namespace RaiteRaju.ServiceMapper
             ModelList = ObjMapper.MapReviewEntityToModel(EntityList);
             return ModelList;
         }
+
         public List<ContactUsModel> FetchContactForAdmin()
         {
             List<ContactUsModel> ModelList = new List<ContactUsModel>();
@@ -282,6 +302,7 @@ namespace RaiteRaju.ServiceMapper
             ModelList = ObjMapper.MapContactUsEntityToModel(EntityList);
             return ModelList;
         }
+
         public List<ExceptionModel> FetchExceptionsForAdmin()
         {
             List<ExceptionModel> ModelList = new List<ExceptionModel>();
@@ -293,6 +314,7 @@ namespace RaiteRaju.ServiceMapper
             ModelList = ObjMapper.MapExceptionEntityToModel(EntityList);
             return ModelList;
         }
+
         public List<UserDetailsModel> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             List<UserDetailsModel> ModelList = new List<UserDetailsModel>();
@@ -320,6 +342,7 @@ namespace RaiteRaju.ServiceMapper
             listobj = ObjMapper.MapVehicleEntityListToModel(listEntity);
             return listobj;
         }
+
         public Vehicle GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber)
         {
             Vehicle model = new Vehicle();
@@ -334,10 +357,12 @@ namespace RaiteRaju.ServiceMapper
             }
             return model;
         }
+        
         #endregion
 
 
         #region manabandi admin
+
         public List<VehicleFilterModel> GetVehicleDetailsForAdmin(VehicleFilterModel model, out int TotalPageNumber)
         {
             List<VehicleFilterModel> listobj = new List<VehicleFilterModel>();
@@ -368,7 +393,7 @@ namespace RaiteRaju.ServiceMapper
             return listobj;
         }
 
-       public List<Ride> GetRidesForAdmin(VehicleFilterModel model, out int TotalPageNumber)
+        public List<Ride> GetRidesForAdmin(VehicleFilterModel model, out int TotalPageNumber)
         {
             List<Ride> listobj = new List<Ride>();
             List<RideEntity> listEntity = new List<RideEntity>();
@@ -388,6 +413,29 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.InformationService obj = new InformationService();
             return obj.GetPriceForRide(KM,VehicleTypeId);
         }
+
+        public Ride GetRideDetailsByID(int rideID)
+        {
+            Ride model = new Ride();
+            RideEntity entity = new RideEntity();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            entity = obj.GetRideDetailsByID(rideID);
+            model = ObjMapper.MapRideEntityToModel(entity);
+            return model;
+        }
+
+       public Owner GetOwnerDetailsByIDForAdmin(int ownerID)
+        {
+            Owner model = new Owner();
+            OwnerEntity Entity = new OwnerEntity();
+            InformationObjectMapper mapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            Entity= obj.GetOwnerDetailsByIDForAdmin(ownerID);
+            model = mapper.MapOwnerEntityToModel(Entity);
+            return model;
+        }
+
         #endregion
 
 

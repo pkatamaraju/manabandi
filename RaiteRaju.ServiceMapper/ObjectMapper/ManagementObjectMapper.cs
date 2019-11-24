@@ -27,6 +27,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             Entity.Image = Model.Image;
             return Entity;
         }
+
         internal UserDetailsEntity MapUserRegistrationModelToUserRegistrationEntity(UserDetailsModel Model) {
 
             UserDetailsEntity Entity = new UserDetailsEntity();
@@ -47,6 +48,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
 
             return Entity;
         }
+
         internal ContactUsEntity MapContactUsModelToContactUsEntity(ContactUsModel Model)
         {
             ContactUsEntity Entity = new ContactUsEntity();
@@ -59,6 +61,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             }
             return Entity;
         }
+
         internal UserDetailsModel MapUserDetailsModelToEntity(UserDetailsEntity Entity)
         {
             UserDetailsModel UserObj = new UserDetailsModel();
@@ -79,9 +82,11 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
         }
 
         #region Manabandi
+
         internal RideEntity MapRideModelToRideEntity(Ride ride)
         {
             RideEntity rideEntity = new RideEntity();
+            rideEntity.intRideID = ride.intRideID;
             rideEntity.Name = ride.Name;
             rideEntity.PhoneNumber = ride.PhoneNumber;
             rideEntity.PickUpLocation = ride.PickUpLocation;
@@ -89,11 +94,17 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             rideEntity.VehicleTypeID = ride.VehicleTypeID;
             rideEntity.OTP = ride.OTP;
             rideEntity.Password = ride.Password;
+            rideEntity.dtScheduledDate = ride.dtScheduledDate;
+            rideEntity.txtScheduledTime = ride.txtScheduledTime;
+            rideEntity.txtVehicleNumber = ride.txtVehicleNumber;
+            rideEntity.txtRideStatus = ride.txtRideStatus;
             return rideEntity;
         }
+
         internal OwnerEntity MapOwnerModelToEntity(Owner model)
         {
             OwnerEntity Entity = new OwnerEntity();
+            Entity.intOwnerID = model.intOwnerID;
             Entity.txtOwnerName = model.txtOwnerName;
             Entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
             Entity.txtPassword = model.txtPassword;
@@ -117,6 +128,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             entity.dtCreated = model.dtCreated;
             return entity;
         }
+        
         #endregion
 
     }

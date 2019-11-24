@@ -48,6 +48,7 @@ namespace RaiteRaju.ServiceMapper
             return ManObj.InsertAddUserDetails(Entity);
 
         }
+
         public void UpdateAdDetails(AdDetailsModel Obj)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
@@ -56,11 +57,13 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             ManObj.UpdateAdDetails(Entity);
         }
+
         public void DeleteUserAd(int AdId)
         {
             ServiceLayer.ManagementService ManObj = new ManagementService();
             ManObj.DeleteUserAd(AdId);
         }
+
         public UserDetailsModel VerifyMobileNumber(int otp, Int64 MobileNumber)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
@@ -73,6 +76,7 @@ namespace RaiteRaju.ServiceMapper
             Model = objMapper.MapUserDetailsModelToEntity(Entity);
             return Model;
         }
+
         public int UpdateUserDetails(UserDetailsModel Obj)
         {
 
@@ -82,6 +86,7 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.UpdateUserDetails(Entity);
         }
+
         public int UpdateOtp(UserDetailsModel Obj)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
@@ -91,18 +96,21 @@ namespace RaiteRaju.ServiceMapper
             return ManObj.UPDATEOTP(Entity);
 
         }
+
         public int VerifySelectedAds(string SelectedAds)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.VerifySelectedAds(SelectedAds);
         }
+
         public int DeleteUserAccount(Int64 BigIntPhoneNumber)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.DeleteUserAccount(BigIntPhoneNumber);
         }
+
         public int insertContactUs(ContactUsModel Model)
         {
             ContactUsEntity ENTITY = new ContactUsEntity();
@@ -111,17 +119,20 @@ namespace RaiteRaju.ServiceMapper
             ENTITY = objMapper.MapContactUsModelToContactUsEntity(Model);
             return ManObj.insertContactUs(ENTITY);
         }
+
         public int DeleteSelectedUserAccounts(string SelectedUserIds)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.DeleteSelectedUserAccounts(SelectedUserIds);
         }
+
         public int DeleteAdsByAdmin(string SelectedAds) {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.DeleteAdsByAdmin(SelectedAds);
         }
+
         public int SPInsertAdViewsStatistics(AdDetailsModel Model)
         {
             AdDetailsModel ModelObj = new AdDetailsModel();
@@ -129,17 +140,20 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.SPInsertAdViewsStatistics(objMapper.MapAddPostModelToAddPostEntity(Model));
         }
+
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             ServiceLayer.ManagementService ManObj = new ManagementService();
             ManObj.ExceptionLoggin(ControllerName, ActionName, ErrorMessage);
         }
+
         public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
         }
+
         public int InsertAdPostByAdmin(AdDetailsModel ModelObj)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
@@ -149,17 +163,20 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.InsertAdPostByAdmin(Entity);
         }
+
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.InsertPromotions(Name, PhoneNumber, Description);
         }
+
         public int InsertReview(Int64 BigIntPhoneNumber, string ReviewDes)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.InsertReview(BigIntPhoneNumber, ReviewDes);
         }
+       
         #region ManaBandi
         public int BookNow(Ride ride) {
 
@@ -170,6 +187,17 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.BookRide(Entity);
         }
+
+        public int UpateRideDetailsForAdmin(Ride ride)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            RideEntity Entity = new RideEntity();
+            Entity = objMapper.MapRideModelToRideEntity(ride);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.UpateRideDetailsForAdmin(Entity);
+        }
+
         public int VehicleOwnerRegistration(Owner owner)
         {
 
@@ -180,6 +208,7 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.VehicleOwnerRegistration(Entity);
         }
+
         public string AddVehicle(Vehicle model)
         {
 
@@ -196,7 +225,8 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
              ManObj.DeleteVehicle(VehicleID,PhoneNumber);
         }
-       public string UpdateVehicleDetails(Vehicle model)
+
+        public string UpdateVehicleDetails(Vehicle model)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
             VehicleEntity Entity = new VehicleEntity();
@@ -205,6 +235,18 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.UpdateVehicleDetails(Entity);
         }
+       
+        public int UpdateVehicleOwnerDetailsByAdmin(Owner owner)
+        {
+
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            OwnerEntity Entity = new OwnerEntity();
+            Entity = objMapper.MapOwnerModelToEntity(owner);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.UpdateVehicleOwnerDetailsByAdmin(Entity);
+        }
+       
         #endregion
     }
 }

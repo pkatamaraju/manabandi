@@ -106,94 +106,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        public ActionResult VerifyAds(int PageNumber)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            InformationServiceWrapper objservice = new InformationServiceWrapper();
-            DropDownWrapperModel ModelObj = new DropDownWrapperModel();
-            ModelObj = objservice.GetDropDownValues();
-            ViewBag.DistrictLIst = ModelObj.District;
-            ViewBag.MandalList = ModelObj.Mandal;
-
-            if (nameCookie != null)
-            {
-                int TotalPageNumber = 0;
-                ViewBag.CurrentPageNumber = PageNumber;
-                List<AdDetailsModel> AdList = new List<AdDetailsModel>();
-                InformationServiceWrapper Obj = new InformationServiceWrapper();
-                AdList = Obj.FetchAdDetailsToVerify(PageNumber, out TotalPageNumber);
-                ViewBag.Adlist = AdList;
-                ViewBag.TotalPageNumber = TotalPageNumber;
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        [HttpPost]
-        public ActionResult VerifyAds(string AdIdList)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-
-            if (nameCookie != null)
-            {
-                int success = 0;
-                ManagementServiceWrapper obj = new ManagementServiceWrapper();
-                success = obj.VerifySelectedAds(AdIdList);
-                return Json(success, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        public ActionResult AdManagement(int PageNumber)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            //InformationServiceWrapper objservice = new InformationServiceWrapper();
-            //DropDownWrapperModel ModelObj = new DropDownWrapperModel();
-            //ModelObj = objservice.GetDropDownValues();
-            //ViewBag.DistrictLIst = ModelObj.District;
-            //ViewBag.MandalList = ModelObj.Mandal;
-
-            if (nameCookie != null)
-            {
-                int TotalPageNumber = 0;
-                ViewBag.CurrentPageNumber = PageNumber;
-                List<AdDetailsModel> AdList = new List<AdDetailsModel>();
-                InformationServiceWrapper Obj = new InformationServiceWrapper();
-                AdList = Obj.FetAdDetailsForAdminPageVerifiedAds(PageNumber, out TotalPageNumber);
-                ViewBag.Adlist = AdList;
-                ViewBag.TotalPageNumber = TotalPageNumber;
-                return View("AdManagement");
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        [HttpPost]
-        public ActionResult AdManagement(string AdIdList)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-
-            if (nameCookie != null)
-            {
-                int success = 0;
-                ManagementServiceWrapper obj = new ManagementServiceWrapper();
-                success = obj.DeleteAdsByAdmin(AdIdList);
-                return Json(success, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
         public ActionResult UserDetailsManagement(string State, string District, string DistrictId, string Mandal, string MandalId, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -237,71 +149,6 @@ namespace RaiteRaju.Web.Controllers
                 ManagementServiceWrapper obj = new ManagementServiceWrapper();
                 success = obj.DeleteSelectedUserAccounts(UserIdList);
                 return Json(success, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        public ActionResult AdViewStatistics(int PageNumber)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie != null)
-            {
-                int TotalPageNumber = 0;
-                ViewBag.CurrentPageNumber = PageNumber;
-                List<AdViewStatisticsModel> UserList = new List<AdViewStatisticsModel>();
-                InformationServiceWrapper Obj = new InformationServiceWrapper();
-                UserList = Obj.FetchAdViewsStatistics(PageNumber, out TotalPageNumber);
-                ViewBag.UserList = UserList;
-                ViewBag.TotalPageNumber = TotalPageNumber;
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        public ActionResult AdDisplay(int AdId)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            int AdViewCount = 0;
-            if (nameCookie != null)
-            {
-                AdDetailsModel model = new AdDetailsModel();
-                InformationServiceWrapper objservice = new InformationServiceWrapper();
-                model = objservice.SPRRGetAdDisplayDetails(AdId, out AdViewCount);
-                ViewBag.IntAdId = model.AdID;
-                ViewBag.AdId = model.AdID + ".jpg";
-                ViewBag.Title = model.txtAddTitle;
-                ViewBag.Description = model.txtAdDescription;
-                ViewBag.Category = model.Category;
-                ViewBag.Price = model.txtPrice;
-                ViewBag.Quantity = model.txtQuantity;
-                ViewBag.Unit = model.SellingUnit;
-                ViewBag.Name = model.Name;
-                ViewBag.MobileNumber = model.MobileNuber.ToString();
-                ViewBag.Location = model.Location;
-                ViewBag.AdPostedDate = model.PostedDate;
-                ViewBag.AdViewCount = AdViewCount;
-
-                if (model.Category == "Fruit" || model.Category == "Pesticide" || model.Category == "Equipment" || model.Category == "Vegetable" || model.Category == "Others" || model.Category == "Fertilizer" || model.Category == "Seed" || model.Category == "Dairy Product")
-                {
-                    ViewBag.DefinedTitle = model.txtSubCategoryName + " " + model.txtQuantity + " " + model.SellingUnit + " at Price Rs." + model.txtPrice + " Per " + model.SellingUnit.Substring(0, model.SellingUnit.Length - 1);
-                }
-                else
-                {
-                    ViewBag.DefinedTitle = model.Category + " " + model.txtQuantity + " " + model.SellingUnit + " at Price Rs." + model.txtPrice + " Per " + model.SellingUnit.Substring(0, model.SellingUnit.Length - 1);
-                } ViewBag.DefinedUnit = " /" + model.SellingUnit.Substring(0, model.SellingUnit.Length - 1);
-                //searchingData
-                //ViewBag.SearchOption = "CATEGORY";
-                //ViewBag.PageNumber = PageNumber;
-                //ViewBag.CategoryID = CategoryID;
-
-
-                return View("/Views/AddPost/AdDisplay.cshtml");
             }
             else
             {
@@ -908,6 +755,131 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        public ActionResult EditOwnerDetails(Int32 ownerID)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+
+                Owner Model = objservice.GetOwnerDetailsByIDForAdmin(ownerID);
+                ViewBag.existingMobileNumber = Model.BigIntPhoneNumber;
+                ViewBag.ownerID = Model.intOwnerID;
+                ViewBag.owner = Model;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult EditOwnerDetails(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                Owner model = new Owner();
+
+                model.txtOwnerName = form["txtUserName"];
+                model.BigIntPhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+                model.intStateId = Convert.ToInt32(form["ddlStateID"]);
+                model.intDistrictId = Convert.ToInt32(form["ddlDistrictID"]);
+                model.intManadalID = Convert.ToInt32(form["ddlMandalID"]);
+                model.intOwnerID = Convert.ToInt32(form["ownerID"]);
+                model.txtPlace = form["txtVillage"];
+                string mobileNumberChangedOrNOT = form["changedOrNot"];
+                string errorMessage = "";
+
+                string s = "[^<>'\"/`%-]";
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtOwnerName, s))
+                {
+                    errorMessage = errorMessage + "Special character are not allowed in Name.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.Match(model.BigIntPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
+                {
+                    errorMessage = errorMessage + "Enter valid Phone Number.\n";
+                }
+
+                if (!Regex.Match(model.intStateId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid State.\n";
+                }
+
+                if (!Regex.Match(model.intDistrictId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid District.\n";
+                }
+
+                if (!Regex.Match(model.intManadalID.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid Mandal.\n";
+                }
+
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtPlace, s))
+                {
+                    errorMessage = errorMessage + "special characters are not allowed in Place.\n";
+                }
+
+                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                InformationServiceWrapper infoObj = new InformationServiceWrapper();
+                GDictionaryModel GDOBJ = new GDictionaryModel();
+
+                if (mobileNumberChangedOrNOT == "changed")
+                {
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.owner.ToString());
+                }
+                if (mobileNumberChangedOrNOT == "changed" & GDOBJ.ID != 1)
+                {
+                    errorMessage = errorMessage + "Entered mobiler number is already registered with us.\n";
+                }
+
+                if (errorMessage == "")
+                {
+
+                    ManagementServiceWrapper serviceObj = new ManagementServiceWrapper();
+
+                    serviceObj.UpdateVehicleOwnerDetailsByAdmin(model);
+
+                    return Json("success", JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        public ActionResult DeleteAccount(Int64 BigIntPhoneNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                int succuss = 0;
+
+                ManagementServiceWrapper obj = new ManagementServiceWrapper();
+                succuss = obj.DeleteUserAccount(BigIntPhoneNumber);
+                return Json(succuss, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+
         public ActionResult RideDetails(Int32 intRideStatusID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -993,15 +965,79 @@ namespace RaiteRaju.Web.Controllers
 
         [HttpPost]
         public ActionResult PriceCalculator(FormCollection form)
-        { HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
 
             if (nameCookie != null)
             {
                 int Kilometers = Convert.ToInt32(form["txtKilometers"]);
-            int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
-            InformationServiceWrapper objservice = new InformationServiceWrapper();
-            int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID);
-            return Json(price, JsonRequestBehavior.AllowGet);
+                int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+                int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID);
+                return Json(price, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        public ActionResult EditRideDetails(Int32 rideID)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                InformationServiceWrapper serviceObj = new InformationServiceWrapper();
+                Ride model = serviceObj.GetRideDetailsByID(rideID);
+                ViewBag.rideDetails = model;
+                ViewBag.rideID = model.intRideID;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditRideDetails(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                Ride ridesObj = new Ride();
+                Utility en = new Utility();
+                ridesObj.intRideID = Convert.ToInt32(form["rideID"]);
+                ridesObj.DropLocation = form["txtDropLocation"];
+                ridesObj.PickUpLocation = form["txtPickUpLocation"];
+                ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+                ridesObj.dtScheduledDate = form["txtScheduledDate"];
+                ridesObj.txtScheduledTime = Convert.ToString(form["txtScheduledTime"]);
+                ridesObj.txtVehicleNumber = form["txtAssignedVehicle"];
+                ridesObj.txtRideStatus = form["intRideStatusID"];
+
+                ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
+                int returnValue = manageObj.UpateRideDetailsForAdmin(ridesObj);
+
+                return Json(returnValue, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+        
+        [HttpPost]
+        public ActionResult DeteleVehicle(Int32 VehicleID,Int64 phoneNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                ManagementServiceWrapper objservice = new ManagementServiceWrapper();
+                objservice.DeleteVehicle(VehicleID, phoneNumber);
+                return Json( JsonRequestBehavior.AllowGet);
             }
             else
             {

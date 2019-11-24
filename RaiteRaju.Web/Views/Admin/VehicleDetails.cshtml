@@ -22,7 +22,7 @@
             for (i = 0; i < length; i++) {
                 j = i + 1;
                 var SNo = '@ViewBag.pageNumber' + j;
-                tblVehList.append('<tr class="tableRow"><td onclick="fnUpdateAd(' + VehList[i].VehicleID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + VehList[i].VehicleType + '</td><td>' + VehList[i].VehicleModel + '</td><td>' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].intVehicleID + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
+                tblVehList.append('<tr class="tableRow"><td onclick="fnUpdateAd(' + VehList[i].VehicleID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + VehList[i].VehicleType + '</td><td>' + VehList[i].VehicleModel + '</td><td>' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].VehicleID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
             }
         }
 
@@ -272,8 +272,21 @@
 
    
 
-   function fnDeleteVehicles(){
-
+    function fnDeleteVehicle(VehicleID, phoneNumber){
+       var r = confirm("Are you sure, Do you want to delete Your Add Permanetly!");
+        if (r == true) {
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("DeteleVehicle", "Admin")?VehicleID=' + VehicleID + "&phoneNumber=" + phoneNumber,
+                dataType: 'json',
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function (data) {
+                    alert("Some Error Occured.");
+                }
+            });
+        }
     }
     function fnUpdateVehicle() {
 

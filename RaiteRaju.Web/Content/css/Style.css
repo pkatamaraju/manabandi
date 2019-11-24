@@ -952,16 +952,15 @@ font-size:14px;
     color: blue;
 }
 
-#adlistHeader{
+#adlistHeader {
     font-size: 12px !important;
-    font-weight:normal !important;
-    font-family:inherit;
-    border:none;
-    background-color:#4a3a3a;
-    color:white;
-    height:30px;
-    border-radius:5px;
-
+    font-weight: normal !important;
+    font-family: inherit;
+    border: none;
+    background-color: #446f88;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
 }
 
 

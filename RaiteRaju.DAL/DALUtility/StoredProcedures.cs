@@ -17,7 +17,6 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_VehicleTypes = "GET_VehicleTypes";
         public const string INSERT_MBVehicleOwnerDetails = "INSERT_MBVehicleOwnerDetails";
         public const string INSERT_MBExceptionLogging = "INSERT_MBExceptionLogging";
-        public const string INSERT_MBInsertContactUs = "INSERT_MBInsertContactUs";
         public const string UPDATE_UserStatusToVerified = "UPDATE_UserStatusToVerified";
         public const string GET_GetUserDetailsWithPassword = "GET_GetUserDetailsWithPassword";
         public const string GET_GetUserDetailsWithOTP ="GET_GetUserDetailsWithOTP";
@@ -35,8 +34,8 @@ namespace RaiteRaju.DAL.DALUtility
         public const string UPDATE_MBVehicleDetails = "UPDATE_MBVehicleDetails";
         public const string DELETE_User = "DELETE_User";
         public const string UPDATE_OTP = "UPDATE_OTP";
-
-
+        public const string INSERT_MBContactUs = "INSERT_MBContactUs";
+        public const string INSERT_MBReview = "INSERT_MBReview";
         #endregion
 
 
@@ -48,12 +47,16 @@ namespace RaiteRaju.DAL.DALUtility
         public const string DELETE_VehiclesByAdmin = "DELETE_VehiclesByAdmin";
         public const string GET_OwnerDetailsForAdmin = "GET_OwnerDetailsForAdmin";
         public const string GET_RideDetailForAdmin = "GET_RideDetailForAdmin";
+        public const string GET_MBRideDetailsByID = "GET_MBRideDetailsByID";
+        public const string GET_MBOwnerDetailsByIDForAdmin = "GET_MBOwnerDetailsByIDForAdmin";
+        public const string UPDATE_MBVehicleOwnerDetailsByAdmin = "UPDATE_MBVehicleOwnerDetailsByAdmin";
         public const string GET_ReviewsForAdmin = "GET_ReviewsForAdmin";
         public const string GET_ContactDestailsForAdmin = "GET_ContactDestailsForAdmin";
         public const string GET_MBReviews = "GET_MBReviews";
         public const string GET_Price = "GET_Price";
         public const string GET_MBExceptionDetailsForAdmin = "GET_MBExceptionDetailsForAdmin";
         public const string GET_MBSummaryDetails = "GET_MBSummaryDetails";
+        public const string UPDATE_MBRideDetails = "UPDATE_MBRideDetails";
         #endregion
 
 
@@ -89,8 +92,7 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPGETADDISPLAYDETAILS = "SPRRGetAdDisplayDetails";
       public const string SPGETFILTEREDADS = "SPRRGETFILTEREDAds";
       public const string SPDELETEUSERACCOUNT = "SPRRDeleteUserAccount";
-      public const string SPInsertContactUs = "SPRRInsertContactUs";
-      public const string SPInsertReview = "SPRRInsertReview";
+
       public const string SPFetchReviews = "SPRRFetchReviews";
       public const string SPgetAdIdswithUserid = "SPRRgetAdIdswithUserid";
       public const string SPInsertAdViewsStatistics="SPRRInsertAdViewsStatistics";

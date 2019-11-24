@@ -21,6 +21,8 @@ namespace RaiteRaju.Web.Models
         public string txtScheduledTime { get; set; }
         public int intRideID { get; set; }
         public string txtRideStatus { get; set; }
+        public string txtVehicleNumber { get; set; }
+
 
     }
 }

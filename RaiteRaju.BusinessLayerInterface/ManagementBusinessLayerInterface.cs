@@ -31,16 +31,18 @@ namespace RaiteRaju.BusinessLayerInterface
 
         #region ManaBandi
         int BookRide(RideEntity ride);
+        int UpateRideDetailsForAdmin(RideEntity ride);
         int VehicleOwnerRegistration(OwnerEntity owner);
 
         string AddVehicle(VehicleEntity entity);
+
         #endregion
 
 
          string UpdateVehicleDetails(VehicleEntity entity);
 
          void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
-
+        int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner);
 
     }
 }

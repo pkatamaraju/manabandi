@@ -43,10 +43,17 @@ namespace RaiteRaju.ServiceLayerInterface
 
         #region manabandi admin
         List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
+
         List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber);
+
         List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
 
         int GetPriceForRide(int KM, int VehicleTypeId);
+
+        RideEntity GetRideDetailsByID(int rideID);
+
+        OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID);
+
         #endregion
 
         [OperationContract]
@@ -54,22 +61,28 @@ namespace RaiteRaju.ServiceLayerInterface
 
         [OperationContract]
         DropDrownWrapper GetDropDownValues();
+
         [OperationContract]
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
-        //[OperationContract]
-        //AdDetailsEntity GetImage(AdDetailsEntity obj);
+
         [OperationContract]
         List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber);
+
         [OperationContract]
         AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId, out int outputparam);
+
         [OperationContract]
         List<AdDetailsEntity> GetFilteredAds(AdFilterEntity Entity, out int TotalPageNumber);
+
         [OperationContract]
         List<AdDetailsEntity> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber);
+
         [OperationContract]
         List<GDictionary> FetchReviews();
+
         [OperationContract]
         List<Int32> getAdIdsWithUserid(Int32 userid);
+
         [OperationContract]
         UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password);
 

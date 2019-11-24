@@ -287,7 +287,7 @@ namespace RaiteRaju.DAL
             int Success = 0;
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPInsertReview))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBReview))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMReview, DbType.String, reviewDescription);
@@ -307,7 +307,7 @@ namespace RaiteRaju.DAL
             int Success = 0;
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPInsertContactUs))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBContactUs))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, ENTITY.PhoneNumber);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMSubject, DbType.String, ENTITY.Subject);
@@ -468,6 +468,32 @@ namespace RaiteRaju.DAL
             catch (Exception ex)
             {
                 ExceptionLoggin("ManagementDal", "BookRide", ex.Message);
+                return 0;
+            }
+        }
+        public int UpateRideDetailsForAdmin(RideEntity ride)
+        {
+            int Success = 0;
+
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_MBRideDetails))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTPICKUPLOCATION, DbType.String, ride.PickUpLocation);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTDROPLOCATION, DbType.String, ride.DropLocation);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, ride.VehicleTypeID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDEID, DbType.Int32, ride.intRideID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDESTATUSID, DbType.Int32, Convert.ToInt32(ride.txtRideStatus));
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDTSCHEDULEDDATE, DbType.String, ride.dtScheduledDate);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDTSCHEDULEDTIME, DbType.String, ride.txtScheduledTime);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENUMBER, DbType.String, ride.txtVehicleNumber);
+                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
+                }
+                return Success;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "UpateRideDetailsForAdmin", ex.Message);
                 return 0;
             }
         }
@@ -675,6 +701,33 @@ namespace RaiteRaju.DAL
             {
                 ExceptionLoggin("ManagementDal", "DeleteVehicle", ex.Message);
                 return null;
+            }
+        }
+
+        public int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner)
+        {
+            int Success = 0;
+
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_MBVehicleOwnerDetailsByAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTOWNERID, DbType.Int32, owner.intOwnerID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTOWNERNAME, DbType.String, owner.txtOwnerName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, owner.BigIntPhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.String, owner.intStateId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.Int32, owner.intDistrictId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.Int32, owner.intManadalID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTPLACE, DbType.String, owner.txtPlace);
+                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
+                }
+                
+                return Success;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "UPDATE_MBVehicleOwnerDetailsByAdmin", ex.Message);
+                return 0;
             }
         }
 

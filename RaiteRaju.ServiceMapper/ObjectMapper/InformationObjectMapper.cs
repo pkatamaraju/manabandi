@@ -12,7 +12,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
     {
         internal UserDetailsModel MapDetailsEntityToDetailsModel(UserDetailsEntity Entity)
         {
-           
+
 
             UserDetailsModel UserObj = new UserDetailsModel();
             if (Entity != null)
@@ -26,7 +26,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 UserObj.txtVillage = Entity.txtvillage;
                 UserObj.txtMailId = Entity.txtMailId;
                 UserObj.UserType = Entity.UserType;
-                
+
                 return UserObj;
             }
             else
@@ -68,7 +68,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
         }
 
         internal AdDetailsModel MapAdDetailsEntityToModel(AdDetailsEntity Entity)
-      {
+        {
             if (Entity != null)
             {
                 AdDetailsModel MODEL = new AdDetailsModel();
@@ -183,18 +183,18 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 foreach (UserDetailsEntity item in EntityList)
                 {
                     UserObj = new UserDetailsModel();
-                UserObj.txtUserName = item.txtName;
-                UserObj.intUserId = item.intUserId;
-                UserObj.txtPhoneNumber = item.BigIntPhoneNumber;
-                UserObj.ddlState = item.txtState;
-                UserObj.ddlDistrict = item.txtDistrict;
-                UserObj.ddlMandal = item.txtMandal;
-                UserObj.txtVillage = item.txtvillage;
-                UserObj.txtMailId = item.txtMailId;
-                UserObj.bitVerifiedPhoneNumber = item.bitVerifiedPhoneNumber;
-                UserObj.FlgAccountDeleted = item.FlgAccountDeleted;
-                UserObj.UserType = item.UserType;
-                ModelList.Add(UserObj);
+                    UserObj.txtUserName = item.txtName;
+                    UserObj.intUserId = item.intUserId;
+                    UserObj.txtPhoneNumber = item.BigIntPhoneNumber;
+                    UserObj.ddlState = item.txtState;
+                    UserObj.ddlDistrict = item.txtDistrict;
+                    UserObj.ddlMandal = item.txtMandal;
+                    UserObj.txtVillage = item.txtvillage;
+                    UserObj.txtMailId = item.txtMailId;
+                    UserObj.bitVerifiedPhoneNumber = item.bitVerifiedPhoneNumber;
+                    UserObj.FlgAccountDeleted = item.FlgAccountDeleted;
+                    UserObj.UserType = item.UserType;
+                    ModelList.Add(UserObj);
                 }
             }
             return ModelList;
@@ -251,7 +251,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             {
                 return null;
             }
-            
+
 
         }
 
@@ -310,8 +310,8 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             {
                 List<AdViewStatisticsModel> ModelList = new List<AdViewStatisticsModel>();
                 AdViewStatisticsModel model;
-                foreach(AdViewsStatisticsEntity Entity in EntityList){
-                    model=new AdViewStatisticsModel();
+                foreach (AdViewsStatisticsEntity Entity in EntityList) {
+                    model = new AdViewStatisticsModel();
                     model.BuyerName = Entity.BuyerName;
                     model.BuyerPhoneNumber = Entity.BuyerPhoneNumber;
                     model.SellerPhoneNumber = Entity.SellerPhoneNumber;
@@ -329,8 +329,8 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
 
         internal List<ReviewModel> MapReviewEntityToModel(List<ReviewEntity> EntityList)
         {
-            ReviewModel Model=new ReviewModel();
-            List<ReviewModel> lIST=new List<ReviewModel>();
+            ReviewModel Model = new ReviewModel();
+            List<ReviewModel> lIST = new List<ReviewModel>();
             if (EntityList != null)
             {
                 foreach (ReviewEntity Entity in EntityList)
@@ -420,6 +420,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     rideObj.VehicleType = item.VehicleType;
                     rideObj.intRideID = item.intRideID;
                     rideObj.txtRideStatus = item.txtRideStatus;
+                    rideObj.txtVehicleNumber = item.txtVehicleNumber;
 
                     rideListObj.Add(rideObj);
                 }
@@ -431,7 +432,27 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
-
+        internal Ride MapRideEntityToModel(RideEntity entity)
+        {
+            Ride rideObj = null;
+            if (entity != null)
+            {
+                rideObj = new Ride();
+                rideObj.Name = entity.Name;
+                rideObj.PhoneNumber = entity.PhoneNumber;
+                rideObj.DtCreated = entity.DtCreated;
+                rideObj.PickUpLocation = entity.PickUpLocation;
+                rideObj.DropLocation = entity.DropLocation;
+                rideObj.VehicleTypeID = entity.VehicleTypeID;
+                rideObj.dtScheduledDate = entity.dtScheduledDate;
+                rideObj.txtScheduledTime = entity.txtScheduledTime;
+                rideObj.VehicleType = entity.VehicleType;
+                rideObj.intRideID = entity.intRideID;
+                rideObj.txtRideStatus = entity.txtRideStatus;
+                rideObj.txtVehicleNumber = entity.txtVehicleNumber;
+            }
+            return rideObj;
+        }
         internal List<Vehicle> MapVehicleEntityListToModel(List<VehicleEntity> ListEntity)
         {
 
@@ -488,34 +509,38 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 foreach (VehicleFilterEntity entity in EntityList)
                 {
 
-                    model = new VehicleFilterModel();
-                    model.VehicleID = entity.VehicleID;
-                    model.VehicleType = entity.VehicleType;
-                    model.VehicleModel = entity.VehicleModel;
-                    model.OwnerName = entity.OwnerName;
-                    model.VehicleNumber = entity.VehicleNumber;
-                    model.Place = entity.Place;
-                    model.intStateId = entity.intStateId;
-                    model.intDistrictId = entity.intDistrictId;
-                    model.intManadalID = entity.intManadalID;
-                    model.BigIntPhoneNumber = entity.BigIntPhoneNumber;
-                    model.TxtKeyWord = entity.TxtKeyWord;
-                    model.IntPageNumber = entity.IntPageNumber;
-                    model.IntPageSize = entity.IntPageSize;
-                    model.SortValue = entity.SortValue;
-                    model.intStateName = entity.intStateName;
-                    model.intDistrictName = entity.intDistrictName;
-                    model.intManadalName = entity.intManadalName;
-                    model.VehicleTypeID = entity.VehicleTypeID;
-                    model.flgOnRide = entity.flgOnRide;
-                    model.intRideStatusID = entity.intRideStatusID;
-
+                    model = new VehicleFilterModel
+                    {
+                        VehicleID = entity.VehicleID,
+                        VehicleType = entity.VehicleType,
+                        VehicleModel = entity.VehicleModel,
+                        OwnerName = entity.OwnerName,
+                        VehicleNumber = entity.VehicleNumber,
+                        Place = entity.Place,
+                        intStateId = entity.intStateId,
+                        intDistrictId = entity.intDistrictId,
+                        intManadalID = entity.intManadalID,
+                        BigIntPhoneNumber = entity.BigIntPhoneNumber,
+                        TxtKeyWord = entity.TxtKeyWord,
+                        IntPageNumber = entity.IntPageNumber,
+                        IntPageSize = entity.IntPageSize,
+                        SortValue = entity.SortValue,
+                        intStateName = entity.intStateName,
+                        intDistrictName = entity.intDistrictName,
+                        intManadalName = entity.intManadalName,
+                        VehicleTypeID = entity.VehicleTypeID,
+                        flgOnRide = entity.flgOnRide,
+                        intRideStatusID = entity.intRideStatusID,
+                        intOwnerID = entity.intOwnerID,
+                        FlgAccountDeleted = entity.FlgAccountDeleted
+                    };
                     lisObj.Add(model);
                 }
             }
 
             return lisObj;
         }
+
         internal VehicleFilterEntity MapVehicleFilterModelToEntity(VehicleFilterModel model)
         {
             VehicleFilterEntity entity = new VehicleFilterEntity();
@@ -541,9 +566,30 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 entity.VehicleTypeID = model.VehicleTypeID;
                 entity.flgOnRide = model.flgOnRide;
                 entity.intRideStatusID = model.intRideStatusID;
+                entity.intOwnerID = model.intOwnerID;
+                entity.FlgAccountDeleted = model.FlgAccountDeleted;
+
             }
 
             return entity;
+        }
+
+        internal Owner MapOwnerEntityToModel(OwnerEntity Entity)
+        {
+            Owner model = new Owner();
+
+            if (Entity!=null)
+            {
+                model.txtOwnerName = Entity.txtOwnerName;
+                model.intOwnerID = Entity.intOwnerID;
+                model.BigIntPhoneNumber = Entity.BigIntPhoneNumber;
+                model.intStateId = Entity.intStateId;
+                model.intDistrictId = Entity.intDistrictId;
+                model.intManadalID = Entity.intManadalID;
+                model.txtPlace = Entity.txtPlace;
+
+            }
+            return model;
         }
 
         #endregion

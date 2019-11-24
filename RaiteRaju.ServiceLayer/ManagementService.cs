@@ -118,7 +118,11 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.BookRide(ride);
         }
-
+        public int UpateRideDetailsForAdmin(RideEntity ride)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.UpateRideDetailsForAdmin(ride);
+        }
         public int VehicleOwnerRegistration(OwnerEntity owner)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
@@ -139,7 +143,12 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.UpdateVehicleDetails(entity);
         }
-
+        
+        public int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.UpdateVehicleOwnerDetailsByAdmin(owner);
+        }
         #endregion
     }
 }

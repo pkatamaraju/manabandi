@@ -106,6 +106,12 @@ namespace RaiteRaju.BusinessLayer
             return objDAL.BookRide(ride);
 
         }
+
+        public int UpateRideDetailsForAdmin(RideEntity ride)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.UpateRideDetailsForAdmin(ride);
+        }
         public int VehicleOwnerRegistration(OwnerEntity owner)
         {
             DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
@@ -130,6 +136,13 @@ namespace RaiteRaju.BusinessLayer
             objDAL.DeleteVehicle(VehicleID, PhoneNumber);
 
         }
+
+       public int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+             return objDAL.UpdateVehicleOwnerDetailsByAdmin(owner);
+        }
+
         #endregion
 
     }

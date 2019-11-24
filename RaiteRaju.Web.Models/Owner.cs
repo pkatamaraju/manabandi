@@ -8,6 +8,7 @@ namespace RaiteRaju.Web.Models
 {
     public class Owner
     {
+        public int intOwnerID { get; set; }
         public string txtOwnerName { get; set; }
         public string txtPlace { get; set; }
         public string txtPassword { get; set; }

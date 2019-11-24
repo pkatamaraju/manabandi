@@ -257,7 +257,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Shared\_Layout.cshtml" />
-    <Content Include="Views\Book\AddPost.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Registration.cshtml" />
@@ -266,9 +265,6 @@
     <Content Include="Views\Shared\_RideList.cshtml" />
     <Content Include="Views\Shared\_UserSettings.cshtml" />
     <Content Include="Views\Shared\_Payments.cshtml" />
-    <Content Include="Views\Book\AdDetails.cshtml" />
-    <Content Include="Views\Book\AdSearch.cshtml" />
-    <Content Include="Views\Book\AdDisplay.cshtml" />
     <Content Include="Views\Book\FilteredAds.cshtml" />
     <Content Include="Views\Footer\AboutUs.cshtml" />
     <Content Include="Views\Footer\ContactUs.cshtml" />
@@ -278,7 +274,6 @@
     <Content Include="Views\Footer\TermsOfUse.cshtml" />
     <Content Include="Views\Footer\TermsAndConditions.cshtml" />
     <Content Include="Views\Footer\FeaturedAds.cshtml" />
-    <Content Include="Views\Shared\_AdSearch.cshtml" />
     <Content Include="Views\Admin\RideDetails.cshtml" />
     <Content Include="Views\Shared\_TotalPageNumber.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
@@ -286,11 +281,9 @@
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminMain.cshtml" />
     <Content Include="Views\Admin\OwnerDetails.cshtml" />
-    <Content Include="Views\Admin\AdManagement.cshtml" />
     <Content Include="Views\Admin\AdViewStatistics.cshtml" />
     <Content Include="Views\Footer\ReportIssue.cshtml" />
     <Content Include="Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Admin\AdDisplay.cshtml" />
     <Content Include="Views\Admin\ContactUs.cshtml" />
     <Content Include="Views\Admin\Exceptions.cshtml" />
     <Content Include="Views\Admin\Reviews.cshtml" />
@@ -299,7 +292,6 @@
     <Content Include="Views\Footer\HowToBook.cshtml" />
     <Content Include="Views\Admin\UserRegistration.cshtml" />
     <Content Include="Views\Admin\VerifyUsers.cshtml" />
-    <Content Include="Views\Admin\AdDetails.cshtml" />
     <Content Include="Views\Footer\Promotions.cshtml" />
     <Content Include="Views\Book\BookNow.cshtml" />
     <Content Include="Views\Partner\OwnerRegistration.cshtml" />
@@ -310,6 +302,8 @@
     <Content Include="Views\Admin\VehicleDetails.cshtml" />
     <Content Include="Views\Admin\AddRide.cshtml" />
     <Content Include="Views\Admin\PriceCalculator.cshtml" />
+    <Content Include="Views\Admin\EditRideDetails.cshtml" />
+    <Content Include="Views\Admin\EditOwnerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,5 +28,9 @@ namespace RaiteRaju.Entities
         public Int32 SortValue { get; set; }
         public Int32 flgOnRide { get; set; }
         public Int32 intRideStatusID { get; set; }
+        public int intOwnerID { get; set; }
+
+        public int FlgAccountDeleted { get; set; }
+
     }
 }

@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 pt-4 text-right">
                     @if (Request.Cookies["_RRAUN"] == null)
-                    {<a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a>}
+                    {<a href="/Admin/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a>}
 
                     @if (Request.Cookies["_RRAUN"] != null)
                     {
@@ -96,7 +96,7 @@
                         <span class="arrow-down" style="vertical-align:auto;"></span>}
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pt-4 ">
-                    <a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
+                    @*<a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>*@
                 </div>
 
             </div>
