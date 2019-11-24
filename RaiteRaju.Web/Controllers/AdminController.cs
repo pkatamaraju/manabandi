@@ -106,39 +106,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        public ActionResult UserDetailsManagement(string State, string District, string DistrictId, string Mandal, string MandalId, Int32 PageNumber)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie != null)
-            {
-                int TotalPageNumber = 0;
-                ViewBag.CurrentPageNumber = PageNumber;
-                InformationServiceWrapper objservice = new InformationServiceWrapper();
-
-                AdFilterModel Model = new AdFilterModel();
-                Model.txtState = State == "" ? null : State; //form["ddlStateText"];
-                Model.txtDistrict = District == "" ? null : District; //form["ddlDistrict"];
-                Model.txtMandal = Mandal == "" ? null : Mandal; //form["ddlMandal"];
-                Model.INTPAGENUMBER = PageNumber;
-                Model.INTPAGESIZE = 50;
-
-                List<UserDetailsModel> UserList = new List<UserDetailsModel>();
-                UserList = objservice.FetchUserDetailsForAdminPage(Model, out TotalPageNumber);
-                ViewBag.UserList = UserList;
-                ViewBag.TotalPageNumber = TotalPageNumber;
-
-                @ViewBag.selectedState = Model.txtState;
-                @ViewBag.SelectedDistrictId = DistrictId;
-                @ViewBag.selectedMandalId = MandalId;
-
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
         [HttpPost]
         public ActionResult UserDetailsManagement(string UserIdList)
         {
@@ -342,77 +309,7 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult AdPostByAdmin(FormCollection fnPost)
-        {
-            int AdId = 0;
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-
-            if (nameCookie != null)
-            {
-                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
-                AdDetailsModel obj = new AdDetailsModel();
-                obj.Category = fnPost["ddlCategoryText"];
-                obj.txtSubCategoryName = fnPost["txtSubCategoryName"];
-                obj.txtAdDescription = fnPost["txtAdDescription"];
-                obj.txtPrice = Convert.ToInt32(fnPost["txtPrice"]);
-                obj.txtQuantity = Convert.ToInt32(fnPost["txtQuantity"]);
-                obj.SellingUnit = fnPost["ddlUnitText"];
-                obj.MobileNuber = Convert.ToInt64(fnPost["txtPhoneNumber"]);
-                if (obj.Category == "Fruit" || obj.Category == "Handloom" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Others")
-                {
-                    obj.txtSubCategoryName = obj.txtSubCategoryName;
-                }
-                else {
-                    obj.txtSubCategoryName = obj.Category;
-                }
-
-                string s = "[^<>'\"/`%-]";
-                int count = 0;
-
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.Category, "^[a-zA-Z0-9 .]"))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtAdDescription, s))
-                {
-                    count = count + 1;
-                }
-                
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.SellingUnit, "^[a-zA-Z0-9 .]"))
-                {
-                    count = count + 1;
-                }
-                if (Regex.Match(obj.txtPrice.ToString(), "[1-9]").Success)
-                {
-                    count = count + 1;
-                }
-                if (Regex.Match(obj.txtQuantity.ToString(), "[1-9]").Success)
-                {
-                    count = count + 1;
-                }
-
-                if (count == 6)
-                {
-                    AdId = ObjService.InsertAdPostByAdmin(obj);
-                    return Json(AdId, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    AdId = -1;
-                    return Json(AdId, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
+       
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase image, Int32 AdId)
         {
@@ -566,105 +463,7 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        public ActionResult AdDetails(int AdId)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie != null)
-            {
-                AdDetailsModel model = new AdDetailsModel();
-                InformationServiceWrapper objservice = new InformationServiceWrapper();
-
-                    model = objservice.FetchAdDetails(AdId);
-                    ViewBag.AdId = model.AdID;
-                    //ViewBag.Title = model.txtAddTitle;
-                    ViewBag.Description = model.txtAdDescription;
-                    ViewBag.SubCategoryName = model.txtSubCategoryName;
-                    ViewBag.Category = model.Category;
-                    ViewBag.Price = model.txtPrice;
-                    ViewBag.Quantity = model.txtQuantity;
-                    ViewBag.Unit = model.SellingUnit;
-                    return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        [HttpPost]
-        public ActionResult AdDetails(FormCollection fnAd)
-        {
-            int success = 0;
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie != null)
-            {
-                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
-                AdDetailsModel obj = new AdDetailsModel();
-                obj.AdID = Convert.ToInt32(fnAd["AdId"]);
-                obj.Category = fnAd["ddlCategoryText"];
-                obj.txtSubCategoryName = fnAd["txtSubCategoryName"];
-                obj.txtAdDescription = fnAd["txtAdDescription"];
-                obj.txtPrice = Convert.ToInt32(fnAd["txtPrice"]);
-                obj.txtQuantity = Convert.ToInt32(fnAd["txtQuantity"]);
-                obj.SellingUnit = fnAd["ddlUnitText"];
-                HttpPostedFileBase file = Request.Files["myImage"];
-
-                if (obj.Category == "Fruit" || obj.Category == "Pesticide" || obj.Category == "Equipment" || obj.Category == "Vegetable" || obj.Category == "Others" || obj.Category == "Fertilizer" || obj.Category == "Seed" || obj.Category == "Dairy Product")
-                {
-                    obj.txtSubCategoryName = obj.txtSubCategoryName;
-                }
-                else
-                {
-                    obj.txtSubCategoryName = obj.Category;
-                }
-
-                string s = "[^<>'\"/`%-]";
-                int count = 0;
-
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.Category, "^[a-zA-Z0-9 .]"))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtSubCategoryName, s))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.txtAdDescription, s))
-                {
-                    count = count + 1;
-                }
-
-                if (System.Text.RegularExpressions.Regex.IsMatch(obj.SellingUnit, "^[a-zA-Z0-9 .]"))
-                {
-                    count = count + 1;
-                }
-                if (Regex.Match(obj.txtPrice.ToString(), "[1-9]").Success)
-                {
-                    count = count + 1;
-                }
-                if (Regex.Match(obj.txtQuantity.ToString(), "[1-9]").Success)
-                {
-                    count = count + 1;
-                }
-
-                if (count == 6)
-                {
-                    ObjService.UpdateAdDetails(obj);
-                    success = obj.AdID;
-                    return Json(success, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    success = -99;
-                    return Json(success, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
+       
         [HttpPost]
         public ActionResult FetchDistricts(int StateId)
         {

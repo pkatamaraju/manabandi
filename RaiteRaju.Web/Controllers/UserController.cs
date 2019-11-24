@@ -444,23 +444,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
        
-        public ActionResult UserDetails(FormCollection fnPost)
-        {
-            int AdId;
-            ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
-            AdDetailsModel obj = new AdDetailsModel();
-            obj.txtAddTitle = fnPost["txtAddTitle"];
-            obj.Category = fnPost["ddlCategory"];
-            obj.txtAdDescription = fnPost["txtAdDescription"];
-            obj.txtPrice = Convert.ToInt32(fnPost["txtPrice"]);
-            obj.txtQuantity = Convert.ToInt32(fnPost["txtQuantity"]);
-            obj.SellingUnit = fnPost["ddlUnit"];
-            obj.UserID = 1;
-            AdId = ObjService.InsertAddPostDetails(obj);
-            return Json(AdId, JsonRequestBehavior.AllowGet);
-
-        }
-
         public ActionResult UserAccount()
         {
             HttpCookie KeyCookie = Request.Cookies["_RRPS"];

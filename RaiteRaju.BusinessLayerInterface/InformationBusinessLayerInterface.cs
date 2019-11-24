@@ -42,19 +42,8 @@ namespace RaiteRaju.BusinessLayerInterface
         #endregion
 
 
-        AdDetailsEntity FetchAdDetails(int AdId);
-
-        DropDrownWrapper GetDropDownValues();
-
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
 
-        List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber);
-
-        AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId,out int outputparam);
-
-        List<AdDetailsEntity> GetFilteredAds(AdFilterEntity Entity, out int TotalPageNumber);
-
-        List<AdDetailsEntity> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber);
 
         List<GDictionary> FetchReviews();
 
@@ -62,13 +51,10 @@ namespace RaiteRaju.BusinessLayerInterface
 
         UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password);
 
-        List<UserDetailsEntity> FetchUserDetailsForAdminPage(AdFilterEntity Entity, out int TotalPageNumber);
 
-        List<AdDetailsEntity> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber);
 
         List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber);
 
-        List<AdDetailsEntity> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber);
 
         List<ContactUsEntity> FetchContactUsDetailsForAdmin();
 

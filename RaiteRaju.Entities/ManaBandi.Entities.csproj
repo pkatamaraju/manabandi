@@ -48,12 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdDetailsEntity.cs" />
-    <Compile Include="AdFilterEntity.cs" />
     <Compile Include="AdViewsStatisticsEntity.cs" />
     <Compile Include="ContactUsEntity.cs" />
-    <Compile Include="DetailsEntity.cs" />
-    <Compile Include="DropDrownWrapper.cs" />
     <Compile Include="ExceptionEntity.cs" />
     <Compile Include="GDictionary.cs" />
     <Compile Include="OwnerEntity.cs" />

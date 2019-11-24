@@ -88,79 +88,46 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().GetOwnerDetailsByIDForAdmin(ownerID);
         }
         #endregion
-        public AdDetailsEntity FetchAdDetails(int AdId)
-        {
-            return new DAL.InformationDAL().FetchAdDetails(AdId);
-        }
-        public DropDrownWrapper GetDropDownValues()
-        {
-            return new DAL.InformationDAL().GetDropDownValues();
-        }
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber,userType);
         }
-        //public AdDetailsEntity GetImage(AdDetailsEntity obj)
-        //{
-        //    return new DAL.InformationDAL().GetImage(obj);
-        //}
-        public List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().SPRRGetADbyCategory(CategoryID, PAGENUMBER, out TotalPageNumber);
-        }
-        public AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId, out int outputparam)
-        {
-            return new DAL.InformationDAL().SPRRGetAdDisplayDetails(AdId,out outputparam);
-        }
-        public List<AdDetailsEntity> GetFilteredAds(AdFilterEntity Entity, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().GetFilteredAds(Entity, out TotalPageNumber);
-        }
-        public List<AdDetailsEntity> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().FetchAdDetailsToVerify(PAGENUMBER, out TotalPageNumber);
-        }
+
         public List<GDictionary> FetchReviews()
         {
             return new DAL.InformationDAL().FetchReviews();
         }
+
         public List<Int32> getAdIdsWithUserid(Int32 userid)
         {
             return new DAL.InformationDAL().getAdIdsWithUserid(userid);
         }
+
         public UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password)
         {
             return new DAL.InformationDAL().AdminLoginCheck(PhoneNumber, Password);
         }
-        public List<UserDetailsEntity> FetchUserDetailsForAdminPage(AdFilterEntity Entity, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().FetchUserDetailsForAdminPage(Entity, out TotalPageNumber);
-        }
-        public List<AdDetailsEntity> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().FetAdDetailsForAdminPageVerifiedAds(PAGENUMBER, out TotalPageNumber);
-        }
+
         public List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().FetchAdViewsStatistics(PAGENUMBER, out TotalPageNumber);
-        }
-        public List<AdDetailsEntity> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().FetchAdsForHomePage(PAGENUMBER, out TotalPageNumber);
         }
 
         public List<ContactUsEntity> FetchContactUsDetailsForAdmin()
         {
             return new DAL.InformationDAL().FetchContactUsDetailsForAdmin();
         }
+
         public List<ReviewEntity> FetchReviewDetailsForAdmin()
         {
             return new DAL.InformationDAL().FetchReviewDetailsForAdmin();
         }
+
         public List<ExceptionEntity> FetchExceptionDetailsForAdmin()
         {
             return new DAL.InformationDAL().FetchExceptionDetailsForAdmin();
         }
+
         public List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().FetchUnverifiedUsers(PAGENUMBER,out TotalPageNumber);

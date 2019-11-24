@@ -56,27 +56,11 @@ namespace RaiteRaju.ServiceLayerInterface
 
         #endregion
 
-        [OperationContract]
-        AdDetailsEntity FetchAdDetails(int AdId);
-
-        [OperationContract]
-        DropDrownWrapper GetDropDownValues();
-
+        
         [OperationContract]
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
 
-        [OperationContract]
-        List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber);
-
-        [OperationContract]
-        AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId, out int outputparam);
-
-        [OperationContract]
-        List<AdDetailsEntity> GetFilteredAds(AdFilterEntity Entity, out int TotalPageNumber);
-
-        [OperationContract]
-        List<AdDetailsEntity> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber);
-
+       
         [OperationContract]
         List<GDictionary> FetchReviews();
 
@@ -86,17 +70,10 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password);
 
-        [OperationContract]
-        List<UserDetailsEntity> FetchUserDetailsForAdminPage(AdFilterEntity Entity, out int TotalPageNumber);
-
-        [OperationContract]
-        List<AdDetailsEntity> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber);
-
+    
         [OperationContract]
         List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber);
-        [OperationContract]
-        List<AdDetailsEntity> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber);
-
+       
         [OperationContract]
         List<ContactUsEntity> FetchContactUsDetailsForAdmin();
 

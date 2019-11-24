@@ -47,12 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdDetailsModel.cs" />
-    <Compile Include="AdFilterModel.cs" />
     <Compile Include="AdViewStatisticsModel.cs" />
     <Compile Include="ContactUsModel.cs" />
-    <Compile Include="DetailsModel.cs" />
-    <Compile Include="DropDownWrapperModel.cs" />
     <Compile Include="ExceptionModel.cs" />
     <Compile Include="GDictionaryModel.cs" />
     <Compile Include="Owner.cs" />

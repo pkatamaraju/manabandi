@@ -10,24 +10,6 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
 {
     public class ManagementObjectMapper
     {
-        internal AdDetailsEntity MapAddPostModelToAddPostEntity(AdDetailsModel Model)
-        {
-            AdDetailsEntity Entity = new AdDetailsEntity();
-            Entity.AdID = Model.AdID;
-            Entity.Title = Model.txtAddTitle;
-            Entity.Category = Model.Category;
-            Entity.intCategoryId = Model.intCategoryId;
-            Entity.txtSubCategoryName = Model.txtSubCategoryName;
-            Entity.AdDescription = Model.txtAdDescription;
-            Entity.Price = Model.txtPrice;
-            Entity.Quantity = Model.txtQuantity;
-            Entity.UserID = Model.UserID;
-            Entity.SellingUnit = Model.SellingUnit;
-            Entity.MobileNumber = Model.MobileNuber;
-            Entity.Image = Model.Image;
-            return Entity;
-        }
-
         internal UserDetailsEntity MapUserRegistrationModelToUserRegistrationEntity(UserDetailsModel Model) {
 
             UserDetailsEntity Entity = new UserDetailsEntity();

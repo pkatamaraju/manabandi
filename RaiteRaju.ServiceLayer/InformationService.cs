@@ -115,19 +115,6 @@ namespace RaiteRaju.ServiceLayer
 
         #endregion
 
-
-        public AdDetailsEntity FetchAdDetails(int AdId)
-        {
-            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.FetchAdDetails(AdId);
-        }
-
-        public DropDrownWrapper GetDropDownValues()
-        {
-            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetDropDownValues();
-        }
-
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
@@ -135,34 +122,7 @@ namespace RaiteRaju.ServiceLayer
 
         }
 
-        public List<AdDetailsEntity> SPRRGetADbyCategory(Int32 CategoryID, Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.SPRRGetADbyCategory(CategoryID, PAGENUMBER, out TotalPageNumber);
-
-        }
-
-        public AdDetailsEntity SPRRGetAdDisplayDetails(Int32 AdId, out int outputparam)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.SPRRGetAdDisplayDetails(AdId, out outputparam);
-
-        }
-
-        public List<AdDetailsEntity> GetFilteredAds(AdFilterEntity Entity, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.GetFilteredAds(Entity, out TotalPageNumber);
-
-        }
-
-        public List<AdDetailsEntity> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetchAdDetailsToVerify(PAGENUMBER, out TotalPageNumber);
-
-        }
-
+        
         public List<GDictionary> FetchReviews()
         {
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
@@ -182,17 +142,7 @@ namespace RaiteRaju.ServiceLayer
             return BusObj.AdminLoginCheck(PhoneNumber, Password);
         }
 
-        public List<UserDetailsEntity> FetchUserDetailsForAdminPage(AdFilterEntity Entity, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetchUserDetailsForAdminPage(Entity, out TotalPageNumber);
-        }
 
-        public List<AdDetailsEntity> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetAdDetailsForAdminPageVerifiedAds(PAGENUMBER, out TotalPageNumber);
-        }
 
         public List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
         {
@@ -200,11 +150,6 @@ namespace RaiteRaju.ServiceLayer
             return BusObj.FetchAdViewsStatistics(PAGENUMBER, out TotalPageNumber);
         }
 
-        public List<AdDetailsEntity> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetchAdsForHomePage(PAGENUMBER, out TotalPageNumber);
-        }
 
         public List<ContactUsEntity> FetchContactUsDetailsForAdmin()
         {

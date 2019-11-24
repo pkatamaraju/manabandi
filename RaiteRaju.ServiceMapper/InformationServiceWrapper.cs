@@ -107,30 +107,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
 
-        public AdDetailsModel FetchAdDetails(int AdId)
-        {
-            AdDetailsModel modelObj = new AdDetailsModel();
-            AdDetailsEntity EntityObj = new AdDetailsEntity();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            EntityObj = obj.FetchAdDetails(AdId);
-            modelObj = ObjMapper.MapAdDetailsEntityToModel(EntityObj);
-            return modelObj;
-        }
-
-        public DropDownWrapperModel GetDropDownValues()
-        {
-            DropDownWrapperModel model = new DropDownWrapperModel();
-            DropDrownWrapper Entity = new DropDrownWrapper();
-            List<GDictionaryModel> District = new List<GDictionaryModel>();
-            List<GDictionaryModel> mandal = new List<GDictionaryModel>();
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            Entity = obj.GetDropDownValues();
-            model = ObjMapper.MapDropDownwrapperEntityToModel(Entity);
-            return model;
-        }
 
         public GDictionaryModel MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
@@ -144,55 +120,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
        
-        public List<AdDetailsModel> SPRRGetADbyCategory(int CategoryID, Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            List<AdDetailsModel> listObj = new List<AdDetailsModel>();
-            List<AdDetailsEntity> EntityListObj = new List<AdDetailsEntity>();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            EntityListObj = obj.SPRRGetADbyCategory(CategoryID, PAGENUMBER, out TotalPageNumber);
-            listObj = ObjMapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
-            return listObj;
-        }
-
-        public AdDetailsModel SPRRGetAdDisplayDetails(Int32 AdId,out int outputparam)
-        {
-            AdDetailsModel Model = new AdDetailsModel();
-            AdDetailsEntity Entity = new AdDetailsEntity();
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            Entity = obj.SPRRGetAdDisplayDetails(AdId, out outputparam);
-            Model = ObjMapper.MapAdDetailsEntityToAdDetailsModel(Entity);
-            return Model;
-        }
-
-        public List<AdDetailsModel> GetfilteredAds(AdFilterModel Obj, out int TotalPageNumber)
-        {
-            List<AdDetailsModel> listObj = new List<AdDetailsModel>();
-            List<AdDetailsEntity> EntityListObj = new List<AdDetailsEntity>();
-
-            AdFilterEntity Entity = new AdFilterEntity();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            Entity = ObjMapper.MapAdFilterModelToAdFilterEntity(Obj);
-            EntityListObj = obj.GetFilteredAds(Entity, out TotalPageNumber);
-            listObj = ObjMapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
-            return listObj;
-        }
-
-        public List<AdDetailsModel> FetchAdDetailsToVerify(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            List<AdDetailsModel> listObj = new List<AdDetailsModel>();
-            List<AdDetailsEntity> EntityListObj = new List<AdDetailsEntity>();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper objmapper = new InformationObjectMapper();
-            EntityListObj = obj.FetchAdDetailsToVerify(PAGENUMBER, out TotalPageNumber);
-            listObj = objmapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
-            return listObj;
-        }
 
         public List<GDictionaryModel> FetchReviews()
         {
@@ -227,32 +154,6 @@ namespace RaiteRaju.ServiceMapper
             return UserModel;
         }
 
-        public List<UserDetailsModel> FetchUserDetailsForAdminPage(AdFilterModel Model, out int TotalPageNumber)
-        {
-            List<UserDetailsModel> listObj = new List<UserDetailsModel>();
-            List<UserDetailsEntity> EntityListObj = new List<UserDetailsEntity>();
-
-            AdFilterEntity Entity = new AdFilterEntity();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            Entity = ObjMapper.MapAdFilterModelToAdFilterEntity(Model);
-            EntityListObj = obj.FetchUserDetailsForAdminPage(Entity, out TotalPageNumber);
-            listObj = ObjMapper.MapUserDetailsModelListToEntityList(EntityListObj);
-            return listObj;
-        }
-
-        public List<AdDetailsModel> FetAdDetailsForAdminPageVerifiedAds(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            List<AdDetailsModel> listObj = new List<AdDetailsModel>();
-            List<AdDetailsEntity> EntityListObj = new List<AdDetailsEntity>();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper objmapper = new InformationObjectMapper();
-            EntityListObj = obj.FetAdDetailsForAdminPageVerifiedAds(PAGENUMBER, out TotalPageNumber);
-            listObj = objmapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
-            return listObj;
-        }
 
         public List<AdViewStatisticsModel> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
         {
@@ -266,18 +167,6 @@ namespace RaiteRaju.ServiceMapper
             return listObj;
         }
 
-        public List<AdDetailsModel> FetchAdsForHomePage(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            List<AdDetailsModel> listObj = new List<AdDetailsModel>();
-            List<AdDetailsEntity> EntityListObj = new List<AdDetailsEntity>();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            EntityListObj = obj.FetchAdsForHomePage(PAGENUMBER, out TotalPageNumber);
-            listObj = ObjMapper.MapAdDetailsListEntityToAdDetailsModel(EntityListObj);
-            return listObj;
-
-        }
 
         public List<ReviewModel> FetchReviewsForAdmin()
         {

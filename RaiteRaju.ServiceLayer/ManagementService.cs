@@ -12,28 +12,10 @@ namespace RaiteRaju.ServiceLayer
 {
     public class ManagementService : ManagementServiceInterface
     {
-        public int InsertAddPostDetails(AdDetailsEntity obj)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.InsertAddPostDetails(obj);
-
-        }
-
-        public int UploadImage(AdDetailsEntity Obj)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.UploadImage(Obj);
-        }
         public int InsertAddUserDetails(UserDetailsEntity Obj)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.InsertAddUserDetails(Obj);
-        }
-        public void UpdateAdDetails(AdDetailsEntity Obj)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            ManageObj.UpdateAdDetails(Obj);
-
         }
         public UserDetailsEntity VerifyMobileNumber(UserDetailsEntity Obj)
         {
@@ -85,11 +67,6 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.DeleteAdsByAdmin(SelectedAds);
         }
-        public int SPInsertAdViewsStatistics(AdDetailsEntity Entity)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.SPInsertAdViewsStatistics(Entity);
-        }
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
@@ -99,11 +76,6 @@ namespace RaiteRaju.ServiceLayer
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
-        }
-        public int InsertAdPostByAdmin(AdDetailsEntity Obj)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.InsertAdPostByAdmin(Obj);
         }
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {

@@ -16,66 +16,6 @@ namespace RaiteRaju.DAL
 {
     public class ManagementDAL
     {
-        public int InsertAddPostDetails(AdDetailsEntity Obj)
-        {
-            int AddId = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPINSERTADDDETAILS))
-                {
-                    //DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdTitle, DbType.String, Obj.Title);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTCATEGORYID, DbType.Int32, Obj.intCategoryId);
-
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.UserID);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSubCategoryName, DbType.String, Obj.txtSubCategoryName);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPrice, DbType.Int32, Obj.Price);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamQuantity, DbType.Int32, Obj.Quantity);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSellingUnit, DbType.String, Obj.SellingUnit);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, Obj.MobileNumber);
-
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        AddId = Convert.ToInt32(dr[DataAccessConstants.ParamAdId]);
-                    }
-                    dr.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "InsertAddPostDetails", ex.Message);
-                return 0;
-            }
-            return AddId;
-        }
-
-        public int UploadImage(AdDetailsEntity Obj)
-        {
-            int AddId = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPLOADIMAGE))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPHOTO, DbType.Binary, Obj.Image);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.Int32, Obj.AdID);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.UserID);
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        AddId = Convert.ToInt32(dr[DataAccessConstants.ParamAdId]);
-                    }
-                    dr.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "UploadImage", ex.Message);
-                return 0;
-            }
-            return AddId;
-        }
 
         public int InsertAddUserDetails(UserDetailsEntity Obj)
         {
@@ -176,32 +116,6 @@ namespace RaiteRaju.DAL
             return OTP;
         }
 
-        public void UpdateAdDetails(AdDetailsEntity Obj)
-        {
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDATEADDETAILS))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.String, Obj.AdID);
-                    // DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdTitle, DbType.String, Obj.Title);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTCATEGORYID, DbType.Int32, Obj.intCategoryId);
-
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSubCategoryName, DbType.String, Obj.txtSubCategoryName);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPrice, DbType.String, Obj.Price);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamQuantity, DbType.String, Obj.Quantity);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSellingUnit, DbType.String, Obj.SellingUnit);
-                    DBAccessHelper.ExecuteNonQuery(objDbCommand);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "UpdateAdDetails", ex.Message);
-            }
-        }
 
         public void DeleteUserAd(int AdId)
         {
@@ -343,28 +257,6 @@ namespace RaiteRaju.DAL
             return Success;
         }
 
-        public int SPInsertAdViewsStatistics(AdDetailsEntity Entity)
-        {
-            int Success = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPInsertAdViewsStatistics))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Entity.UserID);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, Entity.MobileNumber);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.Int32, Entity.AdID);
-
-                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "SPInsertAdViewsStatistics", ex.Message);
-                Success = 0;
-            }
-
-            return Success;
-        }
 
         public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
         {
@@ -386,36 +278,6 @@ namespace RaiteRaju.DAL
             return Success;
         }
 
-        public int InsertAdPostByAdmin(AdDetailsEntity Obj)
-        {
-            int AddId = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPAdPostByAdmin))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdCategory, DbType.String, Obj.Category);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdDescription, DbType.String, Obj.AdDescription);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSubCategoryName, DbType.String, Obj.txtSubCategoryName);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPrice, DbType.Int32, Obj.Price);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamQuantity, DbType.Int32, Obj.Quantity);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamSellingUnit, DbType.String, Obj.SellingUnit);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, Obj.MobileNumber);
-
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        AddId = Convert.ToInt32(dr[DataAccessConstants.ParamAdId]);
-                    }
-                    dr.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "InsertAddPostDetails", ex.Message);
-                return 0;
-            }
-            return AddId;
-        }
 
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {

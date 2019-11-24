@@ -14,29 +14,6 @@ namespace RaiteRaju.ServiceMapper
 {
     public class ManagementServiceWrapper
     {
-        public int InsertAddPostDetails(AdDetailsModel obj)
-        {
-
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            AdDetailsEntity Entity = new AdDetailsEntity();
-            Entity = objMapper.MapAddPostModelToAddPostEntity(obj);
-
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.InsertAddPostDetails(Entity);
-
-        }
-
-        public int UploadImage(AdDetailsModel obj)
-        {
-
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            AdDetailsEntity Entity = new AdDetailsEntity();
-            Entity = objMapper.MapAddPostModelToAddPostEntity(obj);
-
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.UploadImage(Entity);
-
-        }
         public int InsertAddUserDetails(UserDetailsModel obj)
         {
 
@@ -49,14 +26,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
 
-        public void UpdateAdDetails(AdDetailsModel Obj)
-        {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            AdDetailsEntity Entity = new AdDetailsEntity();
-            Entity = objMapper.MapAddPostModelToAddPostEntity(Obj);
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            ManObj.UpdateAdDetails(Entity);
-        }
 
         public void DeleteUserAd(int AdId)
         {
@@ -133,14 +102,6 @@ namespace RaiteRaju.ServiceMapper
             return ManObj.DeleteAdsByAdmin(SelectedAds);
         }
 
-        public int SPInsertAdViewsStatistics(AdDetailsModel Model)
-        {
-            AdDetailsModel ModelObj = new AdDetailsModel();
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.SPInsertAdViewsStatistics(objMapper.MapAddPostModelToAddPostEntity(Model));
-        }
-
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             ServiceLayer.ManagementService ManObj = new ManagementService();
@@ -154,15 +115,6 @@ namespace RaiteRaju.ServiceMapper
             return ManObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
         }
 
-        public int InsertAdPostByAdmin(AdDetailsModel ModelObj)
-        {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            AdDetailsEntity Entity = new AdDetailsEntity();
-            Entity = objMapper.MapAddPostModelToAddPostEntity(ModelObj);
-
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.InsertAdPostByAdmin(Entity);
-        }
 
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {
