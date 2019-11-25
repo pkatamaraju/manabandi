@@ -1,0 +1,254 @@
+﻿@{
+    ViewBag.Title = "AddVehicle";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Home", "Home")';
+    }
+
+    function validation() {
+
+        var vehicleTypeID = jQuery("#ddlVehicles").val();
+        var txtVehicleModel = jQuery("#txtVehicleModel").val();
+        var txtVehicleNumber = jQuery("#txtVehicleNumber").val();
+
+        intRegex = /^[5-9]{1}[0-9]{9}$/;
+        //vehicleNumberRegex = /^[A - Z]{ 2 } [-][0 - 9]{ 1, 2 } (?: [A - Z]) ? (?: [A - Z] *) ? [0 - 9]{ 4 } $/
+        vehicleNumberRegex = /^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}$/;
+        var intRegex = /^\d+$/;
+        var message = "";
+
+
+
+        if (vehicleTypeID == "0" || vehicleTypeID == "---Select Vehicle---") {
+            message = message + "Please select Vehicle Type.\n";
+        }
+
+        if (txtVehicleModel == "") {
+            message = message + "Please enter Vehicle Model.\n";
+        }
+        else if (txtVehicleModel.length > 50 || txtVehicleModel.length < 4) {
+            message = message + "Vehicle Model should be between 4 to 50 characters.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(txtVehicleModel) == false) {
+
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Vehicle Model.\n";
+        }
+
+        if (txtVehicleNumber == "") {
+            message = message + "Please enter Vehicle Number.\n";
+        }
+        else if (vehicleNumberRegex.test(txtVehicleNumber) == false) {
+            message = message + "Please enter valid vehicle number.\n";
+        }
+
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnRegistration() {
+        var form = jQuery("#AddVehicleForm").serialize();
+        var intVehicleID=@ViewBag.VehicleId;
+        var vehicleTypeID = jQuery("#ddlVehicles").val();
+        form += "&ddlVehicleTypeID=" + vehicleTypeID + "&intVehicleID=" + intVehicleID + "&phoneNumber=" + phoneNumber;
+
+        if (validation()) {
+
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdateVehicleDetails", "Admin")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data == "success") {
+                        jQuery('body').loadingIndicator();
+                        jQuery("#AddVehicleForm")[0].reset();
+                        window.location.href = "/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
+                    }
+                    else if (data == "exists") {
+                        alert("Attached vehicle number already exists with us. Please check vehicle Number.");
+                    }
+                    else if ("faile") {
+                        alert("Error occured, Please try after some time.");
+                    }
+                },
+                error: function (data) {
+
+                    alert("Some Error Occured");
+                    jQuery("#diverror").show();
+                }
+            });
+        }
+    }
+    jQuery(function () {
+        jQuery("#ddlState").change(function () {
+            var stagId = jQuery("#ddlState").val();
+
+            jQuery('#ddlDistrict').empty();
+            jQuery("#ddlDistrict").html("");
+            jQuery("#ddlDistrict").append
+            (jQuery('<option></option>').val("0").html("---Select District---"));
+            if (stagId != "") {
+                jQuery.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FetchDistricts", "Home")',
+                    data: '{StateId:"' + stagId + '"}',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        jQuery.each(result, function (i) {
+                            jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        });
+                    },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+                });
+            }
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append
+            (jQuery('<option></option>').val("0").html("---Select Mandal---"));
+        })
+    });
+
+    jQuery(function () {
+        jQuery("#ddlDistrict").change(function () {
+
+            var DistID = jQuery("#ddlDistrict").val();
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
+
+            if (DistID != "") {
+                jQuery.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FetchMandals", "Home")',
+                    data: '{DistrictId:"' + DistID + '"}',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        jQuery.each(result, function (i) {
+                            jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        });
+                    },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+                });
+            }
+        })
+    });
+
+    jQuery(document).ready(function () {
+        var VehicleTypeId =@ViewBag.VehicleTypeID;
+
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (VehicleTypeId != null && VehicleTypeId == result[i].ID) {
+                        jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                    }
+                    else {
+                        jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                    }
+                });
+                },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+        });
+    });
+
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("AttachVehicle", "Partern", FormMethod.Post, new { id = "AddVehicleForm" }))
+                {
+                    <h3 class="FormHeading">Enter your vehicle details to add with us</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Add Now</h3>
+                        <div class="row">
+
+                       
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlVehicles" class="form-control text-right">
+                                            <option value="0">---Select Vehicle---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please select required vehicle</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtVehicleModel">Vehicle Model<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtVehicleModel" name="txtVehicleModel" placeholder=" Ex: Innova" value="@ViewBag.VehicleName">
+                                        <span class="error-msg" id="ErrortxtVehicleModel">Please enter a valid vehicle model</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtVehicleNumber">Vehicle Number<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtVehicleNumber" name="txtVehicleNumber" placeholder=" Ex: AP 00 AB 1234" value="@ViewBag.VehicleNumber">
+                                        <span class="error-msg" id="ErrortxtVehicleNumber">Please enter a valid Vehicle Number</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

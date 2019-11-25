@@ -29,8 +29,8 @@
             var tblrideList = jQuery('#tblRideList');
             for(i=0;i<length;i++){
                 j=i+1;
-                var SNo=pageNumber+j;
-                tblrideList.append('<tr class="tableRow"><td onclick=fnUpdateAd(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">' + SNo + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
+                var SNo = pageNumber + j;
+                tblrideList.append('<tr class="tableRow"><td onclick=fnUpdateAd(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">' + SNo + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -197,7 +197,10 @@
         window.location.href = '@Url.Action("EditRideDetails", "Admin")?rideID=' + rideID ;
 
     }
+    function fnGoToVehicleDetails(VehicleTypeID) {
+        window.location.href = '@Url.Action("VehicleDetails", "Admin")?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=' + VehicleTypeID + "&PageNumber=1";
 
+    }
 
 </script>
 @{Html.EnableClientValidation();}

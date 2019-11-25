@@ -304,6 +304,8 @@
     <Content Include="Views\Admin\PriceCalculator.cshtml" />
     <Content Include="Views\Admin\EditRideDetails.cshtml" />
     <Content Include="Views\Admin\EditOwnerDetails.cshtml" />
+    <Content Include="Views\Admin\AddVehicle.cshtml" />
+    <Content Include="Views\Admin\EditVehicleDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

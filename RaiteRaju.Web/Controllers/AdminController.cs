@@ -177,7 +177,6 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-       
 
         [HttpPost]
         public ActionResult Registration(FormCollection fnRegistration)
@@ -309,7 +308,7 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-       
+
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase image, Int32 AdId)
         {
@@ -372,7 +371,6 @@ namespace RaiteRaju.Web.Controllers
             imageBytes = reader.ReadBytes((int)image.ContentLength);
             return imageBytes;
         }
-
 
         private void ReduceImageSize(Stream sourcePath, string targetPath)
         {
@@ -451,7 +449,7 @@ namespace RaiteRaju.Web.Controllers
                 }
                 var newHeight = (int)(image.Width * scaleFactor);
                 var newWidth = (int)(image.Height * scaleFactor);
-              
+
                 var thumbnailImg = new Bitmap(newWidth, newHeight);
                 var thumbGraph = Graphics.FromImage(thumbnailImg);
                 thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
@@ -463,7 +461,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-       
         [HttpPost]
         public ActionResult FetchDistricts(int StateId)
         {
@@ -479,8 +476,8 @@ namespace RaiteRaju.Web.Controllers
 
         }
 
-
         #region ManaBandi Admin Methods
+
 
         public ActionResult VehicleDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
@@ -573,7 +570,6 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-
 
         [HttpPost]
         public ActionResult EditOwnerDetails(FormCollection form)
@@ -678,7 +674,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-
         public ActionResult RideDetails(Int32 intRideStatusID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -726,7 +721,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-
         [HttpPost]
         public ActionResult AddRide(FormCollection form)
         {
@@ -734,22 +728,22 @@ namespace RaiteRaju.Web.Controllers
             if (nameCookie != null)
             {
                 Ride ridesObj = new Ride();
-            Utility en = new Utility();
+                Utility en = new Utility();
 
 
-            ridesObj.PhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
-            ridesObj.Name = form["txtUserName"];
-            ridesObj.OTP = 0;
-            ridesObj.DropLocation = form["txtDropLocation"];
-            ridesObj.PickUpLocation = form["txtPickUpLocation"];
-            ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
-            ridesObj.Password = en.Encrypt(ridesObj.PhoneNumber.ToString());
+                ridesObj.PhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+                ridesObj.Name = form["txtUserName"];
+                ridesObj.OTP = 0;
+                ridesObj.DropLocation = form["txtDropLocation"];
+                ridesObj.PickUpLocation = form["txtPickUpLocation"];
+                ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+                ridesObj.Password = en.Encrypt(ridesObj.PhoneNumber.ToString());
 
 
-            ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
-            int returnValue = manageObj.BookNow(ridesObj);
+                ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
+                int returnValue = manageObj.BookNow(ridesObj);
 
-            return Json(returnValue, JsonRequestBehavior.AllowGet);
+                return Json(returnValue, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -826,9 +820,47 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-        
+
+        public ActionResult AddVehicle(Int64 phoneNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                ViewBag.phoneNumber = phoneNumber;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
         [HttpPost]
-        public ActionResult DeteleVehicle(Int32 VehicleID,Int64 phoneNumber)
+        public ActionResult AddVehicle(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            string returnvalue = "";
+            if (nameCookie != null)
+            {
+                Vehicle model = new Vehicle();
+                model.BigIntPhoneNumber = Convert.ToInt64(form["phoneNumber"]);
+                model.intVehicleTypeID = Convert.ToInt32(form["ddlVehicleTypeID"]);
+                model.txtVehicleName = form["txtVehicleModel"];
+                model.txtVehicleNumber = form["txtVehicleNumber"].ToUpper();
+                model.intOwnerID = form["ownerID"];
+                ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
+                returnvalue = mangeObj.AddVehicle(model);
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult DeteleVehicle(Int32 VehicleID, Int64 phoneNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
 
@@ -836,13 +868,69 @@ namespace RaiteRaju.Web.Controllers
             {
                 ManagementServiceWrapper objservice = new ManagementServiceWrapper();
                 objservice.DeleteVehicle(VehicleID, phoneNumber);
-                return Json( JsonRequestBehavior.AllowGet);
+                return Json(JsonRequestBehavior.AllowGet);
             }
             else
             {
                 return RedirectToAction("Login", "Admin");
             }
         }
+
+        public ActionResult EditVehicleDetails(int VehicleID, Int64 phoneNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                InformationServiceWrapper obj = new InformationServiceWrapper();
+                Vehicle model = new Vehicle();
+                Int64 PhoneNumber = phoneNumber;
+                model = obj.GetVehicledDetailsByID(VehicleID, PhoneNumber);
+                ViewBag.VehicleTypeID = model.intVehicleTypeID;
+                ViewBag.VehicleName = model.txtVehicleName;
+                ViewBag.VehicleNumber = model.txtVehicleNumber;
+                ViewBag.VehicleId = model.intVehicleID;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateVehicleDetails(FormCollection form)
+        {
+
+            string returnvalue = "";
+
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                Vehicle model = new Vehicle
+                {
+                    BigIntPhoneNumber = Convert.ToInt64(form["phoneNumber"]),
+                    intVehicleTypeID = Convert.ToInt32(form["ddlVehicleTypeID"]),
+                    txtVehicleName = form["txtVehicleModel"],
+                    txtVehicleNumber = form["txtVehicleNumber"],
+                    intVehicleID = Convert.ToInt32(form["intVehicleID"])
+                };
+
+                ManagementServiceWrapper mangeObj = new ManagementServiceWrapper();
+                returnvalue = mangeObj.UpdateVehicleDetails(model);
+
+                return Json(returnvalue, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+
         #endregion
     }
 }
