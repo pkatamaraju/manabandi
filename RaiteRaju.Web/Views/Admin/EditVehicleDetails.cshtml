@@ -62,7 +62,8 @@
 
     function fnRegistration() {
         var form = jQuery("#AddVehicleForm").serialize();
-        var intVehicleID=@ViewBag.VehicleId;
+        var intVehicleID =@ViewBag.VehicleId;
+        var phoneNumber ='@ViewBag.phoneNumber'
         var vehicleTypeID = jQuery("#ddlVehicles").val();
         form += "&ddlVehicleTypeID=" + vehicleTypeID + "&intVehicleID=" + intVehicleID + "&phoneNumber=" + phoneNumber;
 

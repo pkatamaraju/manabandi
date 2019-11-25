@@ -23,7 +23,7 @@
             for (i = 0; i < length; i++) {
                 j = i + 1;
                 var SNo = pageNumber + j;
-                tblVehList.append('<tr class="tableRow"><td>' + SNo + '</td><td >' + VehList[i].VehicleType + '</td><td>' + VehList[i].VehicleModel + '</td><td>' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].VehicleID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
+                tblVehList.append('<tr class="tableRow"><td>' + SNo + '</td><td >' + VehList[i].VehicleType + '</td><td>' + VehList[i].VehicleModel + '</td><td>' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><tr>')
             }
         }
 
@@ -271,10 +271,9 @@
         }
     }
 
-   function fnUpdateVehicle(VehicleID){
+    function fnUpdateVehicle(VehicleID, phoneNumber){
         var VehicleID = VehicleID;
-        jQuery('body').loadingIndicator();
-        window.location.href = '@Url.Action("EditVehicleDetails", "Admin")?VehicleID=' + VehicleID;
+        window.location.href = '@Url.Action("EditVehicleDetails", "Admin")?VehicleID=' + VehicleID + "&phoneNumber=" + phoneNumber;
     }
 
     function fnDeleteVehicle(VehicleID, phoneNumber){
@@ -293,9 +292,7 @@
             });
         }
     }
-    function fnUpdateVehicle() {
-
-    }
+    
 
 </script>
 

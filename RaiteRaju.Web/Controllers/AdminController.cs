@@ -884,13 +884,13 @@ namespace RaiteRaju.Web.Controllers
             {
                 InformationServiceWrapper obj = new InformationServiceWrapper();
                 Vehicle model = new Vehicle();
-                Int64 PhoneNumber = phoneNumber;
-                model = obj.GetVehicledDetailsByID(VehicleID, PhoneNumber);
+                
+                model = obj.GetVehicledDetailsByID(VehicleID, phoneNumber);
                 ViewBag.VehicleTypeID = model.intVehicleTypeID;
                 ViewBag.VehicleName = model.txtVehicleName;
                 ViewBag.VehicleNumber = model.txtVehicleNumber;
                 ViewBag.VehicleId = model.intVehicleID;
-
+                ViewBag.phoneNumber = phoneNumber;
                 return View();
             }
             else
