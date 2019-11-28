@@ -2,20 +2,17 @@
     ViewBag.Title = "ContactUs";
     Layout = "~/Shared/_Layout.cshtml";
 }
-<title> Raiteraju</title>
-<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="robots" content="index,follow" />
+
+<title> ManaBandi-Contact Us</title>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
     $.noConflict();
     jQuery(document).ready(function () {
         jQuery("#Message").html("");
-        jQuery('#tabReportIssue').addClass('active');
+        jQuery('#tabContactUs').addClass('active');
     });
-    
+
     function fnValidation() {
         var message = "";
         var phone = jQuery("#txtPhoneNumber").val(), intRegex = /^[5-9]{1}[0-9]{9}$/;
@@ -31,26 +28,26 @@
             message = message + "Please Enter Subject.<br />";
         }
         else if (jQuery("#txtSubject").val() != "" && /^[^<>'\"/`%-]*$/.test(jQuery("#txtSubject").val()) == false) {
-            message = message + "Special characters are not allowed in Subject.<br />";
+            message = message + "Special Characters Are Not Allowed In Subject.<br />";
         }
         else if (jQuery("#txtSubject").val().length > 50 || jQuery("#txtSubject").val().length < 4) {
-            message = message + "Subject should be between 4 to 50 Characters.<br />";
+            message = message + "Subject Should Be Between 4 To 50 Characters.<br />";
         }
 
         if (jQuery("#txtContactUsDescription").val() == "") {
             message = message + "Please Enter Description.<br />";
         }
         else if (jQuery("#txtContactUsDescription").val() != "" && /^[^<>'\"/`%-]*$/.test(jQuery("#txtContactUsDescription").val()) == false) {
-            message = message + "special characters are not allowed in Description.<br /> ";
+            message = message + "Special Characters Are Not Allowed In Description.<br /> ";
         }
         else if (jQuery("#txtContactUsDescription").val().length > 200 || jQuery("#txtContactUsDescription").val().length < 4) {
-            message = message + "Description should be between 4 to 200 Characters.<br />";
+            message = message + "Description Should Be Between 4 To 200 Characters.<br />";
         }
         if (message == "") {
             return true;
         }
         else {
-            jQuery("#Message").html(message).css("color","Red");
+            jQuery("#Message").html(message).css("color", "Red");
             return false;
         }
     }
@@ -59,7 +56,7 @@
 
         var form = jQuery("#ContactUsForm").serialize();
 
-        if (fnValidation())
+        if (fnValidation()) {
             jQuery.ajax({
                 type: 'POST',
                 url: '@Url.Action("ContactUs", "Footer")',
@@ -67,51 +64,78 @@
                 data: form,
                 success: function (result) {
                     if (result == 1) {
-                        jQuery("#Message").html("Submitted Successfully, Our team will get in touch with you.").css("color", "green");;
+                        jQuery("#Message").html("Submitted Successfully, Our Team Will Get In Touch With You.").css("color", "green");
                         jQuery("#ContactUsForm")[0].reset();
                     }
+                    else if (result == 0) {
+                        jQuery("#Message").html("Please Enter Data as per validation").css("color", "Red");
+                    }
                     else {
-                        alert("Some Error Occured. Please try after sometime.");
+                        alert("Some Error Occured. Please Try After Sometime.");
                         window.location.href = '@Url.Action("Home", "Home")';
                     }
                 },
                 error: function (err) {
-                    jQuery("#Message").html("Some Error Occured. Please try after sometime.");
+                    jQuery("#Message").html("Some Error Occured. Please Try After Sometime.");
                 }
             });
+        }
     }
 </script>
+<div id="divContactUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
+                @using (Html.BeginForm("ContactUs", "Footer", FormMethod.Post, new { id = "ContactUsForm" }))
+                {
 
-@using (Html.BeginForm("ContactUs", "Footer", FormMethod.Post, new { id = "ContactUsForm" }))
-{
+                    <h3 class="FormHeading">Write here to reach us</h3>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Write Now</h3>
+                        <div id="Message" style="padding-left:20px">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="txtPhoneNumber">Mobile<span class="MandatoryStars">*</span> :</label>
+                                    <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <label for="txtSubject">Subject<span class="MandatoryStars">*</span>:</label>
+                                    @Html.TextBox("txtSubject", null, new { @class = "form-control", @placeholder = " Enter Subject" })
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="form-group">
+                                    <label for="">Description<span class="MandatoryStars">*</span>:</label>
+                                    @Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin" })
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnContactUs()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
-    <div style="padding-left:100px">
-        
-        <table>
-            <tr>
-                <td colspan="2" style="padding-bottom:25px"><h4>Please Report us if you find any issue with this website.</h4></td>
-               
-            </tr>
-            <tr><td colspan="2"><div id="Message" style="padding-left:150px">
-</div></td></tr>
-            <tr>
-                <td id="tdLeft"><label>Phone Number<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextBox("txtPhoneNumber", null, new { @class = "form-control", @placeholder = "  Please Enter Your Phone Number." })</td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Subject<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextBox("txtSubject", null, new { @class = "form-control", @placeholder = " Enter Subject [max Lenth:50 char]" })</td>
-            </tr>
-            <tr>
-                <td id="tdLeft"><label>Description<span class="MandatoryStars">*</span>:</label></td>
-                <td>@Html.TextArea("txtContactUsDescription", null, new { @class = "form-control", @placeholder = " Enter Descriptioin [max Lenth:200 char]" })</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="button" class="clsbutton" style="width:200px;float:left" value="Submit" onclick="fnContactUs()" /></td>
+            </div>
+        </div>
+        <div class="row py-5">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <h2 class="FormHeading py-2" style="text-align:left">Your can also reach us at</h2>
+                <ul class="pl-4 font14">
+                    <li class="py-2">
+                        Customer Care:-<br />EmailID:  support@ManaBandi.in <br />Phone Number:  8310276613
 
-            </tr>
-        </table>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-}
+</div>

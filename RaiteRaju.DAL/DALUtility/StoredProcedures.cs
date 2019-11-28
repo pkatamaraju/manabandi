@@ -98,7 +98,7 @@ namespace RaiteRaju.DAL.DALUtility
       public const string SPgetAdIdswithUserid = "SPRRgetAdIdswithUserid";
       public const string SPInsertAdViewsStatistics="SPRRInsertAdViewsStatistics";
       public const string SPFetchAdsForHomePage = "SPRRFetchAdsForHomePage";
-      public const string SPINSERTPROMOTIONS = "SPRRInsertPromotions";
+      public const string INSERT_MBInsertPromotions = "INSERT_MBInsertPromotions";
 
 
 #region admin

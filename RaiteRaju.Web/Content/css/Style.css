@@ -66,6 +66,7 @@ label{
     height:70px;width:90px;
       border-radius:30%;
       background-color:white;
+      cursor:pointer;
 }
 #TagLine {
     font-size: 11.5px;
@@ -110,6 +111,7 @@ nav {
     font-family: Verdana, sans-serif;
     color: #4e884a;
     letter-spacing: 1px;
+    cursor:pointer;
 }
 #Title a span {
     color: #30c39e;
@@ -380,7 +382,7 @@ li > a:only-child:after { content: ''; }
 #Divfooter {
     padding-top: 50px;
     color: #fff;
-    background-color: #6d9a55;
+    background-color: #326940;
     min-height: 400px;
 }
 #Divfooter a{
@@ -654,7 +656,8 @@ option{
 
 .dflt-btn {
     border-radius: 100px;
-    background-color: #30c39e;
+    /*background-color: #30c39e;*/
+    background-color: #387766;
     color: #fff;
     font-size: 13px;
     letter-spacing: .9px;
@@ -675,14 +678,21 @@ option{
     margin-bottom: 5px;
     font-weight: bold;
 }
-.seperator-text {
-    font-size: 14px;
-    letter-spacing: .3px;
-    text-align: center;
-    color: #888;
-    padding-top: 20px;
-    margin-bottom: 0;
+    .dflt-btn:hover{
+        color:orange;
+
+    }
+.homePageButton {
+    background-color: #4cb54f;
 }
+    .seperator-text {
+        font-size: 14px;
+        letter-spacing: .3px;
+        text-align: center;
+        color: #888;
+        padding-top: 20px;
+        margin-bottom: 0;
+    }
 .green-text {
     color: #43c6ac;
     font-size: 12px;
@@ -747,7 +757,7 @@ option{
 
 
 
-#SubMenuBar {margin: 0 auto; width:100%;background-color:#686979;min-height: 45px;}
+#SubMenuBar {margin: 0 auto; width:100%;background-color:#326940/*#686979*/;min-height: 45px;}
 #SubMenuBar a{font-size: 12px;padding-top: 15px; padding-bottom: 15px;text-decoration: none;line-height: inherit;background-color: transparent;color:white}
 #SubMenuBar ul li { cursor: pointer;display: inline-block;font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
 #SubMenuBar ul li:hover {border-bottom:2px solid orange;min-height:45px;background-color:#6d9a55; border-radius:3px;}
@@ -778,7 +788,7 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 }
 
 /* user account tabs*/
-.tab {overflow: hidden;margin-left: auto;margin-right: auto;width: 100%;background-color: #686979; border-radius:5px;}
+.tab {overflow: hidden;margin-left: auto;margin-right: auto;width: 100%;/*background-color: #686979;*/background-color: #326940; border-radius:5px;}
 .tab.subTab{overflow: hidden;margin-left:auto;margin-right:auto;width:100%;color:blue;font-family:Verdana,sans-serif;font-weight:normal !important;font-size:9.5px !important;}
 
  /* Style the buttons inside the tab */
@@ -798,15 +808,13 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 
 /* Change background color of buttons on hover */
         .tab button:hover {
-            background-color: #363846;
-            color: orange;
+            background-color: #3b582d;
         }
 
 /* Create an active/current tablink class */
         .tab button.active {
-            border-bottom: 2px solid blue;
-            background-color: #363846;
-            color: orange !important;
+            border-bottom: 1px solid orange;
+            background-color: #3b582d;
         }
 .tab.subTab button{color:white;padding-top:8px;padding-bottom:8px;color:white;font-size:9.9px;}
 /* Style the tab content */
@@ -829,7 +837,7 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 .listTable{text-align:center;border-right:1px solid #4a3a3a}
 .listTable th{border-color:blue;border-right:1px solid #4a3a3a}
 .listTable td{height:40px;text-decoration:none;font-size:12px;}
-.tblHeader {background-color:#686979;height:30px;border-collapse:collapse;color:white;font-size:12px;border-radius:5px;}
+.tblHeader {background-color:#326940/*#686979*/;height:30px;border-collapse:collapse;color:white;font-size:12px;border-radius:5px;}
 #UserSettings{min-height:300px;}
 .tableRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
 /*#AdListRow td {border:1px solid black}*/
@@ -974,7 +982,7 @@ font-size:14px;
 
 .topnav {
     overflow: hidden;
-    background-color: #686979;
+    background-color: #326940 /*#686979*/;
 }
 
     .topnav a {
@@ -989,8 +997,8 @@ font-size:14px;
     }
 
 .topnav a {cursor: pointer; display: inline-block; font-family: Verdana,sans-serif;font-size: 12px;font-weight: 700;padding-left: 18px;padding-right: 18px;text-decoration: none;padding-top: 15px;height: 45px;}
-.topnav a:hover {border-bottom:2px solid orange;min-height:45px;background-color:#80827f !important; border-radius:3px;}
-.topnav a.active {border-bottom: 2px solid orange;min-height: 45px;background-color: #80827f !important;border-radius: 3px;}
+.topnav a:hover {border-bottom:2px solid orange;min-height:45px;background-color:#3b582d !important; border-radius:3px;}
+.topnav a.active {border-bottom: 2px solid orange;min-height: 45px;background-color: #3b582d !important;border-radius: 3px;}
 
 .topnav .icon {
     display: none;

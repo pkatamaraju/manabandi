@@ -48,7 +48,7 @@
 
         jQuery("#divVehicleList").show();
         jQuery("#UserSettings").hide();
-        jQuery("#DivMyRides").hide();
+        jQuery("#divRideList").hide();
     }
 
     function fnshowUserSettings()
@@ -60,7 +60,7 @@
         jQuery("#divVehicleList").hide();
         jQuery("#divUpdateUserDetails").show();
         jQuery("#UserSettings").show();
-        jQuery("#DivMyRides").hide();
+        jQuery("#divRideList").hide();
     }
 
     function fnShowRides()
@@ -72,7 +72,7 @@
 
         jQuery("#divVehicleList").hide();
         jQuery("#UserSettings").hide();
-        jQuery("#DivMyRides").show();
+        jQuery("#divRideList").show();
     }
 
     function fnshowdivUpdateUserDetails()
@@ -680,7 +680,7 @@
 
 
                 </div>
-                <div id="DivMyRides" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
+                <div id="divRideList" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
                     @Html.Action("_rideList", "User", new { PageNumber = 1 })
 
                 </div>

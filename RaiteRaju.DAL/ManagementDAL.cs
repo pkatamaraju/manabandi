@@ -279,7 +279,7 @@ namespace RaiteRaju.DAL
             int Success = 0;
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPINSERTPROMOTIONS))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBInsertPromotions))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, Name);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
