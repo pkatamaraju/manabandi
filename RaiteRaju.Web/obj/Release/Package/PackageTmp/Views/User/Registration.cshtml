@@ -15,69 +15,36 @@
     }
 
     function validation() {
-        var ddlState = jQuery("#ddlState");
-        var ddlDistrict = jQuery("#ddlDistrict");
-        var ddlMandal = jQuery("#ddlMandal");
-        var phone = jQuery("#txtPhoneNumber").val(),
-            //intRegex = /^\d{10}$/;
-            intRegex = /^[5-9]{1}[0-9]{9}$/;
+        var phone = jQuery("#txtPhoneNumber").val();
+        var intRegex = /^[5-9]{1}[0-9]{9}$/;
         var message = "";
 
-        if (ddlState.val() == "" || ddlDistrict.val() == "" || ddlMandal.val() == "" || jQuery("#txtUserName").val() == "" || jQuery("#txtPhoneNumber").val() == "" || jQuery("#txtVillage").val() == "" || jQuery("#txtPassword").val() == "") {
 
-            if (jQuery("#txtUserName").val() == "") {
-                message = message + "Please Enter Name.\n";
-            }
-            if (jQuery("#txtPhoneNumber").val() == "") {
-                message = message + "Please Enter Phone Number.\n";
-            }
-            if (jQuery("#txtPassword").val() == "") {
-                message = message + "Please Enter Password.\n";
-            }
-            if (ddlState.val() == "" || ddlState.val() == "---Select State---") {
-                //If the "Please Select" option is selected display error.
-                message = message + "Please Select State.\n";
-            }
-            if (ddlDistrict.val() == "" || ddlDistrict.val() == "---Select District---") {
-                //If the "Please Select" option is selected display error.
-                message = message + "Please Select District.\n";
-            }
-            if (ddlMandal.val() == "" || ddlMandal.val() == "---Select Mandal---") {
-                //If the "Please Select" option is selected display error.
-                message = message + "Please Select Mandal.\n";
-            }
-            if (jQuery("#txtVillage").val() == "") {
-                message = message + "Please Enter Village.\n";
-            }
-
+        if (jQuery("#txtUserName").val() == "") {
+            message = message + "Please Enter Name.\n";
         }
-        else if (ddlState.val() != "" && ddlDistrict.val() != "" && ddlMandal.val() != "" && jQuery("#txtUserName").val() != "" && jQuery("#txtPhoneNumber").val() != "" && jQuery("#txtVillage").val() != "" && jQuery("#txtPassword").val() != "") {
+        else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtUserName").val()) == false) {
+            message = message + "Special characters(<>'\"/`%-) Are Not Allowed In Name.\n";
+        }
+        else if (jQuery("#txtUserName").val().length > 50 || jQuery("#txtPassword").val().length < 8) {
+            message = message + "Name should be between 4 to 50 characters.\n";
+        }
 
-            if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtUserName").val()) == false) {
-                message = message + "Special characters(<>'\"/`%-) Are Not Allowed In Name.\n";
-            }
-            else if (jQuery("#txtUserName").val().length > 50 || jQuery("#txtPassword").val().length < 8) {
-                message = message + "Name Should Be Between 4 To 50 Characters.\n";
-            }
+        if (jQuery("#txtPhoneNumber").val() == "") {
+            message = message + "Please enter Phone Number.\n";
+        }
+        else if (intRegex.test(phone) == false) {
+            message = message + "Please enter valid Phone Number.\n";
+        }
 
-            if (intRegex.test(phone) == false) {
-                message = message + "Please Enter Valid Phone Number.\n";
-            }
-
-            if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtVillage").val()) == false) {
-
-                message = message + "Special Characters(<>'\"/`%-) Are Not Allowed In Village.\n";
-            }
-            else if (jQuery("#txtVillage").val().length > 50 || jQuery("#txtVillage").val().length < 4) {
-                message = message + "Village Should Be Between 4 To 50 Characters.\n";
-            }
-
-            if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtPassword").val()) == false) {
-                message = message + "Special Characters(<>'\"/`%-) Are Not Allowed In Password.\n";
-            }
-            else if (jQuery("#txtPassword").val().length > 20 || jQuery("#txtPassword").val().length < 8) {
-                message = message + "Password Should Be Between 8 To 20 Characters\n";
-            }
+        if (jQuery("#txtPassword").val() == "") {
+            message = message + "Please enter Password.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtPassword").val()) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Password.\n";
+        }
+        else if (jQuery("#txtPassword").val().length > 20 || jQuery("#txtPassword").val().length < 8) {
+            message = message + "Password should be between 8 to 20 characters\n";
         }
 
         if (message == "") {
@@ -90,17 +57,9 @@
     }
 
     function fnRegistration() {
-
-        //jQuery(this).validate();
-        //if (!jQuery("#UserRegistration").valid()) return false;
-
+       
         var form = jQuery("#UserRegistration").serialize();
-        var state=jQuery("#ddlState option:selected").text();
-        var district=jQuery("#ddlDistrict option:selected").text();
-        var mandal=jQuery("#ddlMandal option:selected").text();
-        form+="&ddlStateText="+state+"&ddlDistrict="+district+"&ddlMandal="+mandal;
-        var AmobileNumber=jQuery("#txtPhoneNumber").val();
-
+        var phoneNumber = jQuery("#txtPhoneNumber").val();
         if (validation()) {
 
             jQuery.ajax({
@@ -110,17 +69,12 @@
                 data: form,
                 success: function (data) {
 
-                    if (data == 0) {
-                        alert("Entered Phone Number Is Already Registered.");
-                    }
-                    if (data == -1) {
-                        alert("Please Enter Correct Data As Per Validation.");
-                    }
-                    if (data != 0 && data != -1) {
+                    if (data == "success") {
                         jQuery('body').loadingIndicator();
                         jQuery("#UserRegistration")[0].reset();
-                        window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
+                        window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + phoneNumber;
                     }
+                    else { alert(data); }
 
                 },
                 error: function (data) {
@@ -131,66 +85,6 @@
             });
         }
     }
-    jQuery(function () {
-        jQuery("#ddlState").change(function () {
-            var stagId = jQuery("#ddlState").val();
-
-            jQuery('#ddlDistrict').empty();
-            jQuery("#ddlDistrict").html("");
-            jQuery("#ddlDistrict").append
-            (jQuery('<option></option>').val("").html("---Select District---"));
-            if (stagId != "") {
-                jQuery.ajax({
-                    type: "POST",
-                    url: '@Url.Action("FetchDistricts", "Home")',
-                    data: '{StateId:"' + stagId + '"}',
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        jQuery.each(result, function (i) {
-                            jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                        });
-                    },
-                    error: function (response) {
-                        alert('Error Occured');
-                    }
-                });
-            }
-            jQuery('#ddlMandal').empty();
-            jQuery("#ddlMandal").html("");
-            jQuery("#ddlMandal").append
-            (jQuery('<option></option>').val("").html("---Select Mandal---"));
-        })
-    });
-
-    jQuery(function () {
-        jQuery("#ddlDistrict").change(function () {
-
-            var DistID = jQuery("#ddlDistrict").val();
-            jQuery('#ddlMandal').empty();
-            jQuery("#ddlMandal").html("");
-            jQuery("#ddlMandal").append(jQuery('<option></option>').val("").html("---Select Mandal---"));
-
-            if (DistID != "") {
-                jQuery.ajax({
-                    type: "POST",
-                    url: '@Url.Action("FetchMandals", "Home")',
-                    data: '{DistrictId:"' + DistID + '"}',
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        jQuery.each(result, function (i) {
-                            jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                        });
-                    },
-                    error: function (response) {
-                        alert('Error Occured');
-                    }
-                });
-            }
-        })
-    });
-
 
 </script>
 @{Html.EnableClientValidation();}
@@ -210,7 +104,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
                                         <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -222,7 +116,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
                                         <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -234,7 +128,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
                                         <label for="txtPassword">Password<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -244,63 +138,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                        <label for="ddlState">State<span class="MandatoryStars">*</span> :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control text-center", required = "required" })
-                                        <span class="error-msg" id="ErrorddlState">Please Select Your State</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                        <label for="ddlDistrict">District<span class="MandatoryStars">*</span> :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <select id="ddlDistrict" class="form-control text-center">
-                                            <option value="">---Select District---</option>
-                                        </select>
-                                        <span class="error-msg" id="ErrorddlState">Please Select Your District</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                        <label for="ddlMandal">Mandal/Tehsil<span class="MandatoryStars">*</span> :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <select id="ddlMandal" class="form-control text-center">
-                                            <option value="">---Select Mandal---</option>
-                                        </select>
-                                        <span class="error-msg" id="ErrorddlState">Please Select Your Mandal</span>
-                                    </div>                                    
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                        <label for="txtVillage">Village/Area<span class="MandatoryStars">*</span> :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
-                                        <span class="error-msg" id="ErrorddlState">Please enter Village/Area</span>
-                                    </div>                                    
-                                </div>
-                            </div>
-
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <div class="cta-actions">
                                     <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
                                     <br>
-                                    <label style="font-size:10px;font-family:inherit">By creating account with RaiteRaju, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
+                                    <label style="font-size:10px;font-family:inherit">By creating account with ManaBandi, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
                                 </div>
                             </div>
                         </div>

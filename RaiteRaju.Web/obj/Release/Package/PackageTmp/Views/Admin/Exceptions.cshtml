@@ -25,7 +25,7 @@
             var tblExceptions=jQuery('#tblExceptions');
             for(i=0;i<length;i++){
                 j=i+1;
-                tblExceptions.append('<tr id="AdListRow" ><td style="width:50px;text-align:center;">'+j+'</td><td style="width:100px;text-align:center;">'+ ExceptionList[i].txtControllerName+'</td><td style="width:100px;text-align:center;">'+ExceptionList[i].txtActionName+'</td><td style="width:400px;text-align:center;">'+ExceptionList[i].txtExceptionMessage+'</td><td style="width:200px;text-align:center;">'+ExceptionList[i].dtLoggedDate+'</td><tr>')
+                tblExceptions.append('<tr class="tableRow" ><td style="width:50px;text-align:center;">'+j+'</td><td style="width:100px;text-align:center;">'+ ExceptionList[i].txtControllerName+'</td><td style="width:100px;text-align:center;">'+ExceptionList[i].txtActionName+'</td><td style="width:400px;text-align:center;">'+ExceptionList[i].txtExceptionMessage+'</td><td style="width:200px;text-align:center;">'+ExceptionList[i].dtLoggedDate+'</td><tr>')
             }
         }
     });
@@ -38,17 +38,19 @@
 
         </div>
         <div class="col-md-10 col-sm-12">
-
-            <div style="border:1px solid black" class="table-responsive">
-                <table id="tblExceptions" style="border-collapse: collapse;width:100%;text-align:center">
-                    <tr id="adlistHeader">
-                        <th width="50px">S.No</th>
-                        <th width="100px">Controller Name</th>
-                        <th width="100px">Action Name</th>
-                        <th width="300px">Exception</th>
-                        <th width="100px">LoggedDate</th>
-                    </tr>
-                </table>
+            <h3 class="FormHeading text-left">Exceptions</h3>
+            <div class="divTable">
+                <div class="table-responsive">
+                    <table id="tblExceptions" style="border-collapse: collapse;width:100%;text-align:center">
+                        <tr id="adlistHeader">
+                            <th width="50px">S.No</th>
+                            <th width="100px">Controller Name</th>
+                            <th width="100px">Action Name</th>
+                            <th width="300px">Exception</th>
+                            <th width="100px">LoggedDate</th>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

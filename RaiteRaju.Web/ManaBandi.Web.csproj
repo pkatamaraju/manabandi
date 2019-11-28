@@ -199,6 +199,7 @@
     <Content Include="Content\HelpImges\register5.png" />
     <Content Include="Content\HelpImges\register6.png" />
     <Content Include="Content\images\AppiAuto.jpg" />
+    <Content Include="Content\images\Bella Cabs logo.png" />
     <Content Include="Content\images\Bus.jpg" />
     <Content Include="Content\images\Car14Seater.jpg" />
     <Content Include="Content\images\Car4Seater.jpg" />
@@ -213,7 +214,6 @@
     <Content Include="Content\images\Lorry.jpg" />
     <Content Include="Content\images\MiniAuto.jpg" />
     <Content Include="Content\images\MiniBus.jpg" />
-    <Content Include="Content\images\MiniTruck.png" />
     <Content Include="Content\images\NoImage.jpg" />
     <Content Include="Content\images\FooterIcon3.jpg" />
     <Content Include="Content\images\UserName.jpg" />
@@ -281,7 +281,6 @@
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminMain.cshtml" />
     <Content Include="Views\Admin\OwnerDetails.cshtml" />
-    <Content Include="Views\Admin\AdViewStatistics.cshtml" />
     <Content Include="Views\Footer\ReportIssue.cshtml" />
     <Content Include="Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\ContactUs.cshtml" />
@@ -290,8 +289,6 @@
     <Content Include="Views\Footer\Partner.cshtml" />
     <Content Include="Views\Footer\HowToRegister.cshtml" />
     <Content Include="Views\Footer\HowToBook.cshtml" />
-    <Content Include="Views\Admin\UserRegistration.cshtml" />
-    <Content Include="Views\Admin\VerifyUsers.cshtml" />
     <Content Include="Views\Footer\Promotions.cshtml" />
     <Content Include="Views\Book\BookNow.cshtml" />
     <Content Include="Views\Partner\OwnerRegistration.cshtml" />
@@ -306,6 +303,7 @@
     <Content Include="Views\Admin\EditOwnerDetails.cshtml" />
     <Content Include="Views\Admin\AddVehicle.cshtml" />
     <Content Include="Views\Admin\EditVehicleDetails.cshtml" />
+    <Content Include="Views\Admin\AddOwner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

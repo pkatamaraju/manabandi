@@ -1,0 +1,231 @@
+﻿@model RaiteRaju.Web.Models.UserDetailsModel
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("RideDetails", "Admin")';
+    }
+
+    function validation() {
+
+        var UserName = jQuery("#txtUserName").val();
+        var PhoneNumber = jQuery("#txtPhoneNumber").val();
+        var PickUpLocation = jQuery("#txtPickUpLocation").val();
+        var DropLocation = jQuery("#txtDropLocation").val();
+        var ddlVehicles = jQuery("#ddlVehicles").val();
+
+        var phone = jQuery("#txtPhoneNumber").val();
+        intRegex = /^[5-9]{1}[0-9]{9}$/;
+        var message = "";
+
+        if (UserName == "") {
+            message = message + "Please enter Name.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(UserName) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Name.\n";
+        }
+        else if (UserName.length > 50 || UserName.length < 3) {
+            message = message + "Name should be between 3 to 50 characters.\n";
+        }
+
+        if (PhoneNumber == "") {
+            message = message + "Please enter Phone number.\n";
+        }
+        else if (intRegex.test(phone) == false) {
+            message = message + "Please enter valid Phone number.\n";
+        }
+
+        if (ddlVehicles == "0") {
+            message = message + "Select required vehicle type.\n";
+        }
+        else if (PickUpLocation == "") {
+            message = message + "Please enter Pick up location.\n";
+        }
+        if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
+
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
+        }
+        else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
+            message = message + "Pick up location should be between 4 to 50 characters.\n";
+        }
+
+        if (DropLocation == "") {
+            message = message + "Please enter Drop location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
+        }
+        else if (DropLocation.length > 50 || DropLocation.length < 4) {
+            message = message + "Drop location should be between 4 to 50 characters\n";
+        }
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnRegistration() {
+
+        var form = jQuery("#BookVehicle").serialize();
+        form += "&intVehicleTypeId=" + jQuery("#ddlVehicles").val();
+        var AmobileNumber = jQuery("#txtPhoneNumber").val();
+
+        if (validation()) {
+            
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("AddRide", "Admin")',
+                    dataType: 'json',
+                    data: form,
+                    success: function (data) {
+                        if (data == -1) {
+                            alert("Please enter correct data as per validation.");
+                        }
+                        if (data != 0 && data != -1) {
+                            jQuery('body').loadingIndicator();
+                            jQuery("#BookVehicle")[0].reset();
+                            window.location.href = "/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1";
+                        }
+
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                        jQuery("#diverror").show();
+                    }
+                });
+            }
+        }
+
+
+    jQuery(document).ready(function () {
+        var VehicleTypeId =@ViewBag.VehicleTypeId
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (VehicleTypeId!=0 && VehicleTypeId == result[i].ID) {
+                        jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                    }
+                    else {
+                        jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                    }
+                });
+            },
+            error: function (response) {
+                alert('Error Occured');
+            }
+        });
+    });
+
+
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("BookNow", "Book", FormMethod.Post, new { id = "BookVehicle" }))
+                {
+                    <h3 class="FormHeading">Enter your details to register with us</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Book Now</h3>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlVehicles" class="form-control text-center">
+                                            <option value="0">---Select Vehicle---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select required vehicle</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtPickUpLocation">Pick Up Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                                        <input type="text" class="form-control" id="txtPickUpLocation" name="txtPickUpLocation" placeholder="Nandigama">
+                                        <span class="error-msg" id="ErrorPickUpLocation">Please enter Pick Up Location</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtDropLocation">Drop Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtDropLocation" name="txtDropLocation" placeholder="Vijayawada">
+                                        <span class="error-msg" id="ErrorDropLocation">Please enter Drop Location</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

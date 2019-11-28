@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "B";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $.noConflict();
+    jQuery().ready(function () {
+        jQuery('#tabPartner').addClass('active');
+    });
+</script>
+<div class="container">
+    <div class="row" style="min-height:600px;">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h1 class="FormHeading text-left">Attach your vehicle with us to earn more</h1>
+            <br />
+            <p class="font14"> if you have one of below mentioned vehicles It’s easy to earn more. Simply send us your vehicle details.</p>
+            <br />
+            <br />
+            <h4>How to earn more?</h4>
+
+            <ul style="padding-left:50px;padding-top:10px;" class="font14">
+                <li>Once you attach your vehicle with us, you will receive rides from us, We have large network for people who needs to travel outstation or deliver goods.</li>
+                <li>
+                    Currently we are accepting only few hehicles that were mentioned below<br />
+                    <ul style="padding-left:50px;" class="font14">
+                        <li>Mini Truck</li>
+                        <li>Auto</li>
+                        <li>Cars</li>
+                        <li>Mini Bus</li>
+                        <li>Bus</li>
+                        <li>Lorry</li>
+                        <li>Mini Auto</li>
+                    </ul>
+                </li>
+                <li>
+                    <label style="font-size:14px;padding-right:20px;">Click here to attach your vehicle  </label><a href="/Partner/OwnerRegistration" class="ghost-btn first last filled py-2" tabindex="-1">Attach your vehicle</a>
+                </li>
+            </ul>
+            <br/>
+
+
+        </div>
+    </div>
+</div>
+           

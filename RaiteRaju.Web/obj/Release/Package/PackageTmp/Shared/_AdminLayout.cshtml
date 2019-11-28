@@ -10,13 +10,14 @@
     <meta name="author" content="Katamaraju">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" type="image/svg" href="~/Content/images/logo.jpg" />
     <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
     <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/Content/css/Style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width" />
-    <title>Raiteraju - Sell Or Buy Anything Related to Agriculture.</title>
+    <title>Bella Cabs - Book any vehicle to travel or deliver goods</title>
 
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -26,17 +27,17 @@
             window.location.href = '/User/UserLogout';
         }
         jQuery(document).ready(function () {
-            jQuery("#tabVerifyAds").click(function () {
-                window.location.href = "/admin/VerifyAds?PageNumber=1";
+            jQuery("#tabVehicles").click(function () {
+                window.location.href = "/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
             });
-            jQuery("#tabUserManagement").click(function () {
-                window.location.href = "/admin/UserDetailsManagement?State=&District=&DistrictId=0&Mandal=&MandalId=0&PageNumber=1";
+            jQuery("#tabOwners").click(function () {
+                window.location.href = "/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
             });
-            jQuery("#tabVerifyUsers").click(function () {
-                window.location.href = "/admin/VerifyUsers?PageNumber=1";
+            jQuery("#tablRides").click(function () {
+                window.location.href = "/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1";
             });
-            jQuery("#tabAdManagement").click(function () {
-                window.location.href = "/admin/AdManagement?PageNumber=1";
+            jQuery("#tabPriceCalculator").click(function () {
+                window.location.href = "/admin/PriceCalculator";
             });
             jQuery("#tabAdViewStatistics").click(function () {
                 window.location.href = "/admin/AdViewStatistics?PageNumber=1";
@@ -71,8 +72,8 @@
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-9 col-xs-9">
                     <div style="padding-left:10px; height:50px;">
-                        <span><a id="Title" href="/">Raite Raju</a></span><br />
-                        <span id="TagLine">Now selling is at farmer's finger tips</span>
+                        <span><a id="Title" href="/">Bella Cabs</a></span><br />
+                        <span id="TagLine">Just call us to book any vehicle</span>
                     </div>
                 </div>
 
@@ -80,7 +81,7 @@
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 pt-4 text-right">
                     @if (Request.Cookies["_RRAUN"] == null)
-                    {<a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a>}
+                    {<a href="/Admin/Login" class="ghost-btn first last filled py-2" tabindex="-1">Log in</a>}
 
                     @if (Request.Cookies["_RRAUN"] != null)
                     {
@@ -95,7 +96,7 @@
                         <span class="arrow-down" style="vertical-align:auto;"></span>}
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pt-4 ">
-                    <a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>
+                    @*<a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>*@
                 </div>
 
             </div>
@@ -108,28 +109,13 @@
 
                 </div>
                 <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
-                    @*<nav>
-                        <ul class="nav nav-pills">
-
-                            <li id="tabVerifyAds"><a href="/admin/VerifyAds?PageNumber=1" tabindex="-1">VerifyAds</a></li>
-                            <li id="tabUserManagement"><a href="/admin/UserDetailsManagement?PageNumber=1" tabindex="-1">User Mngt</a></li>
-                            <li id="tabVerifyUsers"><a href="/admin/VerifyUsers?PageNumber=1" tabindex="-1">Verify Users</a></li>
-                            <li id="tabAdManagement"><a href="/admin/AdManagement?PageNumber=1" tabindex="-1">Ad Mngt</a></li>
-                            <li id="tabAdViewStatistics"><a href="/admin/AdViewStatistics?PageNumber=1" tabindex="-1">Ad Views</a></li>
-                            <li id="tabUserRegistration"><a href="/admin/UserRegistration" tabindex="-1">User Reg</a></li>
-                            <li id="tabReviewsForAdmin"><a href="/Admin/ReviewsForAdmin" tabindex="-1">Reviews</a></li>
-                            <li id="tabContactUsForAdmin"><a href="/Admin/ContactUs" tabindex="-1">Contact Us</a></li>
-                            <li id="tabExceptions"><a href="/Admin/Exceptions" tabindex="-1">Exceptions</a></li>
-                        </ul>
-                    </nav>*@
+                    
                     <div class="topnav" id="myTopnav">
-                       
-                        <a href="/admin/VerifyAds?PageNumber=1"  id="tabVerifyAds"tabindex="-1">VerifyAds</a>
-                        <a href="/admin/UserDetailsManagement?PageNumber=1" id="tabUserManagement"tabindex="-1">User Mngt</a>
-                        <a href="/admin/VerifyUsers?PageNumber=1" id="tabVerifyUsers" tabindex="-1">Verify Users</a>
-                        <a href="/admin/AdManagement?PageNumber=1" id="tabAdManagement" tabindex="-1">Ad Mngt</a>
-                        <a href="/admin/AdViewStatistics?PageNumber=1" id="tabAdViewStatistics" tabindex="-1">Ad Views</a>
-                        <a href="/admin/UserRegistration" id="tabUserRegistration" tabindex="-1">User Reg</a>
+                        <a href="/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1" id="tablRides" tabindex="-1">Ride Details</a>
+                        <a href="/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabVehicles" tabindex="-1">Vehicle Data</a>
+                        <a href="/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabOwners" tabindex="-1">Owners Data</a>
+                        <a href="#" id="tabPriceCalculator" tabindex="-1">Price Calculator</a>
+                        <a href="#" id="tabVerifyUsers" tabindex="-1">Users</a>
                         <a href="/Admin/ReviewsForAdmin" id="tabReviewsForAdmin" tabindex="-1">Reviews</a>
                         <a href="/Admin/ContactUs" id="tabContactUsForAdmin" tabindex="-1">Contact Us</a>
                         <a href="/Admin/Exceptions" id="tabExceptions" tabindex="-1">Exceptions</a>

@@ -34,7 +34,7 @@
                         window.location.reload();
                     }
                     else{
-                        alert("Something Went Wrong, Please Try After Sometime.");
+                        alert("Something went wrong, Please try after sometime.");
                     }
                 },
                 error: function (data) {
@@ -144,15 +144,15 @@
         if(ddlState== ""|| ddlDistrict == "" || ddlMandal == ""|| jQuery("#txtUserNameDetails").val()=="" || jQuery("#txtVillage").val()==""){
             if (ddlState == "" ||ddlState== "---Select State---") {
                 //If the "Please Select" option is selected display error.
-                message="Please Select State!\n";
+                message="Please select State!\n";
             }
             if (ddlDistrict == ""|| ddlDistrict =="---Select District---") {
                 //If the "Please Select" option is selected display error.
-                message=message+"Please Select District!\n";
+                message=message+"Please select District!\n";
             }
             if (ddlMandal== ""||ddlMandal== "---Select Mandal---") {
                 //If the "Please Select" option is selected display error.
-                message=message+"Please Select Mandal!\n";
+                message=message+"Please select Mandal!\n";
             }
             if(jQuery("#txtUserNameDetails").val()==""){
                 message=message+"Please Enter Name!\n";
@@ -174,13 +174,13 @@
 
             if(/^[^<>'\"/`%-]*$/.test(jQuery("#txtUserNameDetails").val()) == false)
             {
-                message=message+"Special Characters Are Not Allowed In Name [max length:50]!\n";
+                message=message+"Special characters are not allowed in Name [max length:50]!\n";
             }
             //if (intRegex.test(phone)==false) {
             //    message = message + "Please enter a valid phone number!\n";
             //}
             if(/^[^<>'\"/`%-]*$/.test(jQuery("#txtVillage").val())==false){
-                message=message+"Special Characters Are Not Allowed In Village [max length:50]!\n";
+                message=message+"Special characters are not allowed in Village [max length:50]!\n";
             }
             //if (/^[a-zA-Z0-9 .]{1,50}jQuery/.test(jQuery("#txtPassword").val()) == false) {
             //    message = message + "special characters are not allowed in password [max length:50]!\n ";
@@ -207,7 +207,7 @@
         }
         else if(phone!= "") {
             if(intRegex.test(phone)==false) {
-                message = message + "Please Enter A Valid Phone Number!\n";
+                message = message + "Please enter a valid Phone Number!\n";
             }
         }
 
@@ -225,12 +225,12 @@
         var message="";
 
         if(jQuery("#txtPassword").val()==""){
-            message=message+"Please Enter Password!\n";
+            message=message+"Please enter Password!\n";
         }
         else if(jQuery("#txtPassword").val()!="")
         {
             if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtPassword").val()) == false) {
-                message = message + "Special Characters Are Not Allowed In Password [Max length:50]!\n ";
+                message = message + "Special characters are not allowed in Password [Max length:50]!\n ";
             }
         }
 
@@ -265,7 +265,7 @@
                         window.location.reload();
                     }
                     if(data==-99){
-                        alert("Please Enter Correct Data As Per Validation.");
+                        alert("Please enter correct data as per validation.");
                     }
 
                 },
@@ -353,7 +353,7 @@
                         alert("Password Updated successfully.");
                     }
                     if(data==-99){
-                        alert("Please Enter Correct Password As Per Validation.");
+                        alert("Please enter correct data as per validation.");
                     }
 
                 },
@@ -377,13 +377,13 @@
                 success: function (data) {
                     if(data==0)
                     {
-                        alert("Entered Mobile Number Is Already Registered.");
+                        alert("Entered mobile number is already registered.");
                     }
                     if(data!=0 && data!=-99){
                         window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
                     }
                     if(data==-99){
-                        alert("Please Enter Correct PhoneNumber As Per Validation.");
+                        alert("Please enter correct PhoneNumber as per validation.");
                     }
 
                 },
@@ -403,7 +403,7 @@
 
     function fnDeleteAccount(){
         var BigIntPhoneNumber=@ViewBag.txtPhoneNumber;
-        var r = confirm("Are You Sure, Do You Want To Delete Your Account Permanetly!");
+        var r = confirm("Are you sure, Do you want to delete your account permanetly!");
         if (r == true) {
             jQuery.ajax({
                 type: 'POST',

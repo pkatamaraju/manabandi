@@ -478,42 +478,106 @@ namespace RaiteRaju.Web.Controllers
 
         #region ManaBandi Admin Methods
 
-
-        public ActionResult VehicleDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        public ActionResult AddOwner()
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
             if (nameCookie != null)
             {
-                int TotalPageNumber = 0;
-                ViewBag.CurrentPageNumber = PageNumber;
-                InformationServiceWrapper objservice = new InformationServiceWrapper();
 
-                VehicleFilterModel Model = new VehicleFilterModel();
-                Model.intStateId = intStateID;
-                Model.intDistrictId = intDistrictID;
-                Model.intManadalID = intManadalID;
-                Model.VehicleTypeID = VehicleTypeID;
-                Model.IntPageNumber = PageNumber;
-                Model.IntPageSize = 50;
-
-                List<VehicleFilterModel> VehList = new List<VehicleFilterModel>();
-                VehList = objservice.GetVehicleDetailsForAdmin(Model, out TotalPageNumber);
-                ViewBag.VehList = VehList;
-                ViewBag.TotalPageNumber = TotalPageNumber;
-
-                ViewBag.selectedStateID = intStateID;
-                ViewBag.selectedDistrictID = intDistrictID;
-                ViewBag.selectedMandalID = intManadalID;
-                ViewBag.selectedVehicleTypeID = VehicleTypeID;
-                ViewBag.pageNumber = PageNumber;
-
-                return View("VehicleDetails");
+                return View();
             }
             else
             {
                 return RedirectToAction("Login", "Admin");
             }
         }
+
+        [HttpPost]
+        public ActionResult AddOwner(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+
+                Owner model = new Owner();
+                Utility en = new Utility();
+
+                Int32 ownerID = 0;
+
+                model.txtOwnerName = form["txtUserName"];
+                model.BigIntPhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+                model.txtPassword = en.Encrypt(form["txtPhoneNumber"]);
+                model.intStateId = Convert.ToInt32(form["ddlStateID"]);
+                model.intDistrictId = Convert.ToInt32(form["ddlDistrictID"]);
+                model.intManadalID = Convert.ToInt32(form["ddlMandalID"]);
+                model.txtPlace = form["txtVillage"];
+                model.OTP = 0;
+
+                string errorMessage = "";
+
+                string s = "[^<>'\"/`%-]";
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtOwnerName, s))
+                {
+                    errorMessage = errorMessage + "Special character are not allowed in Name.\n";
+                }
+                
+                if (!System.Text.RegularExpressions.Regex.Match(model.BigIntPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
+                {
+                    errorMessage = errorMessage + "Enter valid Phone Number.\n";
+                }
+
+                if (!Regex.Match(model.intStateId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid State.\n";
+                }
+
+                if (!Regex.Match(model.intDistrictId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid District.\n";
+                }
+
+                if (!Regex.Match(model.intManadalID.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid Mandal.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtPlace, s))
+                {
+                    errorMessage = errorMessage + "special characters are not allowed in Place.\n";
+                }
+
+
+                GDictionaryModel GDOBJ = new GDictionaryModel();
+                if (errorMessage == "")
+                {
+                    ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                    InformationServiceWrapper infoObj = new InformationServiceWrapper();
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.owner.ToString());
+                    if (GDOBJ.ID == 1)
+                    {
+                        ManagementServiceWrapper serviceObj = new ManagementServiceWrapper();
+
+                        ownerID = serviceObj.VehicleOwnerRegistration(model);
+                       
+                        return Json("success", JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        errorMessage = "Entered mobiler number is already registered with us.\n";
+                        return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
 
         public ActionResult OwnerDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
@@ -814,6 +878,43 @@ namespace RaiteRaju.Web.Controllers
                 int returnValue = manageObj.UpateRideDetailsForAdmin(ridesObj);
 
                 return Json(returnValue, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+
+        public ActionResult VehicleDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                int TotalPageNumber = 0;
+                ViewBag.CurrentPageNumber = PageNumber;
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+
+                VehicleFilterModel Model = new VehicleFilterModel();
+                Model.intStateId = intStateID;
+                Model.intDistrictId = intDistrictID;
+                Model.intManadalID = intManadalID;
+                Model.VehicleTypeID = VehicleTypeID;
+                Model.IntPageNumber = PageNumber;
+                Model.IntPageSize = 50;
+
+                List<VehicleFilterModel> VehList = new List<VehicleFilterModel>();
+                VehList = objservice.GetVehicleDetailsForAdmin(Model, out TotalPageNumber);
+                ViewBag.VehList = VehList;
+                ViewBag.TotalPageNumber = TotalPageNumber;
+
+                ViewBag.selectedStateID = intStateID;
+                ViewBag.selectedDistrictID = intDistrictID;
+                ViewBag.selectedMandalID = intManadalID;
+                ViewBag.selectedVehicleTypeID = VehicleTypeID;
+                ViewBag.pageNumber = PageNumber;
+
+                return View("VehicleDetails");
             }
             else
             {

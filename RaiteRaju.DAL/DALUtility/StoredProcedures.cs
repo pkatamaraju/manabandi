@@ -14,6 +14,7 @@ namespace RaiteRaju.DAL.DALUtility
 
         public const string GET_DistrictsForStateID= "GET_DistrictsForStateID";
         public const string INSERT_MBRideDetails="INSERT_MBRideDetails";
+        public const string INSERT_MBUserDetails = "INSERT_MBUserDetails";
         public const string GET_VehicleTypes = "GET_VehicleTypes";
         public const string INSERT_MBVehicleOwnerDetails = "INSERT_MBVehicleOwnerDetails";
         public const string INSERT_MBExceptionLogging = "INSERT_MBExceptionLogging";

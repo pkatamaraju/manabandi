@@ -1,0 +1,6 @@
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csprojAssemblyReference.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csproj.CoreCompileInputs.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb

@@ -22,17 +22,7 @@ namespace RaiteRaju.Web.Controllers
 
         public ActionResult OwnerRegistration()
         {
-            HttpCookie OTPCookie = new HttpCookie("_ROTP_");
-            HttpCookie KeyCookie = new HttpCookie("_RRPS");
-            if (OTPCookie != null || KeyCookie != null)
-            {
-                return RedirectToAction("UserAccount", "User");
-            }
-            else
-            {
                 return View();
-            }
-            
         }
 
         [HttpPost]

@@ -21,7 +21,7 @@
             var tblReviewsList=jQuery('#tblReviews');
             for(i=0;i<length;i++){
                 j=i+1;
-                tblReviewsList.append('<tr id="AdListRow"><td style="width:50px;text-align:center;">'+j+'</td><td style="width:100px;text-align:center;">'+ ReviewsList[i].PhoneNumber+'</td><td class="tdbreak" style="width:400px;text-align:center;">'+ReviewsList[i].Review+'</td><td style="width:100px;text-align:center;">'+ReviewsList[i].DtInserted+'</td><tr>')
+                tblReviewsList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">'+j+'</td><td style="width:100px;text-align:center;">'+ ReviewsList[i].PhoneNumber+'</td><td class="tdbreak" style="width:400px;text-align:center;">'+ReviewsList[i].Review+'</td><td style="width:100px;text-align:center;">'+ReviewsList[i].DtInserted+'</td><tr>')
             }
         }
     });
@@ -38,7 +38,7 @@
         </div>
         <div class="col-md-10 col-sm-12">
 
-            <h2>Reviews</h2>
+            <h3 class="FormHeading text-left">Owner Details</h3>
 
             <div style="border:1px solid black" class="table-responsive">
                 <table id="tblReviews" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">

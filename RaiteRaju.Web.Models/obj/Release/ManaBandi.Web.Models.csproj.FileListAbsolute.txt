@@ -1,0 +1,6 @@
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\bin\Release\RaiteRaju.Web.Models.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\bin\Release\RaiteRaju.Web.Models.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\ManaBandi.Web.Models.csprojAssemblyReference.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\ManaBandi.Web.Models.csproj.CoreCompileInputs.cache
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\RaiteRaju.Web.Models.dll
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\RaiteRaju.Web.Models.pdb

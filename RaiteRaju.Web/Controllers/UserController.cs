@@ -100,82 +100,65 @@ namespace RaiteRaju.Web.Controllers
         [HttpPost]
         public ActionResult Registration(FormCollection fnRegistration)
         {
-            int count = 0;
-                int UserId; //=(Int32)Session["_RRUID"];
-                UserDetailsModel objModel = new UserDetailsModel();
 
-                objModel.txtUserName = fnRegistration["txtUserName"];
-                objModel.txtPhoneNumber = Convert.ToInt64(fnRegistration["txtPhoneNumber"]);
+            int UserId; 
+            UserDetailsModel objModel = new UserDetailsModel();
 
-                Utility en = new Utility();
-                objModel.txtPassword = en.Encrypt(fnRegistration["txtPassword"]);
-                objModel.ddlState = fnRegistration["ddlStateText"];
-                objModel.ddlDistrict = fnRegistration["ddlDistrict"];
-                objModel.ddlMandal = fnRegistration["ddlMandal"];
-                objModel.txtVillage = fnRegistration["txtVillage"];
-               // objModel.txtMailId = fnRegistration["txtMailId"];
-                objModel.OTP = fnRegistration[""];
+            objModel.txtUserName = fnRegistration["txtUserName"];
+            objModel.txtPhoneNumber = Convert.ToInt64(fnRegistration["txtPhoneNumber"]);
 
-                string s ="[^<>'\"/`%-]";
-                if (System.Text.RegularExpressions.Regex.IsMatch(objModel.txtUserName, s))
-                {
-                    count = count+1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(objModel.ddlState, "^[a-zA-Z0-9 .]{1,50}"))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(objModel.ddlDistrict, "^[a-zA-Z0-9 .]{1,50}"))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(objModel.ddlMandal, "^[a-zA-Z0-9 .]{1,50}"))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(en.Decrypt(objModel.txtPassword), s))
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.Match(objModel.txtPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
-                {
-                    count = count + 1;
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(objModel.txtVillage, s))
-                {
-                    count = count + 1;
-                }
+            Utility en = new Utility();
+            objModel.txtPassword = en.Encrypt(fnRegistration["txtPassword"]);
 
+            objModel.OTP = fnRegistration[""];
 
-                GDictionaryModel GDOBJ = new GDictionaryModel();
-                if (count == 7)
+            string errorMessage = "";
+
+            string s = "[^<>'\"/`%-]";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(objModel.txtUserName, s))
+            {
+                errorMessage = errorMessage + "Special character are not allowed in Name.\n";
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(en.Decrypt(objModel.txtPassword), s))
+            {
+                errorMessage = errorMessage + "Special character are not allowed in password.\n";
+            }
+
+            if (!System.Text.RegularExpressions.Regex.Match(objModel.txtPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
+            {
+                errorMessage = errorMessage + "Enter valid Phone Number.\n";
+            }
+
+            GDictionaryModel GDOBJ = new GDictionaryModel();
+            if (errorMessage == "")
+            {
+                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                InformationServiceWrapper infoObj = new InformationServiceWrapper();
+                GDOBJ = infoObj.MobileNuberExistsOrNot(objModel.txtPhoneNumber, UserType.user.ToString());
+                if (GDOBJ.ID == 1)
                 {
-                    ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
-                    InformationServiceWrapper infoObj = new InformationServiceWrapper();
-                    GDOBJ = infoObj.MobileNuberExistsOrNot(objModel.txtPhoneNumber, UserType.user.ToString());
-                    if (GDOBJ.ID == 1)
+                    UserId = ObjService.InsertAddUserDetails(objModel);
+                    if (UserId != 0)
                     {
-                        UserId = ObjService.InsertAddUserDetails(objModel);
-                        if (UserId != 0)
-                        {
-                            HttpCookie KeyCookie = new HttpCookie("_RRPS");
-                            KeyCookie.Values["_RRPS"] =en.Encrypt(objModel.txtPassword);
-                            KeyCookie.Expires = DateTime.Now.AddDays(365);
-                            Response.Cookies.Add(KeyCookie);
-                        }
-                        return Json(UserId, JsonRequestBehavior.AllowGet);
+                        HttpCookie KeyCookie = new HttpCookie("_RRPS");
+                        KeyCookie.Values["_RRPS"] = en.Encrypt(objModel.txtPassword);
+                        KeyCookie.Expires = DateTime.Now.AddDays(365);
+                        Response.Cookies.Add(KeyCookie);
                     }
-                    else
-                    {
-                        ViewBag.MobileError = "Entered Mobiler Number is already registered";
-                        return Json(GDOBJ.ID, JsonRequestBehavior.AllowGet);
-                    }
+                    return Json("success", JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    GDOBJ.ID = -1;
-                    return Json(GDOBJ.ID, JsonRequestBehavior.AllowGet);
+                    errorMessage = "Entered mobiler number is already registered with us.\n";
+                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
                 }
+            }
+            else
+            {
+                GDOBJ.ID = -1;
+                return Json(GDOBJ.ID, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Verification(string MobileNumber)

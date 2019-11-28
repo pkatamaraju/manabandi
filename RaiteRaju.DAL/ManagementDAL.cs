@@ -22,15 +22,10 @@ namespace RaiteRaju.DAL
             int UserID = 0;
             try
             {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPINSERTUSERDETAILS))
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBUserDetails))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamtName, DbType.String, Obj.txtName);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, Obj.BigIntPhoneNumber);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamState, DbType.String, Obj.txtState);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamDistrict, DbType.String, Obj.txtDistrict);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamMandal, DbType.String, Obj.txtMandal);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.Paramvillage, DbType.String, Obj.txtvillage);
-                    // DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamMailId, DbType.String, Obj.txtMailId);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPASSWORD, DbType.String, Obj.txtPassword);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.Int32, Obj.OTP);
 
@@ -490,7 +485,7 @@ namespace RaiteRaju.DAL
                     Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
                 }
 
-                if (Success != 0 || Success != -1)
+                if (Success > 0 & owner.OTP != 0)
                 {
                     SendOTP(owner.BigIntPhoneNumber, owner.OTP);
                 }

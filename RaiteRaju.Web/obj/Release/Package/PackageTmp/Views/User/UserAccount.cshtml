@@ -15,9 +15,6 @@
 
     $.noConflict();
 
-    //fnshowAdList();
-    //jQuery("#divUserAds").load("/User/_AddList", {PageNumber:1});
-
     function fnUpdateAd(ADID){
         var AdId=ADID;
         window.location.href='@Url.Action("AdDetails","AddPost")?AdId='+AdId;
@@ -26,7 +23,7 @@
     function fnDeleteAd(adid){
 
         var adId=adid;
-        var r = confirm("Are You Sure, Do You Want To Delete Your Add Permanetly!");
+        var r = confirm("Are you sure, Do you want to delete Your Add Permanetly!");
         if (r == true) {
             jQuery.ajax({
                 type: 'POST',
@@ -37,7 +34,7 @@
                         window.location.reload();
                     }
                     else{
-                        alert("Something Went Wrong, Please Try After Sometime.");
+                        alert("Something went wrong, Please try after sometime.");
                     }
                 },
                 error: function (data) {
@@ -53,7 +50,7 @@
         jQuery('#settings').removeClass('tablinks active').addClass('tablinks');
         jQuery('#Payments').removeClass('tablinks active').addClass('tablinks');
 
-        jQuery("#divUserAds").show();
+        jQuery("#divRideList").show();
         jQuery("#UserSettings").hide();
         jQuery("#DivPayments").hide();
     }
@@ -63,8 +60,8 @@
         jQuery('#MyAds').removeClass('tablinks active').addClass('tablinks');
         jQuery('#settings').removeClass('tablinks').addClass('tablinks active');
         jQuery('#Payments').removeClass('tablinks active').addClass('tablinks');
-        fnshowdivUpdateUserDetails();
-        jQuery("#divUserAds").hide();
+        fnshowdivUserdetailsPhoneNumber();
+        jQuery("#divRideList").hide();
         jQuery("#divUpdateUserDetails").show();
         jQuery("#UserSettings").show();
         jQuery("#DivPayments").hide();
@@ -77,7 +74,7 @@
         jQuery('#Payments').removeClass('tablinks').addClass('tablinks active');
 
 
-        jQuery("#divUserAds").hide();
+        jQuery("#divRideList").hide();
         jQuery("#UserSettings").hide();
         jQuery("#DivPayments").show();
     }
@@ -147,15 +144,15 @@
         if(ddlState== ""|| ddlDistrict == "" || ddlMandal == ""|| jQuery("#txtUserNameDetails").val()=="" || jQuery("#txtVillage").val()==""){
             if (ddlState == "" ||ddlState== "---Select State---") {
                 //If the "Please Select" option is selected display error.
-                message="Please Select State!\n";
+                message="Please select State!\n";
             }
             if (ddlDistrict == ""|| ddlDistrict =="---Select District---") {
                 //If the "Please Select" option is selected display error.
-                message=message+"Please Select District!\n";
+                message=message+"Please select District!\n";
             }
             if (ddlMandal== ""||ddlMandal== "---Select Mandal---") {
                 //If the "Please Select" option is selected display error.
-                message=message+"Please Select Mandal!\n";
+                message=message+"Please select Mandal!\n";
             }
             if(jQuery("#txtUserNameDetails").val()==""){
                 message=message+"Please Enter Name!\n";
@@ -177,13 +174,13 @@
 
             if(/^[^<>'\"/`%-]*$/.test(jQuery("#txtUserNameDetails").val()) == false)
             {
-                message=message+"Special Characters Are Not Allowed In Name [max length:50]!\n";
+                message=message+"Special characters are not allowed in Name [max length:50]!\n";
             }
             //if (intRegex.test(phone)==false) {
             //    message = message + "Please enter a valid phone number!\n";
             //}
             if(/^[^<>'\"/`%-]*$/.test(jQuery("#txtVillage").val())==false){
-                message=message+"Special Characters Are Not Allowed In Village [max length:50]!\n";
+                message=message+"Special characters are not allowed in Village [max length:50]!\n";
             }
             //if (/^[a-zA-Z0-9 .]{1,50}jQuery/.test(jQuery("#txtPassword").val()) == false) {
             //    message = message + "special characters are not allowed in password [max length:50]!\n ";
@@ -210,7 +207,7 @@
         }
         else if(phone!= "") {
             if(intRegex.test(phone)==false) {
-                message = message + "Please Enter A Valid Phone Number!\n";
+                message = message + "Please enter a valid Phone Number!\n";
             }
         }
 
@@ -228,12 +225,12 @@
         var message="";
 
         if(jQuery("#txtPassword").val()==""){
-            message=message+"Please Enter Password!\n";
+            message=message+"Please enter Password!\n";
         }
         else if(jQuery("#txtPassword").val()!="")
         {
             if (/^[^<>'\"/`%-]*$/.test(jQuery("#txtPassword").val()) == false) {
-                message = message + "Special Characters Are Not Allowed In Password [Max length:50]!\n ";
+                message = message + "Special characters are not allowed in Password [Max length:50]!\n ";
             }
         }
 
@@ -268,7 +265,7 @@
                         window.location.reload();
                     }
                     if(data==-99){
-                        alert("Please Enter Correct Data As Per Validation.");
+                        alert("Please enter correct data as per validation.");
                     }
 
                 },
@@ -356,7 +353,7 @@
                         alert("Password Updated successfully.");
                     }
                     if(data==-99){
-                        alert("Please Enter Correct Password As Per Validation.");
+                        alert("Please enter correct data as per validation.");
                     }
 
                 },
@@ -380,13 +377,13 @@
                 success: function (data) {
                     if(data==0)
                     {
-                        alert("Entered Mobile Number Is Already Registered.");
+                        alert("Entered mobile number is already registered.");
                     }
                     if(data!=0 && data!=-99){
                         window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
                     }
                     if(data==-99){
-                        alert("Please Enter Correct PhoneNumber As Per Validation.");
+                        alert("Please enter correct PhoneNumber as per validation.");
                     }
 
                 },
@@ -402,12 +399,11 @@
         var SelectedState='@ViewBag.ddlState';
         if(SelectedState!=""||SelectedState!=0){jQuery('select[name="ddlState"]').find('option[value='+SelectedState+']').attr("selected",true);}
         fnshowAdList();
-        //jQuery("#divUserAds").load("/User/_AddList", {PageNumber:1});
     });
 
     function fnDeleteAccount(){
         var BigIntPhoneNumber=@ViewBag.txtPhoneNumber;
-        var r = confirm("Are You Sure, Do You Want To Delete Your Account Permanetly!");
+        var r = confirm("Are you sure, Do you want to delete your account permanetly!");
         if (r == true) {
             jQuery.ajax({
                 type: 'POST',
@@ -435,26 +431,26 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <h3 class="FormHeading text-left" style="font-size:25px;"> You can edit your Ads and profile here.</h3>
+                <h3 class="FormHeading text-left" style="font-size:25px;"> You can edit and find your account information here.</h3>
                 <div class="tab">
                     <button class="tablinks" id="MyAds" onclick="fnshowAdList()">My Ads</button>
                     <button class="tablinks" id="settings" onclick="fnshowUserSettings()">Update Your Profile</button>
                     @*<button class="tablinks" id="Payments" onclick="fnshowPayments()">Payments</button>*@
                 </div>
-                <div id="divUserAds">
-                    @Html.Action("_AddList", "User", new { PageNumber = 1 })
+                <div id="divRideList" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
+                    @Html.Action("_rideList", "User", new { PageNumber = 1 })
                 </div>
 
                 <div id="UserSettings" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
                     <div class="tab subTab">
-                        <button class="tablinks" id="TabUpdateUserDetails" onclick="fnshowdivUpdateUserDetails()">Update Details</button>
+                        @*<button class="tablinks" id="TabUpdateUserDetails" onclick="fnshowdivUpdateUserDetails()">Update Details</button>*@
                         <button class="tablinks" id="TabUserdetailsPhoneNumber" onclick="fnshowdivUserdetailsPhoneNumber()">Update Phone No</button>
                         <button class="tablinks" id="TabUserdetailsPassword" onclick="fnshowdivUserdetailsPassword()">Update Password</button>
                         <button class="tablinks" id="TabUserAccountDeletion" onclick="fnshowdivUserAccountDeletion()">Delete My Account</button>
 
                     </div>
 
-                    <div id="divUpdateUserDetails">
+                    @*<div id="divUpdateUserDetails">
                         @using (Html.BeginForm("UpdateUserDetails", "User", FormMethod.Post, new { id = "UserRegistration" }))
                         {
                             <div class="container">
@@ -525,7 +521,7 @@
                             </div>
                         }
 
-                    </div>
+                    </div>*@
 
                     <div id="divUserdetailsPhoneNumber" >
                         @using (Html.BeginForm("UpdateUserDetails", "User", FormMethod.Post, new { id = "UpdatePhoneNumber" }))
@@ -614,6 +610,8 @@
                     <div id="divUserAccountDeletion" style="display:none;">
                         <div class="container">
                             <div class="form-box clearfix" style="height:200px !important">
+                                <h3 class="form-heading text-center">Delete Account</h3>
+
                                 <div class="row text-center">
                                     <div class="col-md-12">
                                         <label id="lblDeleteAccount">

@@ -22,7 +22,7 @@
             var tblContactUS=jQuery('#tblContactUS');
             for(i=0;i<length;i++){
                 j=i+1;
-                tblContactUS.append('<tr id="AdListRow" ><td style="width:100px;text-align:center;">'+j+'</td><td style="width:200px;text-align:center;">'+ ContactUSList[i].PhoneNumber+'</td><td style="width:200px;text-align:center;">'+ContactUSList[i].Subject+'</td><td style="width:400px;text-align:center;">'+ContactUSList[i].Description+'</td><td style="width:400px;text-align:center;">'+ContactUSList[i].dtInserted+'</td><tr>')
+                tblContactUS.append('<tr class="tableRow" ><td style="width:100px;text-align:center;">'+j+'</td><td style="width:200px;text-align:center;">'+ ContactUSList[i].PhoneNumber+'</td><td style="width:200px;text-align:center;">'+ContactUSList[i].Subject+'</td><td style="width:400px;text-align:center;">'+ContactUSList[i].Description+'</td><td style="width:400px;text-align:center;">'+ContactUSList[i].dtInserted+'</td><tr>')
             }
         }
     });
@@ -40,8 +40,7 @@
 
         </div>
         <div class="col-md-10 col-sm-12">
-
-            <h2>ContactUs</h2>
+            <h3 class="FormHeading text-left">Contact Us Posts</h3>
 
             <div style="border:1px solid black;text-align:center" class="table-responsive">
                 <table id="tblContactUS" style="border-collapse: collapse;">

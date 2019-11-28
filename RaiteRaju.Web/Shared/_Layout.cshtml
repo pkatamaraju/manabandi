@@ -9,7 +9,7 @@
     <meta name="keywords" content="you can sell Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
     <meta name="author" content="Katamaraju">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/svg" href="~/Content/images/logo.jpg" />
+    <link rel="icon" type="image/svg" href="~/Content/images/BellaCabsLogo.png" />
     <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
     <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
@@ -88,7 +88,7 @@
                 </div>*@
                 <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 text-right">
                     @if (Request.Cookies["_RRUN"] == null)
-                    {<a href="/User/Login" class="ghost-btn first last filled py-2" tabindex="-1"><span class="fa fa-user"></span> My Account</a>}
+                    {<a href="/User/Login" class="dflt-btn inactive" tabindex="-1"><span class="fa fa-user"></span> My Account</a>}
 
                     @if (Request.Cookies["_RRUN"] != null)
                     {
@@ -105,7 +105,7 @@
                         <span class="arrow-down" style="vertical-align:auto;"></span>}
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 pt-4 ">
-                    <a href="/Book/BookNow?VehicleTypeId=0" class="ghost-btn first last filled py-2" tabindex="-1">Book a vehicle</a>
+                    <a href="/Book/BookNow?VehicleTypeId=0" class="dflt-btn inactive" tabindex="-1">Book a vehicle</a>
                 </div>
                 
             </div>

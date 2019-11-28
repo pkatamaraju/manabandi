@@ -16,6 +16,13 @@
     function fnCancel() {
         window.location.href = '/User/UserLogout';
     }
+
+    jQuery(document).on("keypress", "#txtPassword", function (e) {
+        if (e.which == 13) {
+            fnVerifyOTP();
+        }
+    });
+
     function validateOTP(){
         var AOTP = jQuery("#txtOTP").val();
         intRegex = /^\d{6}$/;
@@ -67,14 +74,14 @@
 
     <div id="divOTPVerification">
         <div class="container">
-            <div class="form-box landing-form-box">
+            <div class="form-box landing-form-box" style="margin-top:30px;">
                 <div class="row">
                     <div class="col-md-2">
                         </div>
                         <div class="col-md-8 col-sm-12">
                             <div class="form-group">
-                                <label>Please Enter OTP that you received on Registered Mobile</label>
-                                @Html.TextBox("txtOTP", null, new { @class = "_ROTP_" })
+                                <label>Please enter OTP that you received on registered Phone Number:</label>
+                                @Html.TextBox("txtOTP", null, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
