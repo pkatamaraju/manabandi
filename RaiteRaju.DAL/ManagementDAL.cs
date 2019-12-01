@@ -36,7 +36,7 @@ namespace RaiteRaju.DAL
                     }
                     if (Obj.KeyForUserSettings != "ADMIN")
                     {
-                        string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + Obj.BigIntPhoneNumber + "/" + Obj.OTP + "/RaiteRajuOTP";
+                        string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + Obj.BigIntPhoneNumber + "/" + Obj.OTP + "/BellaCabsOTP";
                         HttpWebRequest request = WebRequest.Create(URL) as HttpWebRequest;
                         //optional
                         HttpWebResponse response = request.GetResponse() as HttpWebResponse;
@@ -386,7 +386,7 @@ namespace RaiteRaju.DAL
 
         public void SendOTP(Int64 PhoneNumber, Int32 OTP)
         {
-            string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + PhoneNumber + "/" + OTP + "/RaiteRajuOTP";
+            string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + PhoneNumber + "/" + OTP + "/BellaCabsOTP";
             HttpWebRequest request = WebRequest.Create(URL) as HttpWebRequest;
             //optional
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;
@@ -438,7 +438,7 @@ namespace RaiteRaju.DAL
                     }
                     else if (Obj.KeyForUserSettings == Convert.ToString(UserSettings.PHONENUMBER))
                     {
-                        string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + Obj.BigIntPhoneNumber + "/" + Obj.OTP + "/RaiteRajuOTP";
+                        string URL = "https://2factor.in/API/V1/a2cbd769-9ef3-11e8-a895-0200cd936042/SMS/" + Obj.BigIntPhoneNumber + "/" + Obj.OTP + "/BellaCabsOTP";
                         HttpWebRequest request = WebRequest.Create(URL) as HttpWebRequest;
                         //optional
                         HttpWebResponse response = request.GetResponse() as HttpWebResponse;

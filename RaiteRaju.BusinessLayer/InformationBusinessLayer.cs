@@ -74,9 +74,9 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
-       public int GetPriceForRide(int KM, int VehicleTypeId)
+       public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
         {
-            return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId);
+            return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId, TravelRequestType);
         }
         public RideEntity GetRideDetailsByID(int rideID)
         {

@@ -297,10 +297,10 @@ namespace RaiteRaju.ServiceMapper
             return listobj;
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId)
+        public int GetPriceForRide(int KM, int VehicleTypeId,string TravelRequestType)
         {
             ServiceLayer.InformationService obj = new InformationService();
-            return obj.GetPriceForRide(KM,VehicleTypeId);
+            return obj.GetPriceForRide(KM,VehicleTypeId, TravelRequestType);
         }
 
         public Ride GetRideDetailsByID(int rideID)

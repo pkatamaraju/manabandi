@@ -121,6 +121,7 @@ namespace RaiteRaju.DAL.DALUtility
         //Admin
         public const string PARAMINTKMS = "intKMs";
         public const string PARAMINTFINALPRICE = "intFinalPrice";
+        public const string PARAINTMDROPORNOT = "intDropOrNot";
         #endregion
     }
 }

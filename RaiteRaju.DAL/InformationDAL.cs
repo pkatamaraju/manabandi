@@ -880,7 +880,7 @@ namespace RaiteRaju.DAL
 
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId)
+        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
         {
            
             int Price = 0;
@@ -890,6 +890,7 @@ namespace RaiteRaju.DAL
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTKMS, DbType.Int32, KM);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, VehicleTypeId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAINTMDROPORNOT, DbType.Int32, Convert.ToInt32(TravelRequestType));
 
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
@@ -903,7 +904,7 @@ namespace RaiteRaju.DAL
             }
             catch (Exception ex)
             {
-                ExceptionLoggin("InformationDal", "GetRidesForAdmin", ex.Message);
+                ExceptionLoggin("InformationDal", "GetPriceForRide", ex.Message);
                 return 0;
             }
         }

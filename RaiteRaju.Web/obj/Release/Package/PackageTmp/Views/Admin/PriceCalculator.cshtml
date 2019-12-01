@@ -36,7 +36,8 @@
 
         var form = jQuery("#BookVehicle").serialize();
         var KiloMeters = jQuery("#txtKilometers").val();
-        var Vehicle = jQuery("#ddlVehicles option:selected").text();
+       
+       // var TravelRequestType = jQuery("#TravelRequestType:checked").val(); //jQuery("#TravelRequestType").ch
         var intRegex = /^\d+$/;
         var ddlVehicles = jQuery("#ddlVehicles").val();
 
@@ -50,8 +51,8 @@
         else if (intRegex.test(KiloMeters) == false) {
             message = message + "Please enter valid Kilo Meters(only digits).\n";
         }
-        else if (KiloMeters > 10000 || KiloMeters == 0) {
-            message = message + "Please enter valid Kilo Meters(From 1 To 10000).\n";
+        else if (KiloMeters > 1000 || KiloMeters == 0) {
+            message = message + "Please enter valid Kilo Meters(From 1 To 1000).\n";
         }
 
         if (ddlVehicles == "0") {
@@ -67,7 +68,7 @@
                     dataType: 'json',
                     data: form,
                 success: function (data) {
-                    jQuery("#lblPrice").html("Price is:" + data);
+                    jQuery("#lblPrice").html("Total Price is Rs:" + data + "<br >Commission is  Rs:" + Math.round((parseInt(data) * 0.1) / 10) * 10 );
 
                     },
                     error: function (data) {
@@ -122,10 +123,30 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlState">Required Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                                        <input checked="checked"
+                                               id="TravelRequestType"
+                                               name="TravelRequestType"
+                                               type="radio"
+                                               value="0" /><label>Only Drop</label>&nbsp;&nbsp;
+
+                                        <input id="TravelRequestType"
+                                               name="TravelRequestType"
+                                               type="radio"
+                                               value="1" /><label>Pick Up and drop</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <label id="lblPrice"></label>
-
                                     </div>
                                 </div>
                             </div>

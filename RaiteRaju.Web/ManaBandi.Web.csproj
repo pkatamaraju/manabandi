@@ -198,8 +198,9 @@
     <Content Include="Content\HelpImges\UR3.PNG" />
     <Content Include="Content\HelpImges\UR4.PNG" />
     <Content Include="Content\HelpImges\UR5.PNG" />
+    <Content Include="Content\HelpImges\UR6.PNG" />
     <Content Include="Content\images\AppiAuto.jpg" />
-    <Content Include="Content\images\BellaCabsoLgo.jpg" />
+    <Content Include="Content\images\BellaCabsLogo.jpg" />
     <Content Include="Content\images\Bus.jpg" />
     <Content Include="Content\images\Car14Seater.jpg" />
     <Content Include="Content\images\Car4Seater.jpg" />

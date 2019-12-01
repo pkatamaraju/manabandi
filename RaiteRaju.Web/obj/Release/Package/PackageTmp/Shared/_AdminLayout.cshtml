@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="image/svg" href="~/Content/images/BellaCabsLogo.jpg">
+
     <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Bootstrap/css/bootstrap-grid.min.css" rel="stylesheet" />
     <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
@@ -56,6 +57,16 @@
             });
 
         });
+
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
     </script>
 
 </head>
@@ -68,7 +79,7 @@
                 <div class="col-lg-1 col-md-1 hidden-sm">
                 </div>
                 <div class="col-lg-1 col-md-2 col-sm-3  col-xs-3 py-2">
-                    <a href="/Admin/AdminMain"><img id="logo" src="~/Content/images/BellaCabsoLgo.jpg" /></a>
+                    <a href="/Admin/AdminMain"><img id="logo" src="~/Content/images/BellaCabsLogo.jpg" /></a>
                 </div>
                 <div class="col-lg-4 col-md-3 col-sm-9 col-xs-9">
                     <div style="padding-left:10px; height:50px;">
@@ -109,7 +120,7 @@
 
                 </div>
                 <div class="col-lg-11 col-md-12 col-sm-11 col-xs-12 nopadding">
-                    
+
                     <div class="topnav" id="myTopnav">
                         <a href="/admin/RideDetails?intRideStatusID=0&VehicleTypeID=0&PageNumber=1" id="tablRides" tabindex="-1">Ride Details</a>
                         <a href="/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabVehicles" tabindex="-1">Vehicle Data</a>
@@ -137,12 +148,14 @@
     <div id="Divfooter">
         <div class="container">
             <div class="row">
+                <div class="col-md-1"></div>
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
                             <li><a href="/Footer/AboutUs">About Us</a></li>
-                            <li><a href="/Footer/AboutUs">How it works</a></li>
-                            <li><a href="/">Privacy Policy</a></li>
+                            <li><a href="/User/Registration">Register</a></li>
+                            <li><a href="/Footer/TermsAndConditions">Privacy Policy</a></li>
+                            <li><a href="/Footer/HowToBook">How to Book a Vehicle</a></li>
                             <li><a href="/"></a></li>
                         </ul>
                     </div>
@@ -150,37 +163,38 @@
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/">Browse Ads</a></li>
-                            <li><a href="/">Report An Issue</a></li>
-                            <li><a href="/">Be a Partner</a></li>
+
+                            <li><a href="/Footer/HowToRegister">How to Register</a></li>
+                            <li><a href="/Footer/ReportIssue">Report an Issue</a></li>
+
+                            <li><a href="#"></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/">Browse Projects</a></li>
-                            <li><a href="/">Categories</a></li>
-                            <li><a href="/">Services</a></li>
-                            <li><a href="/">Jobs</a></li>
+                            <li><a href="/Footer/Reviews">Write a Review</a></li>
+                            <li><a href="/Footer/Promotions">Be a Partner</a></li>
+                            <li><a href="/Footer/Careers">Careers</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/">Contact Us</a></li>
-                            <li><a href="/">Terms and Conditions</a></li>
-                            <li><a href="/">Be a Partner</a></li>
+                            <li><a href="/Footer/ContactUs">Contact Us</a></li>
+                            <li><a href="/Footer/TermsAndConditions">Terms and Conditions</a></li>
+                            <li>@*<a href="/">Be a Partner</a>*@</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-3 col-sm-12 col-xs-12">
                     <div style="min-height:100px;">
                         <ul class="nav nav-pills">
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon1.jpg" alt="" class="social_MediaIcons" /></a></li>
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon2.jpg" alt="" class="social_MediaIcons" /></a></li>
-                            <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon3.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://www.facebook.com/BellaCabs-109026393908551/"><img src="~/Content/images/FooterIcon1.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://www.instagram.com/raiteraju/"><img src="~/Content/images/FooterIcon2.jpg" alt="" class="social_MediaIcons" /></a></li>
+                            <li class="FooterIconPadding"><a href="https://twitter.com/BellacabsI"><img src="~/Content/images/FooterIcon3.jpg" alt="" class="social_MediaIcons" /></a></li>
                             <li class="FooterIconPadding"><a href="#"><img src="~/Content/images/FooterIcon4.jpg" alt="" class="social_MediaIcons" /></a></li>
                         </ul>
                     </div>

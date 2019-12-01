@@ -95,10 +95,10 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId)
+        public int GetPriceForRide(int KM, int VehicleTypeId,string TravelRequestType)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetPriceForRide(KM, VehicleTypeId);
+            return obj.GetPriceForRide(KM, VehicleTypeId, TravelRequestType);
         }
 
         public RideEntity GetRideDetailsByID(int rideID)
