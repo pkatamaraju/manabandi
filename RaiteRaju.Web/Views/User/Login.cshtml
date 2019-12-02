@@ -5,9 +5,8 @@
 }
 
 <title> Raiteraju</title>
-<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="description" content="Just call us to book any vehicle to travel outstation or to deliver goods">
+<meta name="keywords" content="Just call us to book any vehicle to travel outstation or to deliver goods">
 <meta name="robots" content="index,follow" />
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
@@ -52,11 +51,11 @@
         if (/^[^<>'\"/`%-]*$/.test(password) == false) {
             message = message + "special Characters Are Not Allowed In Password!\r\n ";
         }
-        
+
         if (password == "") {
             message = message + "Please Enter Password!\n";
         }
-        
+
         if (/^[^<>'\"/`%-]*$/.test(password) == true && intRegex.test(phone) == true && password != "" && phone != "") {
             return true;
         }
@@ -143,7 +142,7 @@
         <div class="row pt-5">
             <div class="col-lg-3 col-md-3 col-sm-2">
             </div>
-            
+
             <div class="col-lg-6 col-md-6 col-sm-6 RegisterBox">
                 <div class="row" style="align-items:center;">
                     <div class="col-lg-8 col-sm-12 col-xs-12">
@@ -154,76 +153,76 @@
                     </div>
                 </div>
             </div>
-      
+
             <div class="col-lg-3">
             </div>
         </div>
-        
 
-            <div class="row">
-                <div class="col-md-3 col-sm-3">
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <h3 class="FormHeading">Login Here</h3>
-                    <div class="form-box landing-form-box ">
-                        @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
-                        {<h3 class="form-heading text-center">Login Now</h3>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h3 class="FormHeading">Login Here</h3>
+                <div class="form-box landing-form-box ">
+                    @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
+                    {<h3 class="form-heading text-center">Login Now</h3>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group NoMargin">
+                                    <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
+                                    <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group psw NoMargin">
+                                    <label>Password<span class="MandatoryStars">*</span>:</label>
+                                    <input type="password" id="txtPassword" class="form-control" name="txtPassword" required="" data-required-message="Please enter Password" data-invalid-message="Password should contain min 8 Characters with at least 1 uppercase, 1 lowercase and 1 number">
+                                    <div class="pure-checkbox tog-check">
+                                        <span class="green-text" onclick="fnPasswordShow()" id="PWHideShow">Show</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cta-actions text-center">
+                            <button type="button" class="dflt-btn  inactive" title="LOGIN" onclick="fnLoginFunction()">Login</button>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("LoginWithOTP", "User", FormMethod.Post, new { id = "LoginWithOTPForm" }))
+                    {
+
+                        <p class="seperator-text">or</p>
+                        <div class="cta-actions text-center">
+                            <input id="btnForgotPassword" type="button" class="dflt-btn no-bg" value="Login With OTP" onclick="fnShowForgotPassword()" />
+                        </div>
+                        <div id="divForgotPassword" class="py-5" style="display:none">
                             <div class="row">
                                 <div class="col-md-3 col-sm-3">
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <div class="form-group NoMargin">
-                                        <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
-                                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                    <div class="form-group">
+                                        <label for="PhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
+                                        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="9999999999">
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-3 col-sm-3">
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group psw NoMargin">
-                                        <label>Password<span class="MandatoryStars">*</span>:</label>
-                                        <input type="password" id="txtPassword" class="form-control" name="txtPassword" required="" data-required-message="Please enter Password" data-invalid-message="Password should contain min 8 Characters with at least 1 uppercase, 1 lowercase and 1 number">
-                                        <div class="pure-checkbox tog-check">
-                                            <span class="green-text" onclick="fnPasswordShow()" id="PWHideShow">Show</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="cta-actions text-center">
-                                <button type="button" class="dflt-btn  inactive" title="LOGIN" onclick="fnLoginFunction()">Login</button>
+                                <button type="button" class="dflt-btn no-bg " onclick="fnSubmitForgetPassword()">Submit</button>
                             </div>
-                        }
-
-                        @using (Html.BeginForm("LoginWithOTP", "User", FormMethod.Post, new { id = "LoginWithOTPForm" }))
-                        {
-
-                            <p class="seperator-text">or</p>
-                            <div class="cta-actions text-center">
-                                <input id="btnForgotPassword" type="button" class="dflt-btn no-bg" value="Login With OTP" onclick="fnShowForgotPassword()" />
-                            </div>
-                            <div id="divForgotPassword" class="py-5" style="display:none">
-                                <div class="row">
-                                    <div class="col-md-3 col-sm-3">
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="PhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
-                                            <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="9999999999">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cta-actions text-center">
-                                    <button type="button" class="dflt-btn no-bg " onclick="fnSubmitForgetPassword()">Submit</button>
-                                </div>
-                            </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
+    </div>
 
 </div>

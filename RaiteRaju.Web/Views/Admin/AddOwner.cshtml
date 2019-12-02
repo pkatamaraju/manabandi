@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Shared/_Layout.cshtml";
+    Layout = "~/Shared/_AdminLayout.cshtml";
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -21,15 +21,11 @@
         var ddlMandal = jQuery("#ddlMandal").val();
         var village = jQuery("#txtVillage").val();
         var phoneNumber = jQuery("#txtPhoneNumber").val();
-        var vehicleTypeID = jQuery("#ddlVehicles").val();
-        var txtVehicleModel = jQuery("#txtVehicleModel").val();
-        var password = jQuery("#txtPassword").val();
-        var noOfVehicles = jQuery("#txtNoOfVehicles").val();
 
         intRegex = /^[5-9]{1}[0-9]{9}$/;
         var message = "";
 
-      
+
             if (userName == "") {
                 message = message + "Please enter Name.\n";
             }
@@ -80,8 +76,8 @@
                 message = message + "Village should be between 4 to 50 characters.\n";
             }
 
-            
-        
+
+
 
         if (message == "") {
             return true;
@@ -242,19 +238,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                                        <label for="txtPassword">Password<span class="MandatoryStars">*</span> :</label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <input type="password" class="form-control" id="txtPassword" name="txtPassword">
-                                        <span class="error-msg" id="ErrortxtPassword">Please enter password</span>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
@@ -314,7 +297,7 @@
                                     <label style="font-size:10px;font-family:inherit">By creating account with RaiteRaju, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
                                 </div>
                             </div>
-                       
+
                         </div>
                     </div>
                 }

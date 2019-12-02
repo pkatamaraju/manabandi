@@ -3,9 +3,9 @@
     Layout = "~/Shared/_Layout.cshtml";
 }
 <title> Raiteraju</title>
-<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="keywords" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
-<meta name="description" content="sell your crop at Raiteraju.in,raiteraju.in,farmer,sell,Buy,land,cotton,rice,sunflower,buffalo,Cow,Andhrapradesh" />
+<meta name="google-site-verification" content="BELLACABS" />
+<meta name="description" content="Just call us to book any vehicle to travel outstation or to deliver goods">
+<meta name="keywords" content="Just call us to book any vehicle to travel outstation or to deliver goods">
 <meta name="robots" content="index,follow" />
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -48,13 +48,13 @@
             dataType: 'json',
             data: form,
             success: function (data) {
-                
+
                 if (data!="") {
                     jQuery('body').loadingIndicator();
                     window.location.href = '@Url.Action("UserAccount", "User")';
                 }
                 else{
-                    
+
                     alert("Please Enter Correct OTP");
                 }
             },
@@ -77,14 +77,14 @@
             <div class="form-box landing-form-box" style="margin-top:30px;">
                 <div class="row">
                     <div class="col-md-2">
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="form-group">
-                                <label>Please enter OTP that you received on registered Phone Number:</label>
-                                @Html.TextBox("txtOTP", null, new { @class = "form-control" })
-                            </div>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                        <div class="form-group">
+                            <label>Please enter OTP that you received on registered Phone Number:</label>
+                            @Html.TextBox("txtOTP", null, new { @class = "form-control" })
                         </div>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col-md-2">
                     </div>
@@ -97,6 +97,6 @@
                 </div>
             </div>
         </div>
-    </div>            }
+    </div>  }
 
 

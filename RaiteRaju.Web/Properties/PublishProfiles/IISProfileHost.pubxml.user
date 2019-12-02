@@ -50,10 +50,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2019 17:28:58</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.dll">
-      <publishTime>12/01/2019 02:12:15</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.pdb">
-      <publishTime>12/01/2019 02:12:15</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayerInterface.dll">
       <publishTime>12/01/2019 02:12:14</publishTime>
@@ -62,10 +62,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2019 02:12:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.dll">
-      <publishTime>12/01/2019 02:12:14</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.pdb">
-      <publishTime>12/01/2019 02:12:14</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Entities.dll">
       <publishTime>11/28/2019 17:28:58</publishTime>
@@ -74,13 +74,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2019 17:28:58</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll">
-      <publishTime>12/01/2019 02:12:15</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll.config">
       <publishTime>11/08/2019 12:13:57</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.pdb">
-      <publishTime>12/01/2019 02:12:15</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayerInterface.dll">
       <publishTime>12/01/2019 02:12:14</publishTime>
@@ -89,10 +89,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2019 02:12:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.dll">
-      <publishTime>12/01/2019 02:12:16</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.pdb">
-      <publishTime>12/01/2019 02:12:16</publishTime>
+      <publishTime>12/01/2019 13:15:17</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.dll">
       <publishTime>12/01/2019 02:12:18</publishTime>
@@ -653,7 +653,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2019 00:29:16</publishTime>
     </File>
     <File Include="Views/Book/BookNow.cshtml">
-      <publishTime>11/30/2019 18:31:04</publishTime>
+      <publishTime>12/01/2019 13:08:48</publishTime>
     </File>
     <File Include="Views/Book/FilteredAds.cshtml">
       <publishTime>11/08/2019 12:13:59</publishTime>
@@ -665,13 +665,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/08/2019 12:13:59</publishTime>
     </File>
     <File Include="Views/Footer/AboutUs.cshtml">
-      <publishTime>11/08/2019 12:13:59</publishTime>
+      <publishTime>12/01/2019 13:10:04</publishTime>
     </File>
     <File Include="Views/Footer/Careers.cshtml">
       <publishTime>11/28/2019 21:10:03</publishTime>
     </File>
     <File Include="Views/Footer/ContactUs.cshtml">
-      <publishTime>11/21/2019 09:59:41</publishTime>
+      <publishTime>12/01/2019 13:11:35</publishTime>
     </File>
     <File Include="Views/Footer/FeaturedAds.cshtml">
       <publishTime>11/08/2019 12:13:59</publishTime>
@@ -698,7 +698,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2019 23:59:18</publishTime>
     </File>
     <File Include="Views/Footer/ReportIssue.cshtml">
-      <publishTime>11/29/2019 00:00:42</publishTime>
+      <publishTime>12/01/2019 13:11:25</publishTime>
     </File>
     <File Include="Views/Footer/Reviews.cshtml">
       <publishTime>11/29/2019 00:06:22</publishTime>
@@ -722,7 +722,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/09/2019 16:35:03</publishTime>
     </File>
     <File Include="Views/Partner/OwnerRegistration.cshtml">
-      <publishTime>11/28/2019 12:42:05</publishTime>
+      <publishTime>12/01/2019 13:07:48</publishTime>
     </File>
     <File Include="Views/Shared/_AdList.cshtml">
       <publishTime>07/21/2019 23:46:28</publishTime>
@@ -755,7 +755,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2019 23:01:25</publishTime>
     </File>
     <File Include="Views/User/Registration.cshtml">
-      <publishTime>11/28/2019 12:33:57</publishTime>
+      <publishTime>12/01/2019 13:07:15</publishTime>
     </File>
     <File Include="Views/User/UserAccount.cshtml">
       <publishTime>11/28/2019 14:27:50</publishTime>
