@@ -40,7 +40,7 @@
        // var TravelRequestType = jQuery("#TravelRequestType:checked").val(); //jQuery("#TravelRequestType").ch
         var intRegex = /^\d+$/;
         var ddlVehicles = jQuery("#ddlVehicles").val();
-
+        var ddlSelectedVehicle = jQuery("#ddlVehicles option:selected").text();
         form += "&intVehicleTypeId=" + ddlVehicles;
 
         var message = "";
@@ -64,11 +64,11 @@
         else {
             jQuery.ajax({
                     type: 'POST',
-                    url: '@Url.Action("PriceCalculator", "Admin")',
+                    url: '@Url.Action("PriceCalculator", "Book")',
                     dataType: 'json',
                     data: form,
                 success: function (data) {
-                    jQuery("#lblPrice").html("Total Price is Rs:" + data + " Commission is  Rs:" + Math.round((parseInt(data) * 0.1) / 10) * 10 );
+                    jQuery("#lblPrice").html("Rate for " + KiloMeters + " KMs with " + ddlSelectedVehicle +"  is Rs:" + data).css("color","green");
 
                     },
                     error: function (data) {

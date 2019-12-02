@@ -89,6 +89,23 @@ namespace RaiteRaju.Web.Controllers
             return Json(returnValue, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        [HttpPost]
+        public ActionResult PriceCalculator(FormCollection form)
+        {
+            int Kilometers = Convert.ToInt32(form["txtKilometers"]);
+            int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+            string TravelRequestType = Convert.ToString(form["TravelRequestType"]);
+            InformationServiceWrapper objservice = new InformationServiceWrapper();
+            int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
+            return Json(price, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult PriceCalculator()
+        {
+            return View();
+        }
+
     }
 }
     

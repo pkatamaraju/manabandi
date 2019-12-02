@@ -823,21 +823,12 @@ namespace RaiteRaju.Web.Controllers
         [HttpPost]
         public ActionResult PriceCalculator(FormCollection form)
         {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-
-            if (nameCookie != null)
-            {
                 int Kilometers = Convert.ToInt32(form["txtKilometers"]);
                 int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
                 string TravelRequestType= Convert.ToString(form["TravelRequestType"]);
                 InformationServiceWrapper objservice = new InformationServiceWrapper();
                 int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
                 return Json(price, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
         }
 
         public ActionResult EditRideDetails(Int32 rideID)
