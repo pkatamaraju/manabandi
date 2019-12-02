@@ -44,16 +44,6 @@
                 message = message + "Please Enter Valid Phone Number.\n";
             }
 
-            if (password == "") {
-                message = message + "Please enter Password.\n";
-            }
-            else if (/^[^<>'\"/`%-]*$/.test(password) == false) {
-                message = message + "Special characters(<>'\"/`%-) are not allowed in Password.\n";
-            }
-            else if (password.length > 20 || password.length < 8) {
-                message = message + "Password Should Be Between 8 To 20 Characters\n";
-            }
-
             if (ddlState == "" || ddlState == "---Select State---") {
                 message = message + "Please Select State.\n";
             }
