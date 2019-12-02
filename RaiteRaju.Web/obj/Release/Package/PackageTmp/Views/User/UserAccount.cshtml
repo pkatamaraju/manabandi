@@ -4,9 +4,7 @@
     Layout = "~/Shared/_Layout.cshtml";
 }
 <title> Raiteraju</title>
-<meta name="google-site-verification" content="Raiteraju,farmer,sell,land" />
-<meta name="description" content="You can sell or buy anything related to Agriculture. Like Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
-<meta name="keywords" content="you can sell Chillies, Cotton, Rice, Maize, Animals, Fertilizers and pesticides, Organic pestisides, Land, Cow, Dairy Products, Milk etc..">
+<meta name="google-site-verification" content="BELLACABS" />
 <meta name="robots" content="index,follow" />
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.loading-indicator.min.js"></script>
@@ -451,79 +449,79 @@
                     </div>
 
                     @*<div id="divUpdateUserDetails">
-                        @using (Html.BeginForm("UpdateUserDetails", "User", FormMethod.Post, new { id = "UserRegistration" }))
-                        {
-                            <div class="container">
-                                <div class="row">
-                                    <div class="form-box clearfix">
-                                        <h3 class="form-heading text-center">Update Details Here</h3>
-                                        <div class="form-group">
-                                            <div class="row py-2">
-                                                <div class="col-md-3 col-sm-3 text-center py-2">
-                                                    <label>Name<span class="MandatoryStars">*</span>:</label>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8">
-                                                    @Html.TextBox("txtUserNameDetails", (string)ViewBag.txtUserName, new { @class = "form-control", @placeholder = " Enter Your Name [max Lenth:50char]" })
-                                                </div>
-                                            </div>
-                                            <div class="row py-2">
-                                                <div class="col-md-3 col-sm-3 text-center py-2">
-                                                    <label>State<span class="MandatoryStars">*</span>:</label>
-                                                </div>
-
-                                                <div class="col-md-8 col-sm-8">
-                                                    @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), new { @class = "form-control", required = "required" })
-                                                </div>
-                                            </div>
-                                            <div class="row py-2">
-                                                <div class="col-md-3 col-sm-3 text-center py-2">
-                                                    <label>District<span class="MandatoryStars">*</span>:</label>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8">
-                                                    <select id="ddlDistrict" class="form-control" required>
-                                                        <option value="">@ViewBag.ddlDistrict</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row py-2">
-                                                <div class="col-md-3 col-sm-3 text-center py-2">
-                                                    <label>Mandal<span class="MandatoryStars">*</span>:</label>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8">
-                                                    <select id="ddlMandal" class="form-control" required>
-                                                        <option value="">@ViewBag.ddlMandal</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row py-2">
-                                                <div class="col-md-3 col-sm-3 text-center py-2">
-                                                    <label>Village<span class="MandatoryStars">*</span>:</label>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8">
-                                                    @Html.TextBox("txtVillage", (string)ViewBag.txtVillage, new { @class = "form-control", @placeholder = " Enter Villag Name [max Lenth:50char]" })
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 text-center">
-                                                    <div class="cta-actions">
-                                                        <input id="btnUpdateUserDetails" type="button" value="Update" class="dflt-btn inactive" onclick="fnUpdateUserDetails()" />
-                                                        <input id="btnCancelUpadate" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnshowAdList()" />
-
+                            @using (Html.BeginForm("UpdateUserDetails", "User", FormMethod.Post, new { id = "UserRegistration" }))
+                            {
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="form-box clearfix">
+                                            <h3 class="form-heading text-center">Update Details Here</h3>
+                                            <div class="form-group">
+                                                <div class="row py-2">
+                                                    <div class="col-md-3 col-sm-3 text-center py-2">
+                                                        <label>Name<span class="MandatoryStars">*</span>:</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBox("txtUserNameDetails", (string)ViewBag.txtUserName, new { @class = "form-control", @placeholder = " Enter Your Name [max Lenth:50char]" })
                                                     </div>
                                                 </div>
+                                                <div class="row py-2">
+                                                    <div class="col-md-3 col-sm-3 text-center py-2">
+                                                        <label>State<span class="MandatoryStars">*</span>:</label>
+                                                    </div>
+
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), new { @class = "form-control", required = "required" })
+                                                    </div>
+                                                </div>
+                                                <div class="row py-2">
+                                                    <div class="col-md-3 col-sm-3 text-center py-2">
+                                                        <label>District<span class="MandatoryStars">*</span>:</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        <select id="ddlDistrict" class="form-control" required>
+                                                            <option value="">@ViewBag.ddlDistrict</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row py-2">
+                                                    <div class="col-md-3 col-sm-3 text-center py-2">
+                                                        <label>Mandal<span class="MandatoryStars">*</span>:</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        <select id="ddlMandal" class="form-control" required>
+                                                            <option value="">@ViewBag.ddlMandal</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row py-2">
+                                                    <div class="col-md-3 col-sm-3 text-center py-2">
+                                                        <label>Village<span class="MandatoryStars">*</span>:</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8">
+                                                        @Html.TextBox("txtVillage", (string)ViewBag.txtVillage, new { @class = "form-control", @placeholder = " Enter Villag Name [max Lenth:50char]" })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 text-center">
+                                                        <div class="cta-actions">
+                                                            <input id="btnUpdateUserDetails" type="button" value="Update" class="dflt-btn inactive" onclick="fnUpdateUserDetails()" />
+                                                            <input id="btnCancelUpadate" type="button" value="Cancel" class="dflt-btn inactive" onclick="fnshowAdList()" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <label>@ViewBag.ErrorMessage</label>
                                             </div>
 
-                                            <label>@ViewBag.ErrorMessage</label>
                                         </div>
-
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
-                    </div>*@
+                        </div>*@
 
-                    <div id="divUserdetailsPhoneNumber" >
+                    <div id="divUserdetailsPhoneNumber">
                         @using (Html.BeginForm("UpdateUserDetails", "User", FormMethod.Post, new { id = "UpdatePhoneNumber" }))
                         {
                             <div class="container">
