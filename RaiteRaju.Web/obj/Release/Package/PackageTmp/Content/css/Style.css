@@ -760,7 +760,7 @@ SubMenuBar UL li.active {border-bottom:2px solid green;min-height:45px;backgroun
 .listTable td{height:40px;text-decoration:none;font-size:12px;}
 .tblHeader {background-color:#326940/*#686979*/;height:30px;border-collapse:collapse;color:white;font-size:12px;border-radius:5px;}
 #UserSettings{min-height:300px;}
-.tableRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;}
+.tableRow {border-bottom:1px solid grey;border-top:1px solid BLACK;font-family:Verdana,serif;font-size:12px; border-radius:2px;height: 30px;}
 /*#AdListRow td {border:1px solid black}*/
 .tableRow:hover{background-color:#f6f6f6;cursor:pointer}
 .tdbreak {  word-break: break-all}

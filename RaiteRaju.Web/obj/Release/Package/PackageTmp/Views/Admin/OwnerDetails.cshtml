@@ -352,64 +352,62 @@
                 </div>
 
                 @*<div class="row" style="padding-top:10px;" id="divSort">
-                        <div class="col-lg-9"></div>
-                        <div class="col-lg-3">
-                            <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
-                                <option value="1" selected>Most Recent</option>
-                                <option value="2">Price:Low-High</option>
-                                <option value="3">Price:Hight-Low</option>
-                            </select>
-                        </div>
-                    </div>*@
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <span class="FilterLabels">Sort By:</span><select id="ddlSort" name="ddlSort" class="form-control">
+                        <option value="1" selected>Most Recent</option>
+                        <option value="2">Price:Low-High</option>
+                        <option value="3">Price:Hight-Low</option>
+                    </select>
+                </div>
+            </div>*@
 
             </div>
 
+            <div class="divTable">
+                <div id="AdList" class="table-responsive">
 
-            <div id="AdList" class="table-responsive">
-
-                <table id="tblList" style="border-collapse: collapse;text-align:center">
-                    <tr id="adlistHeader">
-                        <th width="20px">ID</th>
-                        <th width="200px">Name</th>
-                        <th width="100px">State</th>
-                        <th width="100px">District</th>
-                        <th width="100px">Mandal</th>
-                        <th width="100px">Village</th>
-                        <th width="150px">Phone No</th>
-                        <th width="60px">Deleted Or Not</th>
-                        <th width="100px">Edit</th>
-                        <th width="100px">Delete</th>
-                        <th width="150px">Add Vehicle</th>
-                    </tr>
-                    <tr><td style="align-items:center;width:50px"></td><td style="align-items:center;width:100px"></td><td style="align-items:center;width:200px"> </td><td style="align-items:center;width:300px"></td><td style="align-items:center;width:50px"></td><td style="align-items:center;width:100px"></td></tr>
-
-                </table>
-            </div>
-
-            <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
-                <div class="col-lg-1 col-md-2 d-none d-md-block">
-                </div>
-                <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
-                    <a id="PreviousPage" data-value="1" style="cursor:pointer">
-                        <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
-                    </a>
-                </div>
-                <div class="col-lg-2 col-md-2 d-none d-md-block">
-                    <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
-                </div>
-                <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
-                    @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
-                </div>
-                <div class="col-lg-3 col-md-3 col-xs-3">
-                    <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
-                </div>
-                <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
-                    <a id="PageNext" data-value="2" style="cursor:pointer">
-                        <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
-                    </a>
+                    <table id="tblList" style="border-collapse: collapse;text-align:center">
+                        <tr id="adlistHeader">
+                            <th width="20px">ID</th>
+                            <th width="200px">Name</th>
+                            <th width="100px">State</th>
+                            <th width="100px">District</th>
+                            <th width="100px">Mandal</th>
+                            <th width="100px">Village</th>
+                            <th width="150px">Phone No</th>
+                            <th width="60px">Deleted Or Not</th>
+                            <th width="100px">Edit</th>
+                            <th width="100px">Delete</th>
+                            <th width="150px">Add Vehicle</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
+                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                    <div class="col-lg-1 col-md-2 d-none d-md-block">
+                    </div>
+                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 d-none d-md-block">
+                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                    </div>
+                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                        <a id="PageNext" data-value="2" style="cursor:pointer">
+                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                        </a>
+                    </div>
+                </div>
 
+            </div>
         </div>
-    </div>
 </div>

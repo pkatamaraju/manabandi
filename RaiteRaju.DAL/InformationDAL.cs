@@ -880,10 +880,11 @@ namespace RaiteRaju.DAL
 
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
+        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType,out int cost)
         {
            
-            int Price = 0;
+            int price = 0;
+            cost = 0;
             try
             {
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_Price))
@@ -895,12 +896,13 @@ namespace RaiteRaju.DAL
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
                     {
-                        Price = Convert.ToInt32(dr[DataAccessConstants.PARAMINTFINALPRICE]);
+                        price = Convert.ToInt32(dr[DataAccessConstants.PARAMINTFINALPRICE]);
+                        cost= Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALCOST]);
                     }
                     dr.Close();
                 }
 
-                return Price;
+                return price;
             }
             catch (Exception ex)
             {

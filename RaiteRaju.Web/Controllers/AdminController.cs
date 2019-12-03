@@ -827,8 +827,10 @@ namespace RaiteRaju.Web.Controllers
                 int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
                 string TravelRequestType= Convert.ToString(form["TravelRequestType"]);
                 InformationServiceWrapper objservice = new InformationServiceWrapper();
-                int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
-                return Json(price, JsonRequestBehavior.AllowGet);
+                int cost = 0;
+                int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType,out cost);
+                ViewBag.cost = cost;
+                return Json(new { cost, price }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EditRideDetails(Int32 rideID)

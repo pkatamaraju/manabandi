@@ -68,7 +68,7 @@
                     dataType: 'json',
                     data: form,
                 success: function (data) {
-                    jQuery("#lblPrice").html("Total Price is Rs:" + data + "<br >Commission is  Rs:" + Math.round((parseInt(data) * 0.1) / 10) * 10 );
+                    jQuery("#lblPrice").html("Total Price is Rs:" + data + " Commission is  Rs:" + Math.round((parseInt(data) * 0.1) / 10) * 10 );
 
                     },
                     error: function (data) {
@@ -142,11 +142,11 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                                        
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <label id="lblPrice" style="color:green;font-size:16px;font-weight:bold"></label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <label id="lblPrice"></label>
+
                                     </div>
                                 </div>
                             </div>

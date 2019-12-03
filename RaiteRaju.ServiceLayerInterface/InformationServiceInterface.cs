@@ -48,7 +48,7 @@ namespace RaiteRaju.ServiceLayerInterface
 
         List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
 
-        int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType);
+        int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost);
 
         RideEntity GetRideDetailsByID(int rideID);
 
