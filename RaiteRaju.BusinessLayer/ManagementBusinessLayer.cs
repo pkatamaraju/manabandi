@@ -20,11 +20,7 @@ namespace RaiteRaju.BusinessLayer
             DAL.ManagementDAL OBJ = new DAL.ManagementDAL();
             return OBJ.VerifyMobileNumber(Obj);
         }
-        public void DeleteUserAd(int AdId)
-        {
-            DAL.ManagementDAL OBJ = new DAL.ManagementDAL();
-            OBJ.DeleteUserAd(AdId);
-        }
+       
         public int UpdateUserDetails(UserDetailsEntity Obj)
         {
             DAL.ManagementDAL OBJ = new DAL.ManagementDAL();
@@ -36,11 +32,7 @@ namespace RaiteRaju.BusinessLayer
             DAL.ManagementDAL OBJ = new DAL.ManagementDAL();
             return OBJ.UPDATEOTP(Obj);
         }
-        public int VerifySelectedAds(string Ads)
-        {
-            DAL.ManagementDAL OBJ = new DAL.ManagementDAL();
-            return OBJ.VerifySelectedAds(Ads);
-        }
+        
         public int DeleteUserAccount(Int64 BigIntPhoneNumber)
         {
             return new DAL.ManagementDAL().DeleteUserAccount(BigIntPhoneNumber);
@@ -54,22 +46,9 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.ManagementDAL().insertContactUs(ENTITY);
         }
-        public int DeleteSelectedUserAccounts(string SelectedUserIds)
-        {
-            return new DAL.ManagementDAL().DeleteSelectedUserAccounts(SelectedUserIds);
-        }
-        public int DeleteAdsByAdmin(string SelectedAds)
-        {
-            return new DAL.ManagementDAL().DeleteAdsByAdmin(SelectedAds);
-        }
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             new DAL.ManagementDAL().ExceptionLoggin(ControllerName, ActionName, ErrorMessage);
-        }
-        public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
-        {
-            return new DAL.ManagementDAL().VerifyUsersByAdmin(SelectedPhoneNumbers);
-
         }
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {

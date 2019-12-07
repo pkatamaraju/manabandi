@@ -14,35 +14,6 @@ namespace RaiteRaju.DAL
 {
     public class InformationDAL
     {
-
-        public List<GDictionary> FetchStates()
-        {
-            GDictionary States = null;
-            List<GDictionary> StateList = new List<GDictionary>();
-
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFETCHSTATESLIST))
-                {
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        States = new GDictionary();
-                        States.ID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTSTATEID]);
-                        States.Name = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
-                        StateList.Add(States);
-                    }
-                    dr.Close();
-                }
-                return StateList;
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("InformationDal", "FetchStates", ex.Message);
-                return null;
-            }
-        }
-
        
         public List<GDictionary> FetchReviews()
         {
@@ -72,31 +43,6 @@ namespace RaiteRaju.DAL
             }
         }
 
-        public List<Int32> getAdIdsWithUserid(Int32 userid)
-        {
-            List<Int32> AdList = new List<int>();
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPgetAdIdswithUserid))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, userid);
-
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        AdList.Add(Convert.ToInt32(dr[DataAccessConstants.ParamAdId]));
-
-                    }
-                    dr.Close();
-                    return AdList;
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("InformationDal", "getAdIdsWithUserid", ex.Message);
-                return null;
-            }
-        }
 
         #region Admin
 
@@ -124,50 +70,6 @@ namespace RaiteRaju.DAL
                 ExceptionLoggin("InformationDal", "AdminLoginCheck", ex.Message);
                 return null;
             }
-        }
-
-        public List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            AdViewsStatisticsEntity adobj = new AdViewsStatisticsEntity();
-            List<AdViewsStatisticsEntity> ListObj = new List<AdViewsStatisticsEntity>();
-            int outputparam = 0;
-
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFetchAdViewsStatistis))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int64, PAGENUMBER);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGESIZE, DbType.Int64, 10);
-
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        adobj = new AdViewsStatisticsEntity();
-                        adobj.BuyerName = Convert.ToString(dr[DataAccessConstants.PARAMBuyerName]);
-                        adobj.BuyerPhoneNumber = Convert.ToString(dr[DataAccessConstants.PARAMBuyerPhoneNumber]);
-                        adobj.ViewedAdId = Convert.ToString(dr[DataAccessConstants.PARAMViewedAdId]);
-                        adobj.SellerName = Convert.ToString(dr[DataAccessConstants.PARAMSellerName]);
-                        adobj.SellerPhoneNumber = Convert.ToString(dr[DataAccessConstants.PARAMSellerPhoneNumber]);
-
-                        ListObj.Add(adobj);
-                    }
-                    dr.NextResult();
-                    while (dr.Read())
-                    {
-                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
-                    }
-                    dr.Close();
-                    TotalPageNumber = outputparam;
-                }
-                return ListObj;
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("InformationDal", "FetchAdViewsStatistics", ex.Message);
-                TotalPageNumber = 0;
-                return null;
-            }
-
         }
 
         public List<ReviewEntity> FetchReviewDetailsForAdmin()
@@ -269,54 +171,6 @@ namespace RaiteRaju.DAL
             }
         }
 
-        public List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            UserDetailsEntity UserObj = new UserDetailsEntity();
-            List<UserDetailsEntity> listobj = new List<UserDetailsEntity>();
-            int outputparam = 0;
-
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPFetchUnverifiedUsersForAdmin))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int64, PAGENUMBER);
-
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        UserObj = new UserDetailsEntity();
-
-                        UserObj.intUserId = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
-                        UserObj.txtName = Convert.ToString(dr[DataAccessConstants.ParamtName]);
-                        UserObj.txtDistrict = Convert.ToString(dr[DataAccessConstants.ParamDistrict]);
-                        UserObj.txtMandal = Convert.ToString(dr[DataAccessConstants.ParamMandal]);
-                        UserObj.txtState = Convert.ToString(dr[DataAccessConstants.ParamState]);
-                        UserObj.txtvillage = Convert.ToString(dr[DataAccessConstants.Paramvillage]);
-                        UserObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
-                        UserObj.bitVerifiedPhoneNumber = Convert.ToInt32(dr[DataAccessConstants.PARAMbitVerifiedPhoneNumber]);
-                        UserObj.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
-
-                        listobj.Add(UserObj);
-                    }
-                    dr.NextResult();
-                    while (dr.Read())
-                    {
-                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
-                    }
-                    dr.Close();
-                    TotalPageNumber = outputparam;
-                }
-                return listobj;
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("InformationDal", "FetchAdViewsStatistics", ex.Message);
-                TotalPageNumber = 0;
-                return null;
-            }
-
-        }
-
         #endregion
 
         #region ManaBandi
@@ -408,6 +262,42 @@ namespace RaiteRaju.DAL
                 ExceptionLoggin("InformationDal", "GetVehicleTypes", ex.Message);
                 return null;
             }
+        }
+
+        public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
+        {
+            UserDetailsEntity userobj = null;
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_GetUserDetailsWithOTP))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.Int32, OTP);
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        userobj = new UserDetailsEntity();
+                        userobj.intUserId = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
+                        userobj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        userobj.txtName = Convert.ToString(dr[DataAccessConstants.ParamtName]);
+                        userobj.UserType = Convert.ToString(dr[DataAccessConstants.PARAMUSERTYPE]);
+                        userobj.txtState = Convert.ToString(dr[DataAccessConstants.PARAMINTSTATEID]);
+                        userobj.txtDistrict = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTID]);
+                        userobj.txtMandal = Convert.ToString(dr[DataAccessConstants.PARAMINTMANDALID]);
+                        userobj.txtvillage = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+
+                    }
+                    dr.Close();
+                }
+
+                return userobj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetUserDetailsWithOTP", ex.Message);
+                return null;
+            }
+
         }
 
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
@@ -549,42 +439,6 @@ namespace RaiteRaju.DAL
                 return null;
 
             }
-        }
-
-        public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
-        {
-            UserDetailsEntity userobj = null;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPGETUSERDETAILSWITHOTP))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, PhoneNumber);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.Int32, OTP);
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        userobj = new UserDetailsEntity();
-                        userobj.intUserId = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
-                        userobj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
-                        userobj.txtName = Convert.ToString(dr[DataAccessConstants.ParamtName]);
-                        userobj.UserType = Convert.ToString(dr[DataAccessConstants.PARAMUSERTYPE]);
-                        userobj.txtState = Convert.ToString(dr[DataAccessConstants.PARAMINTSTATEID]);
-                        userobj.txtDistrict = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTID]);
-                        userobj.txtMandal = Convert.ToString(dr[DataAccessConstants.PARAMINTMANDALID]);
-                        userobj.txtvillage = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
-
-                    }
-                    dr.Close();
-                }
-
-                return userobj;
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("InformationDal", "GetUserDetailsWithOTP", ex.Message);
-                return null;
-            }
-
         }
 
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
@@ -946,6 +800,55 @@ namespace RaiteRaju.DAL
             }
 
         }
+        
+        public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber)
+        {
+            VehicleFilterEntity entity;
+            List<VehicleFilterEntity> ListObj = new List<VehicleFilterEntity>();
+            VehicleFilterEntity vehObj = new VehicleFilterEntity();
+
+            using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_OwnerDetailsWithPhoneNumberAdmin))
+            {
+                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, phoneNumber);
+
+                IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+
+                while (dr.Read())
+                {
+                    vehObj = new VehicleFilterEntity();
+                    vehObj.intStateName = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
+                    vehObj.intDistrictName = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
+                    vehObj.intManadalName = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
+                    vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                    vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
+                    vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                    vehObj.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                    vehObj.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
+
+                }
+               
+                dr.NextResult();
+                while (dr.Read())
+                {
+                    entity = new VehicleFilterEntity();
+                    entity.VehicleID = Convert.ToString(dr[DataAccessConstants.PARAMINTVEHICLEID]);
+                    entity.intOwnerID=Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                    entity.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                    entity.VehicleModel = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENAME]);
+                    entity.VehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                    entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                    entity.flgOnRide = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGONRIDE]);
+                    entity.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGDELETED]);
+
+                    ListObj.Add(entity);
+
+                }
+                dr.Close();
+            }
+            Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> returnObj = new Tuple<VehicleFilterEntity, List<VehicleFilterEntity>>(vehObj,ListObj);
+            return returnObj;
+        }
+
         #endregion
 
     }

@@ -14,12 +14,7 @@ namespace RaiteRaju.ServiceLayer
     {
 
         #region Manabandi
-        public List<GDictionary> FetchStates()
-        {
-            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.FetchStates();
-        }
-
+       
         public List<GDictionary> FetDistrictsOfState(int StateId)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
@@ -71,7 +66,7 @@ namespace RaiteRaju.ServiceLayer
         public VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetVehicledDetailsByID(VehicleID,PhoneNumber);
+            return obj.GetVehicledDetailsByID(VehicleID, PhoneNumber);
         }
 
         #endregion
@@ -80,7 +75,7 @@ namespace RaiteRaju.ServiceLayer
         public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetVehicleDetailsForAdmin(Entity,out TotalPageNumber);
+            return obj.GetVehicleDetailsForAdmin(Entity, out TotalPageNumber);
         }
 
         public List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber)
@@ -95,7 +90,7 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId,string TravelRequestType, out int cost)
+        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetPriceForRide(KM, VehicleTypeId, TravelRequestType, out cost);
@@ -107,10 +102,17 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetRideDetailsByID(rideID);
         }
 
-       public OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID)
+
+        public OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
             return obj.GetOwnerDetailsByIDForAdmin(ownerID);
+        }
+
+        public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
         }
 
         #endregion
@@ -122,7 +124,7 @@ namespace RaiteRaju.ServiceLayer
 
         }
 
-        
+
         public List<GDictionary> FetchReviews()
         {
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
@@ -130,26 +132,11 @@ namespace RaiteRaju.ServiceLayer
 
         }
 
-        public List<Int32> getAdIdsWithUserid(Int32 userid)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.getAdIdsWithUserid(userid);
-        }
-
         public UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password)
         {
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
             return BusObj.AdminLoginCheck(PhoneNumber, Password);
         }
-
-
-
-        public List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetchAdViewsStatistics(PAGENUMBER, out TotalPageNumber);
-        }
-
 
         public List<ContactUsEntity> FetchContactUsDetailsForAdmin()
         {
@@ -169,12 +156,7 @@ namespace RaiteRaju.ServiceLayer
             return BusObj.FetchExceptionDetailsForAdmin();
         }
 
-        public List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
-            return BusObj.FetchUnverifiedUsers(PAGENUMBER, out TotalPageNumber);
-
-        }
+       
     }
 
 

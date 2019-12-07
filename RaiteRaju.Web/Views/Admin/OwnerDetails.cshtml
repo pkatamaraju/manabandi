@@ -8,6 +8,7 @@
 
     jQuery().ready(function () {
         jQuery('#tabOwners').addClass('active');
+        jQuery("#divOwnerDetails").attr("tabindex", -1).focus();
     });
     jQuery(document).ready(function () {
         var ownerList = null;
@@ -23,7 +24,7 @@
             for (i = 0; i < length; i++) {
                 j = i + 1;
                 var SNo = pageNumber + j;
-                tblownerList.append('<tr class="tableRow"><td>' + SNo + '</td><td>' + ownerList[i].OwnerName + '</td><td>' + ownerList[i].intStateName + '</td><td>' + ownerList[i].intDistrictName + '</td><td>' + ownerList[i].intManadalName + '</td><td>' + ownerList[i].Place + '</td><td width="100px">' + ownerList[i].BigIntPhoneNumber + '</td><td>' + ownerList[i].FlgAccountDeleted + '</td><td onclick="fnUpdateOwner(' + ownerList[i].intOwnerID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteOwner(' + ownerList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><td onclick="fnAddVehicle(' + ownerList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Add Vehicle</td><tr>')
+                tblownerList.append('<tr class="tableRow"><td>' + ownerList[i].intOwnerID + '</td><td>' + ownerList[i].OwnerName + '</td><td>' + ownerList[i].intStateName + '</td><td>' + ownerList[i].intDistrictName + '</td><td>' + ownerList[i].intManadalName + '</td><td>' + ownerList[i].Place + '</td><td width="100px">' + ownerList[i].BigIntPhoneNumber + '</td><td>' + ownerList[i].FlgAccountDeleted + '</td><td onclick="fnUpdateOwner(' + ownerList[i].intOwnerID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteOwner(' + ownerList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><td onclick="fnAddVehicle(' + ownerList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Add Vehicle</td><tr>')
             }
         }
 
@@ -364,7 +365,7 @@
 
             </div>
 
-            <div class="divTable">
+            <div class="divTable" id="divOwnerDetails">
                 <div id="AdList" class="table-responsive">
 
                     <table id="tblList" style="border-collapse: collapse;text-align:center">

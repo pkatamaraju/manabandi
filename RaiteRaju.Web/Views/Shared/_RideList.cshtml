@@ -24,7 +24,7 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo=pageNumber+j;
-                tblrideList.append('<tr id="rideListRow"><td onclick="fnUpdateAd(' + rideList[i].AdID + ')" style="cursor:pointer;color:blue;">' + SNo + '</td><td width="200px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="200px">' + rideList[i].DtCreated + '</td><tr>')
+                tblrideList.append('<tr id="rideListRow"><td>' + SNo + '</td><td width="200px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="200px">' + rideList[i].DtCreated + '</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());

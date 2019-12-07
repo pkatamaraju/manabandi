@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Shared/_AdminLayout.cshtml";
+    Layout = "~/Shared/_Layout.cshtml";
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -30,13 +30,13 @@
         });
     });
 
-    
+
 
     function fnCalculatePrice() {
 
         var form = jQuery("#BookVehicle").serialize();
         var KiloMeters = jQuery("#txtKilometers").val();
-       
+
        // var TravelRequestType = jQuery("#TravelRequestType:checked").val(); //jQuery("#TravelRequestType").ch
         var intRegex = /^\d+$/;
         var ddlVehicles = jQuery("#ddlVehicles").val();
@@ -163,5 +163,5 @@
 
 
         </div>
-        </div>
+    </div>
 </div>

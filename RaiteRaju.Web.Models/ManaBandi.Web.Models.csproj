@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdViewStatisticsModel.cs" />
     <Compile Include="ContactUsModel.cs" />
     <Compile Include="ExceptionModel.cs" />
     <Compile Include="GDictionaryModel.cs" />

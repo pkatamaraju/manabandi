@@ -10,7 +10,6 @@ namespace RaiteRaju.BusinessLayerInterface
     public interface InformationBusinessLayerInterface
     {
         #region Manabandi
-        List<GDictionary> FetchStates();
         List<GDictionary> FetDistrictsOfState(int StateId);
         List<GDictionary> FetMandalsOfDistrct(int DistrictId);
         List<GDictionary> GetVehicleTypes();
@@ -38,23 +37,16 @@ namespace RaiteRaju.BusinessLayerInterface
 
 
         OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID);
-        
-        #endregion
 
+        Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber);
+
+        #endregion
 
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
 
-
         List<GDictionary> FetchReviews();
 
-        List<Int32> getAdIdsWithUserid(Int32 userid);
-
         UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password);
-
-
-
-        List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber);
-
 
         List<ContactUsEntity> FetchContactUsDetailsForAdmin();
 
@@ -62,7 +54,6 @@ namespace RaiteRaju.BusinessLayerInterface
 
         List<ExceptionEntity> FetchExceptionDetailsForAdmin();
 
-        List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber);
     }
 
 }

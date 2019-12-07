@@ -16,13 +16,12 @@ namespace RaiteRaju.ServiceLayerInterface
         #region Manabandi
 
         [OperationContract]
-        List<GDictionary> FetchStates();
-        [OperationContract]
         List<GDictionary> FetDistrictsOfState(int StateId);
         [OperationContract]
         List<GDictionary> FetMandalsOfDistrct(int DistrictId);
         [OperationContract]
         List<GDictionary> GetVehicleTypes();
+
         [OperationContract]
         UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber);
 
@@ -36,7 +35,7 @@ namespace RaiteRaju.ServiceLayerInterface
         List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber);
 
         [OperationContract]
-        VehicleEntity GetVehicledDetailsByID(int VehicleID,Int64 PhoneNumber);
+        VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber);
 
 
         #endregion
@@ -54,26 +53,21 @@ namespace RaiteRaju.ServiceLayerInterface
 
         OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID);
 
+        Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber);
+
         #endregion
 
-        
+
         [OperationContract]
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
 
-       
+
         [OperationContract]
         List<GDictionary> FetchReviews();
 
         [OperationContract]
-        List<Int32> getAdIdsWithUserid(Int32 userid);
-
-        [OperationContract]
         UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password);
 
-    
-        [OperationContract]
-        List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber);
-       
         [OperationContract]
         List<ContactUsEntity> FetchContactUsDetailsForAdmin();
 
@@ -83,8 +77,6 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         List<ExceptionEntity> FetchExceptionDetailsForAdmin();
 
-        [OperationContract]
-        List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber);
     }
 
 }

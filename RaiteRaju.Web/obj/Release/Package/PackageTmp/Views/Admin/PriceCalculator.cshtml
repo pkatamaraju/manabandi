@@ -67,8 +67,8 @@
                     url: '@Url.Action("PriceCalculator", "Admin")',
                     dataType: 'json',
                     data: form,
-                success: function (data) {
-                    jQuery("#lblPrice").html("Total Price is Rs:" + data + " Commission is  Rs:" + Math.round((parseInt(data) * 0.1) / 10) * 10 );
+                    success: function (data) {
+                        jQuery("#lblPrice").html("Total Price is Rs:" + data.price + "<br/> Total cost to owner is: " + data.cost + "<br/> Commission is  Rs:" + Math.round((parseInt(data.price) * 0.1) / 10) * 10 );
 
                     },
                     error: function (data) {

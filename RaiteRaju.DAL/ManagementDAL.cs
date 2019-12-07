@@ -54,33 +54,6 @@ namespace RaiteRaju.DAL
 
         }
 
-        public int UpdatePassword(UserDetailsEntity Obj)
-        {
-            int UserID = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPUPDAGEUSERDETAILS))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.Int32, Obj.intUserId);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, Obj.BigIntPhoneNumber);
-
-                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
-                    while (dr.Read())
-                    {
-                        UserID = Convert.ToInt32(dr[DataAccessConstants.ParamUserId]);
-                    }
-                    dr.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "UpdatePassword", ex.Message);
-            }
-
-            return UserID;
-
-        }
-
         public int UPDATEOTP(UserDetailsEntity Obj)
         {
             int OTP = 0;
@@ -111,67 +84,7 @@ namespace RaiteRaju.DAL
             return OTP;
         }
 
-
-        public void DeleteUserAd(int AdId)
-        {
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPDELETEUSERAD))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdId, DbType.Int32, AdId);
-                    DBAccessHelper.ExecuteScalar(objDbCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "DeleteUserAd", ex.Message);
-            }
-        }
-
-        #region Admin
-
-        public int VerifySelectedAds(string SelectedAds)
-        {
-            int Success = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPVerifyAds))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdIdS, DbType.String, SelectedAds);
-                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "VerifySelectedAds", ex.Message);
-                Success = 0;
-            }
-            return Success;
-        }
-
-        public int DeleteSelectedUserAccounts(string SelectedUserIds)
-        {
-            int Success = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SRUserAccountDeletionByAdmin))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamUserId, DbType.String, SelectedUserIds);
-                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "DeleteSelectedUserAccounts", ex.Message);
-                Success = 0;
-            }
-
-            return Success;
-        }
-        
-        #endregion
-
+       
         public int DeleteUserAccount(Int64 BigIntPhoneNumber)
         {
             int Success = 0;
@@ -231,48 +144,6 @@ namespace RaiteRaju.DAL
                 return 0;
             }
         }
-
-        public int DeleteAdsByAdmin(string SelectedAds)
-        {
-            int Success = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPDeleteAdsByAdmin))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamAdIdS, DbType.String, SelectedAds);
-                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "DeleteAdsByAdmin", ex.Message);
-                Success = 0;
-            }
-
-            return Success;
-        }
-
-
-        public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
-        {
-            int Success = 0;
-            try
-            {
-                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.SPVerifyUsersByAdmin))
-                {
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.String, SelectedPhoneNumbers);
-                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionLoggin("ManagementDal", "DeleteAdsByAdmin", ex.Message);
-                Success = 0;
-            }
-
-            return Success;
-        }
-
 
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {

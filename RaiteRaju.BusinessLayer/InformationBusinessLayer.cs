@@ -12,10 +12,7 @@ namespace RaiteRaju.BusinessLayer
     public class InformationBusinessLayer : InformationBusinessLayerInterface
     {
         #region Manabandi
-        public List<GDictionary> FetchStates()
-        {
-            return new DAL.InformationDAL().FetchStates();
-        }
+       
         public List<GDictionary> FetDistrictsOfState(int StateId)
         {
             return new DAL.InformationDAL().FetDistrictsOfState(StateId);
@@ -28,7 +25,6 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetVehicleTypes();
         }
-
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
         {
             return new DAL.InformationDAL().GetUserDetailsWithOTP(OTP, PhoneNumber);
@@ -46,7 +42,7 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetLoginCheck(PhoneNumber, Password);
         }
-       public List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
+        public List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
 
@@ -60,21 +56,21 @@ namespace RaiteRaju.BusinessLayer
         #endregion
 
         #region manabandi admin
-       public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        public List<VehicleFilterEntity> GetVehicleDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
-            return new DAL.InformationDAL().GetVehicleDetailsForAdmin(Entity,out TotalPageNumber);
+            return new DAL.InformationDAL().GetVehicleDetailsForAdmin(Entity, out TotalPageNumber);
         }
 
-       public List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber)
+        public List<VehicleFilterEntity> GetOwnerDetailsForAdminPage(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().GetOwnerDetailsForAdminPage(Entity, out TotalPageNumber);
         }
-       public List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        public List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
-       public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost)
+        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost)
         {
             return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId, TravelRequestType, out cost);
         }
@@ -83,11 +79,18 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().GetRideDetailsByID(rideID);
         }
 
-       public OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID)
+        public OwnerEntity GetOwnerDetailsByIDForAdmin(int ownerID)
         {
             return new DAL.InformationDAL().GetOwnerDetailsByIDForAdmin(ownerID);
         }
+
+        public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber)
+        {
+            return new DAL.InformationDAL().GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
+        }
+
         #endregion
+
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber,userType);
@@ -98,21 +101,13 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().FetchReviews();
         }
 
-        public List<Int32> getAdIdsWithUserid(Int32 userid)
-        {
-            return new DAL.InformationDAL().getAdIdsWithUserid(userid);
-        }
-
+      
         public UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password)
         {
             return new DAL.InformationDAL().AdminLoginCheck(PhoneNumber, Password);
         }
 
-        public List<AdViewsStatisticsEntity> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().FetchAdViewsStatistics(PAGENUMBER, out TotalPageNumber);
-        }
-
+       
         public List<ContactUsEntity> FetchContactUsDetailsForAdmin()
         {
             return new DAL.InformationDAL().FetchContactUsDetailsForAdmin();
@@ -127,11 +122,7 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().FetchExceptionDetailsForAdmin();
         }
-
-        public List<UserDetailsEntity> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            return new DAL.InformationDAL().FetchUnverifiedUsers(PAGENUMBER,out TotalPageNumber);
-        }
+       
     }
 
 }

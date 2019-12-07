@@ -106,23 +106,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult UserDetailsManagement(string UserIdList)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-            if (nameCookie != null)
-            {
-                int success = 0;
-                ManagementServiceWrapper obj = new ManagementServiceWrapper();
-                success = obj.DeleteSelectedUserAccounts(UserIdList);
-                return Json(success, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
         public ActionResult ContactUs()
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -268,46 +251,6 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-
-        public ActionResult VerifyUsers(int PageNumber)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-
-            if (nameCookie != null)
-            {
-                int TotalPageNumber = 0;
-                ViewBag.CurrentPageNumber = PageNumber;
-                List<UserDetailsModel> UserList = new List<UserDetailsModel>();
-                InformationServiceWrapper Obj = new InformationServiceWrapper();
-                UserList = Obj.FetchUnverifiedUsers(PageNumber, out TotalPageNumber);
-                ViewBag.UserList = UserList;
-                ViewBag.TotalPageNumber = TotalPageNumber;
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
-        [HttpPost]
-        public ActionResult VerifyUsers(string SelectedPhoneNumbers)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
-
-            if (nameCookie != null)
-            {
-                int success = 0;
-                ManagementServiceWrapper obj = new ManagementServiceWrapper();
-                success = obj.VerifyUsersByAdmin(SelectedPhoneNumbers);
-                return Json(success, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Admin");
-            }
-        }
-
 
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase image, Int32 AdId)
@@ -520,7 +463,7 @@ namespace RaiteRaju.Web.Controllers
                 {
                     errorMessage = errorMessage + "Special character are not allowed in Name.\n";
                 }
-                
+
                 if (!System.Text.RegularExpressions.Regex.Match(model.BigIntPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
                 {
                     errorMessage = errorMessage + "Enter valid Phone Number.\n";
@@ -558,7 +501,7 @@ namespace RaiteRaju.Web.Controllers
                         ManagementServiceWrapper serviceObj = new ManagementServiceWrapper();
 
                         ownerID = serviceObj.VehicleOwnerRegistration(model);
-                       
+
                         return Json("success", JsonRequestBehavior.AllowGet);
                     }
                     else
@@ -823,14 +766,14 @@ namespace RaiteRaju.Web.Controllers
         [HttpPost]
         public ActionResult PriceCalculator(FormCollection form)
         {
-                int Kilometers = Convert.ToInt32(form["txtKilometers"]);
-                int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
-                string TravelRequestType= Convert.ToString(form["TravelRequestType"]);
-                InformationServiceWrapper objservice = new InformationServiceWrapper();
-                int cost = 0;
-                int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType,out cost);
-                ViewBag.cost = cost;
-                return Json(new { cost, price }, JsonRequestBehavior.AllowGet);
+            int Kilometers = Convert.ToInt32(form["txtKilometers"]);
+            int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+            string TravelRequestType = Convert.ToString(form["TravelRequestType"]);
+            InformationServiceWrapper objservice = new InformationServiceWrapper();
+            int cost = 0;
+            int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType, out cost);
+            ViewBag.cost = cost;
+            return Json(new { cost, price }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EditRideDetails(Int32 rideID)
@@ -979,7 +922,7 @@ namespace RaiteRaju.Web.Controllers
             {
                 InformationServiceWrapper obj = new InformationServiceWrapper();
                 Vehicle model = new Vehicle();
-                
+
                 model = obj.GetVehicledDetailsByID(VehicleID, phoneNumber);
                 ViewBag.VehicleTypeID = model.intVehicleTypeID;
                 ViewBag.VehicleName = model.txtVehicleName;
@@ -1025,6 +968,28 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+
+        public ActionResult OwnerSearch(){
+            ViewBag.phoneNumber = "";
+            ViewBag.ownerDetails = "";
+            ViewBag.vehicleList = "";
+            return View();
+        }
+
+        public ActionResult OwnerSearchWithPhoneNumber(Int64 phoneNumber)
+        {
+            ViewBag.phoneNumber = phoneNumber;
+            InformationServiceWrapper obj = new InformationServiceWrapper();
+            Tuple<VehicleFilterModel, List<VehicleFilterModel>> tupel = obj.GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
+            List<VehicleFilterModel> vehicles= tupel.Item2;
+            VehicleFilterModel owner = tupel.Item1;
+
+            ViewBag.ownerDetails = owner;
+            ViewBag.vehicleList = vehicles;
+
+            return View("OwnerSearch");
+
+        }
 
         #endregion
     }

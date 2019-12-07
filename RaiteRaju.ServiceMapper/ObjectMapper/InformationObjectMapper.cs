@@ -115,50 +115,6 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
 
         }
 
-        //internal AdDetailsEntity MapAdDetailsModelToEntity(AdDetailsModel Model)
-        //{
-        //    AdDetailsEntity Entity = new AdDetailsEntity();
-
-        //    if (Model != null)
-        //    {
-        //        Entity.AdID = Model.AdID;
-        //        Entity.UserID = Model.UserID;
-        //        Entity.AdDescription = Model.txtAdDescription;
-        //        Entity.Category = Model.Category;
-        //        Entity.txtSubCategoryName = Model.txtSubCategoryName;
-        //        Entity.Image = Model.Image;
-        //        Entity.MobileNumber = Model.MobileNuber;
-        //        Entity.Price = Model.txtPrice;
-        //        Entity.Quantity = Model.txtQuantity;
-        //        Entity.SellingUnit = Model.SellingUnit;
-        //        Entity.Title = Model.txtAddTitle;
-        //    }
-        //    return Entity;
-        //}
-
-        internal List<AdViewStatisticsModel> MapAdViewsStatisticsEntityListToAdViewStatisticsModelList(List<AdViewsStatisticsEntity> EntityList)
-        {
-            if (EntityList != null)
-            {
-                List<AdViewStatisticsModel> ModelList = new List<AdViewStatisticsModel>();
-                AdViewStatisticsModel model;
-                foreach (AdViewsStatisticsEntity Entity in EntityList) {
-                    model = new AdViewStatisticsModel();
-                    model.BuyerName = Entity.BuyerName;
-                    model.BuyerPhoneNumber = Entity.BuyerPhoneNumber;
-                    model.SellerPhoneNumber = Entity.SellerPhoneNumber;
-                    model.SellerName = Entity.SellerName;
-                    model.ViewedAdId = Entity.ViewedAdId;
-                    ModelList.Add(model);
-                }
-                return ModelList;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         internal List<ReviewModel> MapReviewEntityToModel(List<ReviewEntity> EntityList)
         {
             ReviewModel Model = new ReviewModel();
@@ -231,6 +187,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
         }
 
         #region ManaBandi
+
         internal List<Ride> MapRideEntityListToModel(List<RideEntity> ListEntity)
         {
 
@@ -264,6 +221,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 return null;
             }
         }
+
         internal Ride MapRideEntityToModel(RideEntity entity)
         {
             Ride rideObj = null;
@@ -285,6 +243,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             }
             return rideObj;
         }
+
         internal List<Vehicle> MapVehicleEntityListToModel(List<VehicleEntity> ListEntity)
         {
 
@@ -424,6 +383,76 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return model;
         }
 
+        internal Tuple<VehicleFilterModel, List<VehicleFilterModel>> MapOwnerTuple(Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> tuple)
+        {
+            VehicleFilterModel model=null;
+            List<VehicleFilterModel> list = new List<VehicleFilterModel>();
+            VehicleFilterModel vehOjb;
+
+            if (tuple!=null)
+            {
+                model = new VehicleFilterModel
+                {
+                    VehicleID = tuple.Item1.VehicleID,
+                    VehicleType = tuple.Item1.VehicleType,
+                    VehicleModel = tuple.Item1.VehicleModel,
+                    OwnerName = tuple.Item1.OwnerName,
+                    VehicleNumber = tuple.Item1.VehicleNumber,
+                    Place = tuple.Item1.Place,
+                    intStateId = tuple.Item1.intStateId,
+                    intDistrictId = tuple.Item1.intDistrictId,
+                    intManadalID = tuple.Item1.intManadalID,
+                    BigIntPhoneNumber = tuple.Item1.BigIntPhoneNumber,
+                    TxtKeyWord = tuple.Item1.TxtKeyWord,
+                    IntPageNumber = tuple.Item1.IntPageNumber,
+                    IntPageSize = tuple.Item1.IntPageSize,
+                    SortValue = tuple.Item1.SortValue,
+                    intStateName = tuple.Item1.intStateName,
+                    intDistrictName = tuple.Item1.intDistrictName,
+                    intManadalName = tuple.Item1.intManadalName,
+                    VehicleTypeID = tuple.Item1.VehicleTypeID,
+                    flgOnRide = tuple.Item1.flgOnRide,
+                    intRideStatusID = tuple.Item1.intRideStatusID,
+                    intOwnerID = tuple.Item1.intOwnerID,
+                    FlgAccountDeleted = tuple.Item1.FlgAccountDeleted
+                };
+
+                foreach (VehicleFilterEntity entity in tuple.Item2)
+                {
+                    vehOjb = new VehicleFilterModel
+                    {
+                        VehicleID = entity.VehicleID,
+                        VehicleType = entity.VehicleType,
+                        VehicleModel = entity.VehicleModel,
+                        OwnerName = entity.OwnerName,
+                        VehicleNumber = entity.VehicleNumber,
+                        Place = entity.Place,
+                        intStateId = entity.intStateId,
+                        intDistrictId = entity.intDistrictId,
+                        intManadalID = entity.intManadalID,
+                        BigIntPhoneNumber = entity.BigIntPhoneNumber,
+                        TxtKeyWord = entity.TxtKeyWord,
+                        IntPageNumber = entity.IntPageNumber,
+                        IntPageSize = entity.IntPageSize,
+                        SortValue = entity.SortValue,
+                        intStateName = entity.intStateName,
+                        intDistrictName = entity.intDistrictName,
+                        intManadalName = entity.intManadalName,
+                        VehicleTypeID = entity.VehicleTypeID,
+                        flgOnRide = entity.flgOnRide,
+                        intRideStatusID = entity.intRideStatusID,
+                        intOwnerID = entity.intOwnerID,
+                        FlgAccountDeleted = entity.FlgAccountDeleted
+                    };
+                    list.Add(vehOjb);
+                }
+            }
+
+
+            Tuple<VehicleFilterModel, List<VehicleFilterModel>> modelTuple = new Tuple<VehicleFilterModel, List<VehicleFilterModel>>(model, list);
+            return modelTuple;
+        }
+        
         #endregion
 
     }

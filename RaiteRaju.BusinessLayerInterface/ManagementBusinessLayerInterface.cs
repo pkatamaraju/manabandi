@@ -11,17 +11,12 @@ namespace RaiteRaju.BusinessLayerInterface
     {
        int InsertAddUserDetails(UserDetailsEntity Obj);
        UserDetailsEntity VerifyMobileNumber(UserDetailsEntity Obj);
-       void DeleteUserAd(int AdId);
        int UpdateUserDetails(UserDetailsEntity Obj);
        int UPDATEOTP(UserDetailsEntity Obj);
-       int VerifySelectedAds(string AdsToVerify);
        int DeleteUserAccount(Int64 BigIntPhoneNumber);
        int InsertReview(Int64 PhoneNumber, String reviewDescription);
        int insertContactUs(ContactUsEntity ENTITY);
-       int DeleteSelectedUserAccounts(string SelectedUserIds);
-       int DeleteAdsByAdmin(string SelectedAds);
       void ExceptionLoggin(string ControllerName,string ActionName,string ErrorMessage);
-      int VerifyUsersByAdmin(string SelectedPhoneNumbers);
       int InsertPromotions(string Name, Int64 PhoneNumber, string Description);
 
         #region ManaBandi

@@ -22,11 +22,6 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.VerifyMobileNumber(Obj);
         }
-        public void DeleteUserAd(int AdId)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            ManageObj.DeleteUserAd(AdId);
-        }
         public int UpdateUserDetails(UserDetailsEntity Obj)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
@@ -36,11 +31,6 @@ namespace RaiteRaju.ServiceLayer
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.UPDATEOTP(Obj);
-        }
-        public int VerifySelectedAds(string adsToVerify)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.VerifySelectedAds(adsToVerify);
         }
         public int DeleteUserAccount(Int64 BigIntPhoneNumber)
         {
@@ -57,25 +47,10 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.insertContactUs(ENTITY);
         }
-        public int DeleteSelectedUserAccounts(string SelectedUserIds)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.DeleteSelectedUserAccounts(SelectedUserIds);
-        }
-        public int DeleteAdsByAdmin(string SelectedAds)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.DeleteAdsByAdmin(SelectedAds);
-        }
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             ManageObj.ExceptionLoggin(ControllerName, ActionName, ErrorMessage);
-        }
-        public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
-        {
-            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
-            return ManageObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
         }
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {

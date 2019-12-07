@@ -26,13 +26,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
 
-
-        public void DeleteUserAd(int AdId)
-        {
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            ManObj.DeleteUserAd(AdId);
-        }
-
         public UserDetailsModel VerifyMobileNumber(int otp, Int64 MobileNumber)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
@@ -66,13 +59,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
 
-        public int VerifySelectedAds(string SelectedAds)
-        {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.VerifySelectedAds(SelectedAds);
-        }
-
         public int DeleteUserAccount(Int64 BigIntPhoneNumber)
         {
             ManagementObjectMapper objMapper = new ManagementObjectMapper();
@@ -89,32 +75,11 @@ namespace RaiteRaju.ServiceMapper
             return ManObj.insertContactUs(ENTITY);
         }
 
-        public int DeleteSelectedUserAccounts(string SelectedUserIds)
-        {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.DeleteSelectedUserAccounts(SelectedUserIds);
-        }
-
-        public int DeleteAdsByAdmin(string SelectedAds) {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.DeleteAdsByAdmin(SelectedAds);
-        }
-
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
             ServiceLayer.ManagementService ManObj = new ManagementService();
             ManObj.ExceptionLoggin(ControllerName, ActionName, ErrorMessage);
         }
-
-        public int VerifyUsersByAdmin(string SelectedPhoneNumbers)
-        {
-            ManagementObjectMapper objMapper = new ManagementObjectMapper();
-            ServiceLayer.ManagementService ManObj = new ManagementService();
-            return ManObj.VerifyUsersByAdmin(SelectedPhoneNumbers);
-        }
-
 
         public int InsertPromotions(string Name, Int64 PhoneNumber, string Description)
         {

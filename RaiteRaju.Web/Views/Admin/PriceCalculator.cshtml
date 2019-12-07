@@ -51,8 +51,8 @@
         else if (intRegex.test(KiloMeters) == false) {
             message = message + "Please enter valid Kilo Meters(only digits).\n";
         }
-        else if (KiloMeters > 1000 || KiloMeters == 0) {
-            message = message + "Please enter valid Kilo Meters(From 1 To 1000).\n";
+        else if (KiloMeters > 10000 || KiloMeters == 0) {
+            message = message + "Please enter valid Kilo Meters(From 1 To 10000).\n";
         }
 
         if (ddlVehicles == "0") {

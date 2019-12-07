@@ -12,7 +12,9 @@
 
     jQuery().ready(function () {
         jQuery('#tablRides').addClass('active');
+        jQuery("#divRideList").attr("tabindex", -1).focus();
     });
+
 
     jQuery(document).ready(function () {
         var RideList = null;
@@ -30,7 +32,7 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo = pageNumber + j;
-                tblrideList.append('<tr class="tableRow"><td>' + SNo + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
+                tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());

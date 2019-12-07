@@ -6,6 +6,7 @@ C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.
 C:\Users\Nandini\Desktop\manabandi\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.pdb
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\bin\Debug\RaiteRaju.Web.Models.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\bin\Debug\RaiteRaju.Web.Models.pdb
+C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\ManaBandi.Web.Models.csprojAssemblyReference.cache
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\ManaBandi.Web.Models.csproj.CoreCompileInputs.cache
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.pdb

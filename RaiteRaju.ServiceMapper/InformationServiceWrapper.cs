@@ -14,18 +14,7 @@ namespace RaiteRaju.ServiceMapper
 {
     public class InformationServiceWrapper
     {
-        public List<GDictionaryModel> FetchStates()
-        {
-
-            List<GDictionary> gdEntityList = new List<GDictionary>();
-            List<GDictionaryModel> gdModel = new List<GDictionaryModel>();
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper objmapper = new InformationObjectMapper();
-            gdEntityList = obj.FetchStates();
-            gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
-            return gdModel;
-        }
-
+       
         public List<GDictionaryModel> FetDistrictsOfState(int StateId)
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -70,7 +59,6 @@ namespace RaiteRaju.ServiceMapper
             DetModelObj = ObjMapper.MapDetailsEntityToDetailsModel(DetEntityObj);
             return DetModelObj;
         }
-
         public UserDetailsModel GetUserDetailsWithPassword(Int64 PhoneNumber, string Password)
         {
             UserDetailsModel DetModelObj = new UserDetailsModel();
@@ -107,7 +95,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
 
-
         public GDictionaryModel MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
             GDictionaryModel Model = new GDictionaryModel();
@@ -120,7 +107,6 @@ namespace RaiteRaju.ServiceMapper
 
         }
        
-
         public List<GDictionaryModel> FetchReviews()
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -131,15 +117,6 @@ namespace RaiteRaju.ServiceMapper
             gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
             return gdModel;
 
-        }
-
-        public List<Int32> getAdIdsWithUserid(Int32 Userid)
-        {
-            List<Int32> adList = new List<Int32>();
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper objmapper = new InformationObjectMapper();
-            adList = obj.getAdIdsWithUserid(Userid);
-            return adList;
         }
 
         public UserDetailsModel AdminLoginCheck(Int64 PhoneNumber, string Password)
@@ -153,20 +130,6 @@ namespace RaiteRaju.ServiceMapper
             UserModel = objmapper.MapUserDetailsModelToEntity(UserEntity);
             return UserModel;
         }
-
-
-        public List<AdViewStatisticsModel> FetchAdViewsStatistics(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            List<AdViewStatisticsModel> listObj = new List<AdViewStatisticsModel>();
-            List<AdViewsStatisticsEntity> EntityListObj = new List<AdViewsStatisticsEntity>();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper objmapper = new InformationObjectMapper();
-            EntityListObj = obj.FetchAdViewsStatistics(PAGENUMBER, out TotalPageNumber);
-            listObj = objmapper.MapAdViewsStatisticsEntityListToAdViewStatisticsModelList(EntityListObj);
-            return listObj;
-        }
-
 
         public List<ReviewModel> FetchReviewsForAdmin()
         {
@@ -202,19 +165,6 @@ namespace RaiteRaju.ServiceMapper
             EntityList = obj.FetchExceptionDetailsForAdmin();
             ModelList = ObjMapper.MapExceptionEntityToModel(EntityList);
             return ModelList;
-        }
-
-        public List<UserDetailsModel> FetchUnverifiedUsers(Int32 PAGENUMBER, out int TotalPageNumber)
-        {
-            List<UserDetailsModel> ModelList = new List<UserDetailsModel>();
-            List<UserDetailsEntity> EntityList = new List<UserDetailsEntity>();
-
-            ServiceLayer.InformationService obj = new InformationService();
-            InformationObjectMapper ObjMapper = new InformationObjectMapper();
-            EntityList = obj.FetchUnverifiedUsers(PAGENUMBER, out TotalPageNumber);
-            ModelList = ObjMapper.MapUserDetailsModelListToEntityList(EntityList);
-            return ModelList;
-
         }
 
 
@@ -314,15 +264,26 @@ namespace RaiteRaju.ServiceMapper
             return model;
         }
 
-       public Owner GetOwnerDetailsByIDForAdmin(int ownerID)
+        public Owner GetOwnerDetailsByIDForAdmin(int ownerID)
         {
             Owner model = new Owner();
             OwnerEntity Entity = new OwnerEntity();
             InformationObjectMapper mapper = new InformationObjectMapper();
             ServiceLayer.InformationService obj = new InformationService();
-            Entity= obj.GetOwnerDetailsByIDForAdmin(ownerID);
+            Entity = obj.GetOwnerDetailsByIDForAdmin(ownerID);
             model = mapper.MapOwnerEntityToModel(Entity);
             return model;
+        }
+
+        public Tuple<VehicleFilterModel, List<VehicleFilterModel>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber)
+        {
+            VehicleFilterModel model = new VehicleFilterModel();
+            List<VehicleFilterModel> list = new List<VehicleFilterModel>();
+            InformationObjectMapper mapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> tupleEntity = obj.GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
+            Tuple<VehicleFilterModel, List<VehicleFilterModel>> tuple = mapper.MapOwnerTuple(tupleEntity);
+            return tuple;
         }
 
         #endregion

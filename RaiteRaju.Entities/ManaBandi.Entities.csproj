@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdViewsStatisticsEntity.cs" />
     <Compile Include="ContactUsEntity.cs" />
     <Compile Include="ExceptionEntity.cs" />
     <Compile Include="GDictionary.cs" />
