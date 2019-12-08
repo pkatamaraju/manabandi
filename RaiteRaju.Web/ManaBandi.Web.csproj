@@ -209,6 +209,7 @@
     <Content Include="Content\images\FooterIcon4.jpg" />
     <Content Include="Content\images\FooterIcon1.jpg" />
     <Content Include="Content\images\FooterIcon2.jpg" />
+    <Content Include="Content\images\GoogleMaps.jpg" />
     <Content Include="Content\images\Location.png" />
     <Content Include="Content\images\LoginIcon.png" />
     <Content Include="Content\images\logo.jpg" />
@@ -218,6 +219,7 @@
     <Content Include="Content\images\MiniTruck.jpg" />
     <Content Include="Content\images\NoImage.jpg" />
     <Content Include="Content\images\FooterIcon3.jpg" />
+    <Content Include="Content\images\PlayStore.png" />
     <Content Include="Content\images\UserName.jpg" />
     <Content Include="Content\images\Verified.jpg" />
     <Content Include="Global.asax" />
@@ -308,6 +310,7 @@
     <Content Include="Views\Admin\AddOwner.cshtml" />
     <Content Include="Views\Book\PriceCalculator.cshtml" />
     <Content Include="Views\Admin\OwnerSearch.cshtml" />
+    <Content Include="Views\User\AssignedRides.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

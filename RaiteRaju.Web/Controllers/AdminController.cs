@@ -784,8 +784,11 @@ namespace RaiteRaju.Web.Controllers
             {
                 InformationServiceWrapper serviceObj = new InformationServiceWrapper();
                 Ride model = serviceObj.GetRideDetailsByID(rideID);
-                ViewBag.rideDetails = model;
-                ViewBag.rideID = model.intRideID;
+                if (model != null)
+                {
+                    ViewBag.rideDetails = model;
+                    ViewBag.rideID = model.intRideID;
+                }
                 return View();
             }
             else
@@ -810,6 +813,9 @@ namespace RaiteRaju.Web.Controllers
                 ridesObj.txtScheduledTime = Convert.ToString(form["txtScheduledTime"]);
                 ridesObj.txtVehicleNumber = form["txtAssignedVehicle"];
                 ridesObj.txtRideStatus = form["intRideStatusID"];
+                ridesObj.intRideAmount = Convert.ToDecimal(form["intRideAmount"]);
+                ridesObj.intRideCommision = Convert.ToDecimal( form["intRideCommision"]);
+                ridesObj.intRideKM = Convert.ToDecimal(form["intRideKM"]);
 
                 ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
                 int returnValue = manageObj.UpateRideDetailsForAdmin(ridesObj);
@@ -971,8 +977,8 @@ namespace RaiteRaju.Web.Controllers
 
         public ActionResult OwnerSearch(){
             ViewBag.phoneNumber = "";
-            ViewBag.ownerDetails = "";
-            ViewBag.vehicleList = "";
+            ViewBag.ownerDetails =null;
+            ViewBag.vehicleList = null;
             return View();
         }
 

@@ -215,6 +215,9 @@ namespace RaiteRaju.DAL
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDTSCHEDULEDDATE, DbType.String, ride.dtScheduledDate);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDTSCHEDULEDTIME, DbType.String, ride.txtScheduledTime);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLENUMBER, DbType.String, ride.txtVehicleNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDEAMOUNT, DbType.Decimal, ride.intRideAmount);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDECOMMISSION, DbType.Decimal, ride.intRideCommision);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTRIDEKM, DbType.Decimal, ride.intRideKM);
                     Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
                 }
                 return Success;

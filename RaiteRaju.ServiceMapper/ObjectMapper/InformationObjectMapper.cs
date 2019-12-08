@@ -210,6 +210,9 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     rideObj.intRideID = item.intRideID;
                     rideObj.txtRideStatus = item.txtRideStatus;
                     rideObj.txtVehicleNumber = item.txtVehicleNumber;
+                    rideObj.intRideAmount = item.intRideAmount;
+                    rideObj.intRideCommision = item.intRideCommision;
+                    rideObj.intRideKM = item.intRideKM;
 
                     rideListObj.Add(rideObj);
                 }
@@ -240,6 +243,9 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 rideObj.intRideID = entity.intRideID;
                 rideObj.txtRideStatus = entity.txtRideStatus;
                 rideObj.txtVehicleNumber = entity.txtVehicleNumber;
+                rideObj.intRideAmount = entity.intRideAmount;
+                rideObj.intRideCommision = entity.intRideCommision;
+                rideObj.intRideKM = entity.intRideKM;
             }
             return rideObj;
         }
@@ -323,7 +329,11 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                         flgOnRide = entity.flgOnRide,
                         intRideStatusID = entity.intRideStatusID,
                         intOwnerID = entity.intOwnerID,
-                        FlgAccountDeleted = entity.FlgAccountDeleted
+                        FlgAccountDeleted = entity.FlgAccountDeleted,
+                        intRideAmount = entity.intRideAmount,
+                        intRideCommision = entity.intRideCommision,
+                        intRideKM = entity.intRideKM
+
                     };
                     lisObj.Add(model);
                 }
@@ -359,6 +369,9 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 entity.intRideStatusID = model.intRideStatusID;
                 entity.intOwnerID = model.intOwnerID;
                 entity.FlgAccountDeleted = model.FlgAccountDeleted;
+                entity.intRideAmount = model.intRideAmount;
+                entity.intRideCommision= model.intRideCommision;
+                entity.intRideKM= model.intRideKM;
 
             }
 
@@ -414,7 +427,11 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     flgOnRide = tuple.Item1.flgOnRide,
                     intRideStatusID = tuple.Item1.intRideStatusID,
                     intOwnerID = tuple.Item1.intOwnerID,
-                    FlgAccountDeleted = tuple.Item1.FlgAccountDeleted
+                    FlgAccountDeleted = tuple.Item1.FlgAccountDeleted,
+                    intRideAmount = tuple.Item1.intRideAmount,
+                    intRideCommision=tuple.Item1.intRideCommision,
+                    intRideKM=tuple.Item1.intRideKM
+                    
                 };
 
                 foreach (VehicleFilterEntity entity in tuple.Item2)
@@ -442,7 +459,10 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                         flgOnRide = entity.flgOnRide,
                         intRideStatusID = entity.intRideStatusID,
                         intOwnerID = entity.intOwnerID,
-                        FlgAccountDeleted = entity.FlgAccountDeleted
+                        FlgAccountDeleted = entity.FlgAccountDeleted,
+                        intRideAmount = entity.intRideAmount,
+                        intRideCommision = entity.intRideCommision,
+                        intRideKM = entity.intRideKM
                     };
                     list.Add(vehOjb);
                 }

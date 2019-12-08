@@ -28,7 +28,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_MobileValidation = "GET_MobileValidation";
         public const string INSERT_VehicleDetails = "INSERT_VehicleDetails";
         public const string GET_VehicleDetails = "GET_VehicleDetails";
-
+        public const string GET_MBAssignedRides = "GET_MBAssignedRides";
 
         public const string DELETE_MBVehicle = "DELETE_MBVehicle";
         public const string GET_MBVehicleDetailsByID = "GET_MBVehicleDetailsByID";

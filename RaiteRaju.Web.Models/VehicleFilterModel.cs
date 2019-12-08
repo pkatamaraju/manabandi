@@ -30,6 +30,8 @@ namespace RaiteRaju.Web.Models
         public Int32 intRideStatusID { get; set; }
         public int intOwnerID { get; set; }
         public int FlgAccountDeleted { get; set; }
-
+        public decimal intRideAmount { get; set; }
+        public decimal intRideCommision { get; set; }
+        public decimal intRideKM { get; set; }
     }
 }

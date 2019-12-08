@@ -17,22 +17,27 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().FetDistrictsOfState(StateId);
         }
+
         public List<GDictionary> FetMandalsOfDistrct(int DistrictId)
         {
             return new DAL.InformationDAL().FetMandalsOfDistrct(DistrictId);
         }
+
         public List<GDictionary> GetVehicleTypes()
         {
             return new DAL.InformationDAL().GetVehicleTypes();
         }
+
         public UserDetailsEntity GetUserDetailsWithOTP(Int32 OTP, Int64 PhoneNumber)
         {
             return new DAL.InformationDAL().GetUserDetailsWithOTP(OTP, PhoneNumber);
         }
+
         public UserDetailsEntity GetUserDetailsWithPassword(Int64 PhoneNumber, string Password)
         {
             return new DAL.InformationDAL().GetUserDetailsWithPassword(PhoneNumber, Password);
         }
+
         public List<RideEntity> GetUserRides(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().GetUserRides(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
@@ -42,17 +47,23 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetLoginCheck(PhoneNumber, Password);
         }
+
         public List<VehicleEntity> GetVehicleDetails(Int64 PhoneNumber, string Password, int INTPAGENUMBER, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().GetVehicleDetails(PhoneNumber, Password, INTPAGENUMBER, out TotalPageNumber);
 
         }
+
         public VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber)
         {
             return new DAL.InformationDAL().GetVehicledDetailsByID(VehicleID, PhoneNumber);
 
         }
 
+        public List<RideEntity> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber)
+        {
+            return new DAL.InformationDAL().GetAssignedRideDetails(phoneNumber, intPageNumber, out TotalPageNumber);
+        }
         #endregion
 
         #region manabandi admin
@@ -65,6 +76,7 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetOwnerDetailsForAdminPage(Entity, out TotalPageNumber);
         }
+
         public List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
         {
             return new DAL.InformationDAL().GetRidesForAdmin(Entity, out TotalPageNumber);
@@ -74,6 +86,7 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId, TravelRequestType, out cost);
         }
+
         public RideEntity GetRideDetailsByID(int rideID)
         {
             return new DAL.InformationDAL().GetRideDetailsByID(rideID);

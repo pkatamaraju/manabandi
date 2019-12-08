@@ -22,7 +22,9 @@ namespace RaiteRaju.Web.Models
         public int intRideID { get; set; }
         public string txtRideStatus { get; set; }
         public string txtVehicleNumber { get; set; }
-
+        public decimal intRideAmount { get; set; }
+        public decimal intRideCommision { get; set; }
+        public decimal intRideKM { get; set; }
 
     }
 }

@@ -21,6 +21,8 @@ namespace RaiteRaju.BusinessLayerInterface
 
         VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber);
 
+        List<RideEntity> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber);
+
         #endregion
 
         #region manabandi admin

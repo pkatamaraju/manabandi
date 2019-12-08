@@ -499,6 +499,36 @@ namespace RaiteRaju.Web.Controllers
             }
         }
         
+        public ActionResult GetAssignedRides(Int64 phoneNumber, int PageNumber)
+        {
+            int TotalPageNumber = 0;
+            ViewBag.CurrentPageNumber = PageNumber;
+            ViewBag.phoneNumber = phoneNumber;
+            HttpCookie KeyCookie = Request.Cookies["_RRPS"];
+            HttpCookie UserIdCookie = Request.Cookies["_RRUID"];
+            HttpCookie UserNameCookie = Request.Cookies["_RRUN"];
+            HttpCookie PhoneNumberCookie = Request.Cookies["_RRUPn"];
+            HttpCookie OTPCookie = Request.Cookies["_ROTP_"];
+
+            Utility en = new Utility();
+            if (PhoneNumberCookie != null && KeyCookie != null)
+            {
+                InformationServiceWrapper serviceObj = new InformationServiceWrapper();
+                List<Ride> rideList = serviceObj.GetAssignedRideDetails(phoneNumber, PageNumber, out TotalPageNumber);
+                if (rideList != null)
+                {
+                    ViewBag.rideDetails = rideList;
+                }
+                ViewBag.TotalPageNumber = TotalPageNumber;
+
+                return View("AssignedRides");
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+        }
+
         //[NoCache]
         public ActionResult _RideList(int PageNumber)
         {

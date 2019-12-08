@@ -63,6 +63,9 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMINTRIDEID = "intRideID";
         public const string PARAMTXTRIDESTATUS = "txtRideStatus";
         public const string PARAMINTRIDESTATUSID = "intRideStatusID";
+        public const string PARAMINTRIDEAMOUNT = "intRideAmount";
+        public const string PARAMINTRIDECOMMISSION = "intRideCommision";
+        public const string PARAMINTRIDEKM = "intRideKM";
 
         //Users
         public const string ParamPhoneNumber = "BigIntPhoneNumber";

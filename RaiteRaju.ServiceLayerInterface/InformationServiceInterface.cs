@@ -37,6 +37,8 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         VehicleEntity GetVehicledDetailsByID(int VehicleID, Int64 PhoneNumber);
 
+        [OperationContract]
+        List<RideEntity> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber);
 
         #endregion
 

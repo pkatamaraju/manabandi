@@ -560,7 +560,9 @@ namespace RaiteRaju.DAL
                         rideObj.VehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
                         rideObj.txtRideStatus = Convert.ToString(dr[DataAccessConstants.PARAMINTRIDESTATUSID]);
                         rideObj.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
-
+                        rideObj.intRideAmount = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEAMOUNT]);
+                        rideObj.intRideCommision = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDECOMMISSION]);
+                        rideObj.intRideKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEKM]);
                     }
                     dr.Close();
                 }
@@ -574,6 +576,57 @@ namespace RaiteRaju.DAL
             }
 
         }
+
+        public List<RideEntity> GetAssignedRideDetails(Int64 phoneNumber,int intPageNumber, out int TotalPageNumber)
+        {
+            try
+            {
+                RideEntity rideObj = null;
+                List<RideEntity> rideList = new List<RideEntity>();
+                int outputparam = 0;
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBAssignedRides))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, phoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, intPageNumber);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        rideObj = new RideEntity();
+
+                        rideObj.intRideID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTRIDEID]);
+                        rideObj.Name = Convert.ToString(dr[DataAccessConstants.ParamtName]);
+                        rideObj.PhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        rideObj.txtScheduledTime = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDTIME]);
+                        rideObj.dtScheduledDate = Convert.ToString(dr[DataAccessConstants.PARAMDTSCHEDULEDDATE]);
+                        rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
+                        rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
+                        rideObj.txtRideStatus = Convert.ToString(dr[DataAccessConstants.PARAMTXTRIDESTATUS]);
+                        rideObj.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                        rideObj.intRideAmount = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEAMOUNT]);
+                        rideObj.intRideCommision = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDECOMMISSION]);
+                        rideObj.intRideKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEKM]);
+                        rideObj.VehicleType= Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        rideList.Add(rideObj);
+                    }
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
+                    }
+                    dr.Close();
+                }
+                TotalPageNumber = outputparam;
+                return rideList;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetRideDetailsByID", ex.Message);
+                TotalPageNumber = 0;
+                return null;
+            }
+        }
+
 
         #endregion
 
@@ -665,6 +718,7 @@ namespace RaiteRaju.DAL
                         rideObj.txtRideStatus= Convert.ToString(dr[DataAccessConstants.PARAMTXTRIDESTATUS]);
                         rideObj.VehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
                         rideObj.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                        rideObj.intRideAmount = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEAMOUNT]);
                         ListObj.Add(rideObj);
 
                     }

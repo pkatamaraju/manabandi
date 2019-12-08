@@ -69,6 +69,12 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetVehicledDetailsByID(VehicleID, PhoneNumber);
         }
 
+        public List<RideEntity> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetAssignedRideDetails(phoneNumber, intPageNumber, out TotalPageNumber);
+        }
+
         #endregion
 
         #region manabandi admin

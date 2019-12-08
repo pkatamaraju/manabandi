@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "AssignedRides";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+
+    $.noConflict();
+
+    var rideList = null;
+
+    jQuery(document).ready(function () {
+
+        rideList=@(Html.Raw(Json.Encode(ViewBag.rideDetails)));
+        var pageNumber=(parseInt(@ViewBag.CurrentPageNumber)-1)*10;
+        var length = Object.keys(rideList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblRideList').html('<tr><td class="text-center" style="align-items:center;height:200px;">Now you are ready to Book any Vehicle<a href="/Book/BookNow?VehicleTypeId=0" class="dflt-btn inactive">Book a vehicle</a> </tr><td></td></td>');
+        }
+        else
+        {
+            var tblrideList = jQuery('#tblRideList');
+            for(i=0;i<length;i++){
+                j=i+1;
+                var SNo=pageNumber+j;
+                tblrideList.append('<tr id="rideListRow"><td>' + SNo + '</td><td width="200px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].PhoneNumber + '</td><td width="200px">' + rideList[i].VehicleType + '</td><td width="200px">' + rideList[i].dtScheduledDate + '</td><td width="200px">' + rideList[i].txtScheduledTime + '</td><td width="200px">' + rideList[i].txtRideStatus + '</td><td width="200px">' + rideList[i].txtVehicleNumber + '</td><td width="200px">' + rideList[i].intRideAmount + '</td><td width="200px">' + rideList[i].intRideCommision + '</td><tr>')
+            }
+        }
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber==1){
+            jQuery('a#PreviousPage').attr('disabled', true);
+            jQuery('a#PreviousPage').css("cursor","default");
+            jQuery('#tdPreviousPage').css("color","Grey");
+
+        }
+        if(TotalPageCount==CurrentPageNumber){
+
+            jQuery('a#PageNext').attr('disabled', true);
+            jQuery('a#PageNext').css("cursor","default");
+            jQuery('#tdPageNext').css("color","Grey");
+
+        }
+        if(TotalPageCount==0){
+            jQuery("#divPaging").hide();
+            jQuery("#divSort").hide();
+        }
+
+    });
+
+    
+    function fnGoToPage(){
+
+        var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+        var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+        if(CurrentPageNumber>TotalPageCount || CurrentPageNumber==0)
+        {
+            alert("Maximum Available Pages Are "+TotalPageCount+".");
+            jQuery("#txtcurrentPageNumber").val(@ViewBag.CurrentPageNumber);
+        }
+        else
+        {
+                window.location.href = '@Url.Action("GetAssignedRides", "User")?phoneNumber=' + parseInt('@ViewBag.phoneNumber') + '&PageNumber=CurrentPageNumber'
+        }
+    }
+
+
+    jQuery(document).ready(function() {
+        jQuery("a#PreviousPage").click(function(){
+
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1)
+            {
+                jQuery('a#PreviousPage').off("click");
+            }
+            else
+            {
+                window.location.href = '@Url.Action("GetAssignedRides", "User")?phoneNumber=' + parseInt('@ViewBag.phoneNumber') + '&PageNumber=' + CurrentPageNumber - 1;
+            }
+            if(TotalPageCount==CurrentPageNumber)
+            {
+                jQuery('a#PageNext').off("click");
+            }
+
+
+        });
+        jQuery("a#PageNext").click(function(){
+
+            var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
+            var TotalPageCount=parseInt('@ViewBag.TotalPageNumber');
+            if(CurrentPageNumber==1)
+            {
+                jQuery('a#PreviousPage').off("click");
+            }
+            if(TotalPageCount==CurrentPageNumber)
+            {
+                jQuery('a#PageNext').off("click");
+            }
+            else
+            {
+                window.location.href = '@Url.Action("GetAssignedRides", "User")?phoneNumber=' + parseInt('@ViewBag.phoneNumber') + '&PageNumber=' + CurrentPageNumber+1;
+            }
+        });
+    });
+
+</script>
+<div id="divAssignedBooking">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h1 class="FormHeading">Assigned Bookings</h1>
+                <div class="divTable" id="divRideList">
+                    <div class="table-responsive">
+                        <table id="tblRideList" style="border-collapse: collapse;width:100%" class="listTable">
+                            <tr class="tblHeader">
+                                <th width="50px">S.No</th>
+                                <th width="200px">Pick Up Location</th>
+                                <th width="200px">Drop Location</th>
+                                <th width="50px">Phone Number</th>
+                                <th width="100px">Requested Vehicle</th>
+                                <th width="100px">Scheduled Date</th>
+                                <th width="100px">Scheduled Time</th>
+                                <th width="100px">Ride Status</th>
+                                <th width="100px">Vehicle Number</th>
+                                <th width="100px">Ride Amount</th>
+                                <th width="100px">Ride Commission</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row" style=" margin-bottom:200px;margin-top:30px" id="divPaging">
+                    <div class="col-lg-1 col-md-2 d-none d-md-block">
+                    </div>
+                    <div class="col-lg-3 col-md-2 col-xs-5" style="text-align:left;color:blue" id="tdPreviousPage">
+                        <a id="PreviousPage" data-value="1" style="cursor:pointer">
+                            <span> <span class="fa fa-angle-left"></span><span class="fa fa-angle-left"></span> Previous Page </span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-2 d-none d-md-block">
+                        <input id="btnGoToPage" type="button" title="click here to go to selected page" value="Go To Page" onclick="fnGoToPage()" />
+                    </div>
+                    <div class="col-lg-1 col-md-1 d-none d-md-block text-left" style="text-align:left">
+                        @Html.TextBox("txtcurrentPageNumber", (int)ViewBag.CurrentPageNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                        <label id="lblTotalPageNumber">showing page @ViewBag.CurrentPageNumber of @ViewBag.TotalPageNumber</label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-4" style="text-align:right;color:blue" id="tdPageNext">
+                        <a id="PageNext" data-value="2" style="cursor:pointer">
+                            <span> Next Page <span class="fa fa-angle-right"></span><span class="fa fa-angle-right"></span>  </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>

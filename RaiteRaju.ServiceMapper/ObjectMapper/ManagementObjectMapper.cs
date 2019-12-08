@@ -80,6 +80,9 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             rideEntity.txtScheduledTime = ride.txtScheduledTime;
             rideEntity.txtVehicleNumber = ride.txtVehicleNumber;
             rideEntity.txtRideStatus = ride.txtRideStatus;
+            rideEntity.intRideAmount = ride.intRideAmount;
+            rideEntity.intRideCommision = ride.intRideCommision;
+            rideEntity.intRideKM = ride.intRideKM;
             return rideEntity;
         }
 

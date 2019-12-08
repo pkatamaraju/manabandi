@@ -59,6 +59,7 @@ namespace RaiteRaju.ServiceMapper
             DetModelObj = ObjMapper.MapDetailsEntityToDetailsModel(DetEntityObj);
             return DetModelObj;
         }
+
         public UserDetailsModel GetUserDetailsWithPassword(Int64 PhoneNumber, string Password)
         {
             UserDetailsModel DetModelObj = new UserDetailsModel();
@@ -196,7 +197,20 @@ namespace RaiteRaju.ServiceMapper
             }
             return model;
         }
-        
+
+       public List<Ride> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber)
+        {
+            Ride model = new Ride();
+            List<Ride> rideList = new List<Ride>();
+            List<RideEntity> entityList = new List<RideEntity>();
+
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            entityList = obj.GetAssignedRideDetails(phoneNumber, intPageNumber, out TotalPageNumber);
+            rideList = ObjMapper.MapRideEntityListToModel(entityList);
+            return rideList;
+        }
+
         #endregion
 
 
