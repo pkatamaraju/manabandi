@@ -154,7 +154,7 @@
             if(jQuery("#txtVillage").val()==""){
                 message=message+"Please Enter txtVillage!\n";
             }
-          
+
         }
         else if(ddlState != ""&& ddlDistrict!= ""  && ddlMandal != "" && jQuery("#txtUserNameDetails").val() != "" && jQuery("#txtVillage").val() != "")
         {
@@ -411,7 +411,7 @@
                     alert('Error Occured');
                 }
             });
- 
+
 
         jQuery.ajax({
                 type: "POST",
@@ -463,7 +463,10 @@
         }
 
     }
-   
+
+    function fnGoToAssingedRidesPage() {
+        window.location.href = '@Url.Action("GetAssignedRides", "User")?phoneNumber=' + parseInt('@ViewBag.txtPhoneNumber') + '&PageNumber=1'
+    }
 </script>
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
@@ -475,9 +478,9 @@
             <div class="col-md-10">
                 <h3 class="FormHeading text-left" style="font-size:25px;"> You can edit and find your account information here.</h3>
                 <div>
-                    <label style="font-size:14px;padding-right:10px">Click here to Attach your vehicle</label><a href="/Partner/AddVehicle" class="ghost-btn first last filled py-2" tabindex="-1">Attach your vehicle</a>
-
+                    <label style="font-size:14px;padding-right:10px">Click here to view assigned Bookings for your vehicle</label><a id="aGoToBookings" href="#" class="dflt-btn inactive" tabindex="-1" onclick="fnGoToAssingedRidesPage()">Go to Bookings</a> &nbsp; &nbsp; <a id="aGoToBookings" href="/Partner/AddVehicle" class="dflt-btn inactive" tabindex="-1">Attach your vehicle</a> <br /><br />
                 </div>
+                
                 <div class="tab">
                     <button class="tablinks" id="btnMyVehicles" onclick="fnShowVehicleList()">My Vehicles</button>
                     <button class="tablinks" id="settings" onclick="fnshowUserSettings()">Profile</button>
@@ -490,9 +493,9 @@
                 <div id="UserSettings" style="border-top:2px solid white !important;border:1px solid #eae2e2;">
                     <div class="tab subTab">
                         <button class="tablinks" id="TabUpdateUserDetails" onclick="fnshowdivUpdateUserDetails()">Update Details</button>
-                        <button class="tablinks" id="TabUserdetailsPhoneNumber" onclick="fnshowdivUserdetailsPhoneNumber()">Update Phone No</button>
-                        <button class="tablinks" id="TabUserdetailsPassword" onclick="fnshowdivUserdetailsPassword()">Update Password</button>
-                        <button class="tablinks" id="TabUserAccountDeletion" onclick="fnshowdivUserAccountDeletion()">Delete My Account</button>
+                        <button class="tablinks" id="TabUserdetailsPhoneNumber" onclick="fnshowdivUserdetailsPhoneNumber()">Ph.No</button>
+                        <button class="tablinks" id="TabUserdetailsPassword" onclick="fnshowdivUserdetailsPassword()">Password</button>
+                        <button class="tablinks" id="TabUserAccountDeletion" onclick="fnshowdivUserAccountDeletion()">Delete</button>
 
                     </div>
 
@@ -526,8 +529,7 @@
                                                     <label>District<span class="MandatoryStars">*</span>:</label>
                                                 </div>
                                                 <div class="col-md-8 col-sm-8">
-                                                    <select id="ddlDistrict" class="form-control" required>
-                                                    </select>
+                                                    <select id="ddlDistrict" class="form-control" required></select>
                                                 </div>
                                             </div>
                                             <div class="row py-2">
@@ -535,8 +537,7 @@
                                                     <label>Mandal<span class="MandatoryStars">*</span>:</label>
                                                 </div>
                                                 <div class="col-md-8 col-sm-8">
-                                                    <select id="ddlMandal" class="form-control" required>
-                                                    </select>
+                                                    <select id="ddlMandal" class="form-control" required></select>
                                                 </div>
                                             </div>
                                             <div class="row py-2">

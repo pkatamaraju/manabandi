@@ -16,10 +16,10 @@
 
         var VehList = null;
         VehList =@(Html.Raw(Json.Encode(ViewBag.vehicleList)));
+
         if (VehList != null) {
             var pageNumber = (parseInt(@ViewBag.CurrentPageNumber) - 1) * 10;
             var length = Object.keys(VehList).length;
-
 
             if (length == 0) {
                 jQuery('#tblVehicleList').html('<tr><td class="text-center" style="align-items:center;height:200px;min-width:800px;">No Records found. </tr><td></td></td>');
@@ -29,20 +29,21 @@
                 for (i = 0; i < length; i++) {
                     j = i + 1;
                     var SNo = pageNumber + j;
-                    tblVehList.append('<tr class="tableRow"><td>' + VehList[i].VehicleID + '</td><td width="600px">' + VehList[i].VehicleType + '</td><td width="200px">' + VehList[i].VehicleModel + '</td><td width="400px">' + VehList[i].OwnerName + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="50">' + VehList[i].intStateName + '</td><td width="200px">' + VehList[i].intDistrictName + '</td><td width="200px">' + VehList[i].intManadalName + '</td><td width="200px">' + VehList[i].Place + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;width:200px">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;width:200px">Delete</td><tr>')
+                    tblVehList.append('<tr class="tableRow"><td>' + VehList[i].VehicleID + '</td><td width="600px">' + VehList[i].VehicleType + '</td><td width="200px">' + VehList[i].VehicleModel + '</td><td width="200px">' + VehList[i].VehicleNumber + '</td><td width="200px">' + VehList[i].BigIntPhoneNumber + '</td><td width="200px">' + VehList[i].flgOnRide + '</td><td onclick="fnUpdateVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;width:200px">Edit</td><td onclick="fnDeleteVehicle(' + VehList[i].VehicleID + ',' + VehList[i].BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;width:200px">Delete</td><tr>')
                 }
             }
-        } else {
-            jQuery("#divOwnerDetails").hide();
+        }
+        else {
+            jQuery("#divVehicleList").hide();
         }
 
         var ownerList = null;
         ownerList =@(Html.Raw(Json.Encode(ViewBag.ownerDetails)));
         if (ownerList != null) {
             var tblownerList = jQuery('#tbleOwner');
-                    tblownerList.append('<tr class="tableRow"><td>' + ownerList.intOwnerID + '</td><td>' + ownerList.OwnerName + '</td><td>' + ownerList.intStateName + '</td><td>' + ownerList.intDistrictName + '</td><td>' + ownerList.intManadalName + '</td><td>' + ownerList.Place + '</td><td width="100px">' + ownerList.BigIntPhoneNumber + '</td><td>' + ownerList.FlgAccountDeleted + '</td><td onclick="fnUpdateOwner(' + ownerList.intOwnerID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteOwner(' + ownerList.BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><td onclick="fnAddVehicle(' + ownerList.BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Add Vehicle</td><tr>')
+            tblownerList.append('<tr class="tableRow"><td>' + ownerList.intOwnerID + '</td><td>' + ownerList.OwnerName + '</td><td>' + ownerList.intStateName + '</td><td>' + ownerList.intDistrictName + '</td><td>' + ownerList.intManadalName + '</td><td>' + ownerList.Place + '</td><td width="100px">' + ownerList.BigIntPhoneNumber + '</td><td>' + ownerList.FlgAccountDeleted + '</td><td onclick="fnUpdateOwner(' + ownerList.intOwnerID + ')" style="cursor:pointer;color:blue;">Edit</td><td onclick="fnDeleteOwner(' + ownerList.BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Delete</td><td onclick="fnAddVehicle(' + ownerList.BigIntPhoneNumber + ')" style="cursor:pointer;color:blue;">Add Vehicle</td><tr>')
         } else {
-            jQuery("#divVehicleList").hide();
+            jQuery("#divOwnerDetails").hide();
         }
     });
 
@@ -56,10 +57,64 @@
             message = message + "Please Enter Valid Phone Number.\n";
         }
         else {
-            window.location.href = "/admin/OwnerSearchWithPhoneNumber?phoneNumber="+phoneNumber;
+            window.location.href = "/admin/OwnerSearchWithPhoneNumber?phoneNumber=" + phoneNumber;
         }
 
     }
+
+    function fnUpdateVehicle(VehicleID, phoneNumber) {
+        var VehicleID = VehicleID;
+        window.location.href = '@Url.Action("EditVehicleDetails", "Admin")?VehicleID=' + VehicleID + "&phoneNumber=" + phoneNumber;
+    }
+
+    function fnDeleteVehicle(VehicleID, phoneNumber) {
+        var r = confirm("Are you sure, Do you want to delete Your Add Permanetly!");
+        if (r == true) {
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("DeteleVehicle", "Admin")?VehicleID=' + VehicleID + "&phoneNumber=" + phoneNumber,
+                dataType: 'json',
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function (data) {
+                    alert("Some Error Occured.");
+                }
+            });
+        }
+    }
+
+    function fnAddVehicle(phoneNumber) {
+        window.location.href = '@Url.Action("AddVehicle", "Admin")?phoneNumber=' + phoneNumber ;
+    }
+
+    function fnUpdateOwner(ownerID) {
+        window.location.href = '@Url.Action("EditOwnerDetails", "Admin")?ownerID=' + ownerID;
+
+    }
+    
+    function fnDeleteOwner(BigIntPhoneNumber) {
+        var r = confirm("Are You Sure, Do You Want To Delete Account Permanetly!");
+        if (r == true) {
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("DeleteAccount", "Admin")?BigIntPhoneNumber=' + BigIntPhoneNumber,
+                dataType: 'json',
+                success: function (data) {
+                    if (data != null) {
+                        window.location.href = "/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1";
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+        }
+
+    }
+    
+    
+
 
 
 </script>
@@ -134,12 +189,7 @@
                                 <th>VID</th>
                                 <th>Type</th>
                                 <th>Model</th>
-                                <th width="400">Name</th>
                                 <th>Veh Number</th>
-                                <th>State</th>
-                                <th>District</th>
-                                <th>Mandal</th>
-                                <th>Place</th>
                                 <th>Ph No.</th>
                                 <th>On Ride</th>
                                 <th>Edit</th>
