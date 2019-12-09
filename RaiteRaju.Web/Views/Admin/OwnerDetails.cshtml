@@ -219,7 +219,7 @@
         var vehicleTypeID = jQuery("#ddlVehicles").val();
         if (vehicleTypeID == 0 || vehicleTypeID == "") {vehicleTypeID = 0;}
 
-        window.location.href = '@Url.Action("VehicleDetails", "Admin")?intStateID=' + stateID + '&intDistrictID=' + districtID + '&intManadalID=' + mandalID + '&VehicleTypeID=' + vehicleTypeID + '&PageNumber=' + pageNumber;
+        window.location.href = '@Url.Action("OwnerDetails", "Admin")?intStateID=' + stateID + '&intDistrictID=' + districtID + '&intManadalID=' + mandalID + '&VehicleTypeID=' + vehicleTypeID + '&PageNumber=' + pageNumber;
     }
 
     jQuery(document).ready(function() {
