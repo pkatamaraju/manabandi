@@ -49,7 +49,7 @@ namespace RaiteRaju.ServiceLayerInterface
 
         List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
 
-        int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost);
+        PriceEntity GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType);
 
         RideEntity GetRideDetailsByID(int rideID);
 
@@ -57,7 +57,7 @@ namespace RaiteRaju.ServiceLayerInterface
 
         Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber);
 
-        #endregion
+
 
 
         [OperationContract]
@@ -79,6 +79,12 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         List<ExceptionEntity> FetchExceptionDetailsForAdmin();
 
+        [OperationContract]
+        List<VehicleTypesEntity> GetVehicleTypesForAdmin();
+
+        [OperationContract]
+        VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID);
+        #endregion
     }
 
 }

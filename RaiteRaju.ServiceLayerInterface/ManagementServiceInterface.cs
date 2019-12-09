@@ -62,6 +62,9 @@ namespace RaiteRaju.ServiceLayerInterface
 
         [OperationContract]
         int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner);
+
+        [OperationContract]
+        string UpdateVehicleTypes(VehicleTypesEntity entity);
     }
          
 }

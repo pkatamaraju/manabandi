@@ -770,10 +770,9 @@ namespace RaiteRaju.Web.Controllers
             int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
             string TravelRequestType = Convert.ToString(form["TravelRequestType"]);
             InformationServiceWrapper objservice = new InformationServiceWrapper();
-            int cost = 0;
-            int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType, out cost);
-            ViewBag.cost = cost;
-            return Json(new { cost, price }, JsonRequestBehavior.AllowGet);
+            
+           PriceModel model = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
+            return Json(new { model }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EditRideDetails(Int32 rideID)
@@ -987,7 +986,7 @@ namespace RaiteRaju.Web.Controllers
             ViewBag.phoneNumber = phoneNumber;
             InformationServiceWrapper obj = new InformationServiceWrapper();
             Tuple<VehicleFilterModel, List<VehicleFilterModel>> tupel = obj.GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
-            List<VehicleFilterModel> vehicles= tupel.Item2;
+            List<VehicleFilterModel> vehicles = tupel.Item2;
             VehicleFilterModel owner = tupel.Item1;
 
             ViewBag.ownerDetails = owner;
@@ -997,6 +996,48 @@ namespace RaiteRaju.Web.Controllers
 
         }
 
+        public ActionResult VehicleTypesForAdmin()
+        {
+            InformationServiceWrapper obj = new InformationServiceWrapper();
+            List<VehicleTypesModel> modelList = new List<VehicleTypesModel>();
+            modelList = obj.VehicleTypeForAdmin();
+            if (modelList != null)
+            {
+                ViewBag.vehicleList = modelList;
+            }
+            return View("VehicleTypes");
+        }
+
+        public ActionResult UpdateVehicleTypes(Int32 vehicleTypeID)
+        {
+            ViewBag.vehicleTypeID = vehicleTypeID;
+            InformationServiceWrapper obj = new InformationServiceWrapper();
+            VehicleTypesModel model = new VehicleTypesModel();
+            model = obj.GetVehicleTypeByIDForAdmin(vehicleTypeID);
+            ViewBag.VehicleTypes = model;
+
+            return View("EditVehicleTypes");
+
+        }
+        [HttpPost]
+        public ActionResult UpdateVehicleTypes(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                VehicleTypesModel model = new VehicleTypesModel();
+                ManagementServiceWrapper obj = new ManagementServiceWrapper();
+                string success = obj.UpdateVehicleTypes(model);
+
+                return Json(success, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
         #endregion
     }
 }

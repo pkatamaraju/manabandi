@@ -82,9 +82,9 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost)
+        public PriceEntity GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
         {
-            return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId, TravelRequestType, out cost);
+            return new DAL.InformationDAL().GetPriceForRide(KM, VehicleTypeId, TravelRequestType);
         }
 
         public RideEntity GetRideDetailsByID(int rideID)
@@ -135,7 +135,15 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().FetchExceptionDetailsForAdmin();
         }
-       
+
+        public List<VehicleTypesEntity> GetVehicleTypesForAdmin()
+        {
+            return new DAL.InformationDAL().GetVehicleTypesForAdmin();
+        }
+        public VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID)
+        {
+            return new DAL.InformationDAL().GetVehicleTypeByIDForAdmin(vehicleTypeID);
+        }
     }
 
 }

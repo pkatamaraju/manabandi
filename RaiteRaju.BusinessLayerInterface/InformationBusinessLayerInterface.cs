@@ -33,7 +33,7 @@ namespace RaiteRaju.BusinessLayerInterface
 
         List<RideEntity> GetRidesForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
 
-        int GetPriceForRide(int KM, int VehicleTypeId,string TravelRequestType, out int cost);
+        PriceEntity GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType);
 
         RideEntity GetRideDetailsByID(int rideID);
 
@@ -42,7 +42,7 @@ namespace RaiteRaju.BusinessLayerInterface
 
         Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber);
 
-        #endregion
+
 
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
 
@@ -56,6 +56,11 @@ namespace RaiteRaju.BusinessLayerInterface
 
         List<ExceptionEntity> FetchExceptionDetailsForAdmin();
 
+        List<VehicleTypesEntity> GetVehicleTypesForAdmin();
+
+        VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID);
+
+        #endregion
     }
 
 }

@@ -788,11 +788,10 @@ namespace RaiteRaju.DAL
 
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType,out int cost)
+        public PriceEntity GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
         {
-           
-            int price = 0;
-            cost = 0;
+
+            PriceEntity entity = new PriceEntity();
             try
             {
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_Price))
@@ -804,18 +803,21 @@ namespace RaiteRaju.DAL
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
                     {
-                        price = Convert.ToInt32(dr[DataAccessConstants.PARAMINTFINALPRICE]);
-                        cost= Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALCOST]);
+                        entity.FinalPrice = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTFINALPRICE]);
+                        entity.FinalCost= Convert.ToDecimal(dr[DataAccessConstants.PARAMINTTOTALCOST]);
+                        entity.FinalFuelCost = Convert.ToDecimal(dr[DataAccessConstants.PARAMTOTALFUELCOST]);
+                        entity.FinalDriverCost = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTDRIVERCOST]);
+                        entity.AvgTollCost = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTTOLLCOST]);
                     }
                     dr.Close();
                 }
 
-                return price;
+                return entity;
             }
             catch (Exception ex)
             {
                 ExceptionLoggin("InformationDal", "GetPriceForRide", ex.Message);
-                return 0;
+                return null;
             }
         }
        
@@ -854,55 +856,146 @@ namespace RaiteRaju.DAL
             }
 
         }
-        
+
         public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber)
         {
             VehicleFilterEntity entity;
             List<VehicleFilterEntity> ListObj = new List<VehicleFilterEntity>();
             VehicleFilterEntity vehObj = new VehicleFilterEntity();
-
-            using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_OwnerDetailsWithPhoneNumberAdmin))
+            try
             {
-                DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, phoneNumber);
 
-                IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
 
-                while (dr.Read())
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_OwnerDetailsWithPhoneNumberAdmin))
                 {
-                    vehObj = new VehicleFilterEntity();
-                    vehObj.intStateName = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
-                    vehObj.intDistrictName = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
-                    vehObj.intManadalName = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
-                    vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
-                    vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
-                    vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
-                    vehObj.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
-                    vehObj.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, phoneNumber);
 
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+
+                    while (dr.Read())
+                    {
+                        vehObj = new VehicleFilterEntity();
+                        vehObj.intStateName = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
+                        vehObj.intDistrictName = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
+                        vehObj.intManadalName = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
+                        vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
+                        vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                        vehObj.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        vehObj.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
+
+                    }
+
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        entity = new VehicleFilterEntity();
+                        entity.VehicleID = Convert.ToString(dr[DataAccessConstants.PARAMINTVEHICLEID]);
+                        entity.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        entity.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.VehicleModel = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENAME]);
+                        entity.VehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                        entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        entity.flgOnRide = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGONRIDE]);
+                        entity.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGDELETED]);
+
+                        ListObj.Add(entity);
+
+                    }
+                    dr.Close();
                 }
-               
-                dr.NextResult();
-                while (dr.Read())
-                {
-                    entity = new VehicleFilterEntity();
-                    entity.VehicleID = Convert.ToString(dr[DataAccessConstants.PARAMINTVEHICLEID]);
-                    entity.intOwnerID=Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
-                    entity.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
-                    entity.VehicleModel = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENAME]);
-                    entity.VehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
-                    entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
-                    entity.flgOnRide = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGONRIDE]);
-                    entity.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGDELETED]);
-
-                    ListObj.Add(entity);
-
-                }
-                dr.Close();
+                Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> returnObj = new Tuple<VehicleFilterEntity, List<VehicleFilterEntity>>(vehObj, ListObj);
+                return returnObj;
             }
-            Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> returnObj = new Tuple<VehicleFilterEntity, List<VehicleFilterEntity>>(vehObj,ListObj);
-            return returnObj;
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetOwnerDetailsByPhoneNumberForAdmin", ex.Message);
+                return null;
+            }
         }
 
+        public List<VehicleTypesEntity> GetVehicleTypesForAdmin()
+        {
+            VehicleTypesEntity entity = new VehicleTypesEntity();
+            List<VehicleTypesEntity> listObj = new List<VehicleTypesEntity>();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBVehicleTypeForAdmin))
+                {
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        entity = new VehicleTypesEntity();
+
+                        entity.intVehicleTypeId = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        entity.txtVehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.intMileage = Convert.ToInt32(dr[DataAccessConstants.PARAMINTMILEAGE]);
+                        entity.intAverageFuelPrice = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTAVERAGEFUELPRICE]);
+                        entity.intDriverSalary = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTDRIVERSALARY]);
+                        entity.intAvgTollPrice = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTAVGTOLLPRICE]);
+                        entity.intAverageSpeed = Convert.ToInt32(dr[DataAccessConstants.PARAMINTAVERAGESPEED]);
+                        entity.intAvgWorkingHours = Convert.ToInt32(dr[DataAccessConstants.PARAMINTAVGWORKINGHOURS]);
+                        entity.intFuelCostPerKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTFUELCOSTPERKM]);
+                        entity.intDriverCostPerKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTDRIVERCOSTPERKM]);
+                        entity.intTotalCostPerKM = Convert.ToDecimal(dr[DataAccessConstants.INTTOTALCOSTPERKM]);
+                        entity.BaseFare = Convert.ToDecimal(dr[DataAccessConstants.PARAMBASEFARE]);
+                        listObj.Add(entity);
+                    }
+
+                    dr.Close();
+                    return listObj;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetVehicleTypesForAdmin", ex.Message);
+                return null;
+            }
+
+        }
+
+        public VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID)
+        {
+            VehicleTypesEntity entity = new VehicleTypesEntity();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBVehicleTypeByIDForAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, vehicleTypeID);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        entity = new VehicleTypesEntity();
+
+                        entity.intVehicleTypeId = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        entity.txtVehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.intMileage = Convert.ToInt32(dr[DataAccessConstants.PARAMINTMILEAGE]);
+                        entity.intAverageFuelPrice = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTAVERAGEFUELPRICE]);
+                        entity.intDriverSalary = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTDRIVERSALARY]);
+                        entity.intAvgTollPrice = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTAVGTOLLPRICE]);
+                        entity.intAverageSpeed = Convert.ToInt32(dr[DataAccessConstants.PARAMINTAVERAGESPEED]);
+                        entity.intAvgWorkingHours = Convert.ToInt32(dr[DataAccessConstants.PARAMINTAVGWORKINGHOURS]);
+                        entity.intFuelCostPerKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTFUELCOSTPERKM]);
+                        entity.intDriverCostPerKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTDRIVERCOSTPERKM]);
+                        entity.intTotalCostPerKM = Convert.ToDecimal(dr[DataAccessConstants.INTTOTALCOSTPERKM]);
+                        entity.BaseFare = Convert.ToDecimal(dr[DataAccessConstants.PARAMBASEFARE]);
+                   }
+
+                    dr.Close();
+                    return entity;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetVehicleTypeByIDForAdmin", ex.Message);
+                return null;
+            }
+
+        }
+
+        
         #endregion
 
     }

@@ -14,7 +14,7 @@ namespace RaiteRaju.ServiceLayer
     {
 
         #region Manabandi
-       
+
         public List<GDictionary> FetDistrictsOfState(int StateId)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
@@ -96,10 +96,10 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetRidesForAdmin(Entity, out TotalPageNumber);
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType, out int cost)
+        public PriceEntity GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
         {
             InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
-            return obj.GetPriceForRide(KM, VehicleTypeId, TravelRequestType, out cost);
+            return obj.GetPriceForRide(KM, VehicleTypeId, TravelRequestType);
         }
 
         public RideEntity GetRideDetailsByID(int rideID)
@@ -162,7 +162,17 @@ namespace RaiteRaju.ServiceLayer
             return BusObj.FetchExceptionDetailsForAdmin();
         }
 
-       
+        public List<VehicleTypesEntity> GetVehicleTypesForAdmin()
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetVehicleTypesForAdmin();
+        }
+        public VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID)
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetVehicleTypeByIDForAdmin(vehicleTypeID);
+        }
+
     }
 
 

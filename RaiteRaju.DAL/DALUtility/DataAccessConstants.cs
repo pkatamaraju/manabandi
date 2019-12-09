@@ -36,9 +36,9 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMLOCATION = "Location";
         public const string PARAMKEYWORD = "txtKeyWord";
 
-        public const string PARAMORDERBYSELECTEDVALUE="OrderbySelectedValue";
+        public const string PARAMORDERBYSELECTEDVALUE = "OrderbySelectedValue";
 
-       
+
 
         public const string PARAMBuyerName = "BuyerName";
         public const string PARAMBuyerPhoneNumber = "BuyerPhoneNumber";
@@ -49,7 +49,7 @@ namespace RaiteRaju.DAL.DALUtility
 
 
 
-       
+
 
 
         #region ManaBandi
@@ -94,13 +94,13 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMTXTPLACE = "txtPlace";
 
         //Vehicle
-        public const string PARAMTXTVEHICLENUMBER="txtVehicleNumber";
+        public const string PARAMTXTVEHICLENUMBER = "txtVehicleNumber";
         public const string PARAMINTVEHICLETYPEID = "intVehicleTypeId";
         public const string PARAMTXTVEHICLETYPE = "txtVehicleType";
         public const string PARAMTXTVEHICLENAME = "txtVehicleName";
         public const string PARAMTXTRETURNVALUE = "txtReturnValue";
         public const string PARAMINTVEHICLEID = "intVehicleID";
-        public const string PARAMFLGONRIDE="flgOnRide";
+        public const string PARAMFLGONRIDE = "flgOnRide";
 
         //Paging
         public const string PARAMINTPAGENUMBER = "INTPAGENUMBER";
@@ -127,6 +127,19 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAINTMDROPORNOT = "intDropOrNot";
         public const string PARAMINTTOTALCOST = "intTotalCost";
         public const string PARAMFLGDELETED = "flgDeleted";
+        public const string PARAMTOTALFUELCOST = "TotalFuelCost";
+        public const string PARAMINTTOLLCOST = "intTollCost";
+        public const string PARAMINTDRIVERCOST = "IntDriverCost";
+        public const string PARAMINTMILEAGE = "intMileage";
+        public const string PARAMINTAVERAGEFUELPRICE = "intAverageFuelPrice";
+        public const string PARAMINTDRIVERSALARY = "intDriverSalary";
+        public const string PARAMINTAVGTOLLPRICE = "intAvgTollPrice";
+        public const string PARAMINTAVERAGESPEED = "intAverageSpeed";
+        public const string PARAMINTAVGWORKINGHOURS = "intAvgWorkingHours";
+        public const string PARAMINTFUELCOSTPERKM = "intFuelCostPerKM";
+        public const string PARAMINTDRIVERCOSTPERKM = "intDriverCostPerKM";
+        public const string INTTOTALCOSTPERKM = "intTotalCostPerKM";
+        public const string PARAMBASEFARE = "BaseFare";
         #endregion
     }
 }

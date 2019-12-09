@@ -163,7 +163,17 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.UpdateVehicleOwnerDetailsByAdmin(Entity);
         }
-       
+
+        public string UpdateVehicleTypes(VehicleTypesModel model)
+        {
+
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            VehicleTypesEntity Entity = new VehicleTypesEntity();
+            Entity = objMapper.MapVehicleTypeModelToEntity(model);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.UpdateVehicleTypes(Entity);
+        }
         #endregion
     }
 }

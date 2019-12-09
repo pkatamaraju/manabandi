@@ -198,7 +198,7 @@ namespace RaiteRaju.ServiceMapper
             return model;
         }
 
-       public List<Ride> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber)
+        public List<Ride> GetAssignedRideDetails(Int64 phoneNumber, int intPageNumber, out int TotalPageNumber)
         {
             Ride model = new Ride();
             List<Ride> rideList = new List<Ride>();
@@ -261,10 +261,16 @@ namespace RaiteRaju.ServiceMapper
             return listobj;
         }
 
-        public int GetPriceForRide(int KM, int VehicleTypeId,string TravelRequestType, out int cost)
+        public PriceModel GetPriceForRide(int KM, int VehicleTypeId, string TravelRequestType)
         {
             ServiceLayer.InformationService obj = new InformationService();
-            return obj.GetPriceForRide(KM,VehicleTypeId, TravelRequestType, out cost);
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            PriceModel model = new PriceModel();
+
+            PriceEntity entity = obj.GetPriceForRide(KM, VehicleTypeId, TravelRequestType);
+            model = ObjMapper.MapPriceEntityToPriceModel(entity);
+            return model;
+
         }
 
         public Ride GetRideDetailsByID(int rideID)
@@ -299,6 +305,31 @@ namespace RaiteRaju.ServiceMapper
             Tuple<VehicleFilterModel, List<VehicleFilterModel>> tuple = mapper.MapOwnerTuple(tupleEntity);
             return tuple;
         }
+
+        public List<VehicleTypesModel> VehicleTypeForAdmin()
+        {
+            List<VehicleTypesModel> listobj = new List<VehicleTypesModel>();
+            List<VehicleTypesEntity> listEntity = new List<VehicleTypesEntity>();
+
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            listEntity = obj.GetVehicleTypesForAdmin();
+            listobj = ObjMapper.MapVehicleTypesEntityListToModel(listEntity);
+            return listobj;
+        }
+
+        public VehicleTypesModel GetVehicleTypeByIDForAdmin(int vehicleTypeID)
+        {
+            VehicleTypesModel model = new VehicleTypesModel();
+            VehicleTypesEntity entity = new VehicleTypesEntity();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            entity = obj.GetVehicleTypeByIDForAdmin(vehicleTypeID);
+            model = ObjMapper.MapVehicleTypesEntityToModel(entity);
+            return model;
+        }
+
+        
 
         #endregion
 

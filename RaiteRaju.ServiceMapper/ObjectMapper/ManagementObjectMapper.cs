@@ -114,6 +114,29 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return entity;
         }
         
+        internal VehicleTypesEntity MapVehicleTypeModelToEntity(VehicleTypesModel model)
+        {
+            VehicleTypesEntity Entity = null;
+
+            if (model != null)
+            {
+                Entity = new VehicleTypesEntity();
+                Entity.intVehicleTypeId = model.intVehicleTypeId;
+                Entity.txtVehicleType = model.txtVehicleType;
+                Entity.intMileage = model.intMileage;
+                Entity.intAverageFuelPrice = model.intAverageFuelPrice;
+                Entity.intDriverSalary = model.intDriverCostPerKM;
+                Entity.intAvgTollPrice = model.intAvgTollPrice;
+                Entity.intAverageSpeed = model.intAverageSpeed;
+                Entity.intAvgWorkingHours = model.intAvgWorkingHours;
+                Entity.intFuelCostPerKM = model.intDriverCostPerKM;
+                Entity.intDriverCostPerKM = model.intDriverCostPerKM;
+                Entity.intTotalCostPerKM = model.intTotalCostPerKM;
+                Entity.BaseFare = model.BaseFare;
+            }
+            return Entity;
+        }
+
         #endregion
 
     }

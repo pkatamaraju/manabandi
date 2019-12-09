@@ -100,6 +100,12 @@ namespace RaiteRaju.BusinessLayer
              return objDAL.UpdateVehicleOwnerDetailsByAdmin(owner);
         }
 
+        public string UpdateVehicleTypes(VehicleTypesEntity entity)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.UpdateVehicleTypes(entity);
+        }
+
         #endregion
 
     }

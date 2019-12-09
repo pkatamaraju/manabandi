@@ -51,12 +51,14 @@
     <Compile Include="ExceptionModel.cs" />
     <Compile Include="GDictionaryModel.cs" />
     <Compile Include="Owner.cs" />
+    <Compile Include="PriceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewModel.cs" />
     <Compile Include="Ride.cs" />
     <Compile Include="UserDetailsModel.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleFilterModel.cs" />
+    <Compile Include="VehicleTypesModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

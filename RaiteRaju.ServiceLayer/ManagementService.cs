@@ -96,6 +96,12 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.UpdateVehicleOwnerDetailsByAdmin(owner);
         }
+
+        public string UpdateVehicleTypes(VehicleTypesEntity entity)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.UpdateVehicleTypes(entity);
+        }
         #endregion
     }
 }

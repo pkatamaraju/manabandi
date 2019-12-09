@@ -472,6 +472,72 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             Tuple<VehicleFilterModel, List<VehicleFilterModel>> modelTuple = new Tuple<VehicleFilterModel, List<VehicleFilterModel>>(model, list);
             return modelTuple;
         }
+
+        internal PriceModel MapPriceEntityToPriceModel(PriceEntity entity)
+        {
+            PriceModel model = new PriceModel();
+            if (entity != null)
+            {
+                model = new PriceModel()
+                {
+                    FinalPrice = entity.FinalPrice,
+                    AvgTollCost = entity.AvgTollCost,
+                    FinalDriverCost = entity.FinalDriverCost,
+                    FinalCost = entity.FinalCost,
+                    FinalFuelCost = entity.FinalFuelCost
+                };
+            }
+            return model;
+        }
+
+        internal VehicleTypesModel MapVehicleTypesEntityToModel(VehicleTypesEntity entity)
+        {
+            VehicleTypesModel model = new VehicleTypesModel();
+            if (entity != null)
+            {
+                model.intVehicleTypeId = entity.intVehicleTypeId;
+                model.txtVehicleType = entity.txtVehicleType;
+                model.intMileage = entity.intMileage;
+                model.intAverageFuelPrice = entity.intAverageFuelPrice;
+                model.intDriverSalary = entity.intDriverCostPerKM;
+                model.intAvgTollPrice = entity.intAvgTollPrice;
+                model.intAverageSpeed = entity.intAverageSpeed;
+                model.intAvgWorkingHours = entity.intAvgWorkingHours;
+                model.intFuelCostPerKM = entity.intDriverCostPerKM;
+                model.intDriverCostPerKM = entity.intDriverCostPerKM;
+                model.intTotalCostPerKM = entity.intTotalCostPerKM;
+                model.BaseFare = entity.BaseFare;
+            }
+            return model;
+        }
+
+
+        internal List<VehicleTypesModel> MapVehicleTypesEntityListToModel(List<VehicleTypesEntity> entityList)
+        {
+            VehicleTypesModel model = new VehicleTypesModel();
+            List<VehicleTypesModel> listModel = new List<VehicleTypesModel>();
+            if (entityList != null)
+            {
+                foreach (VehicleTypesEntity entity in entityList)
+                {
+                    model = new VehicleTypesModel();
+                    model.intVehicleTypeId = entity.intVehicleTypeId;
+                    model.txtVehicleType = entity.txtVehicleType;
+                    model.intMileage = entity.intMileage;
+                    model.intAverageFuelPrice = entity.intAverageFuelPrice;
+                    model.intDriverSalary = entity.intDriverCostPerKM;
+                    model.intAvgTollPrice = entity.intAvgTollPrice;
+                    model.intAverageSpeed = entity.intAverageSpeed;
+                    model.intAvgWorkingHours = entity.intAvgWorkingHours;
+                    model.intFuelCostPerKM = entity.intDriverCostPerKM;
+                    model.intDriverCostPerKM = entity.intDriverCostPerKM;
+                    model.intTotalCostPerKM = entity.intTotalCostPerKM;
+                    model.BaseFare = entity.BaseFare;
+                    listModel.Add(model);
+                }
+            }
+            return listModel;
+        }
         
         #endregion
 

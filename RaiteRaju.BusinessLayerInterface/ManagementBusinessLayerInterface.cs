@@ -33,6 +33,6 @@ namespace RaiteRaju.BusinessLayerInterface
 
          void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
         int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner);
-
+        string UpdateVehicleTypes(VehicleTypesEntity entity);
     }
 }

@@ -98,9 +98,8 @@ namespace RaiteRaju.Web.Controllers
             int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
             string TravelRequestType = Convert.ToString(form["TravelRequestType"]);
             InformationServiceWrapper objservice = new InformationServiceWrapper();
-            int cost = 0;
-            int price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType, out cost);
-            return Json(price, JsonRequestBehavior.AllowGet);
+            PriceModel price = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
+            return Json(price.FinalPrice, JsonRequestBehavior.AllowGet);
         }
         public ActionResult PriceCalculator()
         {

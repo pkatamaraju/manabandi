@@ -481,6 +481,42 @@ namespace RaiteRaju.DAL
             }
         }
 
+        public string UpdateVehicleTypes(VehicleTypesEntity entity)
+        {
+            string returnVal = "";
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_MBVehicleTypes))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, entity.intVehicleTypeId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLETYPE, DbType.Int32, entity.txtVehicleType);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMILEAGE, DbType.Int32, entity.intMileage);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTAVERAGEFUELPRICE, DbType.Decimal, entity.intAverageFuelPrice);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTDRIVERSALARY, DbType.Decimal, entity.intDriverSalary);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTAVGTOLLPRICE, DbType.Decimal, entity.intAvgTollPrice);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTAVERAGESPEED, DbType.Int32, entity.intAverageSpeed);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTAVGWORKINGHOURS, DbType.Int32, entity.intAvgWorkingHours);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMBASEFARE, DbType.Int32, entity.BaseFare);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        returnVal = Convert.ToString(dr[DataAccessConstants.PARAMTXTRETURNVALUE]);
+                    }
+
+                    dr.Close();
+                    return returnVal;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "UpdateVehicleTypes", ex.Message);
+                return null;
+            }
+
+        }
+
+
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
 
@@ -494,6 +530,8 @@ namespace RaiteRaju.DAL
             }
 
         }
+        
+        
         #endregion
 
     }
