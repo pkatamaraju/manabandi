@@ -499,11 +499,11 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 model.txtVehicleType = entity.txtVehicleType;
                 model.intMileage = entity.intMileage;
                 model.intAverageFuelPrice = entity.intAverageFuelPrice;
-                model.intDriverSalary = entity.intDriverCostPerKM;
+                model.intDriverSalary = entity.intDriverSalary;
                 model.intAvgTollPrice = entity.intAvgTollPrice;
                 model.intAverageSpeed = entity.intAverageSpeed;
                 model.intAvgWorkingHours = entity.intAvgWorkingHours;
-                model.intFuelCostPerKM = entity.intDriverCostPerKM;
+                model.intFuelCostPerKM = entity.intFuelCostPerKM;
                 model.intDriverCostPerKM = entity.intDriverCostPerKM;
                 model.intTotalCostPerKM = entity.intTotalCostPerKM;
                 model.BaseFare = entity.BaseFare;
@@ -525,11 +525,11 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     model.txtVehicleType = entity.txtVehicleType;
                     model.intMileage = entity.intMileage;
                     model.intAverageFuelPrice = entity.intAverageFuelPrice;
-                    model.intDriverSalary = entity.intDriverCostPerKM;
+                    model.intDriverSalary = entity.intDriverSalary;
                     model.intAvgTollPrice = entity.intAvgTollPrice;
                     model.intAverageSpeed = entity.intAverageSpeed;
                     model.intAvgWorkingHours = entity.intAvgWorkingHours;
-                    model.intFuelCostPerKM = entity.intDriverCostPerKM;
+                    model.intFuelCostPerKM = entity.intFuelCostPerKM;
                     model.intDriverCostPerKM = entity.intDriverCostPerKM;
                     model.intTotalCostPerKM = entity.intTotalCostPerKM;
                     model.BaseFare = entity.BaseFare;

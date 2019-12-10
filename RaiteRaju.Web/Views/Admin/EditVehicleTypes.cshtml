@@ -31,8 +31,6 @@
 
     function validation() {
 
-        var intVehicleTypeId = jQuery("#intVehicleTypeId").val();
-        var txtVehicleType = jQuery("#txtVehicleType").val();
         var intMileage = jQuery("#intMileage").val();
         var intAverageFuelPrice = jQuery("#intAverageFuelPrice").val();
         var intDriverSalary = jQuery("#intDriverSalary").val();
@@ -41,7 +39,6 @@
         var intAvgWorkingHours = jQuery("#intAvgWorkingHours").val();
         var BaseFare = jQuery("#BaseFare").val();
 
-        intRegex = /^[5-9]{1}[0-9]{9}$/;
         decimalRegex = /^\d+\.\d{0,2}$/;
         //decimalRegex = /^[0-9]+[.]{1}\d{0,2}$/;
         
@@ -66,16 +63,16 @@
         if (intDriverSalary == "") {
             message = message + "Please enter Driver Salary.\n";
         }
-        else if (decimalRegex.test(intDriverSalary) == false) {
+        else if (decimalRegex.test(intDriverSalary) == false && intRegex.test(intDriverSalary) == false ) {
 
             message = message + "Please enter valid Driver Salary.\n";
         }
         if (intAvgTollPrice == "") {
-            message = message + "Please enter Driver Salary.\n";
+            message = message + "Please enter Avg Toll Price.\n";
         }
         else if (intRegex.test(intAvgTollPrice) == false) {
 
-            message = message + "Please enter valid Driver Salary.\n";
+            message = message + "Please enter valid Avg Toll Price.\n";
         }
         if (intAverageSpeed == "") {
             message = message + "Please enter Average Speed.\n";
@@ -110,9 +107,9 @@
 
     function fnUpdateVehicleTypes() {
         var form = jQuery("#EditVehicleTypesForm").serialize();
-        var intVehicleID = parseInt('@ViewBag.vehicleTypeID');
+        var intVehicleTypeId = parseInt('@ViewBag.vehicleTypeID');
 
-        //form += "&ddlVehicleTypeID=" + vehicleTypeID + "&intVehicleID=" + intVehicleID + "&phoneNumber=" + phoneNumber;
+        form += "&intVehicleTypeId=" + intVehicleTypeId;
 
         if (validation()) {
 

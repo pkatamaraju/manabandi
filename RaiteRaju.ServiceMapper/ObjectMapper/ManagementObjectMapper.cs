@@ -125,7 +125,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 Entity.txtVehicleType = model.txtVehicleType;
                 Entity.intMileage = model.intMileage;
                 Entity.intAverageFuelPrice = model.intAverageFuelPrice;
-                Entity.intDriverSalary = model.intDriverCostPerKM;
+                Entity.intDriverSalary = model.intDriverSalary;
                 Entity.intAvgTollPrice = model.intAvgTollPrice;
                 Entity.intAverageSpeed = model.intAverageSpeed;
                 Entity.intAvgWorkingHours = model.intAvgWorkingHours;

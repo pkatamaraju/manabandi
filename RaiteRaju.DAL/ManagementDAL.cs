@@ -489,7 +489,6 @@ namespace RaiteRaju.DAL
                 using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_MBVehicleTypes))
                 {
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, entity.intVehicleTypeId);
-                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTVEHICLETYPE, DbType.Int32, entity.txtVehicleType);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMILEAGE, DbType.Int32, entity.intMileage);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTAVERAGEFUELPRICE, DbType.Decimal, entity.intAverageFuelPrice);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTDRIVERSALARY, DbType.Decimal, entity.intDriverSalary);

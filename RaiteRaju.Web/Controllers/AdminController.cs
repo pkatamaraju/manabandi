@@ -1017,8 +1017,8 @@ namespace RaiteRaju.Web.Controllers
             ViewBag.VehicleTypes = model;
 
             return View("EditVehicleTypes");
-
         }
+
         [HttpPost]
         public ActionResult UpdateVehicleTypes(FormCollection form)
         {
@@ -1028,6 +1028,15 @@ namespace RaiteRaju.Web.Controllers
             {
                 VehicleTypesModel model = new VehicleTypesModel();
                 ManagementServiceWrapper obj = new ManagementServiceWrapper();
+                model.intVehicleTypeId = Convert.ToInt32(form["intVehicleTypeId"]);
+                model.intMileage = Convert.ToInt32(form["intMileage"]);
+                model.intAverageFuelPrice = Convert.ToDecimal(form["intAverageFuelPrice"]);
+                model.intDriverSalary = Convert.ToDecimal(form["intDriverSalary"]);
+                model.intAvgTollPrice = Convert.ToDecimal(form["intAvgTollPrice"]);
+                model.intAverageSpeed = Convert.ToInt32(form["intAverageSpeed"]);
+                model.intAvgWorkingHours = Convert.ToInt32(form["intAvgWorkingHours"]);
+                model.BaseFare = Convert.ToDecimal(form["BaseFare"]);
+
                 string success = obj.UpdateVehicleTypes(model);
 
                 return Json(success, JsonRequestBehavior.AllowGet);
@@ -1038,6 +1047,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         #endregion
     }
 }
