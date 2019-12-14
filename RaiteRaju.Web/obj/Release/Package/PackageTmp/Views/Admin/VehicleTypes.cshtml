@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $.noConflict();
+    var vehicleList = null;
+    jQuery(document).ready(function () {
+        jQuery().ready(function () {
+            jQuery('#tabVehicleTypes').addClass('active');
+        });
+
+        vehicleList=@(Html.Raw(Json.Encode(ViewBag.vehicleList)));
+        var length = Object.keys(vehicleList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblVehicleTypes').html('<tr><td style="padding-top:120px;padding-left:220px;font-size:16px"">No Data found</tr><td></td></td>');
+        }
+        else
+        {
+            var tblVehicleList = jQuery('#tblVehicleTypes');
+            for(i=0;i<length;i++){
+                j = i + 1;
+                tblVehicleList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + vehicleList[i].intVehicleTypeId + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].txtVehicleType + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intMileage + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAverageFuelPrice + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intDriverSalary + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAvgTollPrice + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAverageSpeed + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAvgWorkingHours + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intFuelCostPerKM + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intDriverCostPerKM + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intTotalCostPerKM + '</td><td class="tdbreak" style="text-align:center;">' + vehicleList[i].BaseFare + '</td><td onclick="fnUpdateVehicleType(' + vehicleList[i].intVehicleTypeId + ')" style="cursor:pointer;color:blue; width:100px">Edit</td><tr>')
+            }
+        }
+    });
+
+    function fnUpdateVehicleType(intVehicleTypeID) {
+        window.location.href = "/Admin/UpdateVehicleTypes?VehicleTypeID=" + intVehicleTypeID;
+    }
+
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <h3 class="FormHeading text-left">Vehicle Details</h3>
+
+            <div style="border:1px solid black" class="table-responsive">
+                <table id="tblVehicleTypes" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">
+                    <tr id="adlistHeader">
+                        <th width="20px">ID</th>
+                        <th width="100px">Type</th>
+                        <th width="100px">Mileage</th>
+                        <th width="50px">FuelPrice</th>
+                        <th width="100px">Driver Salary</th>
+                        <th width="20px">Avg Toll</th>
+                        <th width="100px">Avg Speed</th>
+                        <th width="50px">Avg Working Hours</th>
+                        <th width="100px">Fuel Cost Per KM</th>
+                        <th width="20px">Driver Cost Per KM</th>
+                        <th width="100px">Total Cost Per KM</th>
+                        <th width="50px">BaseFare</th>
+                        <th>Edit</th>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

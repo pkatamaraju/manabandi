@@ -97,11 +97,11 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                                        <label for="txtUserName">Enter Kilometers<span class="MandatoryStars">*</span> :</label>
+                                        <label for="txtUserName">Enter Kilometers<span class="MandatoryStars">*</span> :<br />(Enter one way KMs only for pick up and drop also)</label>
                                     </div>
 
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        @Html.TextBox("txtKilometers", null, new { @class = "form-control", @placeholder = "20" })
+                                        @Html.TextBox("txtKilometers", null, new { @class = "form-control", @placeholder = "Enter one way KMs only for pick up and drop also" })
                                         <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
                                     </div>
                                 </div>

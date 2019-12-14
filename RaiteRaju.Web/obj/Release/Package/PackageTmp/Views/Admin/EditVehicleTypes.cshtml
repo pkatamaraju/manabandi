@@ -1,0 +1,252 @@
+﻿
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Home", "Home")';
+    }
+
+    jQuery(document).ready(function () {
+
+        //var vehicleTypes = @ViewBag.vehicleTypes;
+        var vehicleTypes=@(Html.Raw(Json.Encode(ViewBag.vehicleTypes)))
+            jQuery("#intVehicleTypeId").val(vehicleTypes.intVehicleTypeId);
+        jQuery("#txtVehicleType").val(vehicleTypes.txtVehicleType).prop("disabled",true);
+        jQuery("#intMileage").val(vehicleTypes.intMileage);
+        jQuery("#intAverageFuelPrice").val(vehicleTypes.intAverageFuelPrice);
+        jQuery("#intDriverSalary").val(vehicleTypes.intDriverSalary);
+        jQuery("#intAvgTollPrice").val(vehicleTypes.intAvgTollPrice);
+        jQuery("#intAverageSpeed").val(vehicleTypes.intAverageSpeed);
+        jQuery("#intAvgWorkingHours").val(vehicleTypes.intAvgWorkingHours);
+        jQuery("#BaseFare").val(vehicleTypes.BaseFare);
+       
+    });
+
+    function validation() {
+
+        var intMileage = jQuery("#intMileage").val();
+        var intAverageFuelPrice = jQuery("#intAverageFuelPrice").val();
+        var intDriverSalary = jQuery("#intDriverSalary").val();
+        var intAvgTollPrice = jQuery("#intAvgTollPrice").val();
+        var intAverageSpeed = jQuery("#intAverageSpeed").val();
+        var intAvgWorkingHours = jQuery("#intAvgWorkingHours").val();
+        var BaseFare = jQuery("#BaseFare").val();
+
+        decimalRegex = /^\d+\.\d{0,2}$/;
+        //decimalRegex = /^[0-9]+[.]{1}\d{0,2}$/;
+        
+        var intRegex = /^\d+$/;
+        var message = "";
+
+        if (intMileage == "") {
+            message = message + "Please enter Mileage.\n";
+        }
+        else if (intRegex.test(intMileage) == false) {
+
+            message = message + "Please enter valid mileage value.\n";
+        }
+
+        if (intAverageFuelPrice == "") {
+            message = message + "Please enter Average Fuel Price.\n";
+        }
+        else if (intRegex.test(intAverageFuelPrice) == false) {
+
+            message = message + "Please enter valid Average Fuel Price.\n";
+        }
+        if (intDriverSalary == "") {
+            message = message + "Please enter Driver Salary.\n";
+        }
+        else if (decimalRegex.test(intDriverSalary) == false && intRegex.test(intDriverSalary) == false ) {
+
+            message = message + "Please enter valid Driver Salary.\n";
+        }
+        if (intAvgTollPrice == "") {
+            message = message + "Please enter Avg Toll Price.\n";
+        }
+        else if (intRegex.test(intAvgTollPrice) == false) {
+
+            message = message + "Please enter valid Avg Toll Price.\n";
+        }
+        if (intAverageSpeed == "") {
+            message = message + "Please enter Average Speed.\n";
+        }
+        else if (intRegex.test(intAverageSpeed) == false) {
+
+            message = message + "Please enter valid Average Speed.\n";
+        }
+        if (intAvgWorkingHours == "") {
+            message = message + "Please enter Avg Working Hours.\n";
+        }
+        else if (intRegex.test(intAvgWorkingHours) == false) {
+
+            message = message + "Please enter valid Avg Working Hours.\n";
+        }
+        if (BaseFare == "") {
+            message = message + "Please enter Base Fare.\n";
+        }
+        else if (intRegex.test(BaseFare) == false) {
+
+            message = message + "Please enter valid Base Fare.\n";
+        }
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnUpdateVehicleTypes() {
+        var form = jQuery("#EditVehicleTypesForm").serialize();
+        var intVehicleTypeId = parseInt('@ViewBag.vehicleTypeID');
+
+        form += "&intVehicleTypeId=" + intVehicleTypeId;
+
+        if (validation()) {
+
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdateVehicleTypes", "Admin")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data == "success") {
+                        jQuery('body').loadingIndicator();
+                        jQuery("#EditVehicleTypesForm")[0].reset();
+                        window.location.href = "/admin/VehicleTypesForAdmin";
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+        }
+    }
+    
+    
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("UpdateVehicleTypes", "Admin", FormMethod.Post, new { id = "EditVehicleTypesForm" }))
+                {
+                    <h3 class="FormHeading">Enter Vehicle Type Master Data</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Edit Now</h3>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtVehicleType" name="txtVehicleModel" placeholder=" Ex: Mini Truck" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intMileage">Mileage<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intMileage" name="intMileage" placeholder=" Ex: Innova" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intAverageFuelPrice">AverageFuelPrice<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intAverageFuelPrice" name="intAverageFuelPrice" placeholder=" Ex: AP 00 AB 1234" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intDriverSalary">intDriverSalary<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intDriverSalary" name="intDriverSalary" placeholder=" Ex: AP 00 AB 1234" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intAvgTollPrice">Avg Toll Price<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intAvgTollPrice" name="intAvgTollPrice" placeholder=" Ex: AP 00 AB 1234" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intAverageSpeed">Average Speed<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intAverageSpeed" name="intAverageSpeed" placeholder=" Ex: AP 00 AB 1234">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intAvgWorkingHours">Avg Working Hours<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intAvgWorkingHours" name="intAvgWorkingHours" placeholder=" Ex: AP 00 AB 1234">
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="BaseFare">Base Fare<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="BaseFare" name="BaseFare" placeholder=" Ex: AP 00 AB 1234" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnUpdateVehicleTypes()" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

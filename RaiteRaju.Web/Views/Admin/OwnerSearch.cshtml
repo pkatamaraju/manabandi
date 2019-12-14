@@ -50,6 +50,9 @@
     function fnOwnerSearch() {
         intRegex = /^[5-9]{1}[0-9]{9}$/;
         var phoneNumber = jQuery("#txtPhoneNumber").val();
+
+        message = "";
+
         if (phoneNumber == "") {
             message = message + "Please enter Phone Number.\n";
         }

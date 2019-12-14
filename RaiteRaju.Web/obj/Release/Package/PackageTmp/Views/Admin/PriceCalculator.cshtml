@@ -36,8 +36,8 @@
 
         var form = jQuery("#BookVehicle").serialize();
         var KiloMeters = jQuery("#txtKilometers").val();
-       
-       // var TravelRequestType = jQuery("#TravelRequestType:checked").val(); //jQuery("#TravelRequestType").ch
+
+        // var TravelRequestType = jQuery("#TravelRequestType:checked").val(); //jQuery("#TravelRequestType").ch
         var intRegex = /^\d+$/;
         var ddlVehicles = jQuery("#ddlVehicles").val();
 
@@ -51,7 +51,7 @@
         else if (intRegex.test(KiloMeters) == false) {
             message = message + "Please enter valid Kilo Meters(only digits).\n";
         }
-        else if (KiloMeters >=10000 || KiloMeters < 0) {
+        else if (KiloMeters >= 10000 || KiloMeters < 0) {
             message = message + "Please enter valid Kilo Meters(From 1 To 10000).\n";
         }
 
@@ -63,18 +63,23 @@
         }
         else {
             jQuery.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("PriceCalculator", "Admin")',
-                    dataType: 'json',
-                    data: form,
-                    success: function (data) {
-                        jQuery("#lblPrice").html("Total Price is Rs:" + data.price + "<br/> Total cost to owner is: " + data.cost + "<br/> Commission is  Rs:" + Math.round((parseInt(data.price) * 0.1) / 10) * 10 );
-
-                    },
-                    error: function (data) {
-                        alert("Some Error Occured");
+                type: 'POST',
+                url: '@Url.Action("PriceCalculator", "Admin")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data != null) {
+                        jQuery(".tableRow").remove();
+                        jQuery("#tblPrice").show();
+                        var tblPrice = jQuery('#tblPrice');
+                        tblPrice.append('<tr class="tableRow" style="border:1px solid black"><td style="width:100px;text-align:center;"> Rs. ' + data.model.FinalFuelCost + '</td><td class="tdbreak" style="width:100px;text-align:center;">Rs. ' + data.model.FinalDriverCost + '</td><td style="width:100px;text-align:center;">Rs. ' + data.model.AvgTollCost + '</td><td style="width:200px;text-align:center;font-size:16;font-weight:bold;color:green">Rs. ' + data.model.FinalCost + '</td><td style="width:200px;text-align:center;font-size:16;font-weight:bold;color:green">Rs. ' + data.model.FinalPrice + '</td><tr>')
+                        jQuery("#lblPrice").html("Commission to be collected Rs : " + Math.round((parseInt(data.model.FinalPrice) * 0.1) / 10) * 10).css("color", "green");
                     }
-                });
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
         }
     }
 
@@ -84,8 +89,16 @@
 
 <div id="AdSearchResults" class="MinHight">
     <div class="container">
+        <div class="row" style="padding-top:50px">
+            <div class="col-lg-2 col-sm-2"></div>
+            <div class="col-lg-8 col-sm-8">
+                <label style="font-size:12px;font-family:Verdana,sans-serif;"> Check Vehicle Types</label><a href="/Admin/VehicleTypesForAdmin" class="ghost-btn first last filled py-2" tabindex="-1">Vehicle Types</a><br>
+            </div>
+            <div class="col-lg-2 col-sm-2"></div>
+        </div>
         <div class="row" style="padding-top:20px;">
-            <div class="col-md-12">
+
+            <div class="col-lg-12 col-md-12">
                 @using (Html.BeginForm("BookNow", "Book", FormMethod.Post, new { id = "BookVehicle" }))
                 {
                     <h3 class="FormHeading">Calculate Price Here.</h3>
@@ -106,11 +119,11 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                        <label for="txtUserName">Enter Kilometers<span class="MandatoryStars">*</span> :</label>
+                                        <label for="txtUserName">Enter Kilometers<span class="MandatoryStars">*</span> :<br />(Enter one way KMs only for pick up and drop also)</label>
                                     </div>
 
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        @Html.TextBox("txtKilometers", null, new { @class = "form-control", @placeholder = "20" })
+                                        @Html.TextBox("txtKilometers", null, new { @class = "form-control", @placeholder = "Enter one way KMs only for pick up and drop also" })
                                         <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
                                     </div>
                                 </div>
@@ -152,6 +165,27 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <div class="table-responsive" style="border-bottom:1px solid black">
+                                            <table id="tblPrice" style="width:100%;overflow-wrap:break-word;text-align:center;display:none;border:1px solid black">
+                                                <tr id="adlistHeader">
+                                                    <th>Fuel Cost</th>
+                                                    <th>Driver Cost</th>
+                                                    <th>Avg Toll Cost</th>
+                                                    <th>Total Cost</th>
+                                                    <th>Final Price</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <label id="lblPrice" style="color:green;font-size:16px;font-weight:bold"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                         <label id="lblPrice" style="color:green;font-size:16px;font-weight:bold"></label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -161,7 +195,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <div class="cta-actions">
-                                    <input id="btnRegister" type="button" value="Calculate" class="ghost-btn first last filled" onclick="fnCalculatePrice()" />
+                                    <input id="btnCalculatePrice" type="button" value="Calculate" class="ghost-btn first last filled" onclick="fnCalculatePrice()" />
                                     <br>
                                 </div>
                             </div>
@@ -172,5 +206,5 @@
 
 
         </div>
-        </div>
+    </div>
 </div>
