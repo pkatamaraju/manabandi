@@ -9,87 +9,6 @@ using System.ComponentModel.DataAnnotations;
 namespace RaiteRaju.ApplicationUtility
 {
 
-    public enum CategoryEnums
-    {
-        [Display(Name = "COTTON")]
-        COTTON = 1,
-        [Display(Name = "RICE")]
-        RICE = 2,
-        [Display(Name = "CHILLIES")]
-        CHILLIES = 3,
-        [Display(Name = "GROUNDNUTS")]
-        GROUNDNUTS = 4,
-        [Display(Name = "REDGRAM")]
-        REDGRAM = 5,
-        [Display(Name = "CASTOR")]
-        CASTOR = 6,
-        [Display(Name = "MAIZE")]
-        MAIZE = 7,
-        [Display(Name = "SUGARCANE")]
-        SUGARCANE = 8,
-        [Display(Name = "SUNFLOWER")]
-        SUNFLOWER = 9,
-        [Display(Name = "GOAT")]
-        GOAT = 10,
-        [Display(Name = "SHEEP")]
-        SHEEP = 11,
-        [Display(Name = "COW")]
-        COW = 12,
-        [Display(Name = "BUFFALO")]
-        BUFFALO = 13,
-        [Display(Name = "LAND")]
-        LAND = 14,
-        [Display(Name = "Vegetable")]
-        Vegetable = 15,
-        [Display(Name = "Equipment")]
-        Equipment = 16,
-        [Display(Name = "Others")]
-        Others = 17,
-        [Display(Name = "Ox")]
-        Ox = 18,
-        [Display(Name = "Fish")]
-        Fish = 19,
-        [Display(Name = "Prawns")]
-        Prawns = 20,
-        [Display(Name = "Pesticide")]
-        Pesticide = 21,
-        [Display(Name = "Fodder")]
-        Fodder = 22,
-        [Display(Name = "Fruit")]
-        Fruit = 23,
-        [Display(Name = "Seed")]
-        Seed = 24,
-        [Display(Name = "Fertilizer")]
-        Fertilizer = 25,
-
-        
-        
-
-    }
-    public enum ddlUnits
-    {
-        [Display(Name = "Tons")]
-        Tons = 1,
-        [Display(Name = "Quintals")]
-        Quintals = 2,
-        [Display(Name = "Animals")]
-        Animals = 3,
-        [Display(Name = "Acres")]
-        Acres = 4,
-        [Display(Name = "Cents")]
-        Cents = 5,
-        [Display(Name="Items")]
-        Items=6,
-        [Display(Name = "KGs")]
-        KGs = 7,
-        [Display(Name = "Bags")]
-        Bags = 8,
-        [Display(Name = "Litres")]
-        Litres = 9,
-        [Display(Name = "MilliLiters")]
-        MilliLiters = 10,
-
-    }
     public enum StateList
     {
         [Display(Name = "Andhra Pradesh")]
@@ -186,6 +105,6 @@ namespace RaiteRaju.ApplicationUtility
     }
     public enum UserType
     {
-        user=1,owner=2
+        user=1,owner=2,driver=3
     }
 }

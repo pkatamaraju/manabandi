@@ -7,21 +7,32 @@ using RaiteRaju.Entities;
 
 namespace RaiteRaju.BusinessLayerInterface
 {
-   public interface ManagementBusinessLayerInterface
+    public interface ManagementBusinessLayerInterface
     {
-       int InsertAddUserDetails(UserDetailsEntity Obj);
-       UserDetailsEntity VerifyMobileNumber(UserDetailsEntity Obj);
-       int UpdateUserDetails(UserDetailsEntity Obj);
-       int UPDATEOTP(UserDetailsEntity Obj);
-       int DeleteUserAccount(Int64 BigIntPhoneNumber);
-       int InsertReview(Int64 PhoneNumber, String reviewDescription);
-       int insertContactUs(ContactUsEntity ENTITY);
-      void ExceptionLoggin(string ControllerName,string ActionName,string ErrorMessage);
-      int InsertPromotions(string Name, Int64 PhoneNumber, string Description);
+        int InsertAddUserDetails(UserDetailsEntity Obj);
+
+        UserDetailsEntity VerifyMobileNumber(UserDetailsEntity Obj);
+
+        int UpdateUserDetails(UserDetailsEntity Obj);
+
+        int UPDATEOTP(UserDetailsEntity Obj);
+
+        int DeleteUserAccount(Int64 BigIntPhoneNumber);
+
+        int InsertReview(Int64 PhoneNumber, String reviewDescription);
+
+        int insertContactUs(ContactUsEntity ENTITY);
+
+        void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage);
+
+        int InsertPromotions(string Name, Int64 PhoneNumber, string Description);
 
         #region ManaBandi
+
         int BookRide(RideEntity ride);
+
         int UpateRideDetailsForAdmin(RideEntity ride);
+
         int VehicleOwnerRegistration(OwnerEntity owner);
 
         string AddVehicle(VehicleEntity entity);
@@ -29,10 +40,17 @@ namespace RaiteRaju.BusinessLayerInterface
         #endregion
 
 
-         string UpdateVehicleDetails(VehicleEntity entity);
+        string UpdateVehicleDetails(VehicleEntity entity);
 
-         void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
+        void DeleteVehicle(int VehicleID, Int64 PhoneNumber);
+
         int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner);
+
         string UpdateVehicleTypes(VehicleTypesEntity entity);
+
+        int DriverRegistration(DriverEntity driver);
+
+        int UpdateDriverDetailsByAdmin(DriverEntity owner);
+
     }
 }

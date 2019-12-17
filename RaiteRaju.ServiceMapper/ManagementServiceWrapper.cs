@@ -174,6 +174,27 @@ namespace RaiteRaju.ServiceMapper
             ServiceLayer.ManagementService ManObj = new ManagementService();
             return ManObj.UpdateVehicleTypes(Entity);
         }
+        
+        public int DriverRegistration(DriverModel model)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            DriverEntity Entity = new DriverEntity();
+            Entity = objMapper.MapDriverModelToEntity(model);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.DriverRegistration(Entity);
+        }
+
+       public int UpdateDriverDetailsByAdmin(DriverModel model)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            DriverEntity Entity = new DriverEntity();
+            Entity = objMapper.MapDriverModelToEntity(model);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.UpdateDriverDetailsByAdmin(Entity);
+        }
+
         #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMKEYFORUSERSETTINGS = "KeyForUserSettings";
 
         public const string PARAMPHOTO = "photo";
-        public const string PARAMINTCOUNT = "intCount";
+
 
         public const string PARAMINTCATEGORYID = "intCategoryID";
         public const string PARAMLOCATION = "Location";
@@ -93,6 +93,10 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMINTNUMBEROFVEHICLESPERMODEL = "intNumberOfVehiclesPerModel";
         public const string PARAMTXTPLACE = "txtPlace";
 
+        //Drivers
+        public const string PARAMINTDRIVERID = "intDriverID";
+        public const string PARAMTXTDRIVERNAME = "txtDriverName";
+
         //Vehicle
         public const string PARAMTXTVEHICLENUMBER = "txtVehicleNumber";
         public const string PARAMINTVEHICLETYPEID = "intVehicleTypeId";
@@ -140,6 +144,8 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMINTDRIVERCOSTPERKM = "intDriverCostPerKM";
         public const string INTTOTALCOSTPERKM = "intTotalCostPerKM";
         public const string PARAMBASEFARE = "BaseFare";
+        public const string PARAMINTCOUNT = "intCount";
+
         #endregion
     }
 }

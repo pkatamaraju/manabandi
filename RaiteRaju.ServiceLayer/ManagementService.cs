@@ -102,6 +102,18 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.UpdateVehicleTypes(entity);
         }
+
+      public int DriverRegistration(DriverEntity driver)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.DriverRegistration(driver);
+        }
+
+       public int UpdateDriverDetailsByAdmin(DriverEntity entity)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.UpdateDriverDetailsByAdmin(entity);
+        }
         #endregion
     }
 }

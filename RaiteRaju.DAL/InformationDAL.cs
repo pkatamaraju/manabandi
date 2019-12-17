@@ -9,6 +9,8 @@ using System.Reflection;
 using RaiteRaju.Entities;
 using RaiteRaju.ApplicationUtility;
 using RaiteRaju.DAL.DALUtility;
+using System.Net;
+using System.Net.Mail;
 
 namespace RaiteRaju.DAL
 {
@@ -811,7 +813,6 @@ namespace RaiteRaju.DAL
                     }
                     dr.Close();
                 }
-
                 return entity;
             }
             catch (Exception ex)
@@ -995,7 +996,137 @@ namespace RaiteRaju.DAL
 
         }
 
-        
+        public List<VehicleFilterEntity> GetDriverDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            VehicleFilterEntity vehObj = null;
+            int outputparam = 0;
+            List<VehicleFilterEntity> listobj = new List<VehicleFilterEntity>();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_DriverDetailsForAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.Int32, Entity.intStateId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.Int32, Entity.intDistrictId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.Int32, Entity.intManadalID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTPAGENUMBER, DbType.Int32, Entity.IntPageNumber);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        vehObj = new VehicleFilterEntity();
+                        vehObj.intStateName = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
+                        vehObj.intDistrictName = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
+                        vehObj.intManadalName = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
+                        vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTDRIVERNAME]);
+                        vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                        vehObj.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTDRIVERID]);
+                        vehObj.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
+                        listobj.Add(vehObj);
+
+                    }
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        outputparam = Convert.ToInt32(dr[DataAccessConstants.PARAMINTTOTALPAGECOUNT]);
+                    }
+                    dr.Close();
+                    TotalPageNumber = outputparam;
+                }
+                return listobj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetOwnerDetailsForAdminPage", ex.Message);
+                TotalPageNumber = 0;
+                return null;
+            }
+
+        }
+
+        public DriverEntity GetDriverDetailsByIDForAdmin(int driver)
+        {
+            DriverEntity Entity = null;
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBDriverDetailsByIDForAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTDRIVERID, DbType.Int32, driver);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        Entity = new DriverEntity();
+
+                        Entity.intDriverID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTDRIVERID]);
+                        Entity.txtDriverName = Convert.ToString(dr[DataAccessConstants.PARAMTXTDRIVERNAME]);
+                        Entity.intStateId = Convert.ToInt32(dr[DataAccessConstants.PARAMINTSTATEID]);
+                        Entity.intDistrictId = Convert.ToInt32(dr[DataAccessConstants.PARAMDISTRICTID]);
+                        Entity.intManadalID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTMANDALID]);
+                        Entity.txtPlace = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                        Entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+
+                    }
+
+                    dr.Close();
+                    return Entity;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetDriverDetailsByIDForAdmin", ex.Message);
+                return null;
+            }
+
+        }
+
+        public List<GDictionary> GetSummaryForAdmin()
+        {
+            List<GDictionary> GDObjList = new List<GDictionary>();
+            GDictionary GDObj = new GDictionary();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBSUMMARY))
+                {
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        GDObj = new GDictionary();
+                        GDObj.Name = Convert.ToString(dr[DataAccessConstants.ParamtName]);
+                        GDObj.value = Convert.ToString(dr[DataAccessConstants.PARAMINTCOUNT]);
+
+                        GDObjList.Add(GDObj);
+                    }
+                    dr.Close();
+                }
+                return GDObjList;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetSummaryForAdmin", ex.Message);
+                return null;
+            }
+        }
+
+        public void SendMail(int vehicleTypeID)
+        {
+            MailMessage message = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            message.From = new MailAddress("bellacabs1@gmail.com");
+            message.To.Add(new MailAddress("katamaraju.p@gmail.com"));
+            message.Subject = "Test";
+            message.IsBodyHtml = true; //to make message body as html  
+            message.Body = "You have received one ride, Please check";
+            smtp.Port = 587;
+            smtp.Host = "smtp.gmail.com"; //for gmail host  
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = new NetworkCredential("bellacabs1@gmail.com", "BellaCabs@1");
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(message); 
+        }
+
+
         #endregion
 
     }

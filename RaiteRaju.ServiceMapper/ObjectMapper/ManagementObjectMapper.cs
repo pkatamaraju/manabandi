@@ -137,6 +137,23 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return Entity;
         }
 
+        internal DriverEntity MapDriverModelToEntity(DriverModel model)
+        {
+            DriverEntity Entity = new DriverEntity();
+            Entity.intDriverID = model.intDriverID;
+            Entity.txtDriverName = model.txtDriverName;
+            Entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
+            Entity.txtPassword = model.txtPassword;
+            Entity.intStateId = model.intStateId;
+            Entity.intDistrictId = model.intDistrictId;
+            Entity.intManadalID = model.intManadalID;
+            Entity.txtPlace = model.txtPlace;
+            Entity.OTP = model.OTP;
+            return Entity;
+
+        }
+
+
         #endregion
 
     }

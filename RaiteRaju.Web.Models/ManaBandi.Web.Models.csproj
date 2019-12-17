@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactUsModel.cs" />
+    <Compile Include="DriverModel.cs" />
     <Compile Include="ExceptionModel.cs" />
     <Compile Include="GDictionaryModel.cs" />
     <Compile Include="Owner.cs" />

@@ -515,6 +515,65 @@ namespace RaiteRaju.DAL
 
         }
 
+        public int DriverRegistration(DriverEntity driver)
+        {
+            int Success = 0;
+
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.INSERT_MBDriverDetails))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTDRIVERNAME, DbType.String, driver.txtDriverName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, driver.BigIntPhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPASSWORD, DbType.String, driver.txtPassword);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMOTP, DbType.Int32, driver.OTP);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.String, driver.intStateId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.Int32, driver.intDistrictId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.Int32, driver.intManadalID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTPLACE, DbType.String, driver.txtPlace);
+                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
+                }
+
+                if (Success > 0 & driver.OTP != 0)
+                {
+                    SendOTP(driver.BigIntPhoneNumber, driver.OTP);
+                }
+                return Success;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "DriverRegistration", ex.Message);
+                return 0;
+            }
+        }
+
+        public int UpdateDriverDetailsByAdmin(DriverEntity owner)
+        {
+            int Success = 0;
+
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_MBDriverDetailsByAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTDRIVERID, DbType.Int32, owner.intDriverID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTDRIVERNAME, DbType.String, owner.txtDriverName);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, owner.BigIntPhoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTSTATEID, DbType.String, owner.intStateId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDISTRICTID, DbType.Int32, owner.intDistrictId);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTMANDALID, DbType.Int32, owner.intManadalID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMTXTPLACE, DbType.String, owner.txtPlace);
+                    Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
+                }
+
+                return Success;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "UpdateDriverDetailsByAdmin", ex.Message);
+                return 0;
+            }
+        }
+
 
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {

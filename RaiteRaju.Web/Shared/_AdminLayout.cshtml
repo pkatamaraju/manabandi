@@ -47,9 +47,13 @@
             jQuery("#tabUserRegistration").click(function () {
                 window.location.href = "/admin/UserRegistration";
             });
+            jQuery("#tabDriverDetails").click(function () {
+                window.location.href = "/admin/DriverDetails?intStateID=0&intDistrictID=0&intManadalID=0&PageNumber=1";
+            });
             jQuery("#tabVehicleTypes").click(function () {
                 window.location.href = "/Admin/VehicleTypesForAdmin";
             });
+
             //jQuery("#tabContactUsForAdmin").click(function () {
             //    window.location.href = "/Admin/ContactUs";
             //});
@@ -131,8 +135,9 @@
                         <a href="/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabOwners" tabindex="-1">Owners Data</a>
                         <a href="/admin/PriceCalculator" id="tabPriceCalculator" tabindex="-1">Price Calculator</a>
                         <a href="/admin/OwnerSearch" id="tabOwnerSearch" tabindex="-1">Owner Search</a>
+                        <a href= "/admin/DriverDetails?intStateID=0&intDistrictID=0&intManadalID=0&PageNumber=1"; id="tabDriverDetails" tabindex="-1">Driver Details</a>
                         <a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">VehicleTypes</a>
-                        
+
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                             <i class="fa fa-bars"></i>
                         </a>

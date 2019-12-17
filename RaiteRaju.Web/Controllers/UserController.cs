@@ -455,9 +455,13 @@ namespace RaiteRaju.Web.Controllers
                     ViewBag.ddlMandal = DetObj.ddlMandal;
                     ViewBag.ddlDistrict = DetObj.ddlDistrict;
                 }
-                if (DetObj.UserType == "OWNER")
+                if (DetObj.UserType.ToUpper() == "OWNER")
                 {
                     return View("OwnerAccount");
+                }
+                else if (DetObj.UserType.ToUpper() ==UserType.driver.ToString().ToUpper())
+                {
+                    return View("DriverAccount");
                 }
                 else
                 {

@@ -60,6 +60,12 @@ namespace RaiteRaju.BusinessLayerInterface
 
         VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID);
 
+        List<VehicleFilterEntity> GetDriverDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
+
+        DriverEntity GetDriverDetailsByIDForAdmin(int driver);
+
+        List<GDictionary> GetSummaryForAdmin();
+
         #endregion
     }
 

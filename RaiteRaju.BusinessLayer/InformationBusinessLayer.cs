@@ -12,7 +12,7 @@ namespace RaiteRaju.BusinessLayer
     public class InformationBusinessLayer : InformationBusinessLayerInterface
     {
         #region Manabandi
-       
+
         public List<GDictionary> FetDistrictsOfState(int StateId)
         {
             return new DAL.InformationDAL().FetDistrictsOfState(StateId);
@@ -106,7 +106,7 @@ namespace RaiteRaju.BusinessLayer
 
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)
         {
-            return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber,userType);
+            return new DAL.InformationDAL().MobileNuberExistsOrNot(MobileNumber, userType);
         }
 
         public List<GDictionary> FetchReviews()
@@ -114,13 +114,13 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().FetchReviews();
         }
 
-      
+
         public UserDetailsEntity AdminLoginCheck(Int64 PhoneNumber, string Password)
         {
             return new DAL.InformationDAL().AdminLoginCheck(PhoneNumber, Password);
         }
 
-       
+
         public List<ContactUsEntity> FetchContactUsDetailsForAdmin()
         {
             return new DAL.InformationDAL().FetchContactUsDetailsForAdmin();
@@ -144,6 +144,24 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetVehicleTypeByIDForAdmin(vehicleTypeID);
         }
+
+        public List<VehicleFilterEntity> GetDriverDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            return new DAL.InformationDAL().GetDriverDetailsForAdmin(Entity, out TotalPageNumber);
+
+        }
+
+        public DriverEntity GetDriverDetailsByIDForAdmin(int driver)
+        {
+            return new DAL.InformationDAL().GetDriverDetailsByIDForAdmin(driver);
+        }
+
+        public List<GDictionary> GetSummaryForAdmin()
+        {
+            return new DAL.InformationDAL().GetSummaryForAdmin();
+
+        }
+
     }
 
 }

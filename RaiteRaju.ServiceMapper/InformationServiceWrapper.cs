@@ -14,7 +14,7 @@ namespace RaiteRaju.ServiceMapper
 {
     public class InformationServiceWrapper
     {
-       
+
         public List<GDictionaryModel> FetDistrictsOfState(int StateId)
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -101,13 +101,13 @@ namespace RaiteRaju.ServiceMapper
             GDictionaryModel Model = new GDictionaryModel();
             GDictionary entity = new GDictionary();
             ServiceLayer.InformationService obj = new InformationService();
-            entity = obj.MobileNuberExistsOrNot(MobileNumber,userType);
+            entity = obj.MobileNuberExistsOrNot(MobileNumber, userType);
             InformationObjectMapper ObjMapper = new InformationObjectMapper();
             Model = ObjMapper.MapGDictionaryEntityToModel(entity);
             return Model;
 
         }
-       
+
         public List<GDictionaryModel> FetchReviews()
         {
             List<GDictionary> gdEntityList = new List<GDictionary>();
@@ -329,7 +329,43 @@ namespace RaiteRaju.ServiceMapper
             return model;
         }
 
-        
+        public List<VehicleFilterModel> GetDriverDetailsForAdmin(VehicleFilterModel model, out int TotalPageNumber)
+        {
+            List<VehicleFilterModel> listobj = new List<VehicleFilterModel>();
+            List<VehicleFilterEntity> listEntity = new List<VehicleFilterEntity>();
+
+            VehicleFilterModel modelObj = new VehicleFilterModel();
+            VehicleFilterEntity entity = new VehicleFilterEntity();
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            entity = ObjMapper.MapVehicleFilterModelToEntity(model);
+            listEntity = obj.GetDriverDetailsForAdmin(entity, out TotalPageNumber);
+            listobj = ObjMapper.MapVehicleFilterEntityToModelList(listEntity);
+            return listobj;
+        }
+
+        public DriverModel GetDriverDetailsByIDForAdmin(int driverID)
+        {
+            DriverModel model = new DriverModel();
+            DriverEntity Entity = new DriverEntity();
+            InformationObjectMapper mapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            Entity = obj.GetDriverDetailsByIDForAdmin(driverID);
+            model = mapper.MapDriverEntityToModel(Entity);
+            return model;
+        }
+
+
+        public List<GDictionaryModel> GetSummaryForAdmin()
+        {
+            List<GDictionary> gdEntityList = new List<GDictionary>();
+            List<GDictionaryModel> gdModel = new List<GDictionaryModel>();
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper objmapper = new InformationObjectMapper();
+            gdEntityList = obj.GetSummaryForAdmin();
+            gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
+            return gdModel;
+        }
 
         #endregion
 

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactUsEntity.cs" />
+    <Compile Include="DriverEntity.cs" />
     <Compile Include="ExceptionEntity.cs" />
     <Compile Include="GDictionary.cs" />
     <Compile Include="OwnerEntity.cs" />
