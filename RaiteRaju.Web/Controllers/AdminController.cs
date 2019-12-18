@@ -1265,7 +1265,7 @@ namespace RaiteRaju.Web.Controllers
 
                 if (mobileNumberChangedOrNOT == "changed")
                 {
-                    GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.owner.ToString());
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.driver.ToString());
                 }
                 if (mobileNumberChangedOrNOT == "changed" & GDOBJ.ID != 1)
                 {
