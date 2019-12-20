@@ -66,6 +66,10 @@ namespace RaiteRaju.BusinessLayerInterface
 
         List<GDictionary> GetSummaryForAdmin();
 
+        List<PriceMultipleEntity> GetPriceMultiple();
+
+        PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK);
+
         #endregion
     }
 

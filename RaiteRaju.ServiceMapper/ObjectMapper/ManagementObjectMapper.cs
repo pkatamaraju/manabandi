@@ -153,6 +153,20 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
 
         }
 
+        internal PriceMultipleEntity MapPriceMultipleModelToEntity(PriceMultipleModel model)
+        {
+            PriceMultipleEntity entity = new PriceMultipleEntity();
+            if (model != null)
+            {
+                entity.intVehicleTypeID = model.intVehicleTypeID;
+                entity.intPriceMultiple = model.intPriceMultiple;
+                entity.intKMRange = model.intKMRange;
+                entity.IntPricePK = model.IntPricePK;
+                entity.intPricePerKM = model.intPricePerKM;
+            }
+            return entity;
+
+        }
 
         #endregion
 

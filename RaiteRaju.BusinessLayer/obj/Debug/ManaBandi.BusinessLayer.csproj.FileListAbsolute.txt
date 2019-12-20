@@ -34,3 +34,19 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Debug\ManaBand
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Debug\ManaBandi.BusinessLayer.csproj.CopyComplete
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Debug\RaiteRaju.BusinessLayer.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Debug\RaiteRaju.BusinessLayer.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.BusinessLayer.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.BusinessLayer.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.DAL.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.ApplicationUtility.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.DAL.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Debug\RaiteRaju.ApplicationUtility.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\obj\Debug\ManaBandi.BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\obj\Debug\RaiteRaju.BusinessLayer.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\obj\Debug\RaiteRaju.BusinessLayer.pdb

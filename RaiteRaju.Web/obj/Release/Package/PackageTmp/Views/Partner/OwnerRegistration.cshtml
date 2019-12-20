@@ -21,10 +21,7 @@
         var ddlMandal = jQuery("#ddlMandal").val();
         var village = jQuery("#txtVillage").val();
         var phoneNumber = jQuery("#txtPhoneNumber").val();
-        var vehicleTypeID = jQuery("#ddlVehicles").val();
-        var txtVehicleModel = jQuery("#txtVehicleModel").val();
         var password = jQuery("#txtPassword").val();
-        var noOfVehicles = jQuery("#txtNoOfVehicles").val();
 
         intRegex = /^[5-9]{1}[0-9]{9}$/;
         var message = "";
@@ -62,11 +59,11 @@
                 message = message + "Please Select State.\n";
             }
 
-            if (ddlDistrict== "" || ddlDistrict == "---Select District---") {
+            if (ddlDistrict== "0" || ddlDistrict == "---Select District---") {
                 message = message + "Please select District.\n";
             }
 
-            if (ddlMandal== "" || ddlMandal == "---Select Mandal---") {
+            if (ddlMandal== "0" || ddlMandal == "---Select Mandal---") {
                 message = message + "Please select Mandal.\n";
             }
 

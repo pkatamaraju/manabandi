@@ -1108,6 +1108,74 @@ namespace RaiteRaju.DAL
             }
         }
 
+        public List<PriceMultipleEntity> GetPriceMultiple()
+        {
+            PriceMultipleEntity entity = new PriceMultipleEntity();
+            List<PriceMultipleEntity> listObj = new List<PriceMultipleEntity>();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_PriceMultiple))
+                {
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        entity = new PriceMultipleEntity();
+
+                        entity.intVehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        entity.txtVehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.intKMRange = Convert.ToInt32(dr[DataAccessConstants.PARAMINTKMRANGE]);
+                        entity.intPriceMultiple = Convert.ToDecimal(dr[DataAccessConstants.PARAMDECIMALPRICEMULTIPLE]);
+                        entity.intPricePerKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMPRICEPERKM]);
+                        entity.IntPricePK = Convert.ToInt32(dr[DataAccessConstants.PAMAMINTPRICEPK]);
+                      
+                        listObj.Add(entity);
+                    }
+
+                    dr.Close();
+                    return listObj;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetPriceMultiple", ex.Message);
+                return null;
+            }
+
+        }
+
+        public PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK)
+        {
+            PriceMultipleEntity entity = new PriceMultipleEntity();
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_PriceMultipleByID))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PAMAMINTPRICEPK, DbType.Int32, intPricePK);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        entity.intVehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        entity.txtVehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.intKMRange = Convert.ToInt32(dr[DataAccessConstants.PARAMINTKMRANGE]);
+                        entity.intPriceMultiple = Convert.ToDecimal(dr[DataAccessConstants.PARAMDECIMALPRICEMULTIPLE]);
+                        entity.intPricePerKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMPRICEPERKM]);
+                        entity.IntPricePK = Convert.ToInt32(dr[DataAccessConstants.PAMAMINTPRICEPK]);
+                    }
+
+                    dr.Close();
+                    return entity;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetPriceMultipleByIDForAdmin", ex.Message);
+                return null;
+            }
+        }
+
+
         public void SendMail(int vehicleTypeID)
         {
             MailMessage message = new MailMessage();
@@ -1125,6 +1193,7 @@ namespace RaiteRaju.DAL
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(message); 
         }
+
 
 
         #endregion

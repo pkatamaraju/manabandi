@@ -367,6 +367,31 @@ namespace RaiteRaju.ServiceMapper
             return gdModel;
         }
 
+        public List<PriceMultipleModel> GetPriceMultiple()
+        {
+            List<PriceMultipleModel> listobj = new List<PriceMultipleModel>();
+            List<PriceMultipleEntity> listEntity = new List<PriceMultipleEntity>();
+
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            listEntity = obj.GetPriceMultiple();
+            listobj = ObjMapper.MapPriceMultipleEntityListToModel(listEntity);
+            return listobj;
+
+        }
+
+       public PriceMultipleModel GetPriceMultipleByIDForAdmin(int intPricePK)
+        {
+            PriceMultipleModel model = new PriceMultipleModel();
+            PriceMultipleEntity Entity = new PriceMultipleEntity();
+
+            InformationObjectMapper ObjMapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            Entity = obj.GetPriceMultipleByIDForAdmin(intPricePK);
+            model = ObjMapper.MapPriceMultipleEntityToModel(Entity);
+            return model;
+        }
+
         #endregion
 
 

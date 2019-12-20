@@ -94,6 +94,14 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         List<GDictionary> GetSummaryForAdmin();
 
+        [OperationContract]
+        List<PriceMultipleEntity> GetPriceMultiple();
+
+
+        [OperationContract]
+        PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK);
+
+
         #endregion
     }
 

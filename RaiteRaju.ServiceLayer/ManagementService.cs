@@ -90,7 +90,7 @@ namespace RaiteRaju.ServiceLayer
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.UpdateVehicleDetails(entity);
         }
-        
+
         public int UpdateVehicleOwnerDetailsByAdmin(OwnerEntity owner)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
@@ -103,17 +103,24 @@ namespace RaiteRaju.ServiceLayer
             return ManageObj.UpdateVehicleTypes(entity);
         }
 
-      public int DriverRegistration(DriverEntity driver)
+        public int DriverRegistration(DriverEntity driver)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.DriverRegistration(driver);
         }
 
-       public int UpdateDriverDetailsByAdmin(DriverEntity entity)
+        public int UpdateDriverDetailsByAdmin(DriverEntity entity)
         {
             ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
             return ManageObj.UpdateDriverDetailsByAdmin(entity);
         }
+
+        public string UpdatePriceMultiple(PriceMultipleEntity entity)
+        {
+            ManagementBusinessLayerInterface ManageObj = new BusinessLayer.ManagementBusinessLayer();
+            return ManageObj.UpdatePriceMultiple(entity);
+        }
+
         #endregion
     }
 }

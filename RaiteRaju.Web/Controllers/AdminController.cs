@@ -423,7 +423,7 @@ namespace RaiteRaju.Web.Controllers
 
         }
 
-        #region ManaBandi Admin Methods
+
 
         public ActionResult AddOwner()
         {
@@ -1294,6 +1294,60 @@ namespace RaiteRaju.Web.Controllers
         }
 
 
-        #endregion
+        public ActionResult GetPriceMultiple()
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                List<PriceMultipleModel> listModel = new List<PriceMultipleModel>();
+                InformationServiceWrapper wrapper = new InformationServiceWrapper();
+                listModel = wrapper.GetPriceMultiple();
+                ViewBag.priceMultipleList = listModel;
+                return View("PriceMultiple");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+        public ActionResult UpdatePriceMultiple(int pricePK)
+        {
+            InformationServiceWrapper wrapper = new InformationServiceWrapper();
+            PriceMultipleModel model = wrapper.GetPriceMultipleByIDForAdmin(pricePK);
+            if (model != null)
+            {
+                ViewBag.pricePK = pricePK;
+                ViewBag.priceMultiple = model.intPriceMultiple;
+                ViewBag.vehicleType = model.txtVehicleType;
+                ViewBag.vehicleTypeID = model.intVehicleTypeID;
+                ViewBag.KMRange = model.intKMRange;
+            }
+            return View("EditPriceMultiple");
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePriceMultiple(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                PriceMultipleModel model = new PriceMultipleModel();
+                ManagementServiceWrapper obj = new ManagementServiceWrapper();
+                model.intVehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+                model.intPriceMultiple = Convert.ToDecimal(form["intPriceMultiple"]);
+                model.IntPricePK = Convert.ToInt32(form["IntPricePK"]);
+                
+                string success = obj.UpdatePriceMultiple(model);
+
+                return Json(success, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
     }
 }

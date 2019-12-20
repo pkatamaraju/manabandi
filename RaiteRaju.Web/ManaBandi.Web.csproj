@@ -318,6 +318,8 @@
     <Content Include="Views\Admin\EditOwnerDetails.cshtml" />
     <Content Include="Views\Partner\DriverRegistration.cshtml" />
     <Content Include="Views\User\DriverAccount.cshtml" />
+    <Content Include="Views\Admin\PriceMultiple.cshtml" />
+    <Content Include="Views\Admin\EditPriceMultiple.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

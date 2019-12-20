@@ -68,6 +68,9 @@ namespace RaiteRaju.DAL.DALUtility
         public const string UPDATE_MBDriverDetailsByAdmin = "UPDATE_MBDriverDetailsByAdmin";
         public const string GET_MBSUMMARY = "GET_MBSUMMARY";
 
+        public const string GET_PriceMultiple = "GET_PriceMultiple";
+        public const string UPDATE_PriceMultiple = "UPDATE_PriceMultiple";
+        public const string GET_PriceMultipleByID = "GET_PriceMultipleByID";
         #endregion
 
         public const string INSERT_MBInsertPromotions = "INSERT_MBInsertPromotions";

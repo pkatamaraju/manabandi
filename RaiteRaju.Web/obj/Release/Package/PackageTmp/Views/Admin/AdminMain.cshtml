@@ -13,9 +13,25 @@
 <script src="~/Scripts/jquery.loading-indicator.min.js"></script>
 <link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
 <script type="text/javascript">
-    $.noConflict();
+   $.noConflict();
+    var ReviewsList = null;
     jQuery(document).ready(function () {
 
+        SummaryList=@(Html.Raw(Json.Encode(ViewBag.summaryList)));
+        var length = Object.keys(SummaryList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblSummary').html('<tr><td style="padding-top:120px;padding-left:220px;font-size:16px"">No Data found</tr><td></td></td>');
+        }
+        else
+        {
+            var tblSummaryList = jQuery('#tblSummary');
+            for(i=0;i<length;i++){
+                j=i+1;
+                tblSummaryList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + j + '</td><td style="width:100px;text-align:center;">' + SummaryList[i].Name + '</td><td class="tdbreak" style="width:100px;text-align:center;">' + SummaryList[i].value+'</td><tr>')
+            }
+        }
     });
 </script>
 <div class="container">
@@ -25,7 +41,17 @@
         <div class="col-md-8 col-sm-8">
             <h3 class="FormHeading">Admin Main</h3>
             <div class="form-box landing-form-box">
-                
+                <div style="border:1px solid black" class="table-responsive">
+                    <table id="tblSummary" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">
+                        <tr id="adlistHeader">
+                            <th width="20px">S.No</th>
+                            <th width="100px">Type</th>
+                            <th width="50%">Count</th>
+                        </tr>
+
+                    </table>
+
+                </div>
             </div>
         </div>
     </div>

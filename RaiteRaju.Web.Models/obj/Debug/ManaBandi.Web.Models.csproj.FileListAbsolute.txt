@@ -10,3 +10,8 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\ManaBandi.W
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\ManaBandi.Web.Models.csproj.CoreCompileInputs.cache
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\bin\Debug\RaiteRaju.Web.Models.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\bin\Debug\RaiteRaju.Web.Models.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\obj\Debug\RaiteRaju.Web.Models.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\obj\Debug\ManaBandi.Web.Models.csprojResolveAssemblyReference.cache

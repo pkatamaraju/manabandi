@@ -195,6 +195,15 @@ namespace RaiteRaju.ServiceMapper
             return ManObj.UpdateDriverDetailsByAdmin(Entity);
         }
 
+        public string UpdatePriceMultiple(PriceMultipleModel model)
+        {
+            ManagementObjectMapper objMapper = new ManagementObjectMapper();
+            PriceMultipleEntity Entity = new PriceMultipleEntity();
+            Entity = objMapper.MapPriceMultipleModelToEntity(model);
+
+            ServiceLayer.ManagementService ManObj = new ManagementService();
+            return ManObj.UpdatePriceMultiple(Entity);
+        }
         #endregion
     }
 }

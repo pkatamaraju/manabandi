@@ -54,6 +54,7 @@
     <Compile Include="GDictionary.cs" />
     <Compile Include="OwnerEntity.cs" />
     <Compile Include="PriceEntity.cs" />
+    <Compile Include="PriceMultipleEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewEntity.cs" />
     <Compile Include="RideEntity.cs" />

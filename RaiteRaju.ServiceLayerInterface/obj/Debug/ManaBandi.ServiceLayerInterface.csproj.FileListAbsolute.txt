@@ -16,3 +16,10 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\ManaBandi.ServiceLayerInterface.csproj.CopyComplete
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\obj\Debug\ManaBandi.ServiceLayerInterface.csprojResolveAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceLayerInterface\obj\Debug\RaiteRaju.ServiceLayerInterface.pdb

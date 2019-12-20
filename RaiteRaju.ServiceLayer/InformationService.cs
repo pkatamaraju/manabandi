@@ -191,6 +191,17 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
             return BusObj.GetDriverDetailsByIDForAdmin(driver);
         }
+
+        public List<PriceMultipleEntity> GetPriceMultiple()
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetPriceMultiple();
+        }
+       public PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK)
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetPriceMultipleByIDForAdmin(intPricePK);
+        }
     }
 
 

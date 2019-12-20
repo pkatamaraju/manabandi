@@ -556,6 +556,47 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return model;
         }
 
+        internal List<PriceMultipleModel> MapPriceMultipleEntityListToModel(List<PriceMultipleEntity>  entityList)
+        {
+            PriceMultipleModel model = null;
+            List<PriceMultipleModel> listModel = new List<PriceMultipleModel>();
+            if (entityList != null)
+            {
+                foreach (PriceMultipleEntity entity in entityList)
+                {
+                    model = new PriceMultipleModel();
+                    model.intVehicleTypeID = entity.intVehicleTypeID;
+                    model.intPriceMultiple = entity.intPriceMultiple;
+                    model.intKMRange = entity.intKMRange;
+                    model.IntPricePK = entity.IntPricePK;
+                    model.intPricePerKM = entity.intPricePerKM;
+                    model.txtVehicleType = entity.txtVehicleType;
+                    listModel.Add(model);
+                }
+               
+            }
+            return listModel;
+
+        }
+        internal PriceMultipleModel MapPriceMultipleEntityToModel(PriceMultipleEntity entity)
+        {
+            PriceMultipleModel model = null;
+            if (entity != null)
+            {
+                    model = new PriceMultipleModel();
+                    model.intVehicleTypeID = entity.intVehicleTypeID;
+                    model.intPriceMultiple = entity.intPriceMultiple;
+                    model.intKMRange = entity.intKMRange;
+                    model.IntPricePK = entity.IntPricePK;
+                    model.intPricePerKM = entity.intPricePerKM;
+                    model.txtVehicleType = entity.txtVehicleType;
+               
+            }
+            return model;
+
+        }
+
+
         #endregion
 
     }

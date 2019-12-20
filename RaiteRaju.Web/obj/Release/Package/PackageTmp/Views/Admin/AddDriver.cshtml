@@ -1,0 +1,300 @@
+﻿
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Home", "Home")';
+    }
+
+    function validation() {
+        var userName = jQuery("#txtUserName").val();
+        var ddlState = jQuery("#ddlState").val();
+        var ddlDistrict = jQuery("#ddlDistrict").val();
+        var ddlMandal = jQuery("#ddlMandal").val();
+        var village = jQuery("#txtVillage").val();
+        var phoneNumber = jQuery("#txtPhoneNumber").val();
+
+        intRegex = /^[5-9]{1}[0-9]{9}$/;
+        var message = "";
+
+
+            if (userName == "") {
+                message = message + "Please enter Name.\n";
+            }
+            else if (/^[^<>'\"/`%-]*$/.test(userName) == false) {
+                message = message + "Special characters(<>'\"/`%-) are not allowed in Name.\n";
+            }
+            else if (userName.length > 50 || userName.length < 4) {
+                message = message + "Name should be between 4 to 50 characters.\n";
+            }
+
+
+            if (phoneNumber == "") {
+                message = message + "Please enter Phone Number.\n";
+            }
+            else if (intRegex.test(phoneNumber) == false) {
+                message = message + "Please Enter Valid Phone Number.\n";
+            }
+
+            if (ddlState == "" || ddlState == "---Select State---") {
+                message = message + "Please Select State.\n";
+            }
+
+            if (ddlDistrict== "0" || ddlDistrict == "---Select District---") {
+                message = message + "Please Select District.\n";
+            }
+
+            if (ddlMandal== "0" || ddlMandal == "---Select Mandal---") {
+                message = message + "Please select Mandal.\n";
+            }
+
+            if (village == "") {
+                message = message + "Please enter Place.\n";
+            }
+            else if (/^[^<>'\"/`%-]*$/.test(village) == false) {
+                message = message + "Special characters(<>'\"/`%-) are not allowed in village.\n";
+            }
+            else if (village.length > 50 || village.length < 4) {
+                message = message + "Village should be between 4 to 50 characters.\n";
+            }
+
+
+
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnRegistration() {
+        var form = jQuery("#Registration").serialize();
+        var state = jQuery("#ddlState").val();
+        var district = jQuery("#ddlDistrict").val();
+        var mandal = jQuery("#ddlMandal").val();
+        form += "&ddlStateID=" + state + "&ddlDistrictID=" + district + "&ddlMandalID=" + mandal;
+
+        if (validation()) {
+
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddDriver", "Admin")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+
+                    if (data == "success") {
+                        jQuery('body').loadingIndicator();
+                        jQuery("#Registration")[0].reset();
+                        window.location.href = "/admin/DriverDetails?intStateID=0&intDistrictID=0&intManadalID=0&PageNumber=1";
+                    }
+                    else { alert(data); }
+                },
+                error: function (data) {
+
+                    alert("Some Error Occured");
+                    jQuery("#diverror").show();
+                }
+            });
+        }
+    }
+    jQuery(function () {
+        jQuery("#ddlState").change(function () {
+            var stagId = jQuery("#ddlState").val();
+
+            jQuery('#ddlDistrict').empty();
+            jQuery("#ddlDistrict").html("");
+            jQuery("#ddlDistrict").append
+            (jQuery('<option></option>').val("0").html("---Select District---"));
+            if (stagId != "") {
+                jQuery.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FetchDistricts", "Home")',
+                    data: '{StateId:"' + stagId + '"}',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        jQuery.each(result, function (i) {
+                            jQuery("#ddlDistrict").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        });
+                    },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+                });
+            }
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append
+            (jQuery('<option></option>').val("0").html("---Select Mandal---"));
+        })
+    });
+
+    jQuery(function () {
+        jQuery("#ddlDistrict").change(function () {
+
+            var DistID = jQuery("#ddlDistrict").val();
+            jQuery('#ddlMandal').empty();
+            jQuery("#ddlMandal").html("");
+            jQuery("#ddlMandal").append(jQuery('<option></option>').val("0").html("---Select Mandal---"));
+
+            if (DistID != "") {
+                jQuery.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FetchMandals", "Home")',
+                    data: '{DistrictId:"' + DistID + '"}',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        jQuery.each(result, function (i) {
+                            jQuery("#ddlMandal").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        });
+                    },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+                });
+            }
+        })
+    });
+
+    jQuery(document).ready(function () {
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name));
+                });
+                },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+        });
+    });
+
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("AttachVehicle", "Partern", FormMethod.Post, new { id = "Registration" }))
+                {
+                    <h3 class="FormHeading">Register here to add your vehicle with us. </h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Join Now</h3>
+                        <div class="row">
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlState">State<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.DropDownList("ddlState", Enum.GetValues(typeof(RaiteRaju.ApplicationUtility.StateList)).Cast<RaiteRaju.ApplicationUtility.StateList>().Select(x => new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }), "---Select State---", new { @class = "form-control text-right", required = "required" })
+                                        <span class="error-msg" id="ErrorddlState">Please Select Your State</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlDistrict">District<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlDistrict" class="form-control text-center">
+                                            <option value="0" selected>---Select District---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select Your District</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="ddlMandal">Mandal/Tehsil<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlMandal" class="form-control text-center">
+                                            <option value="0" selected>---Select Mandal---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select Your Mandal</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtVillage">Village/Area<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtVillage" name="txtVillage" placeholder="Pragathi Nagar">
+                                        <span class="error-msg" id="ErrorddlState">Please enter Village/Area</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnRegistration()" />
+                                    <br>
+                                    <label style="font-size:10px;font-family:inherit">By creating account with Bella Cabs, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

@@ -146,6 +146,19 @@ namespace RaiteRaju.DAL.DALUtility
         public const string PARAMBASEFARE = "BaseFare";
         public const string PARAMINTCOUNT = "intCount";
 
+
+        //priceMultiple
+        public const string PARAMPRICEPERKM = "intPricePerKM";
+        public const string PARAMINTKMRANGE = "intKMRange";
+        public const string PAMAMINTPRICEPK = "IntPricePK";
+        public const string PARAMDECIMALPRICEMULTIPLE = "intPriceMultiple";
+        
+
+
+
+
+
+
         #endregion
     }
 }

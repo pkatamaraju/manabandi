@@ -119,6 +119,12 @@ namespace RaiteRaju.BusinessLayer
             return objDAL.UpdateDriverDetailsByAdmin(entity);
         }
 
+       public string UpdatePriceMultiple(PriceMultipleEntity entity)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.UpdatePriceMultiple(entity);
+        }
+
         #endregion
 
     }

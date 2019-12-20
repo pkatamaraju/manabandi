@@ -4,3 +4,8 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\ManaBandi.E
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csproj.CoreCompileInputs.cache
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csprojResolveAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb

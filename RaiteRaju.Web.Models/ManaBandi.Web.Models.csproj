@@ -53,6 +53,7 @@
     <Compile Include="GDictionaryModel.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="PriceModel.cs" />
+    <Compile Include="PriceMultipleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewModel.cs" />
     <Compile Include="Ride.cs" />

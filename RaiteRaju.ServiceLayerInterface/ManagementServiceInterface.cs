@@ -72,6 +72,8 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         int UpdateDriverDetailsByAdmin(DriverEntity entity);
 
+        [OperationContract]
+        string UpdatePriceMultiple(PriceMultipleEntity entity);
     }
          
 }

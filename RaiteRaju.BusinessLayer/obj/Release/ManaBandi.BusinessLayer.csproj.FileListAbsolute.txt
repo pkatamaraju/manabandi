@@ -16,3 +16,19 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Release\ManaBa
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Release\ManaBandi.BusinessLayer.csproj.CopyComplete
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Release\RaiteRaju.BusinessLayer.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.BusinessLayer\obj\Release\RaiteRaju.BusinessLayer.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.BusinessLayer.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.BusinessLayer.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.DAL.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\obj\Release\ManaBandi.BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\obj\Release\RaiteRaju.BusinessLayer.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.BusinessLayer\obj\Release\RaiteRaju.BusinessLayer.pdb

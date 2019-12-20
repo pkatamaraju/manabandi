@@ -162,6 +162,15 @@ namespace RaiteRaju.BusinessLayer
 
         }
 
+        public List<PriceMultipleEntity> GetPriceMultiple()
+        {
+            return new DAL.InformationDAL().GetPriceMultiple();
+
+        }
+      public  PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK)
+        {
+            return new DAL.InformationDAL().GetPriceMultipleByIDForAdmin(intPricePK);
+        }
     }
 
 }

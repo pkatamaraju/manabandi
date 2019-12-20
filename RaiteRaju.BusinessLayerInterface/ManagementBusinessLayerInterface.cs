@@ -52,5 +52,6 @@ namespace RaiteRaju.BusinessLayerInterface
 
         int UpdateDriverDetailsByAdmin(DriverEntity owner);
 
+        string UpdatePriceMultiple(PriceMultipleEntity entity);
     }
 }

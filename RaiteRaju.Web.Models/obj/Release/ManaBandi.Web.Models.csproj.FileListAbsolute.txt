@@ -4,3 +4,8 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\ManaBandi
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\ManaBandi.Web.Models.csproj.CoreCompileInputs.cache
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\RaiteRaju.Web.Models.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Web.Models\obj\Release\RaiteRaju.Web.Models.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\bin\Release\RaiteRaju.Web.Models.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\bin\Release\RaiteRaju.Web.Models.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\obj\Release\ManaBandi.Web.Models.csprojResolveAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\obj\Release\RaiteRaju.Web.Models.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web.Models\obj\Release\RaiteRaju.Web.Models.pdb

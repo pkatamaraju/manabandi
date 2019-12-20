@@ -574,7 +574,34 @@ namespace RaiteRaju.DAL
             }
         }
 
+        public string UpdatePriceMultiple(PriceMultipleEntity entity)
+        {
+            string returnVal = "";
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.UPDATE_PriceMultiple))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, entity.intVehicleTypeID);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PAMAMINTPRICEPK, DbType.Int32, entity.IntPricePK);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDECIMALPRICEMULTIPLE, DbType.Decimal, entity.intPriceMultiple);
+                   
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        returnVal = Convert.ToString(dr[DataAccessConstants.PARAMTXTRETURNVALUE]);
+                    }
 
+                    dr.Close();
+                    return returnVal;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("ManagementDal", "UpdatePriceMultiple", ex.Message);
+                return null;
+            }
+
+        }
         public void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage)
         {
 
