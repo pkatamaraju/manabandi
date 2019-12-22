@@ -45,5 +45,7 @@ namespace RaiteRaju.Web.Models
         public int FlgAccountDeleted { get; set; }
 
         public string UserType {get;set;}
+
+        public string Role { get; set; }
     }
 }

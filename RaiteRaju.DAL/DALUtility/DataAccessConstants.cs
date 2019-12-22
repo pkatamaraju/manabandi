@@ -145,6 +145,8 @@ namespace RaiteRaju.DAL.DALUtility
         public const string INTTOTALCOSTPERKM = "intTotalCostPerKM";
         public const string PARAMBASEFARE = "BaseFare";
         public const string PARAMINTCOUNT = "intCount";
+        public const string PARAMTXTROLE = "txtRole";
+
 
 
         //priceMultiple

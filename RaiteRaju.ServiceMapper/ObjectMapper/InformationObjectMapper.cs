@@ -83,6 +83,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 UserObj.ddlMandal = Entity.txtMandal;
                 UserObj.txtVillage = Entity.txtvillage;
                 UserObj.txtMailId = Entity.txtMailId;
+                UserObj.Role = Entity.Role;
             }
             return UserObj;
 
@@ -108,6 +109,8 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     UserObj.bitVerifiedPhoneNumber = item.bitVerifiedPhoneNumber;
                     UserObj.FlgAccountDeleted = item.FlgAccountDeleted;
                     UserObj.UserType = item.UserType;
+                    UserObj.Role = item.Role;
+
                     ModelList.Add(UserObj);
                 }
             }

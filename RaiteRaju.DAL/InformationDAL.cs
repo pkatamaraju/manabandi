@@ -62,6 +62,7 @@ namespace RaiteRaju.DAL
                     while (dr.Read())
                     {
                         UserEntity.txtName = Convert.ToString(dr[DataAccessConstants.ParamtName]);
+                        UserEntity.Role = Convert.ToString(dr[DataAccessConstants.PARAMTXTROLE]);
                     }
                     dr.Close();
                     return UserEntity;

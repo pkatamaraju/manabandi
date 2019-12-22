@@ -9,6 +9,8 @@
 
     var ContactUSList = null;
     jQuery(document).ready(function () {
+        jQuery('#tabContactUsForAdmin').addClass('active');
+
 
         ContactUSList=@(Html.Raw(Json.Encode(ViewBag.ContactusList)));
         var length=Object.keys(ContactUSList).length;

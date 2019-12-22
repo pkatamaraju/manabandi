@@ -68,6 +68,13 @@ namespace RaiteRaju.Web.Controllers
             if (ModelObj.txtUserName != null)
             {
                 HttpCookie UserNameCookie = new HttpCookie("_RRAUN");
+
+                HttpCookie RoleCookie = new HttpCookie("_RRROLE");
+                RoleCookie.Values["_RRROLE"] = ModelObj.Role.ToString().ToUpper();
+                RoleCookie.Expires = DateTime.Now.AddDays(365);
+                Response.Cookies.Add(RoleCookie);
+
+
                 HttpCookie PhoneNumberCookie = new HttpCookie("_RRAPn");
                 HttpCookie KeyCookie = new HttpCookie("_RRAPS");
 
@@ -83,7 +90,6 @@ namespace RaiteRaju.Web.Controllers
                     //Add the Cookie to Browser.
                     Response.Cookies.Add(UserNameCookie);
 
-                    // Session["LOGGEDONUSER"] = ModelObj.txtUserName;
                 }
                 else
                 {

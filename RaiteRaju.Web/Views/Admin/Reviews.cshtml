@@ -8,6 +8,7 @@
     $.noConflict();
     var ReviewsList = null;
     jQuery(document).ready(function () {
+        jQuery('#tabReviews').addClass('active');
 
         ReviewsList=@(Html.Raw(Json.Encode(ViewBag.ReviewsList)));
         var length=Object.keys(ReviewsList).length;
