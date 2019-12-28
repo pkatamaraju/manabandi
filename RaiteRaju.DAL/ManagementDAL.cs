@@ -584,7 +584,8 @@ namespace RaiteRaju.DAL
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMINTVEHICLETYPEID, DbType.Int32, entity.intVehicleTypeID);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PAMAMINTPRICEPK, DbType.Int32, entity.IntPricePK);
                     DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMDECIMALPRICEMULTIPLE, DbType.Decimal, entity.intPriceMultiple);
-                   
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.PARAMPRICEPERKM, DbType.Decimal, entity.intPricePerKM);
+
                     IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
                     while (dr.Read())
                     {

@@ -16,3 +16,4 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Relea
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Release\ManaBandi.ApplicationUtility.csprojResolveAssemblyReference.cache
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Release\RaiteRaju.ApplicationUtility.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Release\Microsoft.QualityTools.Testing.Fakes.dll

@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>ftp://mi3-wss10.a2hosting.com/httpdocs/manabandi</_PublishTargetUrl>
+    <_PublishTargetUrl>ftp://ftp.raiteraju.in/httpdocs/manabandi</_PublishTargetUrl>
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAykqv1ZTeIki682u6MQLCcAAAAAACAAAAAAAQZgAAAAEAACAAAACnsgQZM1c3SOC8LYdaU7MQCs5TstvA1dDhHj8cbe6A7AAAAAAOgAAAAAIAACAAAACWJl0TGEAtNkX4xNFewbEChH5vUzS5rW3PIGIGFHU4YSAAAADrrhXK2GoGtnEA0NcmGEkEmlwB9BaXwvbzxdsHXFpWrkAAAACYddA0CesLEHWNKuVm/mVPZ779l/YIdvgaZqAEavIfiCbBBhu2RSsAvUIaUeuCoGEnrv31+E8fu8CtwrNOAewc</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
@@ -44,37 +44,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:11</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ApplicationUtility.dll">
-      <publishTime>12/20/2019 18:34:42</publishTime>
+      <publishTime>12/22/2019 20:21:51</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ApplicationUtility.pdb">
       <publishTime>11/28/2019 17:28:58</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.dll">
-      <publishTime>12/20/2019 18:34:44</publishTime>
+      <publishTime>12/22/2019 20:21:52</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.pdb">
       <publishTime>12/10/2019 13:32:07</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayerInterface.dll">
-      <publishTime>12/20/2019 18:34:43</publishTime>
+      <publishTime>12/22/2019 20:08:49</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayerInterface.pdb">
       <publishTime>12/10/2019 13:32:06</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.dll">
-      <publishTime>12/20/2019 18:34:43</publishTime>
+      <publishTime>12/22/2019 20:21:51</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.pdb">
       <publishTime>12/10/2019 13:32:07</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Entities.dll">
-      <publishTime>12/20/2019 18:34:42</publishTime>
+      <publishTime>12/22/2019 20:08:48</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Entities.pdb">
       <publishTime>12/10/2019 13:32:06</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll">
-      <publishTime>12/20/2019 18:34:45</publishTime>
+      <publishTime>12/22/2019 20:21:52</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll.config">
       <publishTime>12/20/2019 13:34:08</publishTime>
@@ -83,22 +83,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2019 13:32:07</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayerInterface.dll">
-      <publishTime>12/20/2019 18:34:43</publishTime>
+      <publishTime>12/22/2019 20:08:49</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayerInterface.pdb">
       <publishTime>12/10/2019 13:32:06</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.dll">
-      <publishTime>12/20/2019 18:34:46</publishTime>
+      <publishTime>12/22/2019 20:21:52</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.pdb">
       <publishTime>12/10/2019 13:32:07</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.dll">
-      <publishTime>12/20/2019 18:34:50</publishTime>
+      <publishTime>12/22/2019 20:21:53</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.Models.dll">
-      <publishTime>12/20/2019 18:34:42</publishTime>
+      <publishTime>12/22/2019 20:08:48</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.Models.pdb">
       <publishTime>12/10/2019 13:32:06</publishTime>
@@ -134,7 +134,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:11</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>12/20/2019 13:34:11</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>12/20/2019 13:34:11</publishTime>
@@ -278,7 +278,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Content/HelpImges/UR5.PNG">
-      <publishTime>11/28/2019 22:48:10</publishTime>
+      <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Content/HelpImges/UR6.PNG">
       <publishTime>12/20/2019 13:34:10</publishTime>
@@ -566,10 +566,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>12/22/2019 20:19:17</publishTime>
     </File>
     <File Include="Shared/_AdminLayout.cshtml">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>12/22/2019 19:23:58</publishTime>
     </File>
     <File Include="Shared/_Layout.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
@@ -620,7 +620,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2019 00:30:35</publishTime>
     </File>
     <File Include="Views/Admin/ContactUs.cshtml">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>12/21/2019 12:02:58</publishTime>
     </File>
     <File Include="Views/Admin/DriverDetails.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
@@ -630,6 +630,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Admin/EditOwnerDetails.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
+    </File>
+    <File Include="Views/Admin/EditPriceMultiple.cshtml">
+      <publishTime>12/21/2019 00:34:53</publishTime>
     </File>
     <File Include="Views/Admin/EditRideDetails.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
@@ -652,8 +655,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Admin/PriceCalculator.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
+    <File Include="Views/Admin/PriceMultiple.cshtml">
+      <publishTime>12/21/2019 00:04:55</publishTime>
+    </File>
     <File Include="Views/Admin/Reviews.cshtml">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>12/21/2019 12:06:38</publishTime>
     </File>
     <File Include="Views/Admin/RideDetails.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
@@ -785,7 +791,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Views/User/OTPVerification.cshtml">
-      <publishTime>12/02/2019 12:10:10</publishTime>
+      <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Views/User/OwnerAccount.cshtml">
       <publishTime>12/20/2019 13:34:10</publishTime>
@@ -800,7 +806,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/20/2019 18:35:00</publishTime>
+      <publishTime>12/22/2019 20:14:04</publishTime>
     </File>
   </ItemGroup>
 </Project>

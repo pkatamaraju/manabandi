@@ -14,4 +14,3 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Debug\RaiteRaju
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Debug\RaiteRaju.Entities.pdb
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.pdb
-C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Debug\ManaBandi.Entities.csprojResolveAssemblyReference.cache

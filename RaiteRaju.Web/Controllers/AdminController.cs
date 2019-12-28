@@ -1327,6 +1327,9 @@ namespace RaiteRaju.Web.Controllers
                 ViewBag.vehicleType = model.txtVehicleType;
                 ViewBag.vehicleTypeID = model.intVehicleTypeID;
                 ViewBag.KMRange = model.intKMRange;
+                ViewBag.intPricePerKM = model.intPricePerKM;
+
+                
             }
             return View("EditPriceMultiple");
         }
@@ -1343,7 +1346,9 @@ namespace RaiteRaju.Web.Controllers
                 model.intVehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
                 model.intPriceMultiple = Convert.ToDecimal(form["intPriceMultiple"]);
                 model.IntPricePK = Convert.ToInt32(form["IntPricePK"]);
-                
+                model.intPricePerKM = Convert.ToInt32(form["intPricePerKM"]);
+
+
                 string success = obj.UpdatePriceMultiple(model);
 
                 return Json(success, JsonRequestBehavior.AllowGet);

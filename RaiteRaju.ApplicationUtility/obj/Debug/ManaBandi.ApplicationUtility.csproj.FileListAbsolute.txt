@@ -23,6 +23,6 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Debug
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
-C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Debug\ManaBandi.ApplicationUtility.csprojResolveAssemblyReference.cache
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Debug\RaiteRaju.ApplicationUtility.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Debug\RaiteRaju.ApplicationUtility.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll

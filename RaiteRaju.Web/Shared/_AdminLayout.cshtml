@@ -109,14 +109,11 @@
                             <a id="UserLoggedInText" href="#">@Request.Cookies["_RRAUN"]["_RRAUN"] <span class="fa fa-angle-down"></span></a>
 
                             <div class="dropdown-content">
-                                <a href="/Admin/ReviewsForAdmin">Reviews</a>
-                                <a href="/Admin/ContactUs" id="tabContactUsForAdmin" tabindex="-1">Contact Us</a>
-
                                 @if (Request.Cookies["_RRROLE"]["_RRROLE"].ToString() == "ADMIN")
                                 {
                                     <a href="/Admin/Exceptions" id="tabExceptions" tabindex="-1">Exceptions</a>
-                                    <a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">VehicleTypes</a>
-                                    <a href="/Admin/GetPriceMultiple" id="tabPriceMultiple" tabindex="-1">Price Multiple</a>
+                                    <a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">Vehicle_Types</a>
+                                    <a href="/Admin/GetPriceMultiple" id="tabPriceMultiple" tabindex="-1">Price_Multiple</a>
                                 }
                                 <a href="#" onclick="fnLogout()">Logout</a>
                             </div>
