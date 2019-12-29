@@ -53,6 +53,8 @@ namespace RaiteRaju.Entities
         [DataMember]
         public string UserType { get; set; }
 
+        public string Role { get; set; }
+
 
     }
 }

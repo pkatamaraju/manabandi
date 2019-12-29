@@ -12,14 +12,14 @@ namespace RaiteRaju.ServiceLayerInterface
     [ServiceContract]
     public interface ManagementServiceInterface
     {
-        
+
         [OperationContract]
         int InsertAddUserDetails(UserDetailsEntity Obj);
 
-        
+
         [OperationContract]
         UserDetailsEntity VerifyMobileNumber(UserDetailsEntity Obj);
-     
+
         [OperationContract]
         int UpdateUserDetails(UserDetailsEntity Obj);
 
@@ -35,7 +35,7 @@ namespace RaiteRaju.ServiceLayerInterface
         [OperationContract]
         int insertContactUs(ContactUsEntity ENTITY);
 
- 
+
         [OperationContract]
         void ExceptionLoggin(string ControllerName, string ActionName, string ErrorMessage);
 
@@ -65,6 +65,15 @@ namespace RaiteRaju.ServiceLayerInterface
 
         [OperationContract]
         string UpdateVehicleTypes(VehicleTypesEntity entity);
+
+        [OperationContract]
+        int DriverRegistration(DriverEntity driver);
+
+        [OperationContract]
+        int UpdateDriverDetailsByAdmin(DriverEntity entity);
+
+        [OperationContract]
+        string UpdatePriceMultiple(PriceMultipleEntity entity);
     }
          
 }

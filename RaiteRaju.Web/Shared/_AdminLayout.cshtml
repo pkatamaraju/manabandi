@@ -47,15 +47,22 @@
             jQuery("#tabUserRegistration").click(function () {
                 window.location.href = "/admin/UserRegistration";
             });
-            jQuery("#tabVehicleTypes").click(function () {
-                window.location.href = "/Admin/VehicleTypesForAdmin";
+            jQuery("#tabDriverDetails").click(function () {
+                window.location.href = "/admin/DriverDetails?intStateID=0&intDistrictID=0&intManadalID=0&PageNumber=1";
             });
-            //jQuery("#tabContactUsForAdmin").click(function () {
-            //    window.location.href = "/Admin/ContactUs";
+            //jQuery("#tabVehicleTypes").click(function () {
+            //    window.location.href = "/Admin/VehicleTypesForAdmin";
             //});
-            //jQuery("#tabExceptions").click(function () {
-            //    window.location.href = "/Admin/Exceptions";
+            //jQuery("#tabPriceMultiple").click(function () {
+            //    window.location.href = "/Admin/GetPriceMultiple";
             //});
+
+            jQuery("#tabContactUsForAdmin").click(function () {
+                window.location.href = "/Admin/ContactUs";
+            });
+            jQuery("#tabExceptions").click(function () {
+                window.location.href = "/Admin/Exceptions";
+            });
 
         });
 
@@ -102,16 +109,18 @@
                             <a id="UserLoggedInText" href="#">@Request.Cookies["_RRAUN"]["_RRAUN"] <span class="fa fa-angle-down"></span></a>
 
                             <div class="dropdown-content">
-                                <a href="/Admin/ReviewsForAdmin">Reviews</a>
-                                <a href="/Admin/ContactUs" id="tabContactUsForAdmin" tabindex="-1">Contact Us</a>
-                                <a href="/Admin/Exceptions" id="tabExceptions" tabindex="-1">Exceptions</a>
+                                @if (Request.Cookies["_RRROLE"]["_RRROLE"].ToString() == "ADMIN")
+                                {
+                                    <a href="/Admin/Exceptions" id="tabExceptions" tabindex="-1">Exceptions</a>
+                                    <a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">Vehicle_Types</a>
+                                    <a href="/Admin/GetPriceMultiple" id="tabPriceMultiple" tabindex="-1">Price_Multiple</a>
+                                }
                                 <a href="#" onclick="fnLogout()">Logout</a>
                             </div>
                         </div>
                         <span class="arrow-down" style="vertical-align:auto;"></span>}
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pt-4 ">
-                    @*<a href="/AddPost/AddPost" class="ghost-btn first last filled py-2" tabindex="-1">Post Your Ad</a>*@
                 </div>
 
             </div>
@@ -131,8 +140,11 @@
                         <a href="/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabOwners" tabindex="-1">Owners Data</a>
                         <a href="/admin/PriceCalculator" id="tabPriceCalculator" tabindex="-1">Price Calculator</a>
                         <a href="/admin/OwnerSearch" id="tabOwnerSearch" tabindex="-1">Owner Search</a>
-                        <a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">VehicleTypes</a>
-                        
+                        <a href= "/admin/DriverDetails?intStateID=0&intDistrictID=0&intManadalID=0&PageNumber=1"; id="tabDriverDetails" tabindex="-1">Driver Details</a>
+                        @*<a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">VehicleTypes</a>
+                        <a href="/Admin/GetPriceMultiple" id="tabPriceMultiple" tabindex="-1">Price Multiple</a>*@
+                        <a href="/Admin/ContactUs" id="tabContactUsForAdmin" tabindex="-1">Contact Us</a>
+                        <a href="/Admin/ReviewsForAdmin" id="tabReviews"  tabindex="-1">Reviews</a>
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                             <i class="fa fa-bars"></i>
                         </a>

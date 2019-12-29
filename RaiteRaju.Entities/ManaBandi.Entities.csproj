@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactUsEntity.cs" />
+    <Compile Include="DriverEntity.cs" />
     <Compile Include="ExceptionEntity.cs" />
     <Compile Include="GDictionary.cs" />
     <Compile Include="OwnerEntity.cs" />
     <Compile Include="PriceEntity.cs" />
+    <Compile Include="PriceMultipleEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReviewEntity.cs" />
     <Compile Include="RideEntity.cs" />

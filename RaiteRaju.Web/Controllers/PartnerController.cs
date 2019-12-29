@@ -275,6 +275,109 @@ namespace RaiteRaju.Web.Controllers
 
             }
         }
+
+        public ActionResult DriverRegistration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DriverRegistration(FormCollection form)
+        {
+            DriverModel model = new DriverModel();
+            Utility en = new Utility();
+
+            Random r = new Random();
+            Int32 OTP = r.Next(100000, 999999);
+
+            Int32 ownerID = 0;
+
+            model.txtDriverName = form["txtUserName"];
+            model.BigIntPhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+            model.txtPassword = en.Encrypt(form["txtPassword"]);
+            model.intStateId = Convert.ToInt32(form["ddlStateID"]);
+            model.intDistrictId = Convert.ToInt32(form["ddlDistrictID"]);
+            model.intManadalID = Convert.ToInt32(form["ddlMandalID"]);
+            model.txtPlace = form["txtVillage"];
+            model.OTP = OTP;
+
+            string errorMessage = "";
+
+            string s = "[^<>'\"/`%-]";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtDriverName, s))
+            {
+                errorMessage = errorMessage + "Special character are not allowed in Name.\n";
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(en.Decrypt(model.txtPassword), s))
+            {
+                errorMessage = errorMessage + "Special character are not allowed in password.\n";
+            }
+
+            if (!System.Text.RegularExpressions.Regex.Match(model.BigIntPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
+            {
+                errorMessage = errorMessage + "Enter valid Phone Number.\n";
+            }
+
+            if (!Regex.Match(model.intStateId.ToString(), "[1-9]").Success)
+            {
+                errorMessage = errorMessage + "Select valid State.\n";
+            }
+
+            if (!Regex.Match(model.intDistrictId.ToString(), "[1-9]").Success)
+            {
+                errorMessage = errorMessage + "Select valid District.\n";
+            }
+
+            if (!Regex.Match(model.intManadalID.ToString(), "[1-9]").Success)
+            {
+                errorMessage = errorMessage + "Select valid Mandal.\n";
+            }
+
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtPlace, s))
+            {
+                errorMessage = errorMessage + "special characters are not allowed in Place.\n";
+            }
+
+
+            GDictionaryModel GDOBJ = new GDictionaryModel();
+            if (errorMessage == "")
+            {
+                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                InformationServiceWrapper infoObj = new InformationServiceWrapper();
+                GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.owner.ToString());
+                if (GDOBJ.ID == 1)
+                {
+                    ManagementServiceWrapper serviceObj = new ManagementServiceWrapper();
+
+
+                    ownerID = serviceObj.DriverRegistration(model);
+
+                    if (ownerID != 0)
+                    {
+                        HttpCookie KeyCookie = new HttpCookie("_RRPS");
+                        KeyCookie.Values["_RRPS"] = en.Encrypt(model.txtPassword);
+                        KeyCookie.Expires = DateTime.Now.AddDays(365);
+                        Response.Cookies.Add(KeyCookie);
+                    }
+                    return Json("success", JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    errorMessage = "Entered mobiler number is already registered with us.\n";
+                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(errorMessage, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+
     }
 
 }

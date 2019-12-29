@@ -1,0 +1,162 @@
+﻿
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script type="text/javascript">
+    $.noConflict();
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Home", "Home")';
+    }
+
+    jQuery(document).ready(function () {
+        jQuery("#txtVehicleType").val('@ViewBag.vehicleType').prop("disabled", true);
+        jQuery("#intKMRange").val('@ViewBag.KMRange').prop("disabled", true);
+        jQuery("#intPriceMultiple").val('@ViewBag.priceMultiple');
+        jQuery("#intPricePerKM").val('@ViewBag.intPricePerKM');
+
+    });
+
+    function validation() {
+
+        var intPriceMultiple = jQuery("#intPriceMultiple").val();
+        var intPricePerKM = jQuery("#intPricePerKM").val();
+
+        decimalRegex = /^\d+\.\d{0,2}$/;
+        //decimalRegex = /^[0-9]+[.]{1}\d{0,2}$/;
+
+        var intRegex = /^\d+$/;
+        var message = "";
+
+        if (intPriceMultiple == "") {
+            message = message + "Please enter Price Multiple.\n";
+        }
+        else if (decimalRegex.test(intPriceMultiple) == false && intRegex.test(intPriceMultiple) == false ) {
+
+            message = message + "Please enter valid Price Multiple.\n";
+        }
+        if (intPricePerKM == "") {
+            message = message + "Please enter Price Per KM.\n";
+        }
+        else if (decimalRegex.test(intPricePerKM) == false && intRegex.test(intPricePerKM) == false) {
+
+            message = message + "Please enter valid Price Per KM.\n";
+        }
+
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnUpdatePriceMutliple() {
+        var form = jQuery("#EditPriceMultipleForm").serialize();
+        var intVehicleTypeId = parseInt('@ViewBag.vehicleTypeID');
+        var intPricePK = parseInt('@ViewBag.pricePK');
+        form += "&intVehicleTypeId=" + intVehicleTypeId + "&IntPricePK=" + intPricePK;
+
+        if (validation()) {
+
+            jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdatePriceMultiple", "Admin")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data == "success") {
+                        jQuery('body').loadingIndicator();
+                        jQuery("#EditPriceMultipleForm")[0].reset();
+                        window.location.href = "/admin/GetPriceMultiple";
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+        }
+    }
+
+
+
+</script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("UpdatePriceMultiple", "Admin", FormMethod.Post, new { id = "EditPriceMultipleForm" }))
+                {
+                    <h3 class="FormHeading">Edit Price Multiple</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Edit Now</h3>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="txtVehicleType">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtVehicleType" name="txtVehicleModel" placeholder=" Ex: Mini Truck" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intKMRange">KM Rnage<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intKMRange" name="intKMRange" placeholder="ex: 2.5" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intPriceMultiple">Price Multiple<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intPriceMultiple" name="intPriceMultiple" placeholder="Ex: 2.5" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intPricePerKM">Price per KM<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intPricePerKM" name="intPricePerKM" placeholder="Ex: 2.5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnRegister" type="button" value="Submit Details" class="ghost-btn first last filled" onclick="fnUpdatePriceMutliple()" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

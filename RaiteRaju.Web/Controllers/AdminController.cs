@@ -22,6 +22,10 @@ namespace RaiteRaju.Web.Controllers
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
             if (nameCookie != null)
             {
+                List<GDictionaryModel> modelList = new List<GDictionaryModel>();
+                InformationServiceWrapper inforObj = new InformationServiceWrapper();
+                modelList=inforObj.GetSummaryForAdmin();
+                ViewBag.summaryList = modelList;
                 return View("AdminMain");
             }
             else
@@ -64,6 +68,13 @@ namespace RaiteRaju.Web.Controllers
             if (ModelObj.txtUserName != null)
             {
                 HttpCookie UserNameCookie = new HttpCookie("_RRAUN");
+
+                HttpCookie RoleCookie = new HttpCookie("_RRROLE");
+                RoleCookie.Values["_RRROLE"] = ModelObj.Role.ToString().ToUpper();
+                RoleCookie.Expires = DateTime.Now.AddDays(365);
+                Response.Cookies.Add(RoleCookie);
+
+
                 HttpCookie PhoneNumberCookie = new HttpCookie("_RRAPn");
                 HttpCookie KeyCookie = new HttpCookie("_RRAPS");
 
@@ -79,7 +90,6 @@ namespace RaiteRaju.Web.Controllers
                     //Add the Cookie to Browser.
                     Response.Cookies.Add(UserNameCookie);
 
-                    // Session["LOGGEDONUSER"] = ModelObj.txtUserName;
                 }
                 else
                 {
@@ -419,7 +429,7 @@ namespace RaiteRaju.Web.Controllers
 
         }
 
-        #region ManaBandi Admin Methods
+
 
         public ActionResult AddOwner()
         {
@@ -1063,6 +1073,307 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        #endregion
+
+
+        public ActionResult AddDriver()
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddDriver(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+
+                DriverModel model = new DriverModel();
+                Utility en = new Utility();
+
+                Int32 driverID = 0;
+
+                model.txtDriverName = form["txtUserName"];
+                model.BigIntPhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+                model.txtPassword = en.Encrypt(form["txtPhoneNumber"]);
+                model.intStateId = Convert.ToInt32(form["ddlStateID"]);
+                model.intDistrictId = Convert.ToInt32(form["ddlDistrictID"]);
+                model.intManadalID = Convert.ToInt32(form["ddlMandalID"]);
+                model.txtPlace = form["txtVillage"];
+                model.OTP = 0;
+
+                string errorMessage = "";
+
+                string s = "[^<>'\"/`%-]";
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtDriverName, s))
+                {
+                    errorMessage = errorMessage + "Special character are not allowed in Name.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.Match(model.BigIntPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
+                {
+                    errorMessage = errorMessage + "Enter valid Phone Number.\n";
+                }
+
+                if (!Regex.Match(model.intStateId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid State.\n";
+                }
+
+                if (!Regex.Match(model.intDistrictId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid District.\n";
+                }
+
+                if (!Regex.Match(model.intManadalID.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid Mandal.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtPlace, s))
+                {
+                    errorMessage = errorMessage + "special characters are not allowed in Place.\n";
+                }
+
+
+                GDictionaryModel GDOBJ = new GDictionaryModel();
+                if (errorMessage == "")
+                {
+                    ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                    InformationServiceWrapper infoObj = new InformationServiceWrapper();
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.driver.ToString());
+                    if (GDOBJ.ID == 1)
+                    {
+                        ManagementServiceWrapper serviceObj = new ManagementServiceWrapper();
+
+                        driverID = serviceObj.DriverRegistration(model);
+
+                        return Json("success", JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        errorMessage = "Entered mobiler number is already registered with us.\n";
+                        return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        public ActionResult DriverDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 PageNumber)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                int TotalPageNumber = 0;
+                ViewBag.CurrentPageNumber = PageNumber;
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+
+                VehicleFilterModel Model = new VehicleFilterModel();
+                Model.intStateId = intStateID;
+                Model.intDistrictId = intDistrictID;
+                Model.intManadalID = intManadalID;
+                Model.IntPageNumber = PageNumber;
+                Model.IntPageSize = 50;
+
+                List<VehicleFilterModel> driverList = new List<VehicleFilterModel>();
+                driverList = objservice.GetDriverDetailsForAdmin(Model, out TotalPageNumber);
+                ViewBag.driverList = driverList;
+                ViewBag.TotalPageNumber = TotalPageNumber;
+
+                ViewBag.selectedStateID = intStateID;
+                ViewBag.selectedDistrictID = intDistrictID;
+                ViewBag.selectedMandalID = intManadalID;
+                ViewBag.pageNumber = PageNumber;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+
+        public ActionResult EditDriverDetails(Int32 driverID)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                InformationServiceWrapper objservice = new InformationServiceWrapper();
+
+                DriverModel Model = objservice.GetDriverDetailsByIDForAdmin(driverID);
+                ViewBag.existingMobileNumber = Model.BigIntPhoneNumber;
+                ViewBag.intDriverID = Model.intDriverID;
+                ViewBag.driver = Model;
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditDriverDetails(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                DriverModel model = new DriverModel();
+
+                model.txtDriverName = form["txtUserName"];
+                model.BigIntPhoneNumber = Convert.ToInt64(form["txtPhoneNumber"]);
+                model.intStateId = Convert.ToInt32(form["ddlStateID"]);
+                model.intDistrictId = Convert.ToInt32(form["ddlDistrictID"]);
+                model.intManadalID = Convert.ToInt32(form["ddlMandalID"]);
+                model.intDriverID = Convert.ToInt32(form["DriverID"]);
+                model.txtPlace = form["txtVillage"];
+                string mobileNumberChangedOrNOT = form["changedOrNot"];
+                string errorMessage = "";
+
+                string s = "[^<>'\"/`%-]";
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtDriverName, s))
+                {
+                    errorMessage = errorMessage + "Special character are not allowed in Name.\n";
+                }
+
+                if (!System.Text.RegularExpressions.Regex.Match(model.BigIntPhoneNumber.ToString(), @"^[56789]\d{9}$").Success)
+                {
+                    errorMessage = errorMessage + "Enter valid Phone Number.\n";
+                }
+
+                if (!Regex.Match(model.intStateId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid State.\n";
+                }
+
+                if (!Regex.Match(model.intDistrictId.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid District.\n";
+                }
+
+                if (!Regex.Match(model.intManadalID.ToString(), "[1-9]").Success)
+                {
+                    errorMessage = errorMessage + "Select valid Mandal.\n";
+                }
+
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(model.txtPlace, s))
+                {
+                    errorMessage = errorMessage + "special characters are not allowed in Place.\n";
+                }
+
+                ManagementServiceWrapper ObjService = new ManagementServiceWrapper();
+                InformationServiceWrapper infoObj = new InformationServiceWrapper();
+                GDictionaryModel GDOBJ = new GDictionaryModel();
+
+                if (mobileNumberChangedOrNOT == "changed")
+                {
+                    GDOBJ = infoObj.MobileNuberExistsOrNot(model.BigIntPhoneNumber, UserType.driver.ToString());
+                }
+                if (mobileNumberChangedOrNOT == "changed" & GDOBJ.ID != 1)
+                {
+                    errorMessage = errorMessage + "Entered mobiler number is already registered with us.\n";
+                }
+
+                if (errorMessage == "")
+                {
+
+                    ManagementServiceWrapper serviceObj = new ManagementServiceWrapper();
+
+                    serviceObj.UpdateDriverDetailsByAdmin(model);
+
+                    return Json("success", JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return Json(errorMessage, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
+
+        public ActionResult GetPriceMultiple()
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+                List<PriceMultipleModel> listModel = new List<PriceMultipleModel>();
+                InformationServiceWrapper wrapper = new InformationServiceWrapper();
+                listModel = wrapper.GetPriceMultiple();
+                ViewBag.priceMultipleList = listModel;
+                return View("PriceMultiple");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+        public ActionResult UpdatePriceMultiple(int pricePK)
+        {
+            InformationServiceWrapper wrapper = new InformationServiceWrapper();
+            PriceMultipleModel model = wrapper.GetPriceMultipleByIDForAdmin(pricePK);
+            if (model != null)
+            {
+                ViewBag.pricePK = pricePK;
+                ViewBag.priceMultiple = model.intPriceMultiple;
+                ViewBag.vehicleType = model.txtVehicleType;
+                ViewBag.vehicleTypeID = model.intVehicleTypeID;
+                ViewBag.KMRange = model.intKMRange;
+                ViewBag.intPricePerKM = model.intPricePerKM;
+
+                
+            }
+            return View("EditPriceMultiple");
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePriceMultiple(FormCollection form)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+
+            if (nameCookie != null)
+            {
+                PriceMultipleModel model = new PriceMultipleModel();
+                ManagementServiceWrapper obj = new ManagementServiceWrapper();
+                model.intVehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+                model.intPriceMultiple = Convert.ToDecimal(form["intPriceMultiple"]);
+                model.IntPricePK = Convert.ToInt32(form["IntPricePK"]);
+                model.intPricePerKM = Convert.ToInt32(form["intPricePerKM"]);
+
+
+                string success = obj.UpdatePriceMultiple(model);
+
+                return Json(success, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+        }
+
     }
 }

@@ -12,3 +12,15 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.DAL\obj\Release\ManaBandi.DAL.cs
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.DAL\obj\Release\ManaBandi.DAL.csproj.CopyComplete
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\obj\Release\ManaBandi.DAL.csprojResolveAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.DAL\obj\Release\RaiteRaju.DAL.pdb

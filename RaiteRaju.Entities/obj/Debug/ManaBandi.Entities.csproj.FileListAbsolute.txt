@@ -10,3 +10,7 @@ C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Debug\ManaBandi.Ent
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.dll
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.pdb
 C:\Users\KATAMARAJU\Desktop\ManaBandi\RaiteRaju.Entities\obj\Debug\ManaBandi.Entities.csprojAssemblyReference.cache
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Debug\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Debug\RaiteRaju.Entities.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Debug\RaiteRaju.Entities.pdb

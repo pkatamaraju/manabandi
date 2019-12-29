@@ -84,6 +84,24 @@ namespace RaiteRaju.ServiceLayerInterface
 
         [OperationContract]
         VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID);
+
+        [OperationContract]
+        List<VehicleFilterEntity> GetDriverDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber);
+
+        [OperationContract]
+        DriverEntity GetDriverDetailsByIDForAdmin(int driver);
+
+        [OperationContract]
+        List<GDictionary> GetSummaryForAdmin();
+
+        [OperationContract]
+        List<PriceMultipleEntity> GetPriceMultiple();
+
+
+        [OperationContract]
+        PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK);
+
+
         #endregion
     }
 

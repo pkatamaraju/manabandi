@@ -106,6 +106,25 @@ namespace RaiteRaju.BusinessLayer
             return objDAL.UpdateVehicleTypes(entity);
         }
 
+
+        public int DriverRegistration(DriverEntity driver)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.DriverRegistration(driver);
+        }
+
+        public int UpdateDriverDetailsByAdmin(DriverEntity entity)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.UpdateDriverDetailsByAdmin(entity);
+        }
+
+       public string UpdatePriceMultiple(PriceMultipleEntity entity)
+        {
+            DAL.ManagementDAL objDAL = new DAL.ManagementDAL();
+            return objDAL.UpdatePriceMultiple(entity);
+        }
+
         #endregion
 
     }

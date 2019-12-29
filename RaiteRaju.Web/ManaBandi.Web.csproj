@@ -304,7 +304,7 @@
     <Content Include="Views\Admin\AddRide.cshtml" />
     <Content Include="Views\Admin\PriceCalculator.cshtml" />
     <Content Include="Views\Admin\EditRideDetails.cshtml" />
-    <Content Include="Views\Admin\EditOwnerDetails.cshtml" />
+    <Content Include="Views\Admin\EditDriverDetails.cshtml" />
     <Content Include="Views\Admin\AddVehicle.cshtml" />
     <Content Include="Views\Admin\EditVehicleDetails.cshtml" />
     <Content Include="Views\Admin\AddOwner.cshtml" />
@@ -313,6 +313,13 @@
     <Content Include="Views\User\AssignedRides.cshtml" />
     <Content Include="Views\Admin\VehicleTypes.cshtml" />
     <Content Include="Views\Admin\EditVehicleTypes.cshtml" />
+    <Content Include="Views\Admin\AddDriver.cshtml" />
+    <Content Include="Views\Admin\DriverDetails.cshtml" />
+    <Content Include="Views\Admin\EditOwnerDetails.cshtml" />
+    <Content Include="Views\Partner\DriverRegistration.cshtml" />
+    <Content Include="Views\User\DriverAccount.cshtml" />
+    <Content Include="Views\Admin\PriceMultiple.cshtml" />
+    <Content Include="Views\Admin\EditPriceMultiple.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

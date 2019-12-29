@@ -63,6 +63,15 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_MBVehicleTypeForAdmin = "GET_MBVehicleTypeForAdmin";
         public const string GET_MBVehicleTypeByIDForAdmin = "GET_MBVehicleTypeByIDForAdmin";
         public const string UPDATE_MBVehicleTypes = "UPDATE_MBVehicleTypes";
+        public const string INSERT_MBDriverDetails = "INSERT_MBDriverDetails";
+        public const string GET_DriverDetailsForAdmin = "GET_DriverDetailsForAdmin";
+        public const string GET_MBDriverDetailsByIDForAdmin = "GET_MBDriverDetailsByIDForAdmin";
+        public const string UPDATE_MBDriverDetailsByAdmin = "UPDATE_MBDriverDetailsByAdmin";
+        public const string GET_MBSUMMARY = "GET_MBSUMMARY";
+
+        public const string GET_PriceMultiple = "GET_PriceMultiple";
+        public const string UPDATE_PriceMultiple = "UPDATE_PriceMultiple";
+        public const string GET_PriceMultipleByID = "GET_PriceMultipleByID";
         #endregion
 
         public const string INSERT_MBInsertPromotions = "INSERT_MBInsertPromotions";

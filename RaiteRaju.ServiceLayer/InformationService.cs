@@ -173,13 +173,43 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
             return BusObj.GetVehicleTypesForAdmin();
         }
+
         public VehicleTypesEntity GetVehicleTypeByIDForAdmin(int vehicleTypeID)
         {
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
             return BusObj.GetVehicleTypeByIDForAdmin(vehicleTypeID);
         }
 
+        public List<VehicleFilterEntity> GetDriverDetailsForAdmin(VehicleFilterEntity Entity, out int TotalPageNumber)
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetDriverDetailsForAdmin(Entity, out TotalPageNumber);
+        }
+
+        public List<GDictionary> GetSummaryForAdmin()
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetSummaryForAdmin();
+        }
+
+        public DriverEntity GetDriverDetailsByIDForAdmin(int driver)
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetDriverDetailsByIDForAdmin(driver);
+        }
+
+        public List<PriceMultipleEntity> GetPriceMultiple()
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetPriceMultiple();
+        }
+       public PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK)
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetPriceMultipleByIDForAdmin(intPricePK);
+        }
     }
+
 
 
 }

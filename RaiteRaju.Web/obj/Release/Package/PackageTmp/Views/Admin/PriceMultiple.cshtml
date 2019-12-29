@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $.noConflict();
+    var vehicleList = null;
+    jQuery(document).ready(function () {
+        jQuery().ready(function () {
+            jQuery('#tabPriceMultiple').addClass('active');
+        });
+
+        priceMultipleList=@(Html.Raw(Json.Encode(ViewBag.priceMultipleList)));
+        var length = Object.keys(priceMultipleList).length;
+
+        if(length==0)
+        {
+            jQuery('#tblPriceMultiple').html('<tr><td style="padding-top:120px;padding-left:220px;font-size:16px"">No Data found</tr><td></td></td>');
+        }
+        else
+        {
+            var tblVehicleList = jQuery('#tblPriceMultiple');
+            for(i=0;i<length;i++){
+                j = i + 1;
+                tblVehicleList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + priceMultipleList[i].intVehicleTypeID + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intKMRange + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].txtVehicleType + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intPriceMultiple + '</td><td onclick="fnUpdate(' + priceMultipleList[i].IntPricePK + ')" style="cursor:pointer;color:blue; width:100px">Edit</td><tr>')
+            }
+        }
+    });
+
+    function fnUpdate(intPricePK) {
+        window.location.href = "/Admin/UpdatePriceMultiple?pricePK=" + intPricePK;
+    }
+
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+        <div class="col-md-10 col-sm-12">
+
+            <h3 class="FormHeading text-left">Price Multiple Details</h3>
+
+            <div style="border:1px solid black" class="table-responsive">
+                <table id="tblPriceMultiple" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">
+                    <tr id="adlistHeader">
+                        <th width="20px">VID</th>
+                        <th width="100px">KM Range</th>
+                        <th width="100px">Vehicle Type</th>
+                        <th width="100px">Price Multiple</th>
+                        <th>Edit</th>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -137,6 +137,37 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return Entity;
         }
 
+        internal DriverEntity MapDriverModelToEntity(DriverModel model)
+        {
+            DriverEntity Entity = new DriverEntity();
+            Entity.intDriverID = model.intDriverID;
+            Entity.txtDriverName = model.txtDriverName;
+            Entity.BigIntPhoneNumber = model.BigIntPhoneNumber;
+            Entity.txtPassword = model.txtPassword;
+            Entity.intStateId = model.intStateId;
+            Entity.intDistrictId = model.intDistrictId;
+            Entity.intManadalID = model.intManadalID;
+            Entity.txtPlace = model.txtPlace;
+            Entity.OTP = model.OTP;
+            return Entity;
+
+        }
+
+        internal PriceMultipleEntity MapPriceMultipleModelToEntity(PriceMultipleModel model)
+        {
+            PriceMultipleEntity entity = new PriceMultipleEntity();
+            if (model != null)
+            {
+                entity.intVehicleTypeID = model.intVehicleTypeID;
+                entity.intPriceMultiple = model.intPriceMultiple;
+                entity.intKMRange = model.intKMRange;
+                entity.IntPricePK = model.IntPricePK;
+                entity.intPricePerKM = model.intPricePerKM;
+            }
+            return entity;
+
+        }
+
         #endregion
 
     }

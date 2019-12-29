@@ -83,6 +83,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 UserObj.ddlMandal = Entity.txtMandal;
                 UserObj.txtVillage = Entity.txtvillage;
                 UserObj.txtMailId = Entity.txtMailId;
+                UserObj.Role = Entity.Role;
             }
             return UserObj;
 
@@ -108,6 +109,8 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                     UserObj.bitVerifiedPhoneNumber = item.bitVerifiedPhoneNumber;
                     UserObj.FlgAccountDeleted = item.FlgAccountDeleted;
                     UserObj.UserType = item.UserType;
+                    UserObj.Role = item.Role;
+
                     ModelList.Add(UserObj);
                 }
             }
@@ -539,6 +542,64 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             return listModel;
         }
         
+        internal DriverModel MapDriverEntityToModel(DriverEntity entity)
+        {
+            DriverModel model=new DriverModel();
+            if (entity != null)
+            {
+                model.txtDriverName = entity.txtDriverName;
+                model.intDriverID = entity.intDriverID;
+                model.BigIntPhoneNumber = entity.BigIntPhoneNumber;
+                model.intStateId = entity.intStateId;
+                model.intDistrictId = entity.intDistrictId;
+                model.intManadalID = entity.intManadalID;
+                model.txtPlace = entity.txtPlace;
+
+            }
+            return model;
+        }
+
+        internal List<PriceMultipleModel> MapPriceMultipleEntityListToModel(List<PriceMultipleEntity>  entityList)
+        {
+            PriceMultipleModel model = null;
+            List<PriceMultipleModel> listModel = new List<PriceMultipleModel>();
+            if (entityList != null)
+            {
+                foreach (PriceMultipleEntity entity in entityList)
+                {
+                    model = new PriceMultipleModel();
+                    model.intVehicleTypeID = entity.intVehicleTypeID;
+                    model.intPriceMultiple = entity.intPriceMultiple;
+                    model.intKMRange = entity.intKMRange;
+                    model.IntPricePK = entity.IntPricePK;
+                    model.intPricePerKM = entity.intPricePerKM;
+                    model.txtVehicleType = entity.txtVehicleType;
+                    listModel.Add(model);
+                }
+               
+            }
+            return listModel;
+
+        }
+        internal PriceMultipleModel MapPriceMultipleEntityToModel(PriceMultipleEntity entity)
+        {
+            PriceMultipleModel model = null;
+            if (entity != null)
+            {
+                    model = new PriceMultipleModel();
+                    model.intVehicleTypeID = entity.intVehicleTypeID;
+                    model.intPriceMultiple = entity.intPriceMultiple;
+                    model.intKMRange = entity.intKMRange;
+                    model.IntPricePK = entity.IntPricePK;
+                    model.intPricePerKM = entity.intPricePerKM;
+                    model.txtVehicleType = entity.txtVehicleType;
+               
+            }
+            return model;
+
+        }
+
+
         #endregion
 
     }
