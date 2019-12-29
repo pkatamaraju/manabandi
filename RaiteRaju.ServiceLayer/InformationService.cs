@@ -121,6 +121,12 @@ namespace RaiteRaju.ServiceLayer
             return obj.GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
         }
 
+        public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(string phoneOrVehicleNumber)
+        {
+            InformationBusinessLayerInterface obj = new BusinessLayer.InformationBusinessLayer();
+            return obj.GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(phoneOrVehicleNumber);
+        }
+
         #endregion
 
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)

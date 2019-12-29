@@ -102,6 +102,11 @@ namespace RaiteRaju.BusinessLayer
             return new DAL.InformationDAL().GetOwnerDetailsByPhoneNumberForAdmin(phoneNumber);
         }
 
+        public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(string phoneOrVehicleNumber)
+        {
+            return new DAL.InformationDAL().GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(phoneOrVehicleNumber);
+        }
+
         #endregion
 
         public GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType)

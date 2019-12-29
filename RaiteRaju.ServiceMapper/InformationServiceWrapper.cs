@@ -306,6 +306,17 @@ namespace RaiteRaju.ServiceMapper
             return tuple;
         }
 
+        public Tuple<VehicleFilterModel, List<VehicleFilterModel>> GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(string phoneOrVehicleNumber)
+        {
+            VehicleFilterModel model = new VehicleFilterModel();
+            List<VehicleFilterModel> list = new List<VehicleFilterModel>();
+            InformationObjectMapper mapper = new InformationObjectMapper();
+            ServiceLayer.InformationService obj = new InformationService();
+            Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> tupleEntity = obj.GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(phoneOrVehicleNumber);
+            Tuple<VehicleFilterModel, List<VehicleFilterModel>> tuple = mapper.MapOwnerTuple(tupleEntity);
+            return tuple;
+        }
+
         public List<VehicleTypesModel> VehicleTypeForAdmin()
         {
             List<VehicleTypesModel> listobj = new List<VehicleTypesModel>();

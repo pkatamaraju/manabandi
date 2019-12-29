@@ -914,6 +914,68 @@ namespace RaiteRaju.DAL
             }
         }
 
+        public Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(string phoneorVehicleNumber)
+        {
+            VehicleFilterEntity entity;
+            List<VehicleFilterEntity> ListObj = new List<VehicleFilterEntity>();
+            VehicleFilterEntity vehObj = new VehicleFilterEntity();
+            string vehicleNumber = null;
+
+            try
+            {
+
+                var isNumeric = Int64.TryParse(phoneorVehicleNumber, out Int64 phoneNumber);
+                if (!isNumeric)
+                    vehicleNumber = phoneorVehicleNumber;
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_OwnerDetailsWithPhoneOrVehicleNumberAdmin))
+                {
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamPhoneNumber, DbType.Int64, phoneNumber);
+                    DBAccessHelper.AddInputParametersWithValues(objDbCommand, DataAccessConstants.ParamVehicleNumber, DbType.String, vehicleNumber);
+
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+
+                    while (dr.Read())
+                    {
+                        vehObj = new VehicleFilterEntity();
+                        vehObj.intStateName = Convert.ToString(dr[DataAccessConstants.PARAMTXTSTATENAME]);
+                        vehObj.intDistrictName = Convert.ToString(dr[DataAccessConstants.PARAMDISTRICTNAME]);
+                        vehObj.intManadalName = Convert.ToString(dr[DataAccessConstants.PARAMMANDALNAME]);
+                        vehObj.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        vehObj.OwnerName = Convert.ToString(dr[DataAccessConstants.PARAMTXTOWNERNAME]);
+                        vehObj.Place = Convert.ToString(dr[DataAccessConstants.PARAMTXTPLACE]);
+                        vehObj.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        vehObj.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFlgAccountDeleted]);
+
+                    }
+
+                    dr.NextResult();
+                    while (dr.Read())
+                    {
+                        entity = new VehicleFilterEntity();
+                        entity.VehicleID = Convert.ToString(dr[DataAccessConstants.PARAMINTVEHICLEID]);
+                        entity.intOwnerID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTOWNERID]);
+                        entity.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        entity.VehicleModel = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENAME]);
+                        entity.VehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                        entity.BigIntPhoneNumber = Convert.ToInt64(dr[DataAccessConstants.ParamPhoneNumber]);
+                        entity.flgOnRide = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGONRIDE]);
+                        entity.FlgAccountDeleted = Convert.ToInt32(dr[DataAccessConstants.PARAMFLGDELETED]);
+
+                        ListObj.Add(entity);
+
+                    }
+                    dr.Close();
+                }
+                Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> returnObj = new Tuple<VehicleFilterEntity, List<VehicleFilterEntity>>(vehObj, ListObj);
+                return returnObj;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetOwnerDetailsByPhoneNumberForAdmin", ex.Message);
+                return null;
+            }
+        }
+
         public List<VehicleTypesEntity> GetVehicleTypesForAdmin()
         {
             VehicleTypesEntity entity = new VehicleTypesEntity();

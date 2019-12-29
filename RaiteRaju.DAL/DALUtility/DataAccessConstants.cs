@@ -69,6 +69,7 @@ namespace RaiteRaju.DAL.DALUtility
 
         //Users
         public const string ParamPhoneNumber = "BigIntPhoneNumber";
+        public const string ParamVehicleNumber = "VehicleNumber";
         public const string ParamtName = "txtName";
         public const string Param = "intUserId";
         public const string PARAMFlgAccountDeleted = "FlgAccountDeleted";

@@ -42,7 +42,7 @@ namespace RaiteRaju.BusinessLayerInterface
 
         Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneNumberForAdmin(Int64 phoneNumber);
 
-
+        Tuple<VehicleFilterEntity, List<VehicleFilterEntity>> GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(string phoneOrVehicleNumber);
 
         GDictionary MobileNuberExistsOrNot(Int64 MobileNumber, string userType);
 

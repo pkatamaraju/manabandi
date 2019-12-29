@@ -996,6 +996,21 @@ namespace RaiteRaju.Web.Controllers
 
         }
 
+        public ActionResult OwnerSearchWithPhoneOrVehicleNumber(string phoneorVehicleNumber)
+        {
+            ViewBag.phoneNumber = phoneorVehicleNumber;
+            InformationServiceWrapper obj = new InformationServiceWrapper();
+            Tuple<VehicleFilterModel, List<VehicleFilterModel>> tupel = obj.GetOwnerDetailsByPhoneOrVehicleNumberForAdmin(phoneorVehicleNumber);
+            List<VehicleFilterModel> vehicles = tupel.Item2;
+            VehicleFilterModel owner = tupel.Item1;
+
+            ViewBag.ownerDetails = owner;
+            ViewBag.vehicleList = vehicles;
+
+            return View("OwnerSearch");
+
+        }
+
         public ActionResult VehicleTypesForAdmin()
         {
             InformationServiceWrapper obj = new InformationServiceWrapper();
