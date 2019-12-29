@@ -107,10 +107,10 @@
             message = message + "Please select Ride Status\n";
         }
 
-        if (VehicleNumber == "") {
+        if (VehicleNumber == "" & (rideStatusID == 2 || rideStatusID == 4)) {
             message = message + "Please enter Vehicle Number.\n";
         }
-        else if (vehicleNumberRegex.test(VehicleNumber) == false) {
+        else if (VehicleNumber != "" & vehicleNumberRegex.test(VehicleNumber) == false) {
             message = message + "Please enter valid vehicle number.\n";
         }
 
