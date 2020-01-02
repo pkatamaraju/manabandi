@@ -1177,7 +1177,7 @@ namespace RaiteRaju.DAL
         }
 
 
-        public void SendMail(int vehicleTypeID)
+        public void SendMail()
         {
             MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();

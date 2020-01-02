@@ -1346,7 +1346,7 @@ namespace RaiteRaju.Web.Controllers
                 model.intVehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
                 model.intPriceMultiple = Convert.ToDecimal(form["intPriceMultiple"]);
                 model.IntPricePK = Convert.ToInt32(form["IntPricePK"]);
-                model.intPricePerKM = Convert.ToInt32(form["intPricePerKM"]);
+                model.intPricePerKM = Convert.ToDecimal(form["intPricePerKM"]);
 
 
                 string success = obj.UpdatePriceMultiple(model);

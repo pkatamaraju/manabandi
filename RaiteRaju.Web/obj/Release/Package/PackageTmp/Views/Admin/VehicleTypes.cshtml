@@ -23,7 +23,7 @@
             var tblVehicleList = jQuery('#tblVehicleTypes');
             for(i=0;i<length;i++){
                 j = i + 1;
-                tblVehicleList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + vehicleList[i].intVehicleTypeId + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].txtVehicleType + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intMileage + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAverageFuelPrice + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intDriverSalary + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAvgTollPrice + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAverageSpeed + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAvgWorkingHours + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intFuelCostPerKM + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intDriverCostPerKM + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intTotalCostPerKM + '</td><td class="tdbreak" style="text-align:center;">' + vehicleList[i].BaseFare + '</td><td onclick="fnUpdateVehicleType(' + vehicleList[i].intVehicleTypeId + ')" style="cursor:pointer;color:blue; width:100px">Edit</td><tr>')
+                tblVehicleList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + vehicleList[i].intVehicleTypeId + '</td><td style="width:300px;text-align:center;">' + vehicleList[i].txtVehicleType + '</td><td style="width:50px;text-align:center;">' + vehicleList[i].intMileage + '</td><td style="width:40px;text-align:center;">' + vehicleList[i].intAverageFuelPrice + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intDriverSalary + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAvgTollPrice + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAverageSpeed + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intAvgWorkingHours + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intFuelCostPerKM + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intDriverCostPerKM + '</td><td style="width:100px;text-align:center;">' + vehicleList[i].intTotalCostPerKM + '</td><td class="tdbreak" style="text-align:center;">' + vehicleList[i].BaseFare + '</td><td onclick="fnUpdateVehicleType(' + vehicleList[i].intVehicleTypeId + ')" style="cursor:pointer;color:blue; width:100px">Edit</td><tr>')
             }
         }
     });
@@ -48,12 +48,12 @@
                 <table id="tblVehicleTypes" style="border-collapse: collapse;width:100%;overflow-wrap:break-word;text-align:center">
                     <tr id="adlistHeader">
                         <th width="20px">ID</th>
-                        <th width="100px">Type</th>
-                        <th width="100px">Mileage</th>
-                        <th width="50px">FuelPrice</th>
+                        <th width="200px">Type</th>
+                        <th width="50px">Mileage</th>
+                        <th width="40px">FuelPrice</th>
                         <th width="100px">Driver Salary</th>
                         <th width="20px">Avg Toll</th>
-                        <th width="100px">Avg Speed</th>
+                        <th width="50px">Avg Speed</th>
                         <th width="50px">Avg Working Hours</th>
                         <th width="100px">Fuel Cost Per KM</th>
                         <th width="20px">Driver Cost Per KM</th>

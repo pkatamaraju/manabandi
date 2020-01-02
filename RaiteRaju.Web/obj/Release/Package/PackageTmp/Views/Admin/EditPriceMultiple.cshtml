@@ -17,12 +17,14 @@
         jQuery("#txtVehicleType").val('@ViewBag.vehicleType').prop("disabled", true);
         jQuery("#intKMRange").val('@ViewBag.KMRange').prop("disabled", true);
         jQuery("#intPriceMultiple").val('@ViewBag.priceMultiple');
-       
+        jQuery("#intPricePerKM").val('@ViewBag.intPricePerKM');
+
     });
 
     function validation() {
 
         var intPriceMultiple = jQuery("#intPriceMultiple").val();
+        var intPricePerKM = jQuery("#intPricePerKM").val();
 
         decimalRegex = /^\d+\.\d{0,2}$/;
         //decimalRegex = /^[0-9]+[.]{1}\d{0,2}$/;
@@ -37,7 +39,14 @@
 
             message = message + "Please enter valid Price Multiple.\n";
         }
-        
+        if (intPricePerKM == "") {
+            message = message + "Please enter Price Per KM.\n";
+        }
+        else if (decimalRegex.test(intPricePerKM) == false && intRegex.test(intPricePerKM) == false) {
+
+            message = message + "Please enter valid Price Per KM.\n";
+        }
+
         if (message == "") {
             return true;
         }
@@ -119,6 +128,16 @@
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <input type="text" class="form-control" id="intPriceMultiple" name="intPriceMultiple" placeholder="Ex: 2.5" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                        <label for="intPricePerKM">Price per KM<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="intPricePerKM" name="intPricePerKM" placeholder="Ex: 2.5">
                                     </div>
                                 </div>
                             </div>

@@ -32,7 +32,7 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo = pageNumber + j;
-                tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
+                tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -258,7 +258,7 @@
                             <th width="100px">Ph No.</th>
                             <th width="100px">Pick Up</th>
                             <th width="100px">Drop</th>
-                            <th width="100px">Requested Vehicle</th>
+                            <th width="180px">Requested Vehicle</th>
                             <th width="100px">Entry Date</th>
                             <th width="100px">Status</th>
                             <th width="100px">VehcileNumber</th>
