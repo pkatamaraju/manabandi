@@ -1370,20 +1370,7 @@ namespace RaiteRaju.Web.Controllers
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
             if (nameCookie != null)
             {
-               
-                QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                string Text = "9640059446";
-                QRCodeData qrCodeData = qrGenerator.CreateQrCode(Text, QRCodeGenerator.ECCLevel.Q);
-                QRCode qrCode = new QRCode(qrCodeData);
-                
-
-                using (Bitmap bitMap = qrCode.GetGraphic(20))
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                    }
-                }
+            
                 //Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Black, Color.White, (Bitmap)Bitmap.FromFile(@"..\images\logo.jpg"));
 
 
@@ -1426,14 +1413,16 @@ namespace RaiteRaju.Web.Controllers
             tblLogo.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
 
             iTextSharp.text.Image imgLogo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Content/images/BellaCabsLogo.jpg"));
-            imgLogo.ScaleToFit(60f, 50f);
+            imgLogo.ScaleToFit(50f, 40f);
             //imgLogo.SpacingBefore = 1f;
             //imgLogo.SpacingAfter = 10f;
             //imgLogo.Alignment = Element.ALIGN_LEFT;
 
             PdfPCell logoImageCell = new PdfPCell(imgLogo);
-            logoImageCell.HorizontalAlignment = Element.ALIGN_LEFT;
-            logoImageCell.Border = 0; 
+            logoImageCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+            logoImageCell.Border = 0;
+            logoImageCell.PaddingRight = 5f;
+            logoImageCell.PaddingBottom = 10f;
             tblLogo.AddCell(logoImageCell);
 
 
@@ -1443,13 +1432,15 @@ namespace RaiteRaju.Web.Controllers
 
             Paragraph LogoPara = new Paragraph();
             Phrase phrase2 = new Phrase("BellaCabs.in \n", FontFactory.GetFont("Calibri", 22f, iTextSharp.text.Font.BOLD, darkGreen));
-            Phrase Phrase1 = new Phrase("Just call us to book any vehicle", FontFactory.GetFont("Calibri", 12f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
+          
+            Phrase Phrase1 = new Phrase("Just call us to book any vehicle", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
             LogoPara.Add(phrase2);
             LogoPara.Add(Phrase1);
 
 
             PdfPCell logoCell1 = new PdfPCell(LogoPara);
             logoCell1.Border = 0;
+            logoCell1.PaddingBottom = 10f;
             tblLogo.AddCell(logoCell1);
 
             doc.Add(tblLogo);
@@ -1457,12 +1448,12 @@ namespace RaiteRaju.Web.Controllers
             PdfPTable tblSecondRow = new PdfPTable(1);
             tblSecondRow.TotalWidth = 570f;
             tblSecondRow.LockedWidth = true;
-            tblSecondRow.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+            tblSecondRow.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
 
             PdfPCell SecondRow = new PdfPCell(new Phrase("Bill for completed ride with BellaCabs.in",FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.WHITE)));
             SecondRow.Border = 0;
-            SecondRow.PaddingTop = 4f;
-            SecondRow.PaddingBottom = 4f;
+            SecondRow.PaddingTop =4f;
+            SecondRow.PaddingBottom = 6f;
             SecondRow.BackgroundColor = ForestGreen;
             SecondRow.HorizontalAlignment = 1;//0=Left, 1=Centre, 2=Right
 
@@ -1477,8 +1468,8 @@ namespace RaiteRaju.Web.Controllers
             table.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
 
             Paragraph pricePara = new Paragraph();
-            Phrase amountP = new Phrase("Bill Amount is \n Rs. " + model.intRideAmount + "\n", FontFactory.GetFont("Calibri", 14f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
-            Phrase kmsP = new Phrase("\n Total Ride Kms: " + model.intRideKM * 2 +" Kms \n Bill ID: "+rideID, FontFactory.GetFont("Calibri", 12f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
+            Phrase amountP = new Phrase("Bill Amount is \n Rs. " + model.intRideAmount + " /- \n", FontFactory.GetFont("Calibri", 16f, iTextSharp.text.Font.BOLD, BaseColor.BLACK));
+            Phrase kmsP = new Phrase("\nTotal Ride Kms: " + model.intRideKM * 2 + " Kms \n\n Bill ID: " + rideID, FontFactory.GetFont("Calibri", 12f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
             pricePara.Add(amountP);
             pricePara.Add(kmsP);
 
@@ -1486,18 +1477,46 @@ namespace RaiteRaju.Web.Controllers
             PdfPCell points = new PdfPCell(pricePara);
             points.Colspan = 1;
             points.Border = 0;
-            points.PaddingTop = 40f;
+            points.PaddingTop = 30f;
+            points.PaddingBottom = 20f;
+
             points.HorizontalAlignment = 1;//0=Left, 1=Centre, 2=Right
 
             table.AddCell(points);
-            
+
             //string BillAmount = "500";
             //string MainTableContent = @"<table style=""width:100%""><tr style=""font-weigth:bold""><td style=""height:200px"">Bill Amount Rs. " + BillAmount + "/- <br /> Total Ride Kms: " + 100 + "KMS <br /> Bill ID: " + 1001 + "</td><td>"+ jpg + "</td></tr></table>";
             //TextReader txtReaderMainTableContent = new StringReader(MainTableContent);
             //Resize image depend upon your need
 
-            iTextSharp.text.Image QRCode = iTextSharp.text.Image.GetInstance(Path.Combine(Server.MapPath("~/Content/images/BellaCabsLogo.jpg")));
-            QRCode.ScaleToFit(100f, 100f);
+            string folderPath = "~/Content/images/QRCode/";
+            string imagePath = "~/Content/images/QRCode/QRCode_" + rideID + ".jpg";
+            // If the directory doesn't exist then create it.
+            if (!Directory.Exists(Server.MapPath(folderPath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(folderPath));
+            }
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("PhoneNumber: "+model.PhoneNumber+", RideID: "+rideID+", User Name: "+model.Name, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap bitMap = qrCode.GetGraphic(20);
+            string barcodePath = Server.MapPath(imagePath);
+
+            using (MemoryStream memory = new MemoryStream())
+            {
+                using (FileStream fs = new FileStream(barcodePath, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] bytes = memory.ToArray();
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+            }
+
+
+            iTextSharp.text.Image QRCode = iTextSharp.text.Image.GetInstance(Path.Combine(Server.MapPath("~/Content/images/QRCode/QRCode_" + rideID + ".jpg")));
+            QRCode.ScaleToFit(120f, 120f);
 
             QRCode.SpacingBefore = 1f;
             QRCode.SpacingAfter = 10f;
@@ -1508,18 +1527,20 @@ namespace RaiteRaju.Web.Controllers
             imageCell.Colspan =1; // either 1 if you need to insert one cell
             imageCell.Border = 0;
             imageCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            imageCell.PaddingTop = 20f;
+            imageCell.PaddingBottom = 20f;
 
             table.AddCell(imageCell);
             doc.Add(table);
             // 5: parse the html into the document  
-            htmlWorker.Parse(txtReader);
+            //htmlWorker.Parse(txtReader);
 
             //htmlWorker.Parse(txtReaderMainTableContent);
 
             PdfPTable HeadingBookingDetails = new PdfPTable(1);
             HeadingBookingDetails.TotalWidth = 570f;
             HeadingBookingDetails.LockedWidth = true;
-            HeadingBookingDetails.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+            //HeadingBookingDetails.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             
             PdfPCell secondHeading = new PdfPCell(new Phrase("Booking Details", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.WHITE)));
             secondHeading.Border = 0;
@@ -1532,44 +1553,111 @@ namespace RaiteRaju.Web.Controllers
             doc.Add(HeadingBookingDetails);
 
 
-            PdfPTable BookingDetails = new PdfPTable(1);
+            PdfPTable BookingDetails = new PdfPTable(2);
             BookingDetails.TotalWidth = 570f;
+            BookingDetails.PaddingTop = 20f;
             BookingDetails.LockedWidth = true;
             BookingDetails.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
 
-            PdfPCell Cell11 = new PdfPCell(new Phrase("Vehicle Type", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell11 = new PdfPCell(new Phrase("Vehicle Type :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell11.Border = 0;
+            Cell11.PaddingRight = 20f;
+            Cell11.PaddingTop = 15f;
+            Cell11.HorizontalAlignment = 2;//0=Left, 1=Centre, 2=Right
+
             BookingDetails.AddCell(Cell11);
 
-            PdfPCell Cell12 = new PdfPCell(new Phrase(model.VehicleType, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell12 = new PdfPCell(new Phrase(model.VehicleType, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell12.Border = 0;
+            Cell12.PaddingTop = 15f;
+            Cell12.HorizontalAlignment = 0;//0=Left, 1=Centre, 2=Right
+
             BookingDetails.AddCell(Cell12);
 
-            PdfPCell Cell21 = new PdfPCell(new Phrase("Pick Up Location", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell21 = new PdfPCell(new Phrase("Pick Up Location :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell21.Border = 0;
+            Cell21.PaddingRight = 20f;
+            Cell21.PaddingTop = 15f;
+            Cell21.HorizontalAlignment = 2;//0=Left, 1=Centre, 2=Right
             BookingDetails.AddCell(Cell21);
 
-            PdfPCell Cell22 = new PdfPCell(new Phrase(model.PickUpLocation, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell22 = new PdfPCell(new Phrase(model.PickUpLocation, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell22.Border = 0;
+            Cell22.PaddingTop = 15f;
+            Cell22.HorizontalAlignment = 0;//0=Left, 1=Centre, 2=Right
             BookingDetails.AddCell(Cell22);
 
-            PdfPCell Cell31 = new PdfPCell(new Phrase("Drop Location", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell31 = new PdfPCell(new Phrase("Drop Location :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell31.Border = 0;
+            Cell31.PaddingRight = 20f;
+            Cell31.PaddingTop = 15f;
+            Cell31.HorizontalAlignment = 2;//0=Left, 1=Centre, 2=Right
             BookingDetails.AddCell(Cell31);
 
-            PdfPCell Cell32 = new PdfPCell(new Phrase(model.DropLocation, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell32 = new PdfPCell(new Phrase(model.DropLocation, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell32.Border = 0;
+            Cell32.PaddingTop = 15f;
+            Cell32.HorizontalAlignment = 0;
             BookingDetails.AddCell(Cell32);
 
-            PdfPCell Cell41 = new PdfPCell(new Phrase("Phone Number", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell61 = new PdfPCell(new Phrase("Ride requested by :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
+            Cell61.Border = 0;
+            Cell61.PaddingRight = 20f;
+            Cell61.PaddingTop = 15f;
+            Cell61.HorizontalAlignment = 2;
+            BookingDetails.AddCell(Cell61);
+
+            PdfPCell Cell62 = new PdfPCell(new Phrase(model.Name.ToString(), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
+            Cell62.Border = 0;
+            Cell62.HorizontalAlignment = 0;
+            Cell62.PaddingTop = 15f;
+            BookingDetails.AddCell(Cell62);
+
+            
+            PdfPCell Cell41 = new PdfPCell(new Phrase("Phone Number :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell41.Border = 0;
+            Cell41.PaddingRight = 20f;
+            Cell41.PaddingTop = 15f;
+            Cell41.HorizontalAlignment = 2;
             BookingDetails.AddCell(Cell41);
 
-            PdfPCell Cell42 = new PdfPCell(new Phrase(model.PhoneNumber.ToString(), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            PdfPCell Cell42 = new PdfPCell(new Phrase(model.PhoneNumber.ToString(), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
             Cell42.Border = 0;
+            Cell42.HorizontalAlignment = 0;
+            Cell42.PaddingTop = 15f;
             BookingDetails.AddCell(Cell42);
 
+            PdfPCell Cell71 = new PdfPCell(new Phrase("Ride Requested Date :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
+            Cell71.Border = 0;
+            Cell71.PaddingRight = 20f;
+            Cell71.PaddingTop = 15f;
+            Cell71.HorizontalAlignment = 2;
+            BookingDetails.AddCell(Cell71);
+
+            PdfPCell Cell72 = new PdfPCell(new Phrase(model.DtCreated.ToString(), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
+            Cell72.Border = 0;
+            Cell72.HorizontalAlignment = 0;
+            Cell72.PaddingTop = 15f;
+            BookingDetails.AddCell(Cell72);
+
+            PdfPCell Cell51 = new PdfPCell(new Phrase("Vehicle Number :", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
+            Cell51.Border = 0;
+            Cell51.PaddingRight = 20f;
+            Cell51.PaddingTop = 15f;
+            Cell51.HorizontalAlignment = 2;
+            BookingDetails.AddCell(Cell51);
+
+            PdfPCell Cell52 = new PdfPCell(new Phrase(model.txtVehicleNumber.ToString(), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)));
+            Cell52.Border = 0;
+            Cell52.HorizontalAlignment = 0;
+            Cell52.PaddingTop = 15f;
+            BookingDetails.AddCell(Cell52);
+
             doc.Add(BookingDetails);
+
+            Paragraph Fnote1 = new Paragraph("\nFor queries and complaints please find below mentioned contact details \n\tWeb site: Bellacabs.in \n\tEmail: support@bellacabs.in \n\tPhone Number: 7731018723.", FontFactory.GetFont("Calibri", 14f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            doc.Add(Fnote1);
+            
             // 6: close the document and the worker  
             htmlWorker.EndDocument();
             htmlWorker.Close();
