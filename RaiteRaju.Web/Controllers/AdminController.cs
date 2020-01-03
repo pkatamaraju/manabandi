@@ -1489,8 +1489,8 @@ namespace RaiteRaju.Web.Controllers
             //TextReader txtReaderMainTableContent = new StringReader(MainTableContent);
             //Resize image depend upon your need
 
-            string folderPath = "~/Content/images/QRCode/";
-            string imagePath = "~/Content/images/QRCode/QRCode_" + rideID + ".jpg";
+            string folderPath = "~/Content/QRCode/";
+            string imagePath = "~/Content/QRCode/QRCode_" + rideID + ".jpg";
             // If the directory doesn't exist then create it.
             if (!Directory.Exists(Server.MapPath(folderPath)))
             {
@@ -1515,7 +1515,7 @@ namespace RaiteRaju.Web.Controllers
             }
 
 
-            iTextSharp.text.Image QRCode = iTextSharp.text.Image.GetInstance(Path.Combine(Server.MapPath("~/Content/images/QRCode/QRCode_" + rideID + ".jpg")));
+            iTextSharp.text.Image QRCode = iTextSharp.text.Image.GetInstance(Path.Combine(Server.MapPath("~/Content/QRCode/QRCode_" + rideID + ".jpg")));
             QRCode.ScaleToFit(120f, 120f);
 
             QRCode.SpacingBefore = 1f;
@@ -1655,9 +1655,19 @@ namespace RaiteRaju.Web.Controllers
 
             doc.Add(BookingDetails);
 
-            Paragraph Fnote1 = new Paragraph("\nFor queries and complaints please find below mentioned contact details \n\tWeb site: Bellacabs.in \n\tEmail: support@bellacabs.in \n\tPhone Number: 7731018723.", FontFactory.GetFont("Calibri", 14f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            Paragraph Fnote1 = new Paragraph("\nFor queries and complaints please find below mentioned contact details \n\t  Web site: Bellacabs.in \n\t  Email: support@bellacabs.in \n\t  Phone Number: 7731018723.", FontFactory.GetFont("Calibri", 12f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
             doc.Add(Fnote1);
-            
+
+
+            Paragraph singPara = new Paragraph("\n\n\nBellaCabs.in Employee Signature                                               Customer Signature", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            doc.Add(singPara);
+
+            Paragraph placePara = new Paragraph("\n\nPlace : ", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            doc.Add(placePara);
+
+            Paragraph DatePara = new Paragraph("\n\nDate : "+ DateTime.Now.ToString("MMMM dd, yyyy"), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK));
+            doc.Add(DatePara);
+
             // 6: close the document and the worker  
             htmlWorker.EndDocument();
             htmlWorker.Close();
