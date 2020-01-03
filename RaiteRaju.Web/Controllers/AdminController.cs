@@ -10,6 +10,11 @@ using System.Text.RegularExpressions;
 using RaiteRaju.ApplicationUtility;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using QRCoder;
+
 namespace RaiteRaju.Web.Controllers
 {
     public class AdminController : ErrorController
@@ -262,157 +267,157 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult FileUpload(HttpPostedFileBase image, Int32 AdId)
-        {
-            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+        //[HttpPost]
+        //public ActionResult FileUpload(HttpPostedFileBase image, Int32 AdId)
+        //{
+        //    HttpCookie nameCookie = Request.Cookies["_RRAUN"];
 
-            if (nameCookie != null)
-            {
-                HttpPostedFileBase file = Request.Files["ImageData"];
+        //    if (nameCookie != null)
+        //    {
+        //        HttpPostedFileBase file = Request.Files["ImageData"];
 
-                if (file != null)
-                {
+        //        if (file != null)
+        //        {
 
-                    var LENGTH = (file.ContentLength / 1024);
-                    var ext = Path.GetExtension(file.FileName);
-                    Stream strm = file.InputStream;
+        //            var LENGTH = (file.ContentLength / 1024);
+        //            var ext = Path.GetExtension(file.FileName);
+        //            Stream strm = file.InputStream;
 
-                    var ActualImagePath = Path.Combine(Server.MapPath("~/PhotoManagement/Actual/"), Convert.ToString(AdId) + ".jpg");
-                    var CompressedImagePath = Path.Combine(Server.MapPath("~/PhotoManagement/Compressed/"), Convert.ToString(AdId) + ".jpg");
+        //            var ActualImagePath = Path.Combine(Server.MapPath("~/PhotoManagement/Actual/"), Convert.ToString(AdId) + ".jpg");
+        //            var CompressedImagePath = Path.Combine(Server.MapPath("~/PhotoManagement/Compressed/"), Convert.ToString(AdId) + ".jpg");
 
-                    var CompressedDelPath = Path.Combine(Server.MapPath("~/PhotoManagement/Deleted/"), Convert.ToString(AdId) + "_Compressed_Deleted.jpg");
-                    var ActualDelPath = Path.Combine(Server.MapPath("~/PhotoManagement/Deleted/"), Convert.ToString(AdId) + "_Actual_Deleted.jpg");
+        //            var CompressedDelPath = Path.Combine(Server.MapPath("~/PhotoManagement/Deleted/"), Convert.ToString(AdId) + "_Compressed_Deleted.jpg");
+        //            var ActualDelPath = Path.Combine(Server.MapPath("~/PhotoManagement/Deleted/"), Convert.ToString(AdId) + "_Actual_Deleted.jpg");
 
-                    if (System.IO.File.Exists(CompressedImagePath))
-                    {
-                        System.IO.File.Delete(CompressedDelPath);
-                        System.IO.File.Move(CompressedImagePath, CompressedDelPath);
+        //            if (System.IO.File.Exists(CompressedImagePath))
+        //            {
+        //                System.IO.File.Delete(CompressedDelPath);
+        //                System.IO.File.Move(CompressedImagePath, CompressedDelPath);
 
-                        if (System.IO.File.Exists(ActualImagePath))
-                        {
-                            System.IO.File.Delete(ActualDelPath);
-                            System.IO.File.Move(ActualImagePath, ActualDelPath);
-                        }
+        //                if (System.IO.File.Exists(ActualImagePath))
+        //                {
+        //                    System.IO.File.Delete(ActualDelPath);
+        //                    System.IO.File.Move(ActualImagePath, ActualDelPath);
+        //                }
 
-                        ReduceImageSize(strm, CompressedImagePath);
-                        ReduceImageSizeForActualImage(strm, ActualImagePath, LENGTH);
-                    }
-                    else
-                    {
-                        ReduceImageSize(strm, CompressedImagePath);
-                        ReduceImageSizeForActualImage(strm, ActualImagePath, LENGTH);
-                    }
+        //                ReduceImageSize(strm, CompressedImagePath);
+        //                ReduceImageSizeForActualImage(strm, ActualImagePath, LENGTH);
+        //            }
+        //            else
+        //            {
+        //                ReduceImageSize(strm, CompressedImagePath);
+        //                ReduceImageSizeForActualImage(strm, ActualImagePath, LENGTH);
+        //            }
 
-                    return Json(AdId, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(AdId, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                return Json(AdId, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //            return Json(AdId, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(AdId, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return Json(AdId, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
-        public byte[] ConvertToBytes(HttpPostedFileBase image)
-        {
-            byte[] imageBytes = null;
-            BinaryReader reader = new BinaryReader(image.InputStream);
-            imageBytes = reader.ReadBytes((int)image.ContentLength);
-            return imageBytes;
-        }
+        ////public byte[] ConvertToBytes(HttpPostedFileBase image)
+        //{
+        //    byte[] imageBytes = null;
+        //    BinaryReader reader = new BinaryReader(image.InputStream);
+        //    imageBytes = reader.ReadBytes((int)image.ContentLength);
+        //    return imageBytes;
+        //}
 
-        private void ReduceImageSize(Stream sourcePath, string targetPath)
-        {
-            using (var image = System.Drawing.Image.FromStream(sourcePath))
-            {
-                if (image.PropertyIdList.Contains(0x0112))
-                {
-                    int rotationValue = image.GetPropertyItem(0x0112).Value[0];
-                    switch (rotationValue)
-                    {
-                        case 1: // landscape, do nothing
-                            break;
+        //private void ReduceImageSize(Stream sourcePath, string targetPath)
+        //{
+        //    using (var image = System.Drawing.Image.FromStream(sourcePath))
+        //    {
+        //        if (image.PropertyIdList.Contains(0x0112))
+        //        {
+        //            int rotationValue = image.GetPropertyItem(0x0112).Value[0];
+        //            switch (rotationValue)
+        //            {
+        //                case 1: // landscape, do nothing
+        //                    break;
 
-                        case 8: // rotated 90 right
-                            // de-rotate:
-                            image.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
-                            break;
+        //                case 8: // rotated 90 right
+        //                    // de-rotate:
+        //                    image.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
+        //                    break;
 
-                        case 3: // bottoms up
-                            image.RotateFlip(rotateFlipType: RotateFlipType.Rotate180FlipNone);
-                            break;
+        //                case 3: // bottoms up
+        //                    image.RotateFlip(rotateFlipType: RotateFlipType.Rotate180FlipNone);
+        //                    break;
 
-                        case 6: // rotated 90 left
-                            image.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
-                            break;
-                    }
-                }
+        //                case 6: // rotated 90 left
+        //                    image.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
+        //                    break;
+        //            }
+        //        }
 
-                // image.RotateFlip(RotateFlipType.Rotate90FlipNone); 
-                //var scaleFactor = 0.5;
-                var newWidth = 155;// (int)(image.Width * scaleFactor);
-                var newHeight = 110;// (int)(image.Height * scaleFactor);
-                var thumbnailImg = new Bitmap(newWidth, newHeight);
-                var thumbGraph = Graphics.FromImage(thumbnailImg);
-                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
-                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
-                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
-                thumbGraph.DrawImage(image, imageRectangle);
-                thumbnailImg.Save(targetPath, image.RawFormat);
-            }
-        }
+        //        // image.RotateFlip(RotateFlipType.Rotate90FlipNone); 
+        //        //var scaleFactor = 0.5;
+        //        var newWidth = 155;// (int)(image.Width * scaleFactor);
+        //        var newHeight = 110;// (int)(image.Height * scaleFactor);
+        //        var thumbnailImg = new Bitmap(newWidth, newHeight);
+        //        var thumbGraph = Graphics.FromImage(thumbnailImg);
+        //        thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+        //        thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+        //        thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+        //        var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+        //        thumbGraph.DrawImage(image, imageRectangle);
+        //        thumbnailImg.Save(targetPath, image.RawFormat);
+        //    }
+        //}
 
-        private void ReduceImageSizeForActualImage(Stream sourcePath, string targetPath, int length)
-        {
-            using (var image = System.Drawing.Image.FromStream(sourcePath))
-            {
-                if (image.PropertyIdList.Contains(0x0112))
-                {
-                    int rotationValue = image.GetPropertyItem(0x0112).Value[0];
-                    switch (rotationValue)
-                    {
-                        case 1: // landscape, do nothing
-                            break;
+        //private void ReduceImageSizeForActualImage(Stream sourcePath, string targetPath, int length)
+        //{
+        //    using (var image = System.Drawing.Image.FromStream(sourcePath))
+        //    {
+        //        if (image.PropertyIdList.Contains(0x0112))
+        //        {
+        //            int rotationValue = image.GetPropertyItem(0x0112).Value[0];
+        //            switch (rotationValue)
+        //            {
+        //                case 1: // landscape, do nothing
+        //                    break;
 
-                        case 8: // rotated 90 right
-                            // de-rotate:
-                            image.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
-                            break;
+        //                case 8: // rotated 90 right
+        //                    // de-rotate:
+        //                    image.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
+        //                    break;
 
-                        case 3: // bottoms up
-                            image.RotateFlip(rotateFlipType: RotateFlipType.Rotate180FlipNone);
-                            break;
+        //                case 3: // bottoms up
+        //                    image.RotateFlip(rotateFlipType: RotateFlipType.Rotate180FlipNone);
+        //                    break;
 
-                        case 6: // rotated 90 left
-                            image.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
-                            break;
-                    }
-                }
+        //                case 6: // rotated 90 left
+        //                    image.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
+        //                    break;
+        //            }
+        //        }
 
 
-                var scaleFactor = 1.0;
-                if (length >= 350)
-                {
-                    scaleFactor = 0.5;
-                }
-                var newHeight = (int)(image.Width * scaleFactor);
-                var newWidth = (int)(image.Height * scaleFactor);
+        //        var scaleFactor = 1.0;
+        //        if (length >= 350)
+        //        {
+        //            scaleFactor = 0.5;
+        //        }
+        //        var newHeight = (int)(image.Width * scaleFactor);
+        //        var newWidth = (int)(image.Height * scaleFactor);
 
-                var thumbnailImg = new Bitmap(newWidth, newHeight);
-                var thumbGraph = Graphics.FromImage(thumbnailImg);
-                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
-                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
-                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
-                thumbGraph.DrawImage(image, imageRectangle);
-                thumbnailImg.Save(targetPath, image.RawFormat);
-            }
-        }
+        //        var thumbnailImg = new Bitmap(newWidth, newHeight);
+        //        var thumbGraph = Graphics.FromImage(thumbnailImg);
+        //        thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+        //        thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+        //        thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+        //        var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+        //        thumbGraph.DrawImage(image, imageRectangle);
+        //        thumbnailImg.Save(targetPath, image.RawFormat);
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult FetchDistricts(int StateId)
@@ -1360,5 +1365,220 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        public void DownloadPDF(int rideID)
+        {
+            HttpCookie nameCookie = Request.Cookies["_RRAUN"];
+            if (nameCookie != null)
+            {
+               
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                string Text = "9640059446";
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(Text, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+                
+
+                using (Bitmap bitMap = qrCode.GetGraphic(20))
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                }
+                //Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Black, Color.White, (Bitmap)Bitmap.FromFile(@"..\images\logo.jpg"));
+
+
+                string HTMLContent = @"<table style=""width:100%""><tr style=""color:green""><td>Bill for completed ride with BellaCabs.in</td></tr></table><br />";
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "attachment;filename=" + "PDFfile.pdf");
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.BinaryWrite(GetPDF(HTMLContent, rideID));
+                Response.End();
+            }
+        }
+
+        public byte[] GetPDF(string pHTML, int rideID)
+        {
+            InformationServiceWrapper serviceObj = new InformationServiceWrapper();
+            Ride model = serviceObj.GetRideDetailsByID(rideID);
+
+
+            byte[] bPDF = null;
+
+            MemoryStream ms = new MemoryStream();
+            TextReader txtReader = new StringReader(pHTML);
+
+            Document doc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+            // 2: we create a itextsharp pdfwriter that listens to the document and directs a XML-stream to a file  
+            PdfWriter oPdfWriter = PdfWriter.GetInstance(doc, ms);
+
+            // 3: we create a worker parse the document  
+            HTMLWorker htmlWorker = new HTMLWorker(doc);
+
+            // 4: we open document and start the worker on the document  
+            doc.Open();
+            htmlWorker.StartDocument();
+
+            PdfPTable tblLogo = new PdfPTable(2);
+            tblLogo.TotalWidth = 570f;
+            //tblLogo.LockedWidth = true;
+            tblLogo.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+
+            iTextSharp.text.Image imgLogo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Content/images/BellaCabsLogo.jpg"));
+            imgLogo.ScaleToFit(60f, 50f);
+            //imgLogo.SpacingBefore = 1f;
+            //imgLogo.SpacingAfter = 10f;
+            //imgLogo.Alignment = Element.ALIGN_LEFT;
+
+            PdfPCell logoImageCell = new PdfPCell(imgLogo);
+            logoImageCell.HorizontalAlignment = Element.ALIGN_LEFT;
+            logoImageCell.Border = 0; 
+            tblLogo.AddCell(logoImageCell);
+
+
+            //TextReader logotext = new StringReader(@"<span style=""font-weigth:bold;color:green""> BellaCabs.in </span>\n <span style="";color:blue"" > Just Call us to book any vehicle</span>"));
+            BaseColor darkGreen = new BaseColor(Color.DarkGreen);
+            BaseColor ForestGreen = new BaseColor(Color.ForestGreen);
+
+            Paragraph LogoPara = new Paragraph();
+            Phrase phrase2 = new Phrase("BellaCabs.in \n", FontFactory.GetFont("Calibri", 22f, iTextSharp.text.Font.BOLD, darkGreen));
+            Phrase Phrase1 = new Phrase("Just call us to book any vehicle", FontFactory.GetFont("Calibri", 12f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
+            LogoPara.Add(phrase2);
+            LogoPara.Add(Phrase1);
+
+
+            PdfPCell logoCell1 = new PdfPCell(LogoPara);
+            logoCell1.Border = 0;
+            tblLogo.AddCell(logoCell1);
+
+            doc.Add(tblLogo);
+
+            PdfPTable tblSecondRow = new PdfPTable(1);
+            tblSecondRow.TotalWidth = 570f;
+            tblSecondRow.LockedWidth = true;
+            tblSecondRow.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+
+            PdfPCell SecondRow = new PdfPCell(new Phrase("Bill for completed ride with BellaCabs.in",FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.WHITE)));
+            SecondRow.Border = 0;
+            SecondRow.PaddingTop = 4f;
+            SecondRow.PaddingBottom = 4f;
+            SecondRow.BackgroundColor = ForestGreen;
+            SecondRow.HorizontalAlignment = 1;//0=Left, 1=Centre, 2=Right
+
+            tblSecondRow.AddCell(SecondRow);
+            doc.Add(tblSecondRow);
+            //Chunk c1 = new Chunk("BellaCabs.in");
+            //doc.Add(c1);
+
+            PdfPTable table = new PdfPTable(2);
+            table.TotalWidth = 400f;
+            table.LockedWidth = true;
+            table.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+
+            Paragraph pricePara = new Paragraph();
+            Phrase amountP = new Phrase("Bill Amount is \n Rs. " + model.intRideAmount + "\n", FontFactory.GetFont("Calibri", 14f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
+            Phrase kmsP = new Phrase("\n Total Ride Kms: " + model.intRideKM * 2 +" Kms \n Bill ID: "+rideID, FontFactory.GetFont("Calibri", 12f, iTextSharp.text.Font.BOLD, BaseColor.BLUE));
+            pricePara.Add(amountP);
+            pricePara.Add(kmsP);
+
+
+            PdfPCell points = new PdfPCell(pricePara);
+            points.Colspan = 1;
+            points.Border = 0;
+            points.PaddingTop = 40f;
+            points.HorizontalAlignment = 1;//0=Left, 1=Centre, 2=Right
+
+            table.AddCell(points);
+            
+            //string BillAmount = "500";
+            //string MainTableContent = @"<table style=""width:100%""><tr style=""font-weigth:bold""><td style=""height:200px"">Bill Amount Rs. " + BillAmount + "/- <br /> Total Ride Kms: " + 100 + "KMS <br /> Bill ID: " + 1001 + "</td><td>"+ jpg + "</td></tr></table>";
+            //TextReader txtReaderMainTableContent = new StringReader(MainTableContent);
+            //Resize image depend upon your need
+
+            iTextSharp.text.Image QRCode = iTextSharp.text.Image.GetInstance(Path.Combine(Server.MapPath("~/Content/images/BellaCabsLogo.jpg")));
+            QRCode.ScaleToFit(100f, 100f);
+
+            QRCode.SpacingBefore = 1f;
+            QRCode.SpacingAfter = 10f;
+
+            //QRCode.Alignment = Element.ALIGN_LEFT;
+
+            PdfPCell imageCell = new PdfPCell(QRCode);
+            imageCell.Colspan =1; // either 1 if you need to insert one cell
+            imageCell.Border = 0;
+            imageCell.HorizontalAlignment = Element.ALIGN_CENTER;
+
+            table.AddCell(imageCell);
+            doc.Add(table);
+            // 5: parse the html into the document  
+            htmlWorker.Parse(txtReader);
+
+            //htmlWorker.Parse(txtReaderMainTableContent);
+
+            PdfPTable HeadingBookingDetails = new PdfPTable(1);
+            HeadingBookingDetails.TotalWidth = 570f;
+            HeadingBookingDetails.LockedWidth = true;
+            HeadingBookingDetails.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+            
+            PdfPCell secondHeading = new PdfPCell(new Phrase("Booking Details", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.WHITE)));
+            secondHeading.Border = 0;
+            secondHeading.PaddingTop = 4f;
+            secondHeading.PaddingBottom = 4f;
+            secondHeading.BackgroundColor = BaseColor.GRAY;
+            secondHeading.HorizontalAlignment = 1;//0=Left, 1=Centre, 2=Right
+
+            HeadingBookingDetails.AddCell(secondHeading);
+            doc.Add(HeadingBookingDetails);
+
+
+            PdfPTable BookingDetails = new PdfPTable(1);
+            BookingDetails.TotalWidth = 570f;
+            BookingDetails.LockedWidth = true;
+            BookingDetails.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+
+            PdfPCell Cell11 = new PdfPCell(new Phrase("Vehicle Type", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell11.Border = 0;
+            BookingDetails.AddCell(Cell11);
+
+            PdfPCell Cell12 = new PdfPCell(new Phrase(model.VehicleType, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell12.Border = 0;
+            BookingDetails.AddCell(Cell12);
+
+            PdfPCell Cell21 = new PdfPCell(new Phrase("Pick Up Location", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell21.Border = 0;
+            BookingDetails.AddCell(Cell21);
+
+            PdfPCell Cell22 = new PdfPCell(new Phrase(model.PickUpLocation, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell22.Border = 0;
+            BookingDetails.AddCell(Cell22);
+
+            PdfPCell Cell31 = new PdfPCell(new Phrase("Drop Location", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell31.Border = 0;
+            BookingDetails.AddCell(Cell31);
+
+            PdfPCell Cell32 = new PdfPCell(new Phrase(model.DropLocation, FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell32.Border = 0;
+            BookingDetails.AddCell(Cell32);
+
+            PdfPCell Cell41 = new PdfPCell(new Phrase("Phone Number", FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell41.Border = 0;
+            BookingDetails.AddCell(Cell41);
+
+            PdfPCell Cell42 = new PdfPCell(new Phrase(model.PhoneNumber.ToString(), FontFactory.GetFont("Calibri", 10f, iTextSharp.text.Font.BOLD, BaseColor.BLACK)));
+            Cell42.Border = 0;
+            BookingDetails.AddCell(Cell42);
+
+            doc.Add(BookingDetails);
+            // 6: close the document and the worker  
+            htmlWorker.EndDocument();
+            htmlWorker.Close();
+            doc.Close();
+
+            bPDF = ms.ToArray();
+
+            return bPDF;
+        }
     }
+
 }

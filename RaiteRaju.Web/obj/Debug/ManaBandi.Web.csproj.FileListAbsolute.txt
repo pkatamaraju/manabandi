@@ -198,3 +198,6 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\bin\RaiteRaju.DAL.pdb
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\obj\Debug\ManaBandi.Web.csprojResolveAssemblyReference.cache
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\obj\Debug\RaiteRaju.Web.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\obj\Debug\RaiteRaju.Web.pdb
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\bin\itextsharp.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\bin\QRCoder.dll
+C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Web\bin\itextsharp.xml
