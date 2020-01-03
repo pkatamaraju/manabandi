@@ -1675,7 +1675,11 @@ namespace RaiteRaju.Web.Controllers
 
             bPDF = ms.ToArray();
 
-            return bPDF;
+            if (System.IO.File.Exists("~/Content/QRCode/QRCode_" + rideID + ".jpg"))
+            {
+                System.IO.File.Delete("~/Content/QRCode/QRCode_" + rideID + ".jpg");
+            }
+                return bPDF;
         }
     }
 

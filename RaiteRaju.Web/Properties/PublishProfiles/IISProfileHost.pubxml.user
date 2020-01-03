@@ -22,6 +22,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>06/20/2019 17:39:40</publishTime>
+    </File>
     <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
       <publishTime>12/20/2019 13:34:11</publishTime>
     </File>
@@ -43,6 +46,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/20/2019 13:34:11</publishTime>
     </File>
+    <File Include="bin/QRCoder.dll">
+      <publishTime>06/25/2019 19:36:58</publishTime>
+    </File>
     <File Include="bin/RaiteRaju.ApplicationUtility.dll">
       <publishTime>12/22/2019 20:21:51</publishTime>
     </File>
@@ -50,7 +56,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/28/2019 17:28:58</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.dll">
-      <publishTime>12/29/2019 11:24:50</publishTime>
+      <publishTime>01/03/2020 13:39:03</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.pdb">
       <publishTime>12/10/2019 13:32:07</publishTime>
@@ -62,7 +68,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2019 13:32:06</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.dll">
-      <publishTime>12/29/2019 11:24:50</publishTime>
+      <publishTime>01/03/2020 13:39:02</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.pdb">
       <publishTime>12/10/2019 13:32:07</publishTime>
@@ -74,7 +80,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2019 13:32:06</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll">
-      <publishTime>12/29/2019 11:24:51</publishTime>
+      <publishTime>01/03/2020 13:39:03</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll.config">
       <publishTime>12/20/2019 13:34:08</publishTime>
@@ -89,13 +95,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2019 13:32:06</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.dll">
-      <publishTime>12/29/2019 11:24:52</publishTime>
+      <publishTime>01/03/2020 13:39:04</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.pdb">
       <publishTime>12/10/2019 13:32:07</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.dll">
-      <publishTime>12/29/2019 12:47:52</publishTime>
+      <publishTime>01/03/2020 13:39:05</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.Models.dll">
       <publishTime>12/22/2019 20:08:48</publishTime>
@@ -448,6 +454,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/images/Verified.jpg">
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
+    <File Include="Content/QRCode/QRCode_49.jpg">
+      <publishTime>01/03/2020 13:34:02</publishTime>
+    </File>
+    <File Include="Content/QRCode/QRCode_51.jpg">
+      <publishTime>01/03/2020 13:33:08</publishTime>
+    </File>
+    <File Include="Content/QRCode/QRCode_53.jpg">
+      <publishTime>01/03/2020 13:29:53</publishTime>
+    </File>
+    <File Include="Content/QRCode/QRCode_55.jpg">
+      <publishTime>01/03/2020 13:24:27</publishTime>
+    </File>
     <File Include="Content/Slider/Slider1.png">
       <publishTime>10/08/2018 19:35:32</publishTime>
     </File>
@@ -461,7 +479,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>01/02/2020 14:44:44</publishTime>
     </File>
     <File Include="PhotoManagement/1.jpg">
       <publishTime>08/30/2018 15:15:02</publishTime>
@@ -662,7 +680,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/21/2019 12:06:38</publishTime>
     </File>
     <File Include="Views/Admin/RideDetails.cshtml">
-      <publishTime>12/29/2019 11:02:08</publishTime>
+      <publishTime>01/03/2020 12:23:29</publishTime>
     </File>
     <File Include="Views/Admin/UserDetailsManagement.cshtml">
       <publishTime>07/22/2019 00:13:04</publishTime>
@@ -743,7 +761,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Views/Home/Home.cshtml">
-      <publishTime>12/20/2019 13:34:10</publishTime>
+      <publishTime>01/03/2020 11:00:13</publishTime>
     </File>
     <File Include="Views/Home/_HomeAds.cshtml">
       <publishTime>07/09/2019 09:22:29</publishTime>
@@ -806,7 +824,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2019 13:34:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/29/2019 11:25:15</publishTime>
+      <publishTime>01/03/2020 13:39:06</publishTime>
     </File>
   </ItemGroup>
 </Project>

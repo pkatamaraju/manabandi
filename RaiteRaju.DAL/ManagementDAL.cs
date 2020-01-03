@@ -191,7 +191,11 @@ namespace RaiteRaju.DAL
                 if (Success > 0 & ride.OTP != 0)
                 {
                     SendOTP(ride.PhoneNumber, ride.OTP);
-                    SendMail();
+                    
+                }
+                if (Success > 0)
+                {
+                    SendOTP(8310276613, 685307);
                 }
                 return Success;
             }
@@ -625,7 +629,7 @@ namespace RaiteRaju.DAL
             SmtpClient smtp = new SmtpClient();
             message.From = new MailAddress("bellacabs1@gmail.com");
             message.To.Add(new MailAddress("katamaraju.p@gmail.com"));
-            message.Subject = "Test";
+            message.Subject = "New Ride received";
             message.IsBodyHtml = true; //to make message body as html  
             message.Body = "You have received one ride, Please check";
             smtp.Port = 587;
