@@ -1675,9 +1675,11 @@ namespace RaiteRaju.Web.Controllers
 
             bPDF = ms.ToArray();
 
-            if (System.IO.File.Exists("~/Content/QRCode/QRCode_" + rideID + ".jpg"))
+            var QRCodeFilePath = Path.Combine(Server.MapPath("~/Content/QRCode/QRCode_" + rideID.ToString() + ".jpg"));
+
+            if (System.IO.File.Exists(QRCodeFilePath))
             {
-                System.IO.File.Delete("~/Content/QRCode/QRCode_" + rideID + ".jpg");
+                System.IO.File.Delete(QRCodeFilePath);
             }
                 return bPDF;
         }
