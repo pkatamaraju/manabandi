@@ -32,7 +32,13 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo = pageNumber + j;
-                tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><tr>')
+                if (rideList[i].txtRideStatus == "Completed" || rideList[i].txtRideStatus.toString() == "Assigned") {
+                    tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><td class="billClass" onclick=fnGetBill(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Bill</td><tr>')
+                }
+                else {
+                    tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><td></td><tr>')
+                }
+
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -195,13 +201,16 @@
 
     }
 
-    function fnUpdateRideDetails(rideID) {
-        window.location.href = '@Url.Action("EditRideDetails", "Admin")?rideID=' + rideID ;
+     function fnUpdateRideDetails(rideID) {
+         window.location.href = '@Url.Action("EditRideDetails", "Admin")?rideID=' + rideID;
+     }
 
-    }
     function fnGoToVehicleDetails(VehicleTypeID) {
         window.location.href = '@Url.Action("VehicleDetails", "Admin")?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=' + VehicleTypeID + "&PageNumber=1";
+    }
 
+    function fnGetBill(rideID) {
+        window.location.href = '@Url.Action("DownloadPDF", "Admin")?rideID=' + rideID;
     }
 
 </script>
@@ -264,6 +273,7 @@
                             <th width="100px">VehcileNumber</th>
                             <th width="100px">Ride Amount</th>
                             <th width="80px">Edit</th>
+                            <th width="80px">Bill</th>
                         </tr>
                     </table>
                 </div>

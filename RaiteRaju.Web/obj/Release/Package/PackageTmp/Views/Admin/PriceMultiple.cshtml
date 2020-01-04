@@ -23,7 +23,7 @@
             var tblVehicleList = jQuery('#tblPriceMultiple');
             for(i=0;i<length;i++){
                 j = i + 1;
-                tblVehicleList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + priceMultipleList[i].intVehicleTypeID + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intKMRange + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].txtVehicleType + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intPriceMultiple + '</td><td onclick="fnUpdate(' + priceMultipleList[i].IntPricePK + ')" style="cursor:pointer;color:blue; width:100px">Edit</td><tr>')
+                tblVehicleList.append('<tr class="tableRow"><td style="width:50px;text-align:center;">' + priceMultipleList[i].intVehicleTypeID + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intKMRange + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].txtVehicleType + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intPriceMultiple + '</td><td style="width:100px;text-align:center;">' + priceMultipleList[i].intPricePerKM + '</td><td onclick="fnUpdate(' + priceMultipleList[i].IntPricePK + ')" style="cursor:pointer;color:blue; width:100px">Edit</td><tr>')
             }
         }
     });
@@ -51,6 +51,7 @@
                         <th width="100px">KM Range</th>
                         <th width="100px">Vehicle Type</th>
                         <th width="100px">Price Multiple</th>
+                        <th width="100px">Price per KM</th>
                         <th>Edit</th>
                     </tr>
 

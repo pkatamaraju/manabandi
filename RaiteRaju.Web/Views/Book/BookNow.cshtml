@@ -85,6 +85,7 @@
         var CheckEnable = "@ViewBag.Enable";
 
         if (validation()) {
+            jQuery("#btnRegister").prop("disabled","disabled");
             if (CheckEnable=="DISABLE") {
                 jQuery.ajax({
                     type: 'POST',

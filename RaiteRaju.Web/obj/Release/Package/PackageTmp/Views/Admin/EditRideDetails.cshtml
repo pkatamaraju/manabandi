@@ -92,25 +92,25 @@
         }
 
         if (ShceduledTime != "" & (ShceduledTime < 1 || ShceduledTime>24 ) ) {
-            message = message + "Shceduled Time should be between 1 to 24 Hours\n";
+            message = message + "Scheduled  Time should be between 1 to 24 Hours\n";
         }
 
 
         if (ShceduledDate != "" & datePattern.test(ShceduledDate) == false) {
-            message = message + "Special characters(<>'\"/`%-) are not allowed in Shceduled Date.\n";
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Scheduled Date.\n";
         }
         else if (DropLocation.length > 50 || DropLocation.length < 4) {
-            message = message + "ShceduledDate should be between 4 to 50 characters\n";
+            message = message + "Scheduled date should be between 4 to 50 characters\n";
         }
 
         if (rideStatusID==0) {
             message = message + "Please select Ride Status\n";
         }
 
-        if (VehicleNumber == "") {
+        if (VehicleNumber == "" & (rideStatusID == 2 || rideStatusID == 4)) {
             message = message + "Please enter Vehicle Number.\n";
         }
-        else if (vehicleNumberRegex.test(VehicleNumber) == false) {
+        else if (VehicleNumber != "" & vehicleNumberRegex.test(VehicleNumber) == false) {
             message = message + "Please enter valid vehicle number.\n";
         }
 

@@ -249,6 +249,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
                 rideObj.intRideAmount = entity.intRideAmount;
                 rideObj.intRideCommision = entity.intRideCommision;
                 rideObj.intRideKM = entity.intRideKM;
+                rideObj.DtCreated = entity.DtCreated;
             }
             return rideObj;
         }

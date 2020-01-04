@@ -561,11 +561,13 @@ namespace RaiteRaju.DAL
                         rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
                         rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
                         rideObj.VehicleTypeID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTVEHICLETYPEID]);
+                        rideObj.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
                         rideObj.txtRideStatus = Convert.ToString(dr[DataAccessConstants.PARAMINTRIDESTATUSID]);
                         rideObj.txtVehicleNumber = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
                         rideObj.intRideAmount = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEAMOUNT]);
                         rideObj.intRideCommision = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDECOMMISSION]);
                         rideObj.intRideKM = Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEKM]);
+                        rideObj.DtCreated= Convert.ToString(dr[DataAccessConstants.PARAMDTCREATED]);
                     }
                     dr.Close();
                 }
@@ -1239,7 +1241,7 @@ namespace RaiteRaju.DAL
         }
 
 
-        public void SendMail(int vehicleTypeID)
+        public void SendMail()
         {
             MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();
