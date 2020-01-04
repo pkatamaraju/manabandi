@@ -21,6 +21,7 @@
         var PickUpLocation = jQuery("#txtPickUpLocation").val();
         var DropLocation = jQuery("#txtDropLocation").val();
         var ddlVehicles = jQuery("#ddlVehicles").val();
+        var referredByPhoneNumber = jQuery("#txtReferredBy").val();
 
         var phone = jQuery("#txtPhoneNumber").val();
         intRegex = /^[5-9]{1}[0-9]{9}$/;
@@ -44,6 +45,12 @@
             else if (intRegex.test(phone) == false) {
                 message = message + "Please enter valid Phone number.\n";
             }
+        }
+        if (referredByPhoneNumber == PhoneNumber) {
+            message = message + "Referred by number should be different from user phone number.\n";
+        }
+        else if (referredByPhoneNumber != "" && intRegex.test(referredByPhoneNumber) == false) {
+            message = message + "Please enter valid Phone number.\n";
         }
         if (ddlVehicles == "0") {
             message = message + "Select required vehicle type.\n";
@@ -235,6 +242,13 @@
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <input type="text" class="form-control" id="txtDropLocation" name="txtDropLocation" placeholder="Vijayawada">
                                         <span class="error-msg" id="ErrorDropLocation">Please enter Drop Location</span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtReferredBy">Reffered by :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtReferredBy" name="txtReferredBy" placeholder="9999999999" maxlength="10">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
                                     </div>
                                 </div>
                             </div>

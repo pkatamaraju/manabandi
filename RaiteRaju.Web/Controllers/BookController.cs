@@ -76,6 +76,7 @@ namespace RaiteRaju.Web.Controllers
             ridesObj.PickUpLocation = form["txtPickUpLocation"];
             ridesObj.VehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
             ridesObj.Password = en.Encrypt(ridesObj.PhoneNumber.ToString());
+            ridesObj.RefrerredByPhoneNumber = !string.IsNullOrEmpty(form["txtReferredBy"]) ? Convert.ToInt64(form["txtReferredBy"]) : 0;
             
            
             HttpCookie OTPCookie = new HttpCookie("_ROTP_");

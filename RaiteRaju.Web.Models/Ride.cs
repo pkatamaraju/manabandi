@@ -25,6 +25,7 @@ namespace RaiteRaju.Web.Models
         public decimal intRideAmount { get; set; }
         public decimal intRideCommision { get; set; }
         public decimal intRideKM { get; set; }
+        public Int64? RefrerredByPhoneNumber { get; set; }
 
     }
 }
