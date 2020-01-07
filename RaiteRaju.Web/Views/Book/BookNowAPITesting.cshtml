@@ -1,0 +1,380 @@
+﻿@model RaiteRaju.Web.Models.UserDetailsModel
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script>
+    function activatePlacesSearch() {
+        var pickUpLocation = document.getElementById('txtPickUpLocation');
+        var autocomplete = new google.maps.places.Autocomplete(pickUpLocation);
+
+        var dropLocation = document.getElementById('txtDropLocation');
+        var autocomplete = new google.maps.places.Autocomplete(dropLocation);
+
+    }
+  
+</script>
+
+
+<script type="text/javascript">
+    $.noConflict();
+
+    function calculateDistance() {
+        if (validation()) {
+            var origin = jQuery('#txtPickUpLocation').val();
+            var destination = jQuery('#txtDropLocation').val();
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+                    // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, callback);
+        }
+    }
+
+
+    function callback(response, status) {
+        if (status != google.maps.DistanceMatrixStatus.OK) {
+            jQuery('#lblResult').html(response.error);
+        } else {
+            var origin = response.originAddresses[0];
+            var destination = response.destinationAddresses[0];
+            if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
+                jQuery('#lblResult').html("Better get on a plane. There are no roads between " + origin + " and " + destination);
+            } else {
+                var distance = response.rows[0].elements[0].distance;
+                //var duration = response.rows[0].elements[0].duration;
+                //console.log(response.rows[0].elements[0].distance);
+                var distance_in_kilo = Math.ceil( distance.value / 1000); // the kilom
+                //var distance_in_mile = distance.value / 1609.34; // the mile
+                //var duration_text = duration.text;
+                //var duration_value = duration.value;
+                //jQuery('#in_mile').text(distance_in_mile.toFixed(2));
+                var form = document.createElement("form");
+                var ddlVehicles = jQuery("#ddlVehicles").val();
+                var ddlSelectedVehicle = jQuery("#ddlVehicles option:selected").text();
+                form += "&intVehicleTypeId=" + ddlVehicles + "&txtKilometers=" + distance_in_kilo;
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("PriceCalculator", "Book")',
+                    dataType: 'json',
+                    data: form,
+                success: function (data) {
+                    jQuery("#lblPrice").html("Distance between entered locations is " + distance_in_kilo + " Kms,<br /> Ride Amount for " + distance_in_kilo + " Kms with " + ddlSelectedVehicle +"  is Rs:" + data).css("color","green");
+
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                    }
+                });
+
+
+                //jQuery('#result').html("Distance(in kms) between entered locations is " + distance_in_kilo.toFixed(2) + "kms.");
+
+                //jQuery('#duration_text').text(duration_text);
+                //jQuery('#duration_value').text(duration_value);
+                //jQuery('#from').text(origin);
+                //jQuery('#to').text(destination);
+            }
+        }
+    }
+
+
+    jQuery("#diverror").hide();
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Login", "User")';
+    }
+
+    function validation() {
+
+        var UserName = jQuery("#txtUserName").val();
+        var PhoneNumber = jQuery("#txtPhoneNumber").val();
+        var PickUpLocation = jQuery("#txtPickUpLocation").val();
+        var DropLocation = jQuery("#txtDropLocation").val();
+        var ddlVehicles = jQuery("#ddlVehicles").val();
+        var referredByPhoneNumber = jQuery("#txtReferredBy").val();
+
+        var phone = jQuery("#txtPhoneNumber").val();
+        intRegex = /^[5-9]{1}[0-9]{9}$/;
+        var message = "";
+        var CheckEnable = "@ViewBag.Enable";
+
+        if (CheckEnable == "ENABLE" || CheckEnable == "" ) {
+
+            if (UserName == "") {
+                message = message + "Please enter Name.\n";
+            }
+            else if (/^[^<>'\"/`%-]*$/.test(UserName) == false) {
+                message = message + "Special characters(<>'\"/`%-) are not allowed in Name.\n";
+            }
+            else if (UserName.length > 50 || UserName.length < 3) {
+                message = message + "Name should be between 3 to 50 characters.\n";
+            }
+            if (PhoneNumber == "") {
+                message = message + "Please enter Phone number.\n";
+            }
+            else if (intRegex.test(phone) == false) {
+                message = message + "Please enter valid Phone number.\n";
+            }
+        }
+        if (referredByPhoneNumber != "" && referredByPhoneNumber == PhoneNumber) {
+            message = message + "Referred by number should be different from user phone number.\n";
+        }
+        else if (referredByPhoneNumber != "" && intRegex.test(referredByPhoneNumber) == false) {
+            message = message + "Please enter valid Phone number.\n";
+        }
+        if (ddlVehicles == "0") {
+            message = message + "Select required vehicle type.\n";
+        }
+        if (PickUpLocation == "") {
+            message = message + "Please enter Pick up location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
+
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
+        }
+        else if (PickUpLocation.length > 100 || PickUpLocation.length < 2) {
+            message = message + "Pick up location should be between 2 to 100 characters.\n";
+        }
+        else if (PickUpLocation.indexOf(',') < 0) {
+            message = message + "Please select valid Pick Up Location from populated vales only.\n";
+        }
+
+        if (DropLocation == "") {
+            message = message + "Please enter Drop location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
+        }
+        else if (DropLocation.length > 100 || DropLocation.length < 2) {
+            message = message + "Drop location should be between 2 to 100 characters\n";
+        }
+        else if (DropLocation.indexOf(',') < 0) {
+            message = message + "Please select valid Drop Location from populated vales only.\n";
+        }
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    function fnRegistration() {
+
+        var form = jQuery("#BookVehicle").serialize();
+        form += "&intVehicleTypeId=" + jQuery("#ddlVehicles").val();
+        var AmobileNumber = jQuery("#txtPhoneNumber").val();
+        var CheckEnable = "@ViewBag.Enable";
+
+        if (validation()) {
+            jQuery("#btnRegister").prop("disabled","disabled");
+            if (CheckEnable=="DISABLE") {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("BookNow", "Book")',
+                    dataType: 'json',
+                    data: form,
+                    success: function (data) {
+                        if (data == -1) {
+                            alert("Please enter correct data as per validation.");
+                        }
+                        if (data != 0 && data != -1) {
+                            jQuery('body').loadingIndicator();
+                            jQuery("#BookVehicle")[0].reset();
+                            window.location.href = '@Url.Action("UserAccount", "User")';
+
+                        }
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                        jQuery("#diverror").show();
+                    }
+                });
+            }
+            else {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("BookNow", "Book")',
+                    dataType: 'json',
+                    data: form,
+                    success: function (data) {
+                        if (data == -1) {
+                            alert("Please enter correct data as per validation.");
+                        }
+                        if (data != 0 && data != -1) {
+                            jQuery('body').loadingIndicator();
+                            jQuery("#BookVehicle")[0].reset();
+                            window.location.href = '@Url.Action("Verification", "User")?MobileNumber=' + AmobileNumber;
+                        }
+
+                    },
+                    error: function (data) {
+                        alert("Some Error Occured");
+                        jQuery("#diverror").show();
+                    }
+                });
+            }
+        }
+    }
+
+    jQuery(document).ready(function () {
+        var VehicleTypeId =@ViewBag.VehicleTypeId
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (VehicleTypeId!=0 && VehicleTypeId == result[i].ID) {
+                        jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                    }
+                    else {
+                        jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                    }
+                });
+            },
+            error: function (response) {
+                alert('Error Occured');
+            }
+        });
+    });
+
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQv1aQS5mhgt5gucYbqGaO7nQzRGgxFOc&libraries=places&callback=activatePlacesSearch"
+        async defer></script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("BookNow", "Book", FormMethod.Post, new { id = "BookVehicle" }))
+                {
+                    <h3 class="FormHeading">Enter details to Book a vehicle</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Book Now</h3>
+                        <div class="row">
+                            @if (ViewBag.Enable == "ENABLE" || ViewBag.Enable != "")
+                            {
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                            <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                        </div>
+
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
+                                            <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                            <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                            <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                        </div>
+                                    </div>
+                                </div>}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlVehicles" class="form-control text-center">
+                                            <option value="0">---Select Vehicle---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select required vehicle</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtPickUpLocation">Pick Up Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                                        <input type="text" class="form-control" id="txtPickUpLocation" name="txtPickUpLocation" placeholder="Nandigama">
+                                        <span class="error-msg" id="ErrorPickUpLocation">Please enter Pick Up Location</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtDropLocation">Drop Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtDropLocation" name="txtDropLocation" placeholder="Vijayawada">
+                                        <span class="error-msg" id="ErrorDropLocation">Please enter Drop Location</span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtReferredBy">Reffered by :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtReferredBy" name="txtReferredBy" placeholder="9999999999" maxlength="10">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <label id="lblResult" style="color:green;font-size:16px;font-weight:bold"></label>
+                                        <br>
+                                        <label id="lblPrice" style="color:green;font-size:16px;font-weight:bold"></label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnCalculateDistance" type="button" value="Calculate Price" class="dflt-btn inactive" onclick="calculateDistance()" />
+                                    <input id="btnRegister" type="button" value="Book Now" class="dflt-btn inactive" onclick="fnRegistration()" />
+                                    <br>
+                                    <label style="font-size:10px;font-family:inherit">By creating account with BellaCabs, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                            }
+                        </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div id="map"></div>
+<div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name" class="title"></span><br>
+    <span id="place-address"></span>
+</div>*@
+

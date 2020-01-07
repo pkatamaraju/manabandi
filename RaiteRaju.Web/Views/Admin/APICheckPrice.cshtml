@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "CheckPrice";
+    Layout = "~/Shared/_AdminLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.loading-indicator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
+<script>
+    function activatePlacesSearch() {
+        var pickUpLocation = document.getElementById('txtPickUpLocation');
+        var autocomplete = new google.maps.places.Autocomplete(pickUpLocation);
+
+        var dropLocation = document.getElementById('txtDropLocation');
+        var autocomplete = new google.maps.places.Autocomplete(dropLocation);
+
+    }
+
+</script>
+
+
+<script type="text/javascript">
+    $.noConflict();
+
+    function calculateDistance() {
+        if (validation()) {
+            var origin = jQuery('#txtPickUpLocation').val();
+            var destination = jQuery('#txtDropLocation').val();
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+                    // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, callback);
+        }
+    }
+
+
+    function callback(response, status) {
+        if (status != google.maps.DistanceMatrixStatus.OK) {
+            jQuery('#lblPrice').html(response.error);
+        } else {
+            var origin = response.originAddresses[0];
+            var destination = response.destinationAddresses[0];
+            if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
+                jQuery('#lblPrice').html("Better get on a plane. There are no roads between " + origin + " and " + destination);
+            } else {
+                var distance = response.rows[0].elements[0].distance;
+                var distance_in_kilo = Math.ceil( distance.value / 1000); // the kilom
+
+                var form = jQuery("#PriceCalculator").serialize();
+                var ddlVehicles = jQuery("#ddlVehicles").val();
+                var ddlSelectedVehicle = jQuery("#ddlVehicles option:selected").text();
+                form += "&intVehicleTypeId=" + ddlVehicles + "&txtKilometers=" + distance_in_kilo;
+
+                jQuery.ajax({
+                type: 'POST',
+                url: '@Url.Action("PriceCalculator", "Admin")',
+                dataType: 'json',
+                data: form,
+                success: function (data) {
+                    if (data != null) {
+                        jQuery(".tableRow").remove();
+                        jQuery("#tblPrice").show();
+                        var tblPrice = jQuery('#tblPrice');
+                        tblPrice.append('<tr class="tableRow" style="border:1px solid black"><td style="width:100px;text-align:center;"> Rs. ' + data.model.FinalFuelCost + '</td><td class="tdbreak" style="width:100px;text-align:center;">Rs. ' + data.model.FinalDriverCost + '</td><td style="width:100px;text-align:center;">Rs. ' + data.model.AvgTollCost + '</td><td style="width:200px;text-align:center;font-size:16;font-weight:bold;color:green">Rs. ' + data.model.FinalCost + '</td><td style="width:200px;text-align:center;font-size:16;font-weight:bold;color:green">Rs. ' + data.model.FinalPrice + '</td><tr>')
+                        jQuery("#lblPrice").html("Commission to be collected Rs : " + Math.round((parseInt(data.model.FinalPrice) * 0.1) / 10) * 10).css("color", "green");
+                        jQuery("#lblPrice1").html("Distance between entered locations is " + distance_in_kilo + " Kms").css("color", "green");
+
+                    }
+                },
+                error: function (data) {
+                    alert("Some Error Occured");
+                }
+            });
+
+            }
+        }
+    }
+
+    function fnCancel() {
+        window.location.href = '@Url.Action("Login", "User")';
+    }
+
+    function validation() {
+        var PickUpLocation = jQuery("#txtPickUpLocation").val();
+        var DropLocation = jQuery("#txtDropLocation").val();
+        var ddlVehicles = jQuery("#ddlVehicles").val();
+
+        var message = "";
+
+        if (ddlVehicles == "0") {
+            message = message + "Select required vehicle type.\n";
+        }
+        if (PickUpLocation == "") {
+            message = message + "Please enter Pick up location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
+
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
+        }
+        else if (PickUpLocation.length > 100 || PickUpLocation.length < 2) {
+            message = message + "Pick up location should be between 2 to 100 characters.\n";
+        }
+        else if (PickUpLocation.indexOf(',') < 0) {
+            message = message + "Please select valid Pick Up Location from populated vales only.\n";
+        }
+
+        if (DropLocation == "") {
+            message = message + "Please enter Drop location.\n";
+        }
+        else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
+            message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
+        }
+        else if (DropLocation.length > 100 || DropLocation.length < 2) {
+            message = message + "Drop location should be between 2 to 100 characters\n";
+        }
+        else if (DropLocation.indexOf(',') < 0) {
+            message = message + "Please select valid Drop Location from populated vales only.\n";
+        }
+        if (message == "") {
+            return true;
+        }
+        else {
+            alert(message);
+            return false
+        }
+    }
+
+    jQuery(document).ready(function () {
+        var VehicleTypeId =@ViewBag.VehicleTypeId
+        jQuery.ajax({
+            type: "POST",
+            url: '@Url.Action("GetVehicleTypes", "Book")',
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                jQuery.each(result, function (i) {
+                    if (VehicleTypeId!=0 && VehicleTypeId == result[i].ID) {
+                        jQuery("#ddlVehicles").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                    }
+                    else {
+                        jQuery("#ddlVehicles").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                    }
+                });
+            },
+            error: function (response) {
+                alert('Error Occured');
+            }
+        });
+    });
+
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQv1aQS5mhgt5gucYbqGaO7nQzRGgxFOc&libraries=places&callback=activatePlacesSearch"
+        async defer></script>
+@{Html.EnableClientValidation();}
+@{Html.EnableUnobtrusiveJavaScript();}
+
+<div id="divSingUp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("PriceCalculator", "Admin", FormMethod.Post, new { id = "PriceCalculator" }))
+                {
+                    <h3 class="FormHeading">Calculate price here</h3>
+                    <label class="ResponseMessage"></label>
+                    <div class="form-box clearfix">
+                        <h3 class="form-heading text-center">Calculate now</h3>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <select id="ddlVehicles" class="form-control text-center">
+                                            <option value="0">---Select Vehicle---</option>
+                                        </select>
+                                        <span class="error-msg" id="ErrorddlState">Please Select required vehicle</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtPickUpLocation">Pick Up Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                                        <input type="text" class="form-control" id="txtPickUpLocation" name="txtPickUpLocation" placeholder="Nandigama">
+                                        <span class="error-msg" id="ErrorPickUpLocation">Please enter Pick Up Location</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtDropLocation">Drop Location<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtDropLocation" name="txtDropLocation" placeholder="Vijayawada">
+                                        <span class="error-msg" id="ErrorDropLocation">Please enter Drop Location</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="ddlState">Required Type<span class="MandatoryStars">*</span> :</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                                        <input checked="checked"
+                                               id="TravelRequestType"
+                                               name="TravelRequestType"
+                                               type="radio"
+                                               value="0" /><label>Only Drop</label>&nbsp;&nbsp;
+
+                                        <input id="TravelRequestType"
+                                               name="TravelRequestType"
+                                               type="radio"
+                                               value="1" /><label>Pick Up and drop</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <div class="table-responsive" style="border-bottom:1px solid black">
+                                            <table id="tblPrice" style="width:100%;overflow-wrap:break-word;text-align:center;display:none;border:1px solid black">
+                                                <tr id="adlistHeader">
+                                                    <th>Fuel Cost</th>
+                                                    <th>Driver Cost</th>
+                                                    <th>Avg Toll Cost</th>
+                                                    <th>Total Cost</th>
+                                                    <th>Final Price</th>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <label id="lblPrice" style="color:green;font-size:16px;font-weight:bold"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <label id="lblResult" style="color:green;font-size:16px;font-weight:bold"></label>
+                                        <br>
+                                        <label id="lblPrice1" style="color:green;font-size:16px;font-weight:bold"></label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <div class="cta-actions">
+                                    <input id="btnCalculateDistance" type="button" value="Calculate Price" class="dflt-btn inactive" onclick="calculateDistance()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div id="map"></div>
+    <div id="infowindow-content">
+        <img src="" width="16" height="16" id="place-icon">
+        <span id="place-name" class="title"></span><br>
+        <span id="place-address"></span>
+    </div>*@
+

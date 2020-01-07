@@ -434,7 +434,7 @@ namespace RaiteRaju.Web.Controllers
 
         }
 
-
+        #region OwnerDetails
 
         public ActionResult AddOwner()
         {
@@ -535,7 +535,6 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-
 
         public ActionResult OwnerDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
@@ -677,6 +676,8 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        #endregion
+
         public ActionResult DeleteAccount(Int64 BigIntPhoneNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -695,6 +696,9 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
+
+        #region RideDetails
 
         public ActionResult RideDetails(Int32 intRideStatusID, Int32 VehicleTypeID, Int32 PageNumber)
         {
@@ -773,23 +777,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-        public ActionResult PriceCalculator()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult PriceCalculator(FormCollection form)
-        {
-            int Kilometers = Convert.ToInt32(form["txtKilometers"]);
-            int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
-            string TravelRequestType = Convert.ToString(form["TravelRequestType"]);
-            InformationServiceWrapper objservice = new InformationServiceWrapper();
-            
-           PriceModel model = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
-            return Json(new { model }, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult EditRideDetails(Int32 rideID)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -828,7 +815,7 @@ namespace RaiteRaju.Web.Controllers
                 ridesObj.txtVehicleNumber = form["txtAssignedVehicle"];
                 ridesObj.txtRideStatus = form["intRideStatusID"];
                 ridesObj.intRideAmount = Convert.ToDecimal(form["intRideAmount"]);
-                ridesObj.intRideCommision = Convert.ToDecimal( form["intRideCommision"]);
+                ridesObj.intRideCommision = Convert.ToDecimal(form["intRideCommision"]);
                 ridesObj.intRideKM = Convert.ToDecimal(form["intRideKM"]);
 
                 ManagementServiceWrapper manageObj = new ManagementServiceWrapper();
@@ -842,7 +829,36 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        #endregion
 
+        #region PriceCheck
+
+        public ActionResult APICheckPrice()
+        {
+            return View();
+        }
+
+        public ActionResult PriceCalculator()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PriceCalculator(FormCollection form)
+        {
+            int Kilometers = Convert.ToInt32(form["txtKilometers"]);
+            int vehicleTypeID = Convert.ToInt32(form["intVehicleTypeId"]);
+            string TravelRequestType = Convert.ToString(form["TravelRequestType"]);
+            InformationServiceWrapper objservice = new InformationServiceWrapper();
+            
+           PriceModel model = objservice.GetPriceForRide(Kilometers, vehicleTypeID, TravelRequestType);
+            return Json(new { model }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region TrnVehicleDetails
+         
         public ActionResult VehicleDetails(Int32 intStateID, Int32 intDistrictID, Int32 intManadalID, Int32 VehicleTypeID, Int32 PageNumber)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -988,6 +1004,9 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        #endregion
+
+        #region OwnerSearch
 
         public ActionResult OwnerSearch(){
             ViewBag.phoneNumber = "";
@@ -1025,6 +1044,10 @@ namespace RaiteRaju.Web.Controllers
             return View("OwnerSearch");
 
         }
+
+        #endregion
+
+        #region MasterVehicleTypes
 
         public ActionResult VehicleTypesForAdmin()
         {
@@ -1078,7 +1101,9 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        #endregion
 
+        #region DriverRelated
 
         public ActionResult AddDriver()
         {
@@ -1093,7 +1118,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
-
+       
         [HttpPost]
         public ActionResult AddDriver(FormCollection form)
         {
@@ -1214,7 +1239,6 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
-
         public ActionResult EditDriverDetails(Int32 driverID)
         {
             HttpCookie nameCookie = Request.Cookies["_RRAUN"];
@@ -1319,6 +1343,9 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        #endregion
+
+        #region PriceMultiple
 
         public ActionResult GetPriceMultiple()
         {
@@ -1336,6 +1363,7 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
         public ActionResult UpdatePriceMultiple(int pricePK)
         {
             InformationServiceWrapper wrapper = new InformationServiceWrapper();
@@ -1379,6 +1407,10 @@ namespace RaiteRaju.Web.Controllers
                 return RedirectToAction("Login", "Admin");
             }
         }
+
+        #endregion
+
+        #region BillGeneration
 
         public void DownloadPDF(int rideID)
         {
@@ -1698,6 +1730,9 @@ namespace RaiteRaju.Web.Controllers
             }
                 return bPDF;
         }
+
+        #endregion
+
     }
 
 }

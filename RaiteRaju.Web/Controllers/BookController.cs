@@ -107,6 +107,11 @@ namespace RaiteRaju.Web.Controllers
             return View();
         }
 
+
+        public ActionResult BookNowAPITesting()
+        {
+            return View();
+        }
     }
 }
     

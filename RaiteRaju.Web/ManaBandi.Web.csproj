@@ -228,10 +228,6 @@
     <Content Include="Content\images\PlayStore.png" />
     <Content Include="Content\images\UserName.jpg" />
     <Content Include="Content\images\Verified.jpg" />
-    <Content Include="Content\QRCode\QRCode_49.jpg" />
-    <Content Include="Content\QRCode\QRCode_51.jpg" />
-    <Content Include="Content\QRCode\QRCode_53.jpg" />
-    <Content Include="Content\QRCode\QRCode_55.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="Content\Bootstrap\js\bootstrap.bundle.min.js.map" />
@@ -330,9 +326,12 @@
     <Content Include="Views\User\DriverAccount.cshtml" />
     <Content Include="Views\Admin\PriceMultiple.cshtml" />
     <Content Include="Views\Admin\EditPriceMultiple.cshtml" />
+    <Content Include="Views\Book\BookNowAPITesting.cshtml" />
+    <Content Include="Views\Admin\APICheckPrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\QRCode\" />
     <Folder Include="Content\Scripts\" />
     <Folder Include="Models\" />
     <Folder Include="PhotoManagement\Actual\" />
