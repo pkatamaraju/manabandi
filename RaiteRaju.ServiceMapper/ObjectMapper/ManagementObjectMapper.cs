@@ -83,7 +83,7 @@ namespace RaiteRaju.ServiceMapper.ObjectMapper
             rideEntity.intRideAmount = ride.intRideAmount;
             rideEntity.intRideCommision = ride.intRideCommision;
             rideEntity.intRideKM = ride.intRideKM;
-            rideEntity.RefrerredByPhoneNumber = ride.RefrerredByPhoneNumber;
+            //rideEntity.RefrerredByPhoneNumber = ride.RefrerredByPhoneNumber;
             return rideEntity;
         }
 

@@ -2,92 +2,12 @@
 @{
     Layout = "~/Shared/_Layout.cshtml";
 }
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.loading-indicator.min.js"></script>
 <link type="text/css" rel="stylesheet" href="~/Content/css/jquery.loading-indicator.css" />
-<script>
-    function activatePlacesSearch() {
-        var pickUpLocation = document.getElementById('txtPickUpLocation');
-        var autocomplete = new google.maps.places.Autocomplete(pickUpLocation);
-
-        var dropLocation = document.getElementById('txtDropLocation');
-        var autocomplete = new google.maps.places.Autocomplete(dropLocation);
-
-    }
-  
-</script>
-
-
 <script type="text/javascript">
     $.noConflict();
-
-    function calculateDistance() {
-        if (validation()) {
-            var origin = jQuery('#txtPickUpLocation').val();
-            var destination = jQuery('#txtDropLocation').val();
-            var service = new google.maps.DistanceMatrixService();
-            service.getDistanceMatrix(
-                {
-                    origins: [origin],
-                    destinations: [destination],
-                    travelMode: google.maps.TravelMode.DRIVING,
-                    unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
-                    // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
-                    avoidHighways: false,
-                    avoidTolls: false
-                }, callback);
-        }
-    }
-
-
-    function callback(response, status) {
-        if (status != google.maps.DistanceMatrixStatus.OK) {
-            jQuery('#lblResult').html(response.error);
-        } else {
-            var origin = response.originAddresses[0];
-            var destination = response.destinationAddresses[0];
-            if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
-                jQuery('#lblResult').html("Better get on a plane. There are no roads between " + origin + " and " + destination);
-            } else {
-                var distance = response.rows[0].elements[0].distance;
-                //var duration = response.rows[0].elements[0].duration;
-                //console.log(response.rows[0].elements[0].distance);
-                var distance_in_kilo = Math.ceil( distance.value / 1000); // the kilom
-                //var distance_in_mile = distance.value / 1609.34; // the mile
-                //var duration_text = duration.text;
-                //var duration_value = duration.value;
-                //jQuery('#in_mile').text(distance_in_mile.toFixed(2));
-                var form = document.createElement("form");
-                var ddlVehicles = jQuery("#ddlVehicles").val();
-                var ddlSelectedVehicle = jQuery("#ddlVehicles option:selected").text();
-                form += "&intVehicleTypeId=" + ddlVehicles + "&txtKilometers=" + distance_in_kilo;
-
-                jQuery.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("PriceCalculator", "Book")',
-                    dataType: 'json',
-                    data: form,
-                success: function (data) {
-                    jQuery("#lblPrice").html("Distance between entered locations is " + distance_in_kilo + " Kms,<br /> Ride Amount for " + distance_in_kilo + " Kms with " + ddlSelectedVehicle +"  is Rs:" + data).css("color","green");
-
-                    },
-                    error: function (data) {
-                        alert("Some Error Occured");
-                    }
-                });
-
-
-                //jQuery('#result').html("Distance(in kms) between entered locations is " + distance_in_kilo.toFixed(2) + "kms.");
-
-                //jQuery('#duration_text').text(duration_text);
-                //jQuery('#duration_value').text(duration_value);
-                //jQuery('#from').text(origin);
-                //jQuery('#to').text(destination);
-            }
-        }
-    }
-
-
     jQuery("#diverror").hide();
 
     function fnCancel() {
@@ -108,7 +28,7 @@
         var message = "";
         var CheckEnable = "@ViewBag.Enable";
 
-        if (CheckEnable == "ENABLE" || CheckEnable == "" ) {
+        if (CheckEnable== "ENABLE") {
 
             if (UserName == "") {
                 message = message + "Please enter Name.\n";
@@ -126,7 +46,7 @@
                 message = message + "Please enter valid Phone number.\n";
             }
         }
-        if (referredByPhoneNumber != "" && referredByPhoneNumber == PhoneNumber) {
+        if (referredByPhoneNumber == PhoneNumber) {
             message = message + "Referred by number should be different from user phone number.\n";
         }
         else if (referredByPhoneNumber != "" && intRegex.test(referredByPhoneNumber) == false) {
@@ -135,32 +55,26 @@
         if (ddlVehicles == "0") {
             message = message + "Select required vehicle type.\n";
         }
-        if (PickUpLocation == "") {
+        else if (PickUpLocation == "") {
             message = message + "Please enter Pick up location.\n";
         }
-        else if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
+        if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
 
             message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
         }
-        else if (PickUpLocation.length > 100 || PickUpLocation.length < 2) {
-            message = message + "Pick up location should be between 2 to 100 characters.\n";
+        else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
+            message = message + "Pick up location should be between 4 to 50 characters.\n";
         }
-        else if (PickUpLocation.indexOf(',') < 0) {
-            message = message + "Please select valid Pick Up Location from populated vales only.\n";
-        }
-
         if (DropLocation == "") {
             message = message + "Please enter Drop location.\n";
         }
         else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
             message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
         }
-        else if (DropLocation.length > 100 || DropLocation.length < 2) {
-            message = message + "Drop location should be between 2 to 100 characters\n";
+        else if (DropLocation.length > 50 || DropLocation.length < 4) {
+            message = message + "Drop location should be between 4 to 50 characters\n";
         }
-        else if (DropLocation.indexOf(',') < 0) {
-            message = message + "Please select valid Drop Location from populated vales only.\n";
-        }
+
         if (message == "") {
             return true;
         }
@@ -255,8 +169,6 @@
 
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=activatePlacesSearch"
-        async defer></script>
 @{Html.EnableClientValidation();}
 @{Html.EnableUnobtrusiveJavaScript();}
 
@@ -271,32 +183,31 @@
                     <div class="form-box clearfix">
                         <h3 class="form-heading text-center">Book Now</h3>
                         <div class="row">
-                            @if (ViewBag.Enable == "ENABLE" || ViewBag.Enable != "")
-                            {
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                            <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
-                                        </div>
+                            @if(ViewBag.Enable=="ENABLE"){
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
+                                    </div>
 
-                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
-                                            <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
-                                        </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        @Html.TextBox("txtUserName", null, new { @class = "form-control", @placeholder = " Name" })
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter valid name</span>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
-                                            <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
-                                            <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
-                                        </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
                                     </div>
-                                </div>}
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
+                                        <span class="error-msg" id="ErrortxtUserName">Please enter a valid phone number</span>
+                                    </div>
+                                </div>
+                            </div>}
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
@@ -341,40 +252,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                        <label id="lblResult" style="color:green;font-size:16px;font-weight:bold"></label>
-                                        <br>
-                                        <label id="lblPrice" style="color:green;font-size:16px;font-weight:bold"></label>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <div class="cta-actions">
-                                    <input id="btnCalculateDistance" type="button" value="Calculate Price" class="dflt-btn inactive" onclick="calculateDistance()" />
-                                    <input id="btnRegister" type="button" value="Book Now" class="dflt-btn inactive" onclick="fnRegistration()" />
+                                    <input id="btnRegister" type="button" value="Submit Details" class="dflt-btn inactive" onclick="fnRegistration()" />
                                     <br>
                                     <label style="font-size:10px;font-family:inherit">By creating account with BellaCabs, I agree to <a href="/Footer/TermsAndConditions">Terms and Conditions</a></label>
                                 </div>
                             </div>
                         </div>
-                            </div>
-                            }
-                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
 
 
-@*<div id="map"></div>
-<div id="infowindow-content">
-    <img src="" width="16" height="16" id="place-icon">
-    <span id="place-name" class="title"></span><br>
-    <span id="place-address"></span>
-</div>*@
+
+
 

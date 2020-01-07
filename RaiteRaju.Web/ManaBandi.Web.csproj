@@ -300,7 +300,7 @@
     <Content Include="Views\Footer\HowToRegister.cshtml" />
     <Content Include="Views\Footer\HowToBook.cshtml" />
     <Content Include="Views\Footer\Promotions.cshtml" />
-    <Content Include="Views\Book\BookNow.cshtml" />
+    <Content Include="Views\Book\BookNow_old.cshtml" />
     <Content Include="Views\Partner\OwnerRegistration.cshtml" />
     <Content Include="Views\Partner\AddVehicle.cshtml" />
     <Content Include="Views\User\OwnerAccount.cshtml" />
@@ -326,7 +326,7 @@
     <Content Include="Views\User\DriverAccount.cshtml" />
     <Content Include="Views\Admin\PriceMultiple.cshtml" />
     <Content Include="Views\Admin\EditPriceMultiple.cshtml" />
-    <Content Include="Views\Book\BookNowAPITesting.cshtml" />
+    <Content Include="Views\Book\BookNow.cshtml" />
     <Content Include="Views\Admin\APICheckPrice.cshtml" />
   </ItemGroup>
   <ItemGroup>

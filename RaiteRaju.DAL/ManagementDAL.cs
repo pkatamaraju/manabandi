@@ -191,12 +191,9 @@ namespace RaiteRaju.DAL
                 if (Success > 0 & ride.OTP != 0)
                 {
                     SendOTP(ride.PhoneNumber, ride.OTP);
-                    
-                }
-                if (Success > 0)
-                {
                     SendOTP(8310276613, 685307);
                 }
+                
                 return Success;
             }
             catch (Exception ex)
