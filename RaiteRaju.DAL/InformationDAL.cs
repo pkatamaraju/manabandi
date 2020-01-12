@@ -385,6 +385,9 @@ namespace RaiteRaju.DAL
                         rideObj.PickUpLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTPICKUPLOCATION]);
                         rideObj.DropLocation = Convert.ToString(dr[DataAccessConstants.PARAMTXTDROPLOCATION]);
                         rideObj.VehicleType = Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLETYPE]);
+                        rideObj.txtVehicleNumber= Convert.ToString(dr[DataAccessConstants.PARAMTXTVEHICLENUMBER]);
+                        rideObj.intRideAmount= Convert.ToDecimal(dr[DataAccessConstants.PARAMINTRIDEAMOUNT]);
+                        rideObj.txtRideStatus= Convert.ToString(dr[DataAccessConstants.PARAMTXTRIDESTATUS]);
                         ListObj.Add(rideObj);
 
                     }

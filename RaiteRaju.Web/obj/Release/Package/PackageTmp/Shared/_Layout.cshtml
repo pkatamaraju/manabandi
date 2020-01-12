@@ -38,8 +38,8 @@
             jQuery("#tabPartner").click(function () {
                 window.location.href = "/Footer/Partner";
             });
-            jQuery("#tabHowToRegister").click(function () {
-                window.location.href = "/Footer/HowToRegister";
+            jQuery("#DriverRegistration").click(function () {
+                window.location.href = "/Partner/DriverRegistration";
             });
             jQuery("#tabHowToBook").click(function () {
                 window.location.href = "/Footer/HowToBook";
@@ -121,8 +121,9 @@
                     <div class="topnav" id="myTopnav">
                         <a href="/" tabindex="-1" id="tabHome">Home</a>
                         <a href="/Footer/AboutUs" id="tabAboutUs" tabindex="-1">About Us</a>
-                        <a  href="/Footer/Partner" id="tabPartner" tabindex="-1">Be Our Partner</a>
-                        <a href="/Book/PriceCalculator" id="tabHowToRegister" tabindex="-1">Calculate Price for ride</a>
+                        <a href="/Footer/Partner" id="tabPartner" tabindex="-1">Be Our Partner</a>
+                        @*<a href="/Book/BookNow" id="tabHowToRegister" tabindex="-1">Check Price for a ride</a>*@
+                        <a href="/Partner/DriverRegistration" id="tabRegisterAsDriver">Register as Driver</a>
                         <a href="/Footer/HowToBook" id="tabHowToBook" tabindex="-1">How To Book Vehicle</a>
                         <a href="/Footer/Promotions" id="tabPromotions" tabindex="-1" class="blink_me">Advertise With Us</a>
                         <a href="/Footer/ContactUs" id="tabContactUs" tabindex="-1">Contact Us</a>
@@ -162,7 +163,7 @@
                 <div class="col-md-2 col-sm-6 col-xs-6">
                     <div style="padding-bottom:20px;">
                         <ul class="list-unstyled">
-                            <li><a href="/Book/PriceCalculator">Calculate price for ride</a></li>
+                            <li><a href="/Book/PriceCalculator">Check price for a ride</a></li>
                             <li><a href="/Footer/HowToRegister">How to Register</a></li>
                             <li><a href="/Footer/ReportIssue">Report an Issue</a></li>
 

@@ -67,11 +67,10 @@
 
     function fnOwnerSearchwithPhoneOrVehicleNumber() {
         intRegex = /^[5-9]{1}[0-9]{9}$/;
-        vehicleNumberRegex =/^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}$/;
-        var phoneOrVehicleNumber = jQuery("#txtPhoneorVehicleNumber").val();
+        vehicleNumberRegex = /^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}$/;
+        var phoneOrVehicleNumber = jQuery("#txtPhoneorVehicleNumber").val().toUpperCase();
 
         message = "";
-        debugger;
 
         if (phoneOrVehicleNumber == "") {
             message = message + "Please enter Phone or Vehicle Number.\n";

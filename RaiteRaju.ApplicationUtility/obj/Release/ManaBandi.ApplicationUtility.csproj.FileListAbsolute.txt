@@ -17,3 +17,13 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Relea
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Release\RaiteRaju.ApplicationUtility.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\obj\Release\RaiteRaju.ApplicationUtility.pdb
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ApplicationUtility\bin\Release\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\obj\Release\ManaBandi.ApplicationUtility.csprojAssemblyReference.cache
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\obj\Release\ManaBandi.ApplicationUtility.csproj.CoreCompileInputs.cache
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\obj\Release\ManaBandi.ApplicationUtility.csproj.CopyComplete
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\obj\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ApplicationUtility\obj\Release\RaiteRaju.ApplicationUtility.pdb

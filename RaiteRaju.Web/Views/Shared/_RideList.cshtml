@@ -24,7 +24,7 @@
             for(i=0;i<length;i++){
                 j=i+1;
                 var SNo=pageNumber+j;
-                tblrideList.append('<tr id="rideListRow"><td>' + SNo + '</td><td width="200px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="200px">' + rideList[i].DtCreated + '</td><tr>')
+                tblrideList.append('<tr id="rideListRow"><td>' + SNo + '</td><td width="200px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td>' + rideList[i].VehicleType + '</td><td width="200px">' + rideList[i].DtCreated + '</td><td width="200px">' + rideList[i].intRideAmount + '</td><td width="200px">' + rideList[i].txtRideStatus + '</td><td width="200px">' + rideList[i].txtVehicleNumber + '</td><tr>')
             }
         }
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -140,7 +140,10 @@
                 <th width="200px">Pick Up Location</th>
                 <th width="200px">Drop Location</th>
                 <th width="100px">Requested Vehicle</th>
-                <th width="200px">Ride Requested Date</th>
+                <th width="200px">Requested Date</th>
+                <th width="200px">Ride Amount</th>
+                <th width="200px">Status</th>
+                <th width="200px">Vehicle Number</th>
             </tr>
         </table>
     </div>

@@ -9,3 +9,9 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\bin\Release\RaiteRa
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csprojResolveAssemblyReference.cache
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.Entities\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csprojAssemblyReference.cache
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.Entities\obj\Release\ManaBandi.Entities.csproj.CoreCompileInputs.cache
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.Entities\obj\Release\RaiteRaju.Entities.pdb

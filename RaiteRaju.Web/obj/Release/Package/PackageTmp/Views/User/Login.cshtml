@@ -140,10 +140,10 @@
     <div class="container">
 
         <div class="row pt-5">
-            <div class="col-lg-3 col-md-3 col-sm-2">
+            <div class="col-lg-3 col-md-3 col-sm-2 col-xs-1">
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-6 RegisterBox">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 RegisterBox">
                 <div class="row" style="align-items:center;">
                     <div class="col-lg-8 col-sm-12 col-xs-12">
                         <h4 class="FormHeading" style="padding:0px;color:grey;font-size:13px">Don't have Account? Create Now</h4>
@@ -168,9 +168,9 @@
                     @using (Html.BeginForm("LoginPost", "User", FormMethod.Post, new { id = "LoginForm" }))
                     {<h3 class="form-heading text-center">Login Now</h3>
                         <div class="row">
-                            <div class="col-md-3 col-sm-3">
+                            <div class="col-md-3 col-sm-3 col-xs-1">
                             </div>
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-6 col-sm-6 col-xs-10">
                                 <div class="form-group NoMargin">
                                     <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span>:</label>
                                     <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="9999999999" maxlength="10">
@@ -179,9 +179,9 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3 col-sm-3">
+                            <div class="col-md-3 col-sm-3 col-xs-1">
                             </div>
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-6 col-sm-6 col-xs-10">
                                 <div class="form-group psw NoMargin">
                                     <label>Password<span class="MandatoryStars">*</span>:</label>
                                     <input type="password" id="txtPassword" class="form-control" name="txtPassword" required="" data-required-message="Please enter Password" data-invalid-message="Password should contain min 8 Characters with at least 1 uppercase, 1 lowercase and 1 number">

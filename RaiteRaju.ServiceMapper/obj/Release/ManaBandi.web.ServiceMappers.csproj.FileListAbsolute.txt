@@ -50,3 +50,30 @@ C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceMapper\bin\Release\Ra
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceMapper\obj\Release\ManaBandi.web.ServiceMappers.csprojResolveAssemblyReference.cache
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.dll
 C:\Users\BELLACABS\Desktop\BellaCabs Code\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceMapper.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Entities.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayerInterface.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ServiceLayer.dll.config
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.Web.Models.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayer.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.BusinessLayerInterface.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.DAL.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\bin\Release\RaiteRaju.ApplicationUtility.pdb
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\obj\Release\ManaBandi.web.ServiceMappers.csprojAssemblyReference.cache
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\obj\Release\ManaBandi.web.ServiceMappers.csproj.CoreCompileInputs.cache
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\obj\Release\ManaBandi.web.ServiceMappers.csproj.CopyComplete
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.dll
+C:\Users\pkatamaraju\Desktop\BellaCabs\RaiteRaju.ServiceMapper\obj\Release\RaiteRaju.ServiceMapper.pdb

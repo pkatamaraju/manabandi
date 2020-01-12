@@ -34,7 +34,7 @@
 
     function fnCalculatePrice() {
 
-        var form = jQuery("#BookVehicle").serialize();
+        var form = jQuery("#PriceCalculator").serialize();
         var KiloMeters = jQuery("#txtKilometers").val();
 
         // var TravelRequestType = jQuery("#TravelRequestType:checked").val(); //jQuery("#TravelRequestType").ch
@@ -92,7 +92,7 @@
         <div class="row" style="padding-top:20px;">
 
             <div class="col-lg-12 col-md-12">
-                @using (Html.BeginForm("BookNow", "Book", FormMethod.Post, new { id = "BookVehicle" }))
+                @using (Html.BeginForm("PriceCalculator", "Admin", FormMethod.Post, new { id = "PriceCalculator" }))
                 {
                     <h3 class="FormHeading">Calculate Price Here.</h3>
                     <label class="ResponseMessage"></label>
