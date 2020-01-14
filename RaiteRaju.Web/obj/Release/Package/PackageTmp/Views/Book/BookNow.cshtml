@@ -8,11 +8,14 @@
 <script>
     function activatePlacesSearch() {
         var pickUpLocation = document.getElementById('txtPickUpLocation');
-        var autocomplete = new google.maps.places.Autocomplete(pickUpLocation);
+        var autocomplete1 = new google.maps.places.Autocomplete(pickUpLocation);
+        autocomplete1.setComponentRestrictions(
+            { 'country': ['in'] });
 
         var dropLocation = document.getElementById('txtDropLocation');
-        var autocomplete = new google.maps.places.Autocomplete(dropLocation);
-
+        var autocomplete2 = new google.maps.places.Autocomplete(dropLocation);
+        autocomplete2.setComponentRestrictions(
+            { 'country': ['in'] });
     }
   
 </script>

@@ -173,6 +173,7 @@ namespace RaiteRaju.DAL
         public int BookRide(RideEntity ride)
         {
             int Success = 0;
+            Int64 adminPhoneNumber=0;
 
             try
             {
@@ -188,10 +189,17 @@ namespace RaiteRaju.DAL
                     Success = DBAccessHelper.ExecuteNonQuery(objDbCommand);
                 }
 
+
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBOTPForAdmin))
+                {
+                    adminPhoneNumber =Convert.ToInt64( DBAccessHelper.ExecuteScalar(objDbCommand));
+                }
+
+
                 if (Success > 0 & ride.OTP != 0)
                 {
                     SendOTP(ride.PhoneNumber, ride.OTP);
-                    SendOTP(8310276613, 685307);
+                    SendOTP(adminPhoneNumber, 685307);
                 }
                 
                 return Success;

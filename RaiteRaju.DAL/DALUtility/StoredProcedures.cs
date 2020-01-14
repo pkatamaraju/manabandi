@@ -72,6 +72,7 @@ namespace RaiteRaju.DAL.DALUtility
         public const string GET_PriceMultiple = "GET_PriceMultiple";
         public const string UPDATE_PriceMultiple = "UPDATE_PriceMultiple";
         public const string GET_PriceMultipleByID = "GET_PriceMultipleByID";
+        public const String GET_MBOTPForAdmin = "GET_MBOTPForAdmin";
         #endregion
 
         public const string INSERT_MBInsertPromotions = "INSERT_MBInsertPromotions";

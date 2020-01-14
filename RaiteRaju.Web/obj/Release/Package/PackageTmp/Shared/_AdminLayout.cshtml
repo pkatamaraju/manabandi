@@ -41,6 +41,9 @@
             jQuery("#tabPriceCalculator").click(function () {
                 window.location.href = "/admin/PriceCalculator";
             });
+            jQuery("#tabCheckPrice").click(function () {
+                window.location.href = "/admin/APICheckPrice";
+            });
             jQuery("#tabOwnerSearch").click(function () {
                 window.location.href = "/admin/OwnerSearch";
             });
@@ -107,7 +110,7 @@
                      <div class="dropdownMenu pt-2">
                          <span class="fa fa-user"></span>
                          <a id="UserLoggedInText" href="#">@Request.Cookies["_RRAUN"]["_RRAUN"] <span class="fa fa-angle-down"></span></a>
-                         <a href="/Admin/ReviewsForAdmin" id="tabReviews" tabindex="-1">Reviews</a>
+                         
                          <div class="dropdown-content">
                              @if (Request.Cookies["_RRROLE"]["_RRROLE"].ToString() == "ADMIN")
                              {
@@ -115,6 +118,7 @@
                                  <a href="/Admin/VehicleTypesForAdmin" id="tabVehicleTypes" tabindex="-1">Vehicle_Types</a>
                                  <a href="/Admin/GetPriceMultiple" id="tabPriceMultiple" tabindex="-1">Price_Multiple</a>
                              }
+                             <a href="/Admin/ReviewsForAdmin" id="tabReviews" tabindex="-1">Reviews</a>
                              <a href="#" onclick="fnLogout()">Logout</a>
                          </div>
                      </div>
@@ -139,7 +143,7 @@
                         <a href="/admin/VehicleDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabVehicles" tabindex="-1">Vehicle Data</a>
                         <a href="/admin/OwnerDetails?intStateID=0&intDistrictID=0&intManadalID=0&VehicleTypeID=0&PageNumber=1" id="tabOwners" tabindex="-1">Owners Data</a>
                         <a href="/admin/PriceCalculator" id="tabPriceCalculator" tabindex="-1">Price Calculator</a>
-                        <a href="/admin/APICheckPrice" id="tabPriceCalculator" tabindex="-1">API Price</a>
+                        <a href="/admin/APICheckPrice" id="tabCheckPrice" tabindex="-1">API Price</a>
                         <a href="/admin/OwnerSearch" id="tabOwnerSearch" tabindex="-1">Owner Search</a>
                         <a href="/admin/DriverDetails?intStateID=0&intDistrictID=0&intManadalID=0&PageNumber=1" ; id="tabDriverDetails" tabindex="-1">Driver Details</a>
                         <a href="/Admin/ContactUs" id="tabContactUsForAdmin" tabindex="-1">Contact Us</a>
