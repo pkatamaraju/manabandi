@@ -9,13 +9,13 @@
 <script>
     function activatePlacesSearch() {
         var pickUpLocation = document.getElementById('txtPickUpLocation');
-        var autocomplete1 = new google.maps.places.Autocomplete(pickUpLocation);
+        var autocomplete1 = new google.maps.places.Autocomplete(pickUpLocation, { fields: ["name", "geometry.location", "place_id", "formatted_address"] });
         autocomplete1.setFields(['address_components', 'formatted_address', 'geometry', 'icon', 'name']);
         autocomplete1.setComponentRestrictions(
             { 'country': ['in'] });
 
         var dropLocation = document.getElementById('txtDropLocation');
-        var autocomplete2 = new google.maps.places.Autocomplete(dropLocation);
+        var autocomplete2 = new google.maps.places.Autocomplete(dropLocation, { fields: ["name", "geometry.location", "place_id", "formatted_address"] });
         autocomplete2.setFields(['address_components', 'formatted_address', 'geometry', 'icon', 'name']);
 
         autocomplete2.setComponentRestrictions(
