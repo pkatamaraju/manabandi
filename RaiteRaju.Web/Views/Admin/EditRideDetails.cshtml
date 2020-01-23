@@ -10,20 +10,7 @@
     $.noConflict();
     jQuery("#diverror").hide();
 
-    jQuery.ajax({
-                    type: "POST",
-                    url: '@Url.Action("GetRideStatus", "Admin")',
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        jQuery.each(result, function (i) {
-                            jQuery("#ddlRideStatus").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
-                        });
-                    },
-                    error: function (response) {
-                        alert('Error Occured');
-                    }
-                });
+    
 
 
     function fnCancel() {
@@ -96,15 +83,16 @@
         if (ddlVehicles == "0") {
             message = message + "Select required vehicle type.\n";
         }
-        else if (PickUpLocation == "") {
+
+        if (PickUpLocation == "") {
             message = message + "Please enter Pick up location.\n";
         }
-        if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
+        else if (/^[^<>'\"/`%-]*$/.test(PickUpLocation) == false) {
 
             message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
         }
-        else if (PickUpLocation.length > 50 || PickUpLocation.length < 4) {
-            message = message + "Pick up location should be between 4 to 50 characters.\n";
+        else if (PickUpLocation.length > 150 || PickUpLocation.length < 2) {
+            message = message + "Pick up location should be between 2 to 150 characters.\n";
         }
 
         if (DropLocation == "") {
@@ -113,8 +101,8 @@
         else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
             message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
         }
-        else if (DropLocation.length > 50 || DropLocation.length < 4) {
-            message = message + "Drop location should be between 4 to 50 characters\n";
+        else if (DropLocation.length > 150 || DropLocation.length < 2) {
+            message = message + "Drop location should be between 2 to 150 characters\n";
         }
 
         if (ShceduledTime != "" & (ShceduledTime < 1 || ShceduledTime>24 ) ) {
@@ -200,7 +188,7 @@
     jQuery(document).ready(function () {
         var rideDetails =@(Html.Raw(Json.Encode(@ViewBag.rideDetails)));
         var VehicleTypeId = rideDetails.VehicleTypeID;
-
+        var rideStatus = rideDetails.txtRideStatus;
         jQuery.ajax({
             type: "POST",
             url: '@Url.Action("GetVehicleTypes", "Book")',
@@ -220,21 +208,43 @@
             error: function (response) {
                 alert('Error Occured');
             }
+        });
+
+        jQuery.ajax({
+        type: "POST",
+        url: '@Url.Action("GetRideStatus", "Admin")',
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            jQuery.each(result, function (i) {
+                if (rideStatus != 0 && rideStatus == result[i].ID) {
+                    jQuery("#ddlRideStatus").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                }
+                else {
+                    jQuery("#ddlRideStatus").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+
+                }
             });
+        },
+        error: function (response) {
+            alert('Error Occured');
+        }
+    });
+
+
 
         jQuery("#txtUserName").val(rideDetails.Name);
         jQuery("#txtPhoneNumber").val(rideDetails.PhoneNumber);
         jQuery("#txtPickUpLocation").val(rideDetails.PickUpLocation);
         jQuery("#txtDropLocation").val(rideDetails.DropLocation);
-        jQuery('select[name="ddlRideStatus"]').find('option[value=' + parseInt(rideDetails.txtRideStatus) + ']').attr("selected", true);
         jQuery("#txtAssignedVehicle").val(rideDetails.txtVehicleNumber);
         jQuery("#txtScheduledTime").val(rideDetails.txtScheduledTime);
         jQuery("#lblScheduledDate").html(rideDetails.dtScheduledDate);
 
         const element = document.getElementById('txtScheduledDate');
-        new Date(jQuery("#lblScheduledDate").text())
         var sdate = new Date(rideDetails.dtScheduledDate);
-        element.valueAsNumber = sdate- (new Date()).getTimezoneOffset() * 60000;// Date.now() - (new Date()).getTimezoneOffset() * 60000;
+        element.valueAsNumber = sdate - (new Date()).getTimezoneOffset() * 60000;// Date.now() - (new Date()).getTimezoneOffset() * 60000;
+
         jQuery("#intRideAmount").val(rideDetails.intRideAmount);
         jQuery("#intRideCommision").val(rideDetails.intRideCommision);
         jQuery("#intRideKM").val(rideDetails.intRideKM);
