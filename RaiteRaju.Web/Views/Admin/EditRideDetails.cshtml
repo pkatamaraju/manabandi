@@ -10,6 +10,22 @@
     $.noConflict();
     jQuery("#diverror").hide();
 
+    jQuery.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetRideStatus", "Admin")',
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        jQuery.each(result, function (i) {
+                            jQuery("#ddlRideStatus").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
+                        });
+                    },
+                    error: function (response) {
+                        alert('Error Occured');
+                    }
+                });
+
+
     function fnCancel() {
         window.location.href = '@Url.Action("RideDetails", "Admin")';
     }
@@ -25,6 +41,9 @@
                 }
             }
         });
+
+        
+
     });
 
     function validation() {
@@ -41,6 +60,13 @@
         var RideAmount = jQuery("#intRideAmount").val();
         var RideCommision = jQuery("#intRideCommision").val();
         var RideKM = jQuery("#intRideKM").val();
+
+
+        var lblShceduledDate = new Date(ShceduledDate); //dd-mm-YYYY
+        lblShceduledDate.setHours(0, 0, 0, 0);
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
 
 
         var vehicleNumberRegex = /^[A-Z]{2}[0-9]{1,2}[A-Z]{1,2}[0-9]{4}$/;
@@ -95,12 +121,15 @@
             message = message + "Scheduled  Time should be between 1 to 24 Hours\n";
         }
 
+        if (ShceduledDate == "") {
+            message = message + "Please enter scheduled date.\n";
 
-        if (ShceduledDate != "" & datePattern.test(ShceduledDate) == false) {
+        }
+       else if (ShceduledDate != "" & datePattern.test(ShceduledDate) == false) {
             message = message + "Special characters(<>'\"/`%-) are not allowed in Scheduled Date.\n";
         }
-        else if (DropLocation.length > 50 || DropLocation.length < 4) {
-            message = message + "Scheduled date should be between 4 to 50 characters\n";
+        else if (lblShceduledDate < today) {
+            message = message + "Scheduled date should be greater than today's date.\n";
         }
 
         if (rideStatusID==0) {
@@ -193,15 +222,19 @@
             }
             });
 
-
         jQuery("#txtUserName").val(rideDetails.Name);
         jQuery("#txtPhoneNumber").val(rideDetails.PhoneNumber);
         jQuery("#txtPickUpLocation").val(rideDetails.PickUpLocation);
         jQuery("#txtDropLocation").val(rideDetails.DropLocation);
-        jQuery('select[name="ddlRideStatus"]').find('option[value=' + rideDetails.txtRideStatus + ']').attr("selected", true);
+        jQuery('select[name="ddlRideStatus"]').find('option[value=' + parseInt(rideDetails.txtRideStatus) + ']').attr("selected", true);
         jQuery("#txtAssignedVehicle").val(rideDetails.txtVehicleNumber);
         jQuery("#txtScheduledTime").val(rideDetails.txtScheduledTime);
-        jQuery("#txtScheduledDate").val(rideDetails.txtScheduledDate);
+        jQuery("#lblScheduledDate").html(rideDetails.dtScheduledDate);
+
+        const element = document.getElementById('txtScheduledDate');
+        new Date(jQuery("#lblScheduledDate").text())
+        var sdate = new Date(rideDetails.dtScheduledDate);
+        element.valueAsNumber = sdate- (new Date()).getTimezoneOffset() * 60000;// Date.now() - (new Date()).getTimezoneOffset() * 60000;
         jQuery("#intRideAmount").val(rideDetails.intRideAmount);
         jQuery("#intRideCommision").val(rideDetails.intRideCommision);
         jQuery("#intRideKM").val(rideDetails.intRideKM);
@@ -226,7 +259,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtUserName">Name<span class="MandatoryStars">*</span> :</label>
                                     </div>
 
@@ -239,7 +272,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtPhoneNumber">Phone Number<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -250,7 +283,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="ddlState">Vehicle Type<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -263,7 +296,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtPickUpLocation">Pick Up Location<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
@@ -275,7 +308,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtDropLocation">Drop Location<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -287,7 +320,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtAssignedVehicle">Assigned Vehicle Number<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -298,35 +331,36 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtRideStatus">Ride Status<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <select id="ddlRideStatus" name="ddlRideStatus" class="form-control" required="required">
-                                            <option value="0">---Select Status---</option>
+                                            @*<option value="0">---Select Status---</option>
                                             <option value="1">Not Assigned</option>
                                             <option value="2">Assigned</option>
                                             <option value="3">Rejected By User</option>
                                             <option value="4">Completed</option>
-                                            <option value="5">Deleted</option>
+                                            <option value="5">Deleted</option>*@
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtScheduledDate">Scheduled Date<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <input type="date" class="form-control" id="txtScheduledDate" name="txtScheduledDate" placeholder="28-11-2019">
 
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="txtScheduledTime">Scheduled Time<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -337,7 +371,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="intRideAmount">Ride Amount<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -348,7 +382,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="intRideCommision">Ride Commision<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -359,7 +393,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
                                         <label for="intRideKM">Ride KiloMeters<span class="MandatoryStars">*</span> :</label>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">

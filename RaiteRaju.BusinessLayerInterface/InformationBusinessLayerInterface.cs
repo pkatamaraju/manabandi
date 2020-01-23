@@ -70,6 +70,8 @@ namespace RaiteRaju.BusinessLayerInterface
 
         PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK);
 
+        List<GDictionary> GetRideStatus();
+
         #endregion
     }
 

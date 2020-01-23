@@ -208,6 +208,12 @@ namespace RaiteRaju.ServiceLayer
             InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
             return BusObj.GetPriceMultipleByIDForAdmin(intPricePK);
         }
+        public List<GDictionary> GetRideStatus()
+        {
+            InformationBusinessLayerInterface BusObj = new BusinessLayer.InformationBusinessLayer();
+            return BusObj.GetRideStatus();
+        }
+
     }
 
 

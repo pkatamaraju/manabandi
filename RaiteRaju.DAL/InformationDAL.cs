@@ -1243,7 +1243,35 @@ namespace RaiteRaju.DAL
             }
         }
 
+        public List<GDictionary> GetRideStatus()
+        {
+            GDictionary obj = new GDictionary();
+            List<GDictionary> listObj = new List<GDictionary>();
 
+            try
+            {
+                using (DbCommand objDbCommand = DBAccessHelper.GetDBCommand(ConnectionManager.DatabaseToConnect.DefaultInstance, StoredProcedures.GET_MBRideStatus))
+                {
+                    IDataReader dr = DBAccessHelper.ExecuteReader(objDbCommand);
+                    while (dr.Read())
+                    {
+                        obj = new GDictionary();
+                        obj.ID = Convert.ToInt32(dr[DataAccessConstants.PARAMINTRIDESTATUSID]);
+                        obj.Name = Convert.ToString(dr[DataAccessConstants.PARAMTXTRIDESTATUS]);
+                        listObj.Add(obj);
+                    }
+
+                    dr.Close();
+
+                    return listObj;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLoggin("InformationDal", "GetRideStatus", ex.Message);
+                return null;
+            }
+        }
         public void SendMail()
         {
             MailMessage message = new MailMessage();

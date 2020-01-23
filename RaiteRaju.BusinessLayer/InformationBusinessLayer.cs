@@ -176,6 +176,12 @@ namespace RaiteRaju.BusinessLayer
         {
             return new DAL.InformationDAL().GetPriceMultipleByIDForAdmin(intPricePK);
         }
+
+        public List<GDictionary> GetRideStatus()
+        {
+            return new DAL.InformationDAL().GetRideStatus();
+
+        }
     }
 
 }

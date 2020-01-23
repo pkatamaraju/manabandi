@@ -56,10 +56,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2020 16:05:35</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.dll">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayer.pdb">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.BusinessLayerInterface.dll">
       <publishTime>01/07/2020 16:05:35</publishTime>
@@ -68,10 +68,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2020 16:05:35</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.dll">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:13</publishTime>
     </File>
     <File Include="bin/RaiteRaju.DAL.pdb">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:13</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Entities.dll">
       <publishTime>01/07/2020 16:05:35</publishTime>
@@ -80,13 +80,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2020 16:05:35</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.dll.config">
       <publishTime>01/06/2020 13:37:58</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayer.pdb">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceLayerInterface.dll">
       <publishTime>01/07/2020 16:05:35</publishTime>
@@ -95,13 +95,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2020 16:05:35</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.dll">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.ServiceMapper.pdb">
-      <publishTime>01/12/2020 13:08:00</publishTime>
+      <publishTime>01/15/2020 00:02:14</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.dll">
-      <publishTime>01/12/2020 13:14:11</publishTime>
+      <publishTime>01/15/2020 00:02:15</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.Models.dll">
       <publishTime>01/07/2020 16:05:35</publishTime>
@@ -110,7 +110,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2020 16:05:35</publishTime>
     </File>
     <File Include="bin/RaiteRaju.Web.pdb">
-      <publishTime>01/12/2020 13:14:11</publishTime>
+      <publishTime>01/15/2020 00:02:15</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/06/2020 13:38:02</publishTime>
@@ -638,7 +638,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2019 00:30:35</publishTime>
     </File>
     <File Include="Views/Admin/APICheckPrice.cshtml">
-      <publishTime>01/07/2020 19:57:10</publishTime>
+      <publishTime>01/14/2020 23:32:07</publishTime>
     </File>
     <File Include="Views/Admin/ContactUs.cshtml">
       <publishTime>01/06/2020 13:37:59</publishTime>
@@ -704,7 +704,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2019 00:29:16</publishTime>
     </File>
     <File Include="Views/Book/BookNow.cshtml">
-      <publishTime>01/07/2020 19:58:32</publishTime>
+      <publishTime>01/14/2020 23:31:21</publishTime>
     </File>
     <File Include="Views/Book/BookNow_old.cshtml">
       <publishTime>01/06/2020 13:37:59</publishTime>
@@ -830,7 +830,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2020 13:37:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/12/2020 13:14:12</publishTime>
+      <publishTime>01/15/2020 00:02:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

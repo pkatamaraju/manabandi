@@ -829,6 +829,15 @@ namespace RaiteRaju.Web.Controllers
             }
         }
 
+        public ActionResult GetRideStatus()
+        {
+            List<GDictionaryModel> modelList = new List<GDictionaryModel>();
+            InformationServiceWrapper inforObj = new InformationServiceWrapper();
+            modelList = inforObj.GetRideStatus();
+           // ViewBag.summaryList = modelList;
+            return Json(modelList, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region PriceCheck

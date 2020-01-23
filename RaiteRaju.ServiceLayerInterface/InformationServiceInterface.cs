@@ -102,6 +102,8 @@ namespace RaiteRaju.ServiceLayerInterface
         PriceMultipleEntity GetPriceMultipleByIDForAdmin(int intPricePK);
 
 
+        List<GDictionary> GetRideStatus();
+
         #endregion
     }
 

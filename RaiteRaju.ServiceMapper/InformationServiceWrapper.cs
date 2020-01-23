@@ -403,6 +403,18 @@ namespace RaiteRaju.ServiceMapper
             return model;
         }
 
+        public List<GDictionaryModel> GetRideStatus()
+        {
+            List<GDictionary> gdEntityList = new List<GDictionary>();
+            List<GDictionaryModel> gdModel = new List<GDictionaryModel>();
+            ServiceLayer.InformationService obj = new InformationService();
+            InformationObjectMapper objmapper = new InformationObjectMapper();
+            gdEntityList = obj.GetRideStatus();
+            gdModel = objmapper.MapGDictionaryEntityListToModelList(gdEntityList);
+            return gdModel;
+
+        }
+
         #endregion
 
 
