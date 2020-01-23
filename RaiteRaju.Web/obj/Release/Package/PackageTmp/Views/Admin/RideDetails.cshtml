@@ -33,10 +33,10 @@
                 j=i+1;
                 var SNo = pageNumber + j;
                 if (rideList[i].txtRideStatus == "Completed" || rideList[i].txtRideStatus.toString() == "Assigned") {
-                    tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><td class="billClass" onclick=fnGetBill(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Bill</td><tr>')
+                    tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].dtScheduledDate + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><td class="billClass" onclick=fnGetBill(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Bill</td><tr>')
                 }
                 else {
-                    tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><td></td><tr>')
+                    tblrideList.append('<tr class="tableRow"><td>' + rideList[i].intRideID + '</td><td width="100px">' + rideList[i].Name + '</td><td width="100px">' + rideList[i].PhoneNumber + '</td><td width="100px">' + rideList[i].PickUpLocation + '</td><td>' + rideList[i].DropLocation + '</td><td onclick=fnGoToVehicleDetails(' + rideList[i].VehicleTypeID + ') style="cursor:pointer;color:blue;width="300px">' + rideList[i].VehicleType + '</td><td width="100px">' + rideList[i].DtCreated + '</td><td width="100px">' + rideList[i].dtScheduledDate + '</td><td width="100px">' + rideList[i].txtRideStatus + '</td><td width="100px">' + rideList[i].txtVehicleNumber + '</td><td width="100px">' + rideList[i].intRideAmount + '</td><td onclick=fnUpdateRideDetails(' + rideList[i].intRideID + ') style="cursor:pointer;color:blue;">Edit</td><td></td><tr>')
                 }
 
             }
@@ -145,10 +145,33 @@
             }
         });
 
+        jQuery.ajax({
+        type: "POST",
+        url: '@Url.Action("GetRideStatus", "Admin")',
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            jQuery.each(result, function (i) {
+                if (SelectedRideStatusID != 0 && SelectedRideStatusID == result[i].ID) {
+                    jQuery("#ddlRideStatus").append(jQuery('<option selected="selected"></option>').val(result[i].ID).html(result[i].Name))
+                }
+                else {
+                    jQuery("#ddlRideStatus").append(jQuery('<option></option>').val(result[i].ID).html(result[i].Name))
 
-        if (SelectedRideStatusID != 0) {
-            jQuery('select[name="ddlRideStatus"]').find('option[value=' + SelectedRideStatusID + ']').attr("selected", true);
+                }
+            });
+        },
+        error: function (response) {
+            alert('Error Occured');
         }
+    });
+
+
+
+
+        //if (SelectedRideStatusID != 0) {
+        //    jQuery('select[name="ddlRideStatus"]').find('option[value=' + SelectedRideStatusID + ']').attr("selected", true);
+        //}
 
 
         var CurrentPageNumber=parseInt(jQuery("#txtcurrentPageNumber").val());
@@ -245,12 +268,12 @@
                         <div class="col-lg-3">
                             <span class="FilterLabels">Select Status</span><br />
                             <select id="ddlRideStatus" name="ddlRideStatus" class="form-control" required="required">
-                                <option value="0">---Select Status---</option>
-                                <option value="1">Not Assigned</option>
+                               <option value="0">---Select Status---</option>
+                                @* <option value="1">Not Assigned</option>
                                 <option value="2">Assigned</option>
                                 <option value="3">Rejected By User</option>
                                 <option value="4">Completed</option>
-                                <option value="5">Deleted</option>
+                                <option value="5">Deleted</option>*@
                             </select>
                         </div>
 
@@ -269,6 +292,7 @@
                             <th width="100px">Drop</th>
                             <th width="180px">Requested Vehicle</th>
                             <th width="100px">Entry Date</th>
+                            <th width="100px">Scheduled Date</th>
                             <th width="100px">Status</th>
                             <th width="100px">VehcileNumber</th>
                             <th width="100px">Ride Amount</th>

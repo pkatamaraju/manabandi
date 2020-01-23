@@ -148,8 +148,8 @@
 
             message = message + "Special characters(<>'\"/`%-) are not allowed in Pick up location.\n";
         }
-        else if (PickUpLocation.length > 100 || PickUpLocation.length < 2) {
-            message = message + "Pick up location should be between 2 to 100 characters.\n";
+        else if (PickUpLocation.length > 150 || PickUpLocation.length < 2) {
+            message = message + "Pick up location should be between 2 to 150 characters.\n";
         }
         else if (PickUpLocation.indexOf(',') < 0) {
             message = message + "Please select valid Pick Up Location from populated vales only.\n";
@@ -161,8 +161,8 @@
         else if (/^[^<>'\"/`%-]*$/.test(DropLocation) == false) {
             message = message + "Special characters(<>'\"/`%-) are not allowed in Drop location.\n";
         }
-        else if (DropLocation.length > 100 || DropLocation.length < 2) {
-            message = message + "Drop location should be between 2 to 100 characters\n";
+        else if (DropLocation.length > 150 || DropLocation.length < 2) {
+            message = message + "Drop location should be between 2 to 150 characters\n";
         }
         else if (DropLocation.indexOf(',') < 0) {
             message = message + "Please select valid Drop Location from populated vales only.\n";
